@@ -77,6 +77,12 @@ class PhysicsAwareLSTM(layers.Layer):
         batch_size = ops.shape(lstm_output)[0]
         seq_length = ops.shape(lstm_output)[1]
         
+        # Expand physics embedding to match the current batch size (which may include balls)
+        if ops.shape(physics_embedding)[0] != batch_size:
+            # Repeat physics embedding for each ball
+            balls_per_batch = batch_size // ops.shape(physics_embedding)[0]
+            physics_embedding = ops.repeat(physics_embedding, balls_per_batch, axis=0)
+        
         # Broadcast physics embedding to sequence length
         physics_expanded = ops.expand_dims(physics_embedding, 1)  # [batch, 1, physics_dim]
         physics_seq = ops.repeat(physics_expanded, seq_length, axis=1)  # [batch, seq, physics_dim]
@@ -164,7 +170,7 @@ class TrajectoryDecoder(layers.Layer):
         # Generate sequence
         for t in range(sequence_length):
             # Temporal encoding
-            time_emb = self.temporal_embedding(t)  # [temporal_dim]
+            time_emb = self.temporal_embedding(ops.convert_to_tensor(t))  # [temporal_dim]
             time_emb = ops.expand_dims(ops.expand_dims(time_emb, 0), 0)  # [1, 1, temporal_dim]
             time_emb = ops.tile(time_emb, [batch_size, max_balls, 1])  # [batch, max_balls, temporal_dim]
             
@@ -179,13 +185,13 @@ class TrajectoryDecoder(layers.Layer):
             for lstm_layer in self.lstm_layers:
                 lstm_output, _, _ = lstm_layer(
                     lstm_output, 
-                    physics_embedding,
+                    physics_embedding=physics_embedding,
                     training=training
                 )
             
             # Reshape back: [batch*max_balls, 1, features] -> [batch, max_balls, features]
-            lstm_output = ops.reshape(lstm_output, [batch_size, max_balls, -1])
-            lstm_output = ops.squeeze(lstm_output, axis=1)  # Remove sequence dimension
+            feature_dim = ops.shape(lstm_output)[-1]
+            lstm_output = ops.reshape(lstm_output, [batch_size, max_balls, feature_dim])
             
             # Predict changes
             position_delta = self.position_predictor(lstm_output, training=training)
@@ -195,7 +201,7 @@ class TrajectoryDecoder(layers.Layer):
             
             # Update state
             # current_state format: [time, x, y, vx, vy, mass, radius, ke, pe]
-            new_time = ops.full([batch_size, max_balls, 1], t * self.config.sequence_length / 300.0)
+            new_time = ops.full([batch_size, max_balls, 1], float(t) / float(self.config.sequence_length))
             new_position = current_state[:, :, 1:3] + position_delta
             new_velocity = current_state[:, :, 3:5] + velocity_delta
             static_properties = current_state[:, :, 5:7]  # mass, radius stay constant
@@ -255,7 +261,7 @@ class TrajectoryGenerator(keras.Model):
         # Generate trajectory
         generation_output = self.decoder(
             inputs,
-            physics_rules,
+            physics_rules=physics_rules,
             training=training
         )
         
@@ -305,7 +311,7 @@ class TrajectoryGenerator(keras.Model):
         # Convert to numpy
         result = {}
         for key, value in outputs.items():
-            result[key] = value.numpy()[0]  # Remove batch dimension
+            result[key] = np.array(value)[0]  # Remove batch dimension
         
         return result
     

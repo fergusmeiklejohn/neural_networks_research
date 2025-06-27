@@ -198,8 +198,12 @@ class DistributionInventor(keras.Model):
         )
         
         # Step 5: Extract insights that map back to original distribution
+        batch_size = ops.shape(trajectory_data)[0]
+        trajectory_positions = generation_output['trajectory'][:, :, :, 1:3]  # Extract positions
+        flattened_positions = ops.reshape(trajectory_positions, [batch_size, -1])  # Flatten positions
+        
         insight_input = ops.concatenate([
-            generation_output['trajectory'][:, :, :, 1:3].reshape([ops.shape(trajectory_data)[0], -1]),  # Positions
+            flattened_positions,
             modified_rules['gravity'],
             modified_rules['friction'],
             modified_rules['elasticity'],
@@ -260,26 +264,26 @@ class DistributionInventor(keras.Model):
         
         # Extract results
         result = {
-            'new_trajectory': outputs['generated_trajectory'].numpy()[0],
+            'new_trajectory': np.array(outputs['generated_trajectory'])[0],
             'success': True,
             'modification_applied': modification_request
         }
         
         if return_details:
             result.update({
-                'original_rules': {k: v.numpy()[0] for k, v in outputs['extracted_rules'].items() 
+                'original_rules': {k: np.array(v)[0] for k, v in outputs['extracted_rules'].items() 
                                  if k not in ['independence_score', 'consistency_score', 'features']},
-                'modified_rules': {k: v.numpy()[0] for k, v in outputs['modified_rules'].items() 
+                'modified_rules': {k: np.array(v)[0] for k, v in outputs['modified_rules'].items() 
                                  if k not in ['deltas', 'weights']},
                 'quality_scores': {
-                    'overall_consistency': outputs['consistency_scores']['overall_consistency'].numpy()[0],
-                    'rule_coherence': outputs['consistency_scores']['rule_coherence'].numpy()[0],
-                    'trajectory_plausibility': outputs['consistency_scores']['trajectory_plausibility'].numpy()[0],
-                    'modification_novelty': outputs['modification_novelty'].numpy()[0],
-                    'trajectory_quality': outputs['trajectory_quality'].numpy()[0]
+                    'overall_consistency': np.array(outputs['consistency_scores']['overall_consistency'])[0],
+                    'rule_coherence': np.array(outputs['consistency_scores']['rule_coherence'])[0],
+                    'trajectory_plausibility': np.array(outputs['consistency_scores']['trajectory_plausibility'])[0],
+                    'modification_novelty': np.array(outputs['modification_novelty'])[0],
+                    'trajectory_quality': np.array(outputs['trajectory_quality'])[0]
                 },
-                'uncertainty': outputs['trajectory_uncertainty'].numpy()[0],
-                'insights': outputs['insights'].numpy()[0]
+                'uncertainty': np.array(outputs['trajectory_uncertainty'])[0],
+                'insights': np.array(outputs['insights'])[0]
             })
             
             # Determine if modification was successful

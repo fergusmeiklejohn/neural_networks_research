@@ -188,12 +188,12 @@ class PhysicsRuleExtractor(keras.Model):
         outputs = self(trajectory_data, training=False)
         
         return {
-            'gravity': outputs['gravity'].numpy(),
-            'friction': outputs['friction'].numpy(),
-            'elasticity': outputs['elasticity'].numpy(),
-            'damping': outputs['damping'].numpy(),
-            'independence_score': outputs['independence_score'].numpy(),
-            'consistency_score': outputs['consistency_score'].numpy()
+            'gravity': np.array(outputs['gravity']),
+            'friction': np.array(outputs['friction']),
+            'elasticity': np.array(outputs['elasticity']),
+            'damping': np.array(outputs['damping']),
+            'independence_score': np.array(outputs['independence_score']),
+            'consistency_score': np.array(outputs['consistency_score'])
         }
     
     def get_rule_attention_weights(self, trajectory_data: np.ndarray) -> Dict[str, np.ndarray]:
@@ -229,10 +229,10 @@ class PhysicsRuleLoss(keras.losses.Loss):
         # y_pred contains the model outputs
         
         # Reconstruction loss - how well do extracted rules match ground truth?
-        gravity_loss = keras.losses.mse(y_true['gravity'], y_pred['gravity'])
-        friction_loss = keras.losses.mse(y_true['friction'], y_pred['friction'])
-        elasticity_loss = keras.losses.mse(y_true['elasticity'], y_pred['elasticity'])
-        damping_loss = keras.losses.mse(y_true['damping'], y_pred['damping'])
+        gravity_loss = keras.losses.mean_squared_error(y_true['gravity'], y_pred['gravity'])
+        friction_loss = keras.losses.mean_squared_error(y_true['friction'], y_pred['friction'])
+        elasticity_loss = keras.losses.mean_squared_error(y_true['elasticity'], y_pred['elasticity'])
+        damping_loss = keras.losses.mean_squared_error(y_true['damping'], y_pred['damping'])
         
         reconstruction_loss = (gravity_loss + friction_loss + elasticity_loss + damping_loss) / 4
         
@@ -273,14 +273,19 @@ def create_physics_rule_extractor(config: Optional[PhysicsRuleConfig] = None) ->
     
     model = PhysicsRuleExtractor(config)
     
-    # Compile with custom loss
+    # Compile with custom loss  
     model.compile(
         optimizer=keras.optimizers.Adam(learning_rate=config.learning_rate),
         loss=PhysicsRuleLoss(),
-        metrics=[
-            keras.metrics.MeanSquaredError(name='mse'),
-            keras.metrics.MeanAbsoluteError(name='mae')
-        ]
+        metrics={
+            'gravity': [keras.metrics.MeanSquaredError(name='gravity_mse')],
+            'friction': [keras.metrics.MeanSquaredError(name='friction_mse')],
+            'elasticity': [keras.metrics.MeanSquaredError(name='elasticity_mse')],
+            'damping': [keras.metrics.MeanSquaredError(name='damping_mse')],
+            'independence_score': [keras.metrics.BinaryAccuracy(name='independence_acc')],
+            'consistency_score': [keras.metrics.BinaryAccuracy(name='consistency_acc')],
+            'features': [keras.metrics.MeanSquaredError(name='features_mse')]
+        }
     )
     
     return model

@@ -264,10 +264,10 @@ class DistributionModifier(keras.Model):
         modified_rules = {}
         for key, value in outputs['modified_rules'].items():
             if key != 'deltas' and key != 'weights':
-                modified_rules[key] = value.numpy()[0]
+                modified_rules[key] = np.array(value)[0]
         
-        modified_rules['consistency_score'] = outputs['consistency_score'].numpy()[0]
-        modified_rules['novelty_score'] = outputs['novelty_score'].numpy()[0]
+        modified_rules['consistency_score'] = np.array(outputs['consistency_score'])[0]
+        modified_rules['novelty_score'] = np.array(outputs['novelty_score'])[0]
         
         return modified_rules
     
