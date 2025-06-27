@@ -55,10 +55,14 @@ The project uses **Keras 3** with multi-backend support:
 
 ### Current State
 
-The project is in the **planning phase** with comprehensive documentation but no
-implementation yet.
+The project is in **active implementation** with Physics Worlds experiment underway:
+- Phase 1 (Data Generation) ✅ Complete - 9,712 training samples
+- Phase 2 (Model Training) 🚧 In Progress
+  - Distribution Modification Component ✅ Complete
+  - Physics-Informed Neural Network (PINN) ✅ Complete
+  - Progressive Training Curriculum ⏳ Ready to start
 
-### Planned Architecture (to be created)
+### Architecture (partially implemented)
 
 ```
 experiments/                    # 6 major experiments
@@ -71,10 +75,14 @@ experiments/                    # 6 major experiments
 
 models/
 ├── core/
+│   ├── physics_rule_extractor.py  # ✅ Transformer-based rule extraction
 │   ├── distribution_generator.py   # Main distribution invention model
-│   ├── rule_extractor.py          # Causal rule extraction
 │   ├── consistency_checker.py     # Ensures rule consistency
 │   └── insight_extractor.py       # Maps insights back to base
+├── physics_informed_components.py  # ✅ HamiltonianNN, attention layers
+├── collision_models.py            # ✅ Soft collision handling
+├── physics_losses.py              # ✅ Conservation losses, ReLoBRaLo
+├── physics_informed_transformer.py # ✅ Hybrid PINN-Transformer
 └── utils/                         # Shared utilities
 
 configs/
@@ -131,12 +139,14 @@ python -c "import keras; print(keras.backend.backend())"  # Check backend
 ### Running Experiments
 
 ```bash
-# Training commands (to be implemented)
-python scripts/train.py --experiment physics_worlds
-python scripts/train.py --experiment compositional_language
+# Physics Worlds Training (implemented)
+cd experiments/01_physics_worlds
+python train_pinn_extractor.py      # Full PINN training (run separately)
+python train_modifier_numpy.py      # Distribution modifier training
 
-# Evaluation commands (to be implemented)
-python scripts/evaluate_distribution.py --model_path outputs/checkpoints/model.keras
+# Evaluation commands
+python evaluate_pinn_performance.py --model_path outputs/checkpoints/pinn_final.keras
+python evaluate_modifier.py
 ```
 
 ### Code Quality
@@ -265,3 +275,37 @@ a `claude-plans` folder within each experiment directory. These plans should:
 - List specific, actionable steps in priority order
 - Include success metrics and risk mitigation strategies
 - Emphasize scientific validity and proper data isolation
+
+### Training Runs
+
+For efficient development, we separate testing from full training:
+
+**Testing (Claude runs)**:
+- Small data subsets (100-1000 samples)
+- 1-2 epochs per stage
+- Verify implementation correctness
+- Quick iteration cycles
+
+**Full Training (User runs separately)**:
+- Complete datasets
+- 50+ epochs per stage
+- Enable wandb logging
+- Use GPU/TPU acceleration
+- May take hours/days to complete
+
+### Research Diary
+
+We maintain a research diary in `research_diary/` with daily entries documenting:
+- Goals and objectives for the day
+- Key decisions made and rationale
+- What worked and what didn't
+- Challenges encountered and solutions
+- Results and metrics
+- Next steps
+
+**Process**:
+1. Make brief notes throughout the day as work progresses
+2. Reference these notes when writing the daily summary
+3. Use format: `YYYY-MM-DD_research_diary.md`
+4. Keep entries concise but comprehensive
+5. Include specific code changes, test results, and insights
