@@ -21,6 +21,7 @@ outputs/checkpoints/*
 *.pth
 *.keras
 *.safetensors
+experiments/*/data
 
 # Logs
 *.log

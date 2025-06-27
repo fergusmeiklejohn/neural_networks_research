@@ -25,8 +25,8 @@ from models.core.distribution_inventor import (
     ModifierConfig,
     TrajectoryConfig
 )
-from experiments.physics_worlds.data_generator import load_physics_dataset
-from experiments.physics_worlds.physics_env import PhysicsWorld, PhysicsConfig
+from data_generator import load_physics_dataset
+from physics_env import PhysicsWorld, PhysicsConfig
 
 
 class PhysicsTrainingPipeline:

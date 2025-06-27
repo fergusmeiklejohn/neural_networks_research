@@ -1,20 +1,31 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with
+code in this repository.
 
 ## Project Overview
 
-This is a neural networks research project focused on developing models that can **invent new distributions** rather than merely interpolate within their training distribution. The goal is to create neural networks that can build "pocket realities" with modified rules to explore novel ideas - mimicking human creativity and extrapolation capabilities.
+This is a neural networks research project focused on developing models that can
+**invent new distributions** rather than merely interpolate within their
+training distribution. The goal is to create neural networks that can build
+"pocket realities" with modified rules to explore novel ideas - mimicking human
+creativity and extrapolation capabilities.
 
 ### Research Objectives
-- **Distribution Construction**: Build models that create coherent new probability distributions with selectively modified constraints
-- **Controlled Extrapolation**: Enable principled exploration of the "adjacent possible" - ideas just outside training boundaries
-- **Rule Modification**: Develop architectures that can identify, modify, and consistently apply rule changes
-- **Insight Transfer**: Create mechanisms for mapping insights from invented distributions back to base distributions
+
+- **Distribution Construction**: Build models that create coherent new
+  probability distributions with selectively modified constraints
+- **Controlled Extrapolation**: Enable principled exploration of the "adjacent
+  possible" - ideas just outside training boundaries
+- **Rule Modification**: Develop architectures that can identify, modify, and
+  consistently apply rule changes
+- **Insight Transfer**: Create mechanisms for mapping insights from invented
+  distributions back to base distributions
 
 ## Development Environment
 
 ### Python Environment Setup
+
 The project uses a Conda environment named `dist-invention` with Python 3.11:
 
 ```bash
@@ -26,12 +37,15 @@ pip install keras>=3.0 torch jax[metal] transformers wandb
 ```
 
 ### Backend Configuration
+
 The project uses **Keras 3** with multi-backend support:
+
 - **Primary Backend**: JAX with Metal acceleration (Mac)
 - **Alternative Backends**: PyTorch, TensorFlow
 - Configure via `~/.keras/keras.json` or `KERAS_BACKEND` environment variable
 
 ### Development Tools
+
 - **IDE**: VS Code with Python Interactive files (`.py` with `# %%` cells)
 - **Notebooks**: Jupyter for final presentations/sharing
 - **Experiment Tracking**: Weights & Biases (`wandb`)
@@ -40,9 +54,12 @@ The project uses **Keras 3** with multi-backend support:
 ## Project Structure
 
 ### Current State
-The project is in the **planning phase** with comprehensive documentation but no implementation yet.
+
+The project is in the **planning phase** with comprehensive documentation but no
+implementation yet.
 
 ### Planned Architecture (to be created)
+
 ```
 experiments/                    # 6 major experiments
 ├── 01_physics_worlds/         # Physics simulation with rule modifications
@@ -76,6 +93,7 @@ scripts/
 ## Core Architecture Components
 
 ### 1. DistributionInventor Model
+
 ```python
 class DistributionInventor(keras.Model):
     def __init__(self):
@@ -87,14 +105,19 @@ class DistributionInventor(keras.Model):
 ```
 
 ### 2. Key Components
+
 - **Causal Disentanglement Module**: Separates causal mechanisms from parameters
-- **Distribution Generator Network**: Creates new coherent distributions from base + modification requests
-- **Consistency Enforcer**: Ensures non-modified rules remain intact using energy-based formulation
-- **Insight Extractor**: Maps patterns from generated distributions back to base distribution
+- **Distribution Generator Network**: Creates new coherent distributions from
+  base + modification requests
+- **Consistency Enforcer**: Ensures non-modified rules remain intact using
+  energy-based formulation
+- **Insight Extractor**: Maps patterns from generated distributions back to base
+  distribution
 
 ## Development Commands
 
 ### Setup Commands
+
 ```bash
 # Initial setup (run once)
 source scripts/setup_env.sh              # Load environment variables
@@ -106,6 +129,7 @@ python -c "import keras; print(keras.backend.backend())"  # Check backend
 ```
 
 ### Running Experiments
+
 ```bash
 # Training commands (to be implemented)
 python scripts/train.py --experiment physics_worlds
@@ -116,6 +140,7 @@ python scripts/evaluate_distribution.py --model_path outputs/checkpoints/model.k
 ```
 
 ### Code Quality
+
 ```bash
 # Formatting and linting
 black .                                   # Format code
@@ -128,6 +153,7 @@ pytest tests/test_distribution_generator.py  # Run specific test
 ```
 
 ### Jupyter/Interactive Development
+
 ```bash
 # Launch Jupyter
 jupyter lab                              # Full Jupyter environment
@@ -140,6 +166,7 @@ jupyter notebook                         # Classic notebook interface
 ## Experiment Workflow
 
 ### 3-Phase Training Strategy
+
 1. **Phase 1: Learn Base Distributions**
    - Train on standard datasets to learn rule extraction
    - Use reconstruction tasks to ensure rule completeness
@@ -154,6 +181,7 @@ jupyter notebook                         # Classic notebook interface
    - Use human feedback for quality assessment
 
 ### Experiment Progression
+
 1. **Physics Worlds**: 2D ball dynamics with gravity/friction modifications
 2. **Compositional Language**: SCAN dataset with rule modifications
 3. **Visual Concepts**: ImageNet with object attribute blending
@@ -163,14 +191,18 @@ jupyter notebook                         # Classic notebook interface
 
 ## Success Metrics
 
-- **Novel Coherence**: Models generate novel but coherent outputs when modifying specific constraints
-- **Graceful Degradation**: Performance degrades gracefully (not catastrophically) outside training distribution
-- **Internal Consistency**: Generated distributions maintain consistency while violating specified rules
+- **Novel Coherence**: Models generate novel but coherent outputs when modifying
+  specific constraints
+- **Graceful Degradation**: Performance degrades gracefully (not
+  catastrophically) outside training distribution
+- **Internal Consistency**: Generated distributions maintain consistency while
+  violating specified rules
 - **Human Evaluation**: Outputs are rated as "surprisingly sensible" and useful
 
 ## Compute Requirements
 
 ### Development Phases
+
 - **Local (Mac)**: Initial prototyping, small-scale tests
 - **Colab**: Quick experiments, proof of concepts
 - **Paperspace**: Main development and training
@@ -179,14 +211,18 @@ jupyter notebook                         # Classic notebook interface
 
 ## Key Files to Reference
 
-- `distribution_invention_research_plan.md`: Complete research plan and technical approach
+- `distribution_invention_research_plan.md`: Complete research plan and
+  technical approach
 - `setup_distribution_invention.md`: Detailed development environment setup
-- `configs/experiment_configs.yaml`: Hyperparameter configurations (to be created)
-- `models/core/distribution_generator.py`: Core model implementation (to be created)
+- `configs/experiment_configs.yaml`: Hyperparameter configurations (to be
+  created)
+- `models/core/distribution_generator.py`: Core model implementation (to be
+  created)
 
 ## Environment Variables
 
 Set these in `.env` file:
+
 ```bash
 KERAS_BACKEND=jax                        # Primary backend
 WANDB_PROJECT=distribution-invention     # Experiment tracking
@@ -197,16 +233,25 @@ OUTPUT_DIR=./outputs                     # Output directory
 
 ## Next Implementation Steps
 
-1. **Setup Development Environment**: Execute setup guide to create directory structure
+1. **Setup Development Environment**: Execute setup guide to create directory
+   structure
 2. **Implement Core Architecture**: Create `DistributionInventor` base classes
 3. **Physics Experiment**: Start with simplest experiment (2D physics worlds)
-4. **Evaluation Framework**: Build consistent evaluation metrics across experiments
+4. **Evaluation Framework**: Build consistent evaluation metrics across
+   experiments
 5. **Scale Gradually**: Move from local prototyping to cloud training
 
 ## Notes
 
 - **Current State**: Planning phase complete, ready for implementation
 - **Multi-Backend**: Keras 3 provides flexibility across JAX/PyTorch/TensorFlow
-- **Interactive Development**: Use VS Code with Python Interactive files for rapid prototyping
+- **Interactive Development**: Use VS Code with Python Interactive files for
+  rapid prototyping
 - **Experiment Tracking**: All experiments should log to Weights & Biases
 - **Timeline**: 4-month research plan with systematic experiment progression
+
+## Notes for execution
+
+We always keep an EXPERIMENT_PLAN.md file in each Experiment folder. We keep it
+up to date with the current state of the experiment. And use it to guide the
+execution of the experiment.
