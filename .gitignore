@@ -37,4 +37,4 @@ logs/
 # Keep directory structure
 !data/raw/.gitkeep
 !data/processed/.gitkeep
-!outputs/checkpoints/.gitkeep
+!outputs/checkpoints/.gitkeep*.keras

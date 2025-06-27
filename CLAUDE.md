@@ -255,3 +255,13 @@ OUTPUT_DIR=./outputs                     # Output directory
 We always keep an EXPERIMENT_PLAN.md file in each Experiment folder. We keep it
 up to date with the current state of the experiment. And use it to guide the
 execution of the experiment.
+
+### Planning Documentation
+
+When planning next steps for experiments, we create timestamped plan documents in
+a `claude-plans` folder within each experiment directory. These plans should:
+- Include the date and time in the filename (e.g., `2025-06-27_physics_worlds_next_steps.md`)
+- Provide context about the current state
+- List specific, actionable steps in priority order
+- Include success metrics and risk mitigation strategies
+- Emphasize scientific validity and proper data isolation
