@@ -338,4 +338,22 @@ Hit another issue: tf.function's autograph requires all variables in all conditi
 
 **Lesson**: Don't over-optimize. tf.function complexity wasn't worth it - the simple version with just memory management should work fine.
 
+### Mixed Precision Type Error
+
+New error on Paperspace: "cannot compute Mul as input #1(zero-based) was expected to be a half tensor but is a float tensor". Mixed precision (float16) is causing type mismatches in the model operations.
+
+**Root Cause**: Mixed precision requires all operations to handle mixed float16/float32 types correctly. Some layers or operations in our model aren't compatible.
+
+**Solution**: Created `train_progressive_nomixedprecision.py` that removes mixed precision but keeps:
+- GPU memory growth (prevents pre-allocation)
+- Periodic garbage collection
+- Reduced epochs (10 per stage) for faster iteration
+
+**Trade-offs**:
+- **Lost**: ~50% memory savings from float16
+- **Gained**: Compatibility and stability
+- **Kept**: Dynamic memory allocation and periodic clearing
+
+**Key Insight**: Start with the simplest working configuration, then add optimizations one by one. Mixed precision is powerful but requires careful model design.
+
 ## End of Entry

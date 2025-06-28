@@ -103,22 +103,22 @@ def train_model():
     # Try different training versions in order of preference
     training_success = False
     
-    # First try simple optimized version (most reliable)
+    # First try no mixed precision version (most compatible)
     try:
-        from train_progressive_simple import train_progressive_curriculum_simple
-        print("Using simplified memory-optimized training...")
+        from train_progressive_nomixedprecision import train_progressive_curriculum_no_mixed_precision
+        print("Using training without mixed precision (most compatible)...")
         
-        # Simple optimized configuration
+        # Configuration without mixed precision
         config = {
             # Model parameters
             'd_model': 128,
             'batch_size': 8,
             
-            # Training epochs
-            'stage1_epochs': 20,
-            'stage2_epochs': 20,
-            'stage3_epochs': 20,
-            'stage4_epochs': 20,
+            # Training epochs (reduced to complete faster)
+            'stage1_epochs': 10,
+            'stage2_epochs': 10,
+            'stage3_epochs': 10,
+            'stage4_epochs': 10,
             
             # Learning rates
             'stage1_lr': 1e-3,
@@ -127,18 +127,55 @@ def train_model():
             'stage4_lr': 1e-4,
             
             # Output and logging
-            'output_dir': 'outputs/simple_optimized',
+            'output_dir': 'outputs/no_mixed_precision',
             'use_wandb': True,
-            'wandb_project': 'compositional-language-simple'
+            'wandb_project': 'compositional-language-nomixedprecision'
         }
         
-        # Run simple optimized training
-        train_progressive_curriculum_simple(config)
+        # Run training without mixed precision
+        train_progressive_curriculum_no_mixed_precision(config)
         training_success = True
         
     except Exception as e:
-        print(f"Simple optimized training failed: {e}")
-        print("Falling back to standard training...")
+        print(f"No mixed precision training failed: {e}")
+        print("Falling back to simple optimized training...")
+        
+        # Second try simple optimized version
+        try:
+            from train_progressive_simple import train_progressive_curriculum_simple
+            print("Using simplified memory-optimized training...")
+            
+            # Simple optimized configuration
+            config = {
+                # Model parameters
+                'd_model': 128,
+                'batch_size': 8,
+                
+                # Training epochs
+                'stage1_epochs': 20,
+                'stage2_epochs': 20,
+                'stage3_epochs': 20,
+                'stage4_epochs': 20,
+                
+                # Learning rates
+                'stage1_lr': 1e-3,
+                'stage2_lr': 5e-4,
+                'stage3_lr': 2e-4,
+                'stage4_lr': 1e-4,
+                
+                # Output and logging
+                'output_dir': 'outputs/simple_optimized',
+                'use_wandb': True,
+                'wandb_project': 'compositional-language-simple'
+            }
+            
+            # Run simple optimized training
+            train_progressive_curriculum_simple(config)
+            training_success = True
+            
+        except Exception as e:
+            print(f"Simple optimized training failed: {e}")
+            print("Falling back to standard training...")
         
         try:
             from train_progressive_curriculum import train_progressive_curriculum
