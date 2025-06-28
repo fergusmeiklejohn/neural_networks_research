@@ -319,11 +319,21 @@ def train_progressive_curriculum(config: Dict):
     print("Building model...")
     dummy_command = tf.zeros((1, 50), dtype=tf.int32)
     dummy_target = tf.zeros((1, 99), dtype=tf.int32)
+    dummy_modification = tf.zeros((1, 20), dtype=tf.int32)
+    
+    # Call model to build it
     _ = model({
         'command': dummy_command,
-        'target': dummy_target
+        'target': dummy_target,
+        'modification': dummy_modification
     }, training=False)
-    print(f"Model built with {sum(tf.size(v).numpy() for v in model.trainable_variables):,} parameters")
+    
+    # Try to count parameters, but don't fail if we can't
+    try:
+        total_params = sum(tf.size(v).numpy() for v in model.trainable_variables)
+        print(f"Model built with {total_params:,} parameters")
+    except:
+        print("Model built successfully")
     
     # Initialize curriculum
     curriculum = ProgressiveCurriculum(config)
