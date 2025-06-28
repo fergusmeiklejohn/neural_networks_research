@@ -103,18 +103,18 @@ def train_model():
     # Try different training versions in order of preference
     training_success = False
     
-    # First try no mixed precision version (most compatible)
+    # First try fixed version (most stable)
     try:
-        from train_progressive_nomixedprecision import train_progressive_curriculum_no_mixed_precision
-        print("Using training without mixed precision (most compatible)...")
+        from train_progressive_fixed import train_progressive_curriculum_fixed
+        print("Using fixed training (no mixed precision, proper model handling)...")
         
-        # Configuration without mixed precision
+        # Configuration for fixed training
         config = {
             # Model parameters
             'd_model': 128,
             'batch_size': 8,
             
-            # Training epochs (reduced to complete faster)
+            # Training epochs
             'stage1_epochs': 10,
             'stage2_epochs': 10,
             'stage3_epochs': 10,
@@ -127,23 +127,23 @@ def train_model():
             'stage4_lr': 1e-4,
             
             # Output and logging
-            'output_dir': 'outputs/no_mixed_precision',
+            'output_dir': 'outputs/fixed_training',
             'use_wandb': True,
-            'wandb_project': 'compositional-language-nomixedprecision'
+            'wandb_project': 'compositional-language-fixed'
         }
         
-        # Run training without mixed precision
-        train_progressive_curriculum_no_mixed_precision(config)
+        # Run fixed training
+        train_progressive_curriculum_fixed(config)
         training_success = True
         
     except Exception as e:
-        print(f"No mixed precision training failed: {e}")
-        print("Falling back to simple optimized training...")
+        print(f"Fixed training failed: {e}")
+        print("Falling back to no mixed precision training...")
         
-        # Second try simple optimized version
+        # Second try no mixed precision version
         try:
-            from train_progressive_simple import train_progressive_curriculum_simple
-            print("Using simplified memory-optimized training...")
+            from train_progressive_nomixedprecision import train_progressive_curriculum_no_mixed_precision
+            print("Using training without mixed precision...")
             
             # Simple optimized configuration
             config = {
