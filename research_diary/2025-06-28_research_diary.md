@@ -173,4 +173,91 @@ After the breakthrough success with physics extrapolation (83.51%!), we've moved
 
 **Why this matters**: Success here would show that distribution invention isn't limited to continuous domains but works for symbolic/discrete systems too.
 
+## GPU Memory Challenges and Solutions
+
+### The Reality of GPU Memory Constraints
+
+After successfully implementing the compositional language experiment, we hit significant GPU memory issues on Paperspace's A4000 (16GB). This provides valuable lessons for future experiments.
+
+**Initial Configuration** (Failed):
+- d_model: 256, batch_size: 64
+- ~50M parameters
+- OOM at 6% of first epoch
+
+**Problem Analysis**:
+1. The model was allocating tensors of shape [64, 8, 99, 50] for attention
+2. FFN layers with 4x expansion created [64, 99, 1024] tensors
+3. Gradient storage and Adam optimizer state (2x parameters) weren't accounted for
+4. Memory test passed but actual training failed - backprop needs much more memory
+
+**Progressive Solutions Attempted**:
+
+1. **First attempt** (Failed at 7%):
+   - Reduced batch_size: 64 → 32
+   - Still OOM on FFN layers
+
+2. **Second attempt** (Failed at 9%):
+   - Reduced d_model: 256 → 128
+   - Reduced batch_size: 32 → 16
+   - Model size: ~12M parameters
+   - Still OOM - the memory test was misleading
+
+3. **Final solution** (Should work):
+   - batch_size: 8 (minimum for stable training)
+   - Dynamic architecture scaling:
+     - FFN expansion: 2x instead of 4x for small models
+     - Layers: 4 instead of 6
+     - Attention heads: 4 instead of 8
+   - Epochs: 20 per stage (faster iteration)
+   - Model size: ~5-8M parameters
+
+### Key Insights
+
+**Memory Test Limitations**:
+- Simple forward pass tests don't account for:
+  - Gradient computation and storage
+  - Optimizer state (Adam uses 2x model memory)
+  - All model components running simultaneously
+  - Dynamic memory allocation during training
+
+**Trade-offs**:
+- **Pros of smaller model**:
+  - Actually runs on available hardware
+  - Faster training per epoch
+  - Can iterate and experiment more quickly
+  - SCAN is simple enough that 5-8M parameters should suffice
+
+- **Cons of smaller model**:
+  - Less capacity for complex patterns
+  - May need more epochs to converge
+  - Could struggle with the most complex modifications
+
+**Lessons for Future Experiments**:
+1. Always account for 3-4x memory overhead beyond forward pass
+2. Start small and scale up rather than starting big
+3. Memory tests should include backward pass and optimizer updates
+4. Batch size 8 seems to be minimum for stable training
+5. Consider gradient checkpointing for very large models
+
+### Architectural Flexibility
+
+The solution of dynamically adjusting architecture based on d_model is clever:
+```python
+d_ff = d_model * 2 if d_model <= 128 else d_model * 4
+num_heads = 4 if d_model <= 128 else 8
+num_layers = 4 if d_model <= 128 else 6
+```
+
+This maintains proportional capacity while fitting memory constraints.
+
+### Next Time
+
+For future experiments, I should:
+1. Start with minimal viable configuration
+2. Include memory profiling in the training loop
+3. Consider mixed precision training (float16)
+4. Implement gradient accumulation for effective larger batches
+
+Despite these challenges, the compositional language experiment is ready to run. The smaller model should still validate whether progressive curriculum works for discrete linguistic domains, just as it did for continuous physics (83.51% extrapolation).
+
 ## End of Entry
