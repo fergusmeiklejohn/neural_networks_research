@@ -315,6 +315,16 @@ def train_progressive_curriculum(config: Dict):
         d_model=config.get('d_model', 256)
     )
     
+    # Build the model with dummy inputs to initialize weights
+    print("Building model...")
+    dummy_command = tf.zeros((1, 50), dtype=tf.int32)
+    dummy_target = tf.zeros((1, 99), dtype=tf.int32)
+    _ = model({
+        'command': dummy_command,
+        'target': dummy_target
+    }, training=False)
+    print(f"Model built with {sum(tf.size(v).numpy() for v in model.trainable_variables):,} parameters")
+    
     # Initialize curriculum
     curriculum = ProgressiveCurriculum(config)
     
