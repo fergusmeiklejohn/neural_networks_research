@@ -112,13 +112,13 @@ def train_model():
         config = {
             # Model parameters
             'd_model': 128,
-            'batch_size': 8,
+            'batch_size': 32,  # Increased from 8 to better use GPU
             
-            # Training epochs (short for faster completion)
-            'stage1_epochs': 5,
-            'stage2_epochs': 5,
-            'stage3_epochs': 5,
-            'stage4_epochs': 5,
+            # Training epochs (increased for better results)
+            'stage1_epochs': 10,
+            'stage2_epochs': 10,
+            'stage3_epochs': 10,
+            'stage4_epochs': 10,
             
             # Learning rates
             'stage1_lr': 1e-3,

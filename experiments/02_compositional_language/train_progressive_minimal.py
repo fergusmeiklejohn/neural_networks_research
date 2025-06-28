@@ -108,6 +108,45 @@ class SimpleTransformerModel(keras.Model):
             'rule_embeddings': encoded,
             'rule_outputs': {}
         }
+    
+    def generate_action(self, command, modification=None, start_token=0, end_token=1):
+        """Generate action sequence - simple greedy decoding"""
+        batch_size = tf.shape(command)[0]
+        max_length = 100
+        
+        # Get encoder output
+        outputs = self({
+            'command': command,
+            'modification': modification if modification is not None else tf.zeros((batch_size, 20), dtype=tf.int32)
+        }, training=False)
+        
+        encoded = outputs['rule_embeddings']
+        
+        # Start with start token
+        output_sequence = tf.fill([batch_size, 1], start_token)
+        
+        # Generate token by token
+        for _ in range(max_length - 1):
+            # Get logits for next token
+            decoder_outputs = self({
+                'command': command,
+                'target': output_sequence,
+                'modification': modification if modification is not None else tf.zeros((batch_size, 20), dtype=tf.int32)
+            }, training=False)
+            
+            logits = decoder_outputs['logits']
+            next_token_logits = logits[:, -1, :]
+            next_token = tf.argmax(next_token_logits, axis=-1, output_type=tf.int32)
+            next_token = tf.expand_dims(next_token, axis=1)
+            
+            # Append to sequence
+            output_sequence = tf.concat([output_sequence, next_token], axis=1)
+            
+            # Check if all sequences have produced end token
+            if tf.reduce_all(tf.equal(next_token, end_token)):
+                break
+        
+        return output_sequence
 
 
 def train_progressive_curriculum_minimal(config: Dict):
@@ -350,13 +389,13 @@ def main():
     config = {
         # Model parameters
         'd_model': 128,
-        'batch_size': 8,
+        'batch_size': 32,
         
-        # Training epochs (very short for testing)
-        'stage1_epochs': 5,
-        'stage2_epochs': 5,
-        'stage3_epochs': 5,
-        'stage4_epochs': 5,
+        # Training epochs
+        'stage1_epochs': 10,
+        'stage2_epochs': 10,
+        'stage3_epochs': 10,
+        'stage4_epochs': 10,
         
         # Learning rates
         'stage1_lr': 1e-3,
