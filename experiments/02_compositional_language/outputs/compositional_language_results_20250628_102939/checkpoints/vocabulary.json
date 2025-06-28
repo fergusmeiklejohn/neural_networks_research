@@ -1,0 +1,33 @@
+{
+  "command_to_id": {
+    "<PAD>": 0,
+    "<START>": 1,
+    "<END>": 2,
+    "<UNK>": 3,
+    "after": 4,
+    "and": 5,
+    "around": 6,
+    "jump": 7,
+    "left": 8,
+    "look": 9,
+    "opposite": 10,
+    "right": 11,
+    "run": 12,
+    "thrice": 13,
+    "turn": 14,
+    "twice": 15,
+    "walk": 16
+  },
+  "action_to_id": {
+    "<PAD>": 0,
+    "<START>": 1,
+    "<END>": 2,
+    "<UNK>": 3,
+    "I_JUMP": 4,
+    "I_LOOK": 5,
+    "I_RUN": 6,
+    "I_TURN_LEFT": 7,
+    "I_TURN_RIGHT": 8,
+    "I_WALK": 9
+  }
+}

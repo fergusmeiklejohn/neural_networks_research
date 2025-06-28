@@ -55,14 +55,19 @@ The project uses **Keras 3** with multi-backend support:
 
 ### Current State
 
-The project is in **active implementation** with Physics Worlds experiment underway:
-- Phase 1 (Data Generation) ✅ Complete - 9,712 training samples with proper isolation
-- Phase 2 (Model Training) 🚧 In Progress
-  - Distribution Modification Component ✅ Complete
-  - Physics-Informed Neural Network (PINN) ✅ Complete
-  - Progressive Training Curriculum ✅ Implemented - running on Paperspace
-  - Current baseline: 0% extrapolation (after fixing data leakage)
-  - Target: 70-85% extrapolation via 4-stage progressive curriculum
+The project is in **active implementation** with two experiments completed:
+
+**Experiment 01: Physics Worlds** ✅
+- Progressive curriculum achieved **83.51% extrapolation accuracy**
+- Proved neural networks can extrapolate with proper inductive biases
+- 4-stage curriculum successfully implemented
+
+**Experiment 02: Compositional Language** 🚧
+- Successfully trained minimal LSTM model (267K params)
+- Training loss: 0.4026 → 0.038 (excellent convergence)
+- Progressive curriculum completed all 4 stages
+- Final metrics lost due to save script issues (lesson learned!)
+- Ready to retry with improved infrastructure
 
 ### Architecture (partially implemented)
 
@@ -226,6 +231,10 @@ jupyter notebook                         # Classic notebook interface
 - `distribution_invention_research_plan.md`: Complete research plan and
   technical approach
 - `setup_distribution_invention.md`: Detailed development environment setup
+- `PAPERSPACE_TRAINING_GUIDE.md`: Essential guide for cloud training - READ BEFORE
+  any Paperspace runs!
+- `experiments/02_compositional_language/train_template.py`: Reusable training
+  template with all safety features
 - `configs/experiment_configs.yaml`: Hyperparameter configurations (to be
   created)
 - `models/core/distribution_generator.py`: Core model implementation (to be
@@ -297,7 +306,21 @@ For efficient development, we separate testing from full training:
 
 ### Cloud Training Best Practices
 
-**IMPORTANT**: When developing for cloud training (Paperspace, Colab, etc.), always create self-contained pipelines that include both data generation and model training:
+**CRITICAL**: Before running any training on Paperspace or other cloud platforms, **ALWAYS consult `PAPERSPACE_TRAINING_GUIDE.md`** in the project root. This guide contains hard-won lessons from actual training runs and will save you from losing valuable GPU hours and results.
+
+**Why this guide is essential**:
+- Prevents loss of training results due to instance auto-shutdown
+- Ensures proper GPU memory configuration
+- Provides tested solutions to common errors
+- Includes emergency recovery procedures
+
+**When to reference it**:
+1. Before starting any cloud training run
+2. When encountering GPU memory or optimizer errors
+3. When planning post-training data retrieval
+4. For debugging common Paperspace-specific issues
+
+**Key Principles**:
 
 1. **Self-Contained Scripts**: Create scripts like `paperspace_generate_and_train.py` that:
    - Generate all required data on the cloud machine
@@ -324,6 +347,14 @@ For efficient development, we separate testing from full training:
        base_path = '/workspace/neural_networks_research'
    else:
        base_path = os.path.abspath('../..')
+   ```
+
+5. **ALWAYS Save to Persistent Storage**:
+   ```python
+   # Save during training, not just after!
+   if os.path.exists('/storage'):
+       storage_path = f'/storage/experiment_{timestamp}/checkpoint_{epoch}.h5'
+       model.save_weights(storage_path)
    ```
 
 This approach ensures experiments are fully reproducible and can be run with a single command on any cloud platform.
