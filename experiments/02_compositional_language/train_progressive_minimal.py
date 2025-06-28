@@ -309,8 +309,8 @@ def train_progressive_curriculum_minimal(config: Dict):
             batch_size=config['batch_size']
         )
         
-        # Setup optimizer
-        optimizer = keras.optimizers.Adam(learning_rate=stage_config['lr'])
+        # Setup optimizer - use legacy optimizer to avoid variable recognition issues
+        optimizer = tf.keras.optimizers.legacy.Adam(learning_rate=stage_config['lr'])
         
         # Training epochs
         best_val_acc = 0
@@ -350,14 +350,18 @@ def train_progressive_curriculum_minimal(config: Dict):
                     # Compute and apply gradients
                     gradients = tape.gradient(loss, model.trainable_variables)
                     
-                    # Clip gradients
-                    gradients = [tf.clip_by_value(g, -1.0, 1.0) if g is not None else None 
-                                for g in gradients]
+                    # Filter and clip gradients
+                    clipped_grads_and_vars = []
+                    for g, v in zip(gradients, model.trainable_variables):
+                        if g is not None:
+                            clipped_g = tf.clip_by_value(g, -1.0, 1.0)
+                            clipped_grads_and_vars.append((clipped_g, v))
                     
-                    # Apply gradients
-                    optimizer.apply_gradients(
-                        [(g, v) for g, v in zip(gradients, model.trainable_variables) if g is not None]
-                    )
+                    # Only apply gradients if we have any
+                    if clipped_grads_and_vars:
+                        optimizer.apply_gradients(clipped_grads_and_vars)
+                    else:
+                        print(f"Warning: No valid gradients at batch {i}")
                     
                     # Update metrics
                     train_loss += loss.numpy()
