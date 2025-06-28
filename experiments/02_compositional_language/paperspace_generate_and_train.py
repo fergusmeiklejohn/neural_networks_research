@@ -95,40 +95,67 @@ def generate_data():
     return True
 
 def train_model():
-    """Run the progressive curriculum training"""
+    """Run the progressive curriculum training with optimizations"""
     print("\n" + "="*60)
-    print("STEP 2: Running Progressive Curriculum Training")
+    print("STEP 2: Running Optimized Progressive Curriculum Training")
     print("="*60)
     
-    # Import training function
-    from train_progressive_curriculum import train_progressive_curriculum
-    
-    # Full training configuration
-    config = {
-        # Model parameters
-        'd_model': 128,  # Reduced model size for GPU memory
-        'batch_size': 8,   # Minimum batch size for stable training
+    # Check if optimized version exists, otherwise fall back to original
+    try:
+        from train_progressive_optimized import train_progressive_curriculum_optimized
+        print("Using memory-optimized training...")
         
-        # Full training epochs (reduced for faster iteration)
-        'stage1_epochs': 20,
-        'stage2_epochs': 20,
-        'stage3_epochs': 20,
-        'stage4_epochs': 20,
+        # Optimized configuration
+        config = {
+            # Model parameters
+            'd_model': 128,
+            'batch_size': 8,
+            'gradient_accumulation_steps': 2,  # Effective batch size of 16
+            
+            # Training epochs
+            'stage1_epochs': 20,
+            'stage2_epochs': 20,
+            'stage3_epochs': 20,
+            'stage4_epochs': 20,
+            
+            # Learning rates
+            'stage1_lr': 1e-3,
+            'stage2_lr': 5e-4,
+            'stage3_lr': 2e-4,
+            'stage4_lr': 1e-4,
+            
+            # Output and logging
+            'output_dir': 'outputs/optimized_training',
+            'use_wandb': True,
+            'wandb_project': 'compositional-language-optimized'
+        }
         
-        # Learning rates
-        'stage1_lr': 1e-3,
-        'stage2_lr': 5e-4,
-        'stage3_lr': 2e-4,
-        'stage4_lr': 1e-4,
+        # Run optimized training
+        train_progressive_curriculum_optimized(config)
         
-        # Output and logging
-        'output_dir': 'outputs/full_training',
-        'use_wandb': True,
-        'wandb_project': 'compositional-language-invention'
-    }
-    
-    # Run training
-    train_progressive_curriculum(config)
+    except ImportError:
+        print("Optimized version not found, using standard training...")
+        from train_progressive_curriculum import train_progressive_curriculum
+        
+        # Standard configuration
+        config = {
+            'd_model': 128,
+            'batch_size': 8,
+            'stage1_epochs': 20,
+            'stage2_epochs': 20,
+            'stage3_epochs': 20,
+            'stage4_epochs': 20,
+            'stage1_lr': 1e-3,
+            'stage2_lr': 5e-4,
+            'stage3_lr': 2e-4,
+            'stage4_lr': 1e-4,
+            'output_dir': 'outputs/full_training',
+            'use_wandb': True,
+            'wandb_project': 'compositional-language-invention'
+        }
+        
+        # Run standard training
+        train_progressive_curriculum(config)
     
     return True
 
