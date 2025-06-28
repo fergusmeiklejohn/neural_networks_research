@@ -330,4 +330,12 @@ These optimizations should:
 
 The fact that training ran for 27% before failing was the key clue - it wasn't about model size but about memory management over time.
 
+### tf.function Complication
+
+Hit another issue: tf.function's autograph requires all variables in all conditional branches. Error: "inputs['modification'] must also be initialized in the else branch". 
+
+**Solution**: Created `train_progressive_simple.py` that keeps all memory optimizations (mixed precision, GPU growth, periodic clearing) but skips tf.function. The memory savings are what matter for OOM prevention, not the compilation speedup.
+
+**Lesson**: Don't over-optimize. tf.function complexity wasn't worth it - the simple version with just memory management should work fine.
+
 ## End of Entry
