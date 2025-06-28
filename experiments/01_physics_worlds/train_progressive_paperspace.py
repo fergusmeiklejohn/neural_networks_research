@@ -28,7 +28,12 @@ from tqdm import tqdm
 import pickle
 
 # Add project root to path
-sys.path.append('/workspace/neural_networks_research')  # Paperspace path
+if os.path.exists('/notebooks/neural_networks_research'):
+    sys.path.append('/notebooks/neural_networks_research')
+elif os.path.exists('/workspace/neural_networks_research'):
+    sys.path.append('/workspace/neural_networks_research')
+else:
+    sys.path.append(os.path.abspath('../..'))
 
 # For now, we'll use a simple transformer instead of the physics-informed one
 # due to the 2-ball vs 3-ball mismatch issue
@@ -133,7 +138,15 @@ def load_full_data():
     print("Loading full dataset...")
     
     # Load from pickle files
-    data_dir = Path("/workspace/neural_networks_research/experiments/01_physics_worlds/data/processed/physics_worlds_v2_quick")
+    # Auto-detect the correct base path
+    if Path("/notebooks/neural_networks_research").exists():
+        base_path = "/notebooks/neural_networks_research"
+    elif Path("/workspace/neural_networks_research").exists():
+        base_path = "/workspace/neural_networks_research"
+    else:
+        base_path = "../.."  # Fallback to relative path
+    
+    data_dir = Path(base_path) / "experiments/01_physics_worlds/data/processed/physics_worlds_v2_quick"
     
     # Load all data
     with open(data_dir / 'train_data.pkl', 'rb') as f:
@@ -227,7 +240,7 @@ def train_progressive_curriculum():
         "physics_weight_schedule": np.linspace(0.1, 1.0, 50),
         "wandb_project": "physics-worlds-extrapolation",
         "wandb_enabled": True,
-        "checkpoint_dir": "/workspace/outputs/checkpoints"
+        "checkpoint_dir": "outputs/checkpoints"  # Relative path
     }
     
     # Initialize wandb
