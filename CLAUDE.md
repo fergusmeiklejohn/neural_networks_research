@@ -56,11 +56,13 @@ The project uses **Keras 3** with multi-backend support:
 ### Current State
 
 The project is in **active implementation** with Physics Worlds experiment underway:
-- Phase 1 (Data Generation) ✅ Complete - 9,712 training samples
+- Phase 1 (Data Generation) ✅ Complete - 9,712 training samples with proper isolation
 - Phase 2 (Model Training) 🚧 In Progress
   - Distribution Modification Component ✅ Complete
   - Physics-Informed Neural Network (PINN) ✅ Complete
-  - Progressive Training Curriculum ⏳ Ready to start
+  - Progressive Training Curriculum ✅ Implemented - running on Paperspace
+  - Current baseline: 0% extrapolation (after fixing data leakage)
+  - Target: 70-85% extrapolation via 4-stage progressive curriculum
 
 ### Architecture (partially implemented)
 
@@ -292,6 +294,39 @@ For efficient development, we separate testing from full training:
 - Enable wandb logging
 - Use GPU/TPU acceleration
 - May take hours/days to complete
+
+### Cloud Training Best Practices
+
+**IMPORTANT**: When developing for cloud training (Paperspace, Colab, etc.), always create self-contained pipelines that include both data generation and model training:
+
+1. **Self-Contained Scripts**: Create scripts like `paperspace_generate_and_train.py` that:
+   - Generate all required data on the cloud machine
+   - Run the complete training pipeline
+   - Handle path differences between environments (/notebooks vs /workspace)
+   - Include fallback options for testing
+
+2. **Avoid Large Data in Git**: Since processed data files are gitignored:
+   - Always include data generation as part of the cloud pipeline
+   - This ensures reproducibility and avoids transfer bottlenecks
+   - Document the data generation process clearly
+
+3. **Path Flexibility**: Cloud environments vary, so:
+   - Auto-detect paths (e.g., `/notebooks` on Paperspace Gradient)
+   - Use relative paths where possible
+   - Test for multiple common locations
+
+4. **Example Pattern**:
+   ```python
+   # Auto-detect base path
+   if os.path.exists('/notebooks/neural_networks_research'):
+       base_path = '/notebooks/neural_networks_research'
+   elif os.path.exists('/workspace/neural_networks_research'):
+       base_path = '/workspace/neural_networks_research'
+   else:
+       base_path = os.path.abspath('../..')
+   ```
+
+This approach ensures experiments are fully reproducible and can be run with a single command on any cloud platform.
 
 ### Research Diary
 
