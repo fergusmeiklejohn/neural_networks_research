@@ -107,13 +107,13 @@ def train_model():
     config = {
         # Model parameters
         'd_model': 128,  # Reduced model size for GPU memory
-        'batch_size': 16,  # Further reduced for GPU memory constraints
+        'batch_size': 8,   # Minimum batch size for stable training
         
-        # Full training epochs
-        'stage1_epochs': 50,
-        'stage2_epochs': 50,
-        'stage3_epochs': 50,
-        'stage4_epochs': 50,
+        # Full training epochs (reduced for faster iteration)
+        'stage1_epochs': 20,
+        'stage2_epochs': 20,
+        'stage3_epochs': 20,
+        'stage4_epochs': 20,
         
         # Learning rates
         'stage1_lr': 1e-3,

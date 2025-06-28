@@ -419,25 +419,28 @@ def create_model(command_vocab_size: int,
                  d_model: int = 256) -> CompositionalLanguageModel:
     """Create and compile the compositional language model"""
     
+    # Adjust FFN size based on d_model for memory efficiency
+    d_ff = d_model * 2 if d_model <= 128 else d_model * 4
+    
     model = CompositionalLanguageModel(
         command_vocab_size=command_vocab_size,
         action_vocab_size=action_vocab_size,
         d_model=d_model,
         extractor_kwargs={
-            'num_heads': 8,
-            'num_layers': 6,
-            'd_ff': 1024,
+            'num_heads': 4 if d_model <= 128 else 8,
+            'num_layers': 4 if d_model <= 128 else 6,
+            'd_ff': d_ff,
             'dropout_rate': 0.1
         },
         modifier_kwargs={
             'num_heads': 4,
-            'num_layers': 3,
+            'num_layers': 2 if d_model <= 128 else 3,
             'dropout_rate': 0.1
         },
         generator_kwargs={
-            'num_heads': 8,
-            'num_layers': 6,
-            'd_ff': 1024,
+            'num_heads': 4 if d_model <= 128 else 8,
+            'num_layers': 4 if d_model <= 128 else 6,
+            'd_ff': d_ff,
             'dropout_rate': 0.1
         }
     )
