@@ -412,7 +412,14 @@ def train_progressive_curriculum(config: Dict):
                 
                 # Backward pass
                 gradients = tape.gradient(loss, model.trainable_variables)
-                optimizer.apply_gradients(zip(gradients, model.trainable_variables))
+                
+                # Filter out None gradients (from unused components)
+                valid_gradients_and_vars = [
+                    (grad, var) for grad, var in zip(gradients, model.trainable_variables)
+                    if grad is not None
+                ]
+                
+                optimizer.apply_gradients(valid_gradients_and_vars)
             
             # Validation
             if epoch % 5 == 0:
