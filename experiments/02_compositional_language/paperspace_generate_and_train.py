@@ -103,22 +103,22 @@ def train_model():
     # Try different training versions in order of preference
     training_success = False
     
-    # First try fixed version (most stable)
+    # First try minimal version (simplest, most likely to work)
     try:
-        from train_progressive_fixed import train_progressive_curriculum_fixed
-        print("Using fixed training (no mixed precision, proper model handling)...")
+        from train_progressive_minimal import train_progressive_curriculum_minimal
+        print("Using minimal training (simplest LSTM-based model)...")
         
-        # Configuration for fixed training
+        # Configuration for minimal training
         config = {
             # Model parameters
             'd_model': 128,
             'batch_size': 8,
             
-            # Training epochs
-            'stage1_epochs': 10,
-            'stage2_epochs': 10,
-            'stage3_epochs': 10,
-            'stage4_epochs': 10,
+            # Training epochs (short for faster completion)
+            'stage1_epochs': 5,
+            'stage2_epochs': 5,
+            'stage3_epochs': 5,
+            'stage4_epochs': 5,
             
             # Learning rates
             'stage1_lr': 1e-3,
@@ -127,18 +127,18 @@ def train_model():
             'stage4_lr': 1e-4,
             
             # Output and logging
-            'output_dir': 'outputs/fixed_training',
+            'output_dir': 'outputs/minimal_training',
             'use_wandb': True,
-            'wandb_project': 'compositional-language-fixed'
+            'wandb_project': 'compositional-language-minimal'
         }
         
-        # Run fixed training
-        train_progressive_curriculum_fixed(config)
+        # Run minimal training
+        train_progressive_curriculum_minimal(config)
         training_success = True
         
     except Exception as e:
-        print(f"Fixed training failed: {e}")
-        print("Falling back to no mixed precision training...")
+        print(f"Minimal training failed: {e}")
+        print("Falling back to fixed training...")
         
         # Second try no mixed precision version
         try:
