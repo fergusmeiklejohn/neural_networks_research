@@ -15,8 +15,14 @@ python test_training.py
 
 ### Full Training (Paperspace)
 ```bash
-# On Paperspace A4000 GPU
-python train_paperspace.py
+# On Paperspace GPU with memory optimizations
+python paperspace_generate_and_train.py
+
+# This now uses the optimized version with:
+# - GPU memory growth (prevents OOM)
+# - Mixed precision training (50% less memory)
+# - tf.function compilation (faster)
+# - Periodic memory clearing
 ```
 
 ## Components
@@ -56,4 +62,18 @@ We test modifications like:
 ## Training Time
 
 - Local test: ~5 minutes
-- Full training: 6-8 hours on A4000 GPU
+- Full training: 4-6 hours on A4000 GPU (with optimizations)
+
+## Troubleshooting
+
+### GPU Out of Memory (OOM)
+The optimized version includes several memory-saving features:
+- **Mixed precision**: Reduces memory by ~50%
+- **Memory growth**: Prevents TensorFlow from allocating all GPU memory
+- **Periodic clearing**: Prevents gradual memory accumulation
+- **Gradient accumulation**: Allows smaller batches with same effective size
+
+If you still get OOM errors:
+1. Reduce `batch_size` to 4 in the config
+2. Reduce `d_model` to 64
+3. Use a larger GPU (A5000 24GB or A6000 48GB)
