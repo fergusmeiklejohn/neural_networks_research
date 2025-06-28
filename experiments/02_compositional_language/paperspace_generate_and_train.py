@@ -100,17 +100,19 @@ def train_model():
     print("STEP 2: Running Optimized Progressive Curriculum Training")
     print("="*60)
     
-    # Check if optimized version exists, otherwise fall back to original
+    # Try different training versions in order of preference
+    training_success = False
+    
+    # First try simple optimized version (most reliable)
     try:
-        from train_progressive_optimized import train_progressive_curriculum_optimized
-        print("Using memory-optimized training...")
+        from train_progressive_simple import train_progressive_curriculum_simple
+        print("Using simplified memory-optimized training...")
         
-        # Optimized configuration
+        # Simple optimized configuration
         config = {
             # Model parameters
             'd_model': 128,
             'batch_size': 8,
-            'gradient_accumulation_steps': 2,  # Effective batch size of 16
             
             # Training epochs
             'stage1_epochs': 20,
@@ -125,39 +127,48 @@ def train_model():
             'stage4_lr': 1e-4,
             
             # Output and logging
-            'output_dir': 'outputs/optimized_training',
+            'output_dir': 'outputs/simple_optimized',
             'use_wandb': True,
-            'wandb_project': 'compositional-language-optimized'
+            'wandb_project': 'compositional-language-simple'
         }
         
-        # Run optimized training
-        train_progressive_curriculum_optimized(config)
+        # Run simple optimized training
+        train_progressive_curriculum_simple(config)
+        training_success = True
         
-    except ImportError:
-        print("Optimized version not found, using standard training...")
-        from train_progressive_curriculum import train_progressive_curriculum
+    except Exception as e:
+        print(f"Simple optimized training failed: {e}")
+        print("Falling back to standard training...")
         
-        # Standard configuration
-        config = {
-            'd_model': 128,
-            'batch_size': 8,
-            'stage1_epochs': 20,
-            'stage2_epochs': 20,
-            'stage3_epochs': 20,
-            'stage4_epochs': 20,
-            'stage1_lr': 1e-3,
-            'stage2_lr': 5e-4,
-            'stage3_lr': 2e-4,
-            'stage4_lr': 1e-4,
-            'output_dir': 'outputs/full_training',
-            'use_wandb': True,
-            'wandb_project': 'compositional-language-invention'
-        }
-        
-        # Run standard training
-        train_progressive_curriculum(config)
+        try:
+            from train_progressive_curriculum import train_progressive_curriculum
+            
+            # Standard configuration
+            config = {
+                'd_model': 128,
+                'batch_size': 8,
+                'stage1_epochs': 20,
+                'stage2_epochs': 20,
+                'stage3_epochs': 20,
+                'stage4_epochs': 20,
+                'stage1_lr': 1e-3,
+                'stage2_lr': 5e-4,
+                'stage3_lr': 2e-4,
+                'stage4_lr': 1e-4,
+                'output_dir': 'outputs/full_training',
+                'use_wandb': True,
+                'wandb_project': 'compositional-language-invention'
+            }
+            
+            # Run standard training
+            train_progressive_curriculum(config)
+            training_success = True
+            
+        except Exception as e:
+            print(f"Standard training also failed: {e}")
+            training_success = False
     
-    return True
+    return training_success
 
 def save_final_results():
     """Save results before shutdown"""

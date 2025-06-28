@@ -374,11 +374,14 @@ class CompositionalLanguageModel(keras.Model):
         rule_outputs = self.rule_extractor(command, training=training)
         rule_embeddings = rule_outputs['embeddings']
         
-        # Apply modification if provided
+        # Apply modification if provided and not all zeros (dummy modification)
         if modification is not None:
-            rule_embeddings = self.rule_modifier(
-                rule_embeddings, modification, training=training
-            )
+            # Check if modification is not just padding (all zeros)
+            mod_sum = tf.reduce_sum(tf.abs(modification))
+            if mod_sum > 0:
+                rule_embeddings = self.rule_modifier(
+                    rule_embeddings, modification, training=training
+                )
         
         # Generate sequence if target provided (training mode)
         if target is not None:
