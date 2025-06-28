@@ -33,8 +33,65 @@ if gpus:
 # Import from current directory
 from scan_data_loader import SCANDataLoader
 from train_progressive_curriculum import (
-    SCANTokenizer, ProgressiveCurriculum, create_dataset, compute_accuracy
+    SCANTokenizer, ProgressiveCurriculum, create_dataset
 )
+
+
+def compute_accuracy_simple(model, dataset, tokenizer, max_samples=100):
+    """Simple accuracy computation without triggering optimizer issues"""
+    correct = 0
+    total = 0
+    samples_seen = 0
+    
+    for batch in dataset:
+        if samples_seen >= max_samples:
+            break
+            
+        # Get predictions
+        predictions = model.generate_action(
+            batch['command'],
+            batch.get('modification', None),
+            start_token=tokenizer.action_to_id['<START>'],
+            end_token=tokenizer.action_to_id['<END>']
+        )
+        
+        # Compare with targets
+        targets = batch['action']
+        batch_size = tf.shape(targets)[0]
+        
+        for i in range(batch_size):
+            if samples_seen >= max_samples:
+                break
+                
+            # Convert to lists for comparison
+            pred_list = predictions[i].numpy().tolist()
+            target_list = targets[i].numpy().tolist()
+            
+            # Remove padding and special tokens for comparison
+            pred_clean = [t for t in pred_list if t not in [
+                tokenizer.action_to_id['<PAD>'],
+                tokenizer.action_to_id['<START>']
+            ]]
+            target_clean = [t for t in target_list if t not in [
+                tokenizer.action_to_id['<PAD>'],
+                tokenizer.action_to_id['<START>']
+            ]]
+            
+            # Truncate at END token
+            if tokenizer.action_to_id['<END>'] in pred_clean:
+                end_idx = pred_clean.index(tokenizer.action_to_id['<END>'])
+                pred_clean = pred_clean[:end_idx]
+            if tokenizer.action_to_id['<END>'] in target_clean:
+                end_idx = target_clean.index(tokenizer.action_to_id['<END>'])
+                target_clean = target_clean[:end_idx]
+            
+            # Check if sequences match
+            if pred_clean == target_clean:
+                correct += 1
+            total += 1
+            samples_seen += 1
+    
+    return correct / total if total > 0 else 0.0
 
 
 class SimpleTransformerModel(keras.Model):
@@ -322,9 +379,13 @@ def train_progressive_curriculum_minimal(config: Dict):
                 avg_train_loss = train_loss / num_batches
                 print(f"  Train Loss: {avg_train_loss:.4f}")
                 
-                # Quick validation on subset
-                val_acc = compute_accuracy(model, val_dataset, tokenizer, max_samples=50)
-                print(f"  Val Accuracy: {val_acc:.2%}")
+                # Quick validation on subset - skip if errors
+                try:
+                    val_acc = compute_accuracy_simple(model, val_dataset, tokenizer, max_samples=50)
+                    print(f"  Val Accuracy: {val_acc:.2%}")
+                except Exception as e:
+                    print(f"  Validation error: {e}")
+                    val_acc = 0.0
                 
                 if val_acc > best_val_acc:
                     best_val_acc = val_acc
@@ -360,9 +421,13 @@ def train_progressive_curriculum_minimal(config: Dict):
                 tokenizer,
                 batch_size=config['batch_size']
             )
-            accuracy = compute_accuracy(model, test_dataset, tokenizer, max_samples=100)
-            test_results[split_name] = accuracy
-            print(f"{split_name}: {accuracy:.2%}")
+            try:
+                accuracy = compute_accuracy_simple(model, test_dataset, tokenizer, max_samples=100)
+                test_results[split_name] = accuracy
+                print(f"{split_name}: {accuracy:.2%}")
+            except Exception as e:
+                print(f"{split_name} error: {e}")
+                test_results[split_name] = 0.0
     
     # Save results
     results_path = output_dir / 'training_results.json'
