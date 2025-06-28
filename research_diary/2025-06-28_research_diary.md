@@ -105,4 +105,72 @@ This is a major breakthrough for the distribution invention research:
 3. Test on more extreme extrapolation scenarios
 4. Apply this approach to the language and visual experiments
 
+## Experiment 02: Compositional Language - Setup Complete
+
+### Progress on Compositional Language Experiment
+
+After the breakthrough success with physics extrapolation (83.51%!), we've moved on to testing whether the progressive curriculum approach generalizes to linguistic domains.
+
+**Today's Implementation**:
+
+1. **Created Experiment Structure**:
+   - Set up `experiments/02_compositional_language/` with proper directories
+   - Created comprehensive EXPERIMENT_PLAN.md outlining 4-phase approach
+
+2. **SCAN Data Loader** ✅:
+   - Successfully downloaded and parsed all SCAN splits (64,196 samples total)
+   - Implemented proper train/test isolation with multiple test sets:
+     - Interpolation test: Same primitive combinations as training
+     - Primitive extrapolation test: Unseen primitive combinations (7,469 samples)
+     - Modifier/length extrapolation: For testing generalization
+   - No data leakage between splits!
+
+3. **Modification Generator** ✅:
+   - Created 1,100 modification pairs across 3 types:
+     - Simple swaps: "jump" → "walk", "left" ↔ "right" (600 pairs)
+     - Action modifications: "jump" → "turn around 360°" (300 pairs)
+     - Structural changes: Reverse all directions (200 pairs)
+   - Each modification tests different aspects of compositional understanding
+
+### Key Design Decisions
+
+1. **Adaptation from Physics**:
+   - Using similar progressive curriculum (4 stages, 50 epochs each)
+   - Transformer architecture scaled to ~50M parameters
+   - Focus on exact match accuracy (stricter than physics approximations)
+
+2. **Unique Challenges**:
+   - Discrete tokens vs continuous physics values
+   - Exact sequence matching required (no partial credit)
+   - Finite vocabulary limits modification space
+   - More explicit compositional structure than physics
+
+3. **Test Strategy**:
+   - Multiple extrapolation types (primitive, length, modifier)
+   - Systematic modification testing
+   - Novel combination generation planned
+
+### Next Steps
+
+1. **Tomorrow**: Implement model architecture
+   - Compositional Rule Extractor (transformer-based)
+   - Rule Modification Component
+   - Sequence Generator with beam search
+
+2. **Then**: Progressive training pipeline
+   - Stage 1: Standard SCAN learning (target: >95%)
+   - Stage 2: Simple modifications (target: >80%)
+   - Stage 3: Complex modifications (target: >70%)
+   - Stage 4: Novel combinations (target: >60%)
+
+3. **Training**: Full run on Paperspace A4000 (~8 hours estimated)
+
+### Hypothesis for Compositional Language
+
+**What we're testing**: Can neural networks modify linguistic compositional rules as successfully as physics rules?
+
+**Prediction**: We expect 70-80% success on rule modifications (similar to physics) but potentially lower performance on novel combinations due to the discrete nature and exact match requirements.
+
+**Why this matters**: Success here would show that distribution invention isn't limited to continuous domains but works for symbolic/discrete systems too.
+
 ## End of Entry
