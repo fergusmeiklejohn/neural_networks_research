@@ -38,3 +38,7 @@ logs/
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !outputs/checkpoints/.gitkeep*.keras
+experiments/01_physics_worlds/READY_TO_TRAIN.md
+docs/research/Physics-Informed Neural Networks for 2-Ball trajectory Prediction.md
+experiments/01_physics_worlds/test_pinn_training.py
+experiments/01_physics_worlds/train_pinn_keras3.py
