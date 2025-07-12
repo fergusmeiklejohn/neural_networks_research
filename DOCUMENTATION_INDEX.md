@@ -6,6 +6,7 @@
 - **Project Overview**: `CLAUDE.md` - Start here for project goals and current state
 - **Research Plan**: `distribution_invention_research_plan.md` - Complete technical approach
 - **Setup Guide**: `setup_distribution_invention.md` - Development environment setup
+- **What to Do Next**: `NEXT_STEPS.md` - Clear action items for implementation
 
 ### Current Status & Progress
 - **Feedback Integration**: `FEEDBACK_INTEGRATION.md` - 90% complete, tracks all reviewer feedback
