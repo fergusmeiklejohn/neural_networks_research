@@ -151,6 +151,10 @@ cd experiments/01_physics_worlds
 python train_pinn_extractor.py      # Full PINN training (run separately)
 python train_modifier_numpy.py      # Distribution modifier training
 
+# IMPORTANT: Always train and evaluate baselines for comparison
+python train_baselines.py           # Train all 4 baseline models
+python run_unified_evaluation.py    # Run comprehensive evaluation
+
 # Evaluation commands
 python evaluate_pinn_performance.py --model_path outputs/checkpoints/pinn_final.keras
 python evaluate_modifier.py
@@ -187,15 +191,33 @@ jupyter notebook                         # Classic notebook interface
 1. **Phase 1: Learn Base Distributions**
    - Train on standard datasets to learn rule extraction
    - Use reconstruction tasks to ensure rule completeness
+   - **NEW**: Train all 4 baseline models on same data
 
 2. **Phase 2: Controlled Modification**
    - Synthetic tasks with known rule modifications
    - Train to maintain consistency while changing specific rules
+   - **NEW**: Test baselines on modification tasks
 
 3. **Phase 3: Creative Generation**
    - Open-ended modification requests
    - Reward novel-but-coherent outputs
    - Use human feedback for quality assessment
+   - **NEW**: Run unified evaluation comparing all models
+
+### Evaluation Protocol (MANDATORY)
+
+For EVERY experiment:
+1. **Train Baselines**: Use `models/baseline_models.py` to train all 4 baselines
+2. **Representation Analysis**: Use `RepresentationSpaceAnalyzer` to verify true OOD
+3. **Modification Testing**: Create modification suite for experiment domain
+4. **Unified Evaluation**: Run `UnifiedEvaluator` for comprehensive comparison
+5. **Report Generation**: Include baseline comparison table in all results
+
+This ensures:
+- Fair comparison with strong baselines
+- Verification of true extrapolation (not just interpolation)
+- Systematic evaluation of modification capabilities
+- Clear demonstration of our approach's advantages
 
 ### Experiment Progression
 
@@ -208,13 +230,25 @@ jupyter notebook                         # Classic notebook interface
 
 ## Success Metrics
 
-- **Novel Coherence**: Models generate novel but coherent outputs when modifying
-  specific constraints
-- **Graceful Degradation**: Performance degrades gracefully (not
-  catastrophically) outside training distribution
-- **Internal Consistency**: Generated distributions maintain consistency while
-  violating specified rules
-- **Human Evaluation**: Outputs are rated as "surprisingly sensible" and useful
+**IMPORTANT**: All experiments must compare against 4 baselines using the unified evaluation framework:
+
+### Primary Metrics (via unified_evaluation.py):
+- **Interpolation Accuracy**: Performance within learned representation space (>90%)
+- **Near-Extrapolation Accuracy**: Just outside training manifold (>75%)
+- **Far-Extrapolation Accuracy**: True novel regimes (>70%)
+- **Modification Success Rate**: Ability to adapt to rule changes (>baseline+20%)
+- **Consistency Score**: Internal coherence of modified distributions
+
+### Baseline Comparisons (always report):
+1. **ERM + Augmentation**: Standard deep learning baseline
+2. **GFlowNet**: Exploration-based baseline
+3. **Graph Extrapolation**: OOD-focused baseline
+4. **MAML**: Adaptation-focused baseline
+
+### Additional Metrics:
+- **Novel Coherence**: Models generate novel but coherent outputs
+- **Graceful Degradation**: Performance degrades gracefully outside training
+- **Human Evaluation**: Outputs rated as "surprisingly sensible" and useful
 
 ## Compute Requirements
 
@@ -228,17 +262,28 @@ jupyter notebook                         # Classic notebook interface
 
 ## Key Files to Reference
 
+**IMPORTANT**: For a complete guide to all documentation, see `DOCUMENTATION_INDEX.md` - this is the master index of all project documentation and should be your first stop when looking for information.
+
+### Critical Documents:
+- `DOCUMENTATION_INDEX.md`: Master documentation index - START HERE to find anything
 - `distribution_invention_research_plan.md`: Complete research plan and
   technical approach
 - `setup_distribution_invention.md`: Detailed development environment setup
 - `PAPERSPACE_TRAINING_GUIDE.md`: Essential guide for cloud training - READ BEFORE
   any Paperspace runs!
+- `FEEDBACK_INTEGRATION.md`: Tracks integration of reviewer feedback (90% complete)
 - `experiments/02_compositional_language/train_template.py`: Reusable training
   template with all safety features
-- `configs/experiment_configs.yaml`: Hyperparameter configurations (to be
-  created)
-- `models/core/distribution_generator.py`: Core model implementation (to be
-  created)
+
+### Key Insights Documents:
+- `COMPLETE_LITERATURE_INSIGHTS.md`: Synthesis of 15+ papers from literature review
+- `CRITICAL_OOD_INSIGHTS.md`: Critical distinction between interpolation vs extrapolation
+- `ARC_AGI_INSIGHTS.md`: Insights from ARC-AGI showing 55.5% SOTA performance
+- `models/causal_rule_extractor_design.md`: CGNN-based architecture with MMD loss
+
+### Progress Tracking:
+- `research_diary/`: Daily progress entries
+- Latest experiment status in respective `EXPERIMENT_PLAN.md` files
 
 ## Environment Variables
 

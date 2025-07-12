@@ -1,9 +1,11 @@
 # Neural Distribution Invention Research Plan
 
+*Updated: July 2025 - Incorporating reviewer feedback and recent literature*
+
 ## 1. What We're Trying to Achieve
 
 ### Core Goal
-Develop neural networks that can **invent new distributions** rather than merely interpolate within their training distribution - mimicking how humans create "pocket realities" with modified rules to explore novel ideas.
+Develop neural networks that can **invent new distributions** through **controllable extrapolation** - mimicking how humans create "pocket realities" with modified rules to explore novel ideas. While recent work has shown neural networks can achieve some forms of extrapolation (e.g., >55% on ARC-AGI), we focus on *creative* and *interpretable* distribution modification.
 
 ### Specific Objectives
 1. **Distribution Construction**: Build models that can create coherent new probability distributions with selectively modified constraints
@@ -11,13 +13,22 @@ Develop neural networks that can **invent new distributions** rather than merely
 3. **Rule Modification**: Develop architectures that can identify, modify, and consistently apply rule changes across a generated distribution
 4. **Insight Transfer**: Create mechanisms for mapping insights from invented distributions back to the base distribution
 
-### Success Metrics
-- Models can generate novel but coherent outputs when asked to modify specific constraints
-- Performance degrades gracefully (not catastrophically) as we move from training distribution
-- Generated distributions maintain internal consistency while violating specified rules
-- Human evaluators find the novel outputs "surprisingly sensible" and useful
+### Success Metrics (Refined)
+- **In-distribution consistency**: >90% accuracy on unmodified rules
+- **Intervention consistency**: >75% accuracy on modified rule application
+- **Extrapolation accuracy**: Domain-specific targets (e.g., >80% physics plausibility)
+- **Human evaluation**: >70% of generated distributions rated as "coherent and useful"
+- **Benchmark performance**: Competitive on ARC-AGI, gSCAN, COGS, WOODS
 
 ## 2. How We're Going to Achieve It
+
+### Building on Recent Advances
+
+We leverage recent breakthroughs while adding novel capabilities:
+- **GFlowNets** (2024): For improved exploration in high-dimensional spaces
+- **Meta-learning for compositionality** (Lake & Baroni, 2023): For systematic generalization
+- **Scale-driven compositional learning** (2025): Larger models for better decomposition
+- **Graph structure extrapolation** (2023): For controlled OOD generation
 
 ### Technical Approach
 
@@ -60,12 +71,19 @@ Develop neural networks that can **invent new distributions** rather than merely
 # Core Keras model structure
 class DistributionInventor(keras.Model):
     def __init__(self):
-        self.rule_extractor = CausalRuleExtractor()
+        self.rule_extractor = CausalRuleExtractor()  # Based on CGNNs
         self.modifier = SelectiveRuleModifier()
         self.generator = DistributionGenerator()
         self.consistency_checker = ConsistencyNetwork()
         self.insight_mapper = InsightExtractor()
 ```
+
+#### D. Baseline Comparisons
+To validate our approach, we compare against:
+1. **ERM + Data Augmentation**: Standard empirical risk minimization with augmentation
+2. **GFlowNet-guided Search**: Using GFlowNets for distribution exploration
+3. **Graph Extrapolation Models**: Non-Euclidean extrapolation methods
+4. **Meta-learning Baselines**: MAML and similar approaches for quick adaptation
 
 ## 3. Experiments
 
@@ -147,7 +165,24 @@ class DistributionInventor(keras.Model):
 - Modality-specific encoders/decoders
 - Contrastive learning for rule alignment
 
-## 4. Where We Will Perform Experiments
+## 4. Timeline and Resource Planning
+
+### Revised Timeline (24 months total)
+- **Phase 1 (Months 1-9)**: Foundation and core experiments 1-2
+- **Phase 2 (Months 10-18)**: Experiments 3-4 and scaling  
+- **Phase 3 (Months 19-24)**: Advanced experiments 5-6 and integration
+
+### GPU Hour Estimates
+- **Total Estimated**: 2.5M GPU hours across all experiments
+- **Breakdown by experiment**: 
+  - Physics Worlds: 200k hours
+  - Compositional Language: 300k hours
+  - Visual Concepts: 500k hours
+  - Abstract Reasoning: 600k hours
+  - Mathematical Extension: 400k hours
+  - Multi-Modal Transfer: 500k hours
+
+## 5. Where We Will Perform Experiments
 
 ### Development Environment
 - **Local (Mac)**: Initial prototyping, small-scale tests, architecture design

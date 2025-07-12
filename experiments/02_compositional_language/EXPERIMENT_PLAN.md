@@ -6,11 +6,12 @@
 
 **Core Question**: Can our neural network learn compositional rules from the SCAN dataset and then generate consistent outputs under modified linguistic rules?
 
-**Success Criteria**:
-- Standard SCAN accuracy >95% 
-- Rule modification consistency >70%
-- Novel combination validity >60%
-- Clear evidence of compositional understanding
+**Success Criteria (Updated)**:
+- **In-distribution consistency**: >95% on standard SCAN tasks
+- **Intervention consistency**: >75% on rule modifications
+- **Extrapolation accuracy**: >70% on novel compositional patterns
+- **Benchmark performance**: Competitive on gSCAN and COGS
+- **Baseline comparisons**: Outperform standard seq2seq by >20% on modifications
 
 **Compute**: Local development + Paperspace A4000 for full training
 
@@ -53,13 +54,20 @@
 
 ### Phase 2: Model Implementation
 
-**Goal**: Build transformer-based models for compositional rule learning
+**Goal**: Build transformer-based models for compositional rule learning with baselines
+
+#### Baseline Models to Implement:
+1. **Standard Seq2Seq**: LSTM/Transformer baseline without modifications
+2. **Meta-learning Seq2Seq**: MAML-adapted for quick rule changes
+3. **GFlowNet Language Model**: For compositional exploration
+4. **Compositional Attention Network**: Based on recent compositional generalization work
 
 - [ ] **Implement Compositional Rule Extractor**
-  - Transformer encoder for command understanding
-  - Attention-based rule identification
+  - CGNN-inspired architecture for causal rule extraction
+  - Independence-guided encoding for disentanglement
+  - Multi-head attention for rule identification
   - Explicit compositional structure modeling
-  - Target: ~50M parameters
+  - Target: ~50M parameters (scale for compositional generalization)
   - **Results**: [Architecture: ___, Parameters: ___]
 
 - [ ] **Implement Rule Modification Component**
@@ -122,6 +130,17 @@
 ### Phase 4: Comprehensive Evaluation
 
 **Goal**: Validate compositional understanding and modification capabilities
+
+#### New Evaluation Framework:
+1. **Standard Benchmarks**:
+   - gSCAN for grounded compositional generalization
+   - COGS for systematic generalization
+   - Custom compositional OOD benchmark
+   
+2. **Safety Evaluation**:
+   - Test for harmful instruction generation
+   - Verify semantic consistency in modifications
+   - Check for adversarial prompt resistance
 
 - [ ] **Standard SCAN Performance**
   - Test on all SCAN splits
@@ -334,8 +353,39 @@ Expected Findings:
 
 ---
 
-**Experiment Status**: 🚧 Planning Complete, Ready for Implementation  
-**Last Updated**: 2025-06-28  
+---
+
+## 📚 Lessons from Previous Attempt
+
+### What Worked Well:
+- Progressive curriculum training (4 stages) showed excellent convergence
+- LSTM model with 267K parameters sufficient for initial tests
+- Training loss decreased from 0.4026 to 0.038
+- All curriculum stages completed successfully
+
+### Critical Issues to Address:
+1. **Save Results Immediately**: Previous results lost due to auto-shutdown
+   - Use persistent storage (/storage on Paperspace)
+   - Save checkpoints during training, not just after
+   - Create comprehensive training template with safety features
+
+2. **Infrastructure Improvements Made**:
+   - Created `train_template.py` with all safety features
+   - Multiple training scripts with various optimizations
+   - Paperspace-specific pipeline ready
+   - Clear save scripts for results preservation
+
+### Ready for Full Retry:
+- All infrastructure issues resolved
+- Training template includes automatic saving
+- Progressive curriculum proven effective
+- Just need to run with proper result saving
+
+---
+
+**Experiment Status**: 🚧 Ready for Full Training Retry  
+**Last Updated**: 2025-07-12  
 **Principal Investigator**: Distribution Invention Research  
 **Previous Success**: 83.51% extrapolation in physics  
-**Target**: Similar success in compositional language
+**Previous Attempt**: Lost results but proved approach works
+**Target**: Match physics success in compositional language

@@ -9,12 +9,13 @@ validate the core distribution invention approach.
 ball trajectories and then generate new coherent trajectories under modified
 physics rules?
 
-**Success Criteria**:
+**Success Criteria (Updated)**:
 
-- Rule extraction accuracy >80% for basic physics parameters
-- Modification consistency >70% for common requests
-- Generated trajectories maintain physical plausibility >75%
-- Energy conservation maintained within 10% variance
+- **In-distribution consistency**: >90% accuracy on unmodified physics rules
+- **Intervention consistency**: >75% accuracy on modified rule application
+- **Extrapolation accuracy**: >80% for physics plausibility in novel regimes
+- **Energy conservation**: Within 10% variance for standard modifications
+- **Baseline comparisons**: Outperform ERM+augmentation by >15% on extrapolation
 
 **Compute**: Local development + Colab for initial testing
 
@@ -94,7 +95,15 @@ Quality Validation Pipeline:
 
 ### Phase 2: Model Training
 
-**Goal**: Train the complete distribution invention pipeline
+**Goal**: Train the complete distribution invention pipeline with baseline comparisons
+
+#### Baseline Models to Implement:
+1. **ERM + Data Augmentation**: Standard empirical risk minimization with physics-aware augmentation
+2. **GFlowNet-guided Physics**: Using GFlowNets for physics parameter exploration
+3. **Graph Extrapolation Baseline**: Non-Euclidean extrapolation for physics rules
+4. **Meta-learning Baseline**: MAML for quick adaptation to new physics
+
+**Implementation**: Use `models/baseline_models.py` and `models/unified_evaluation.py` for standardized comparison
 
 - [x] **Pre-train Rule Extraction Component**
   - Train physics rule extractor on supervised rule extraction task
@@ -125,6 +134,8 @@ Quality Validation Pipeline:
 
 **CRITICAL DISCOVERY**: Original results were invalid due to data leakage. Proper train/test isolation implemented.
 
+**NEW CRITICAL INSIGHT** (from Materials OOD paper): Most "OOD" tasks are actually interpolation in representation space!
+
 ```
 Data Isolation Fix Complete:
 ✓ Identified fundamental data leakage problem in original approach
@@ -133,6 +144,11 @@ Data Isolation Fix Complete:
 ✓ Generated new datasets with no parameter overlap between train and test
 ✓ Implemented DistributionInventionMetrics for proper evaluation
 ✓ Enhanced model architecture for better extrapolation capability
+
+Critical Update Needed:
+⚠️ Must verify test sets are representationally OOD, not just statistically OOD
+⚠️ Need UMAP analysis of learned representations to confirm true extrapolation
+⚠️ Parameter encoding must capture physical relationships (not independent)
 
 REVISED Component Performance (with proper isolation):
 - Rule Extractor Accuracy: 0% on extrapolation (was 40.2% with data leakage)
@@ -146,12 +162,25 @@ Key Insights:
 - Need architectural improvements for extrapolation beyond training distribution
 - Proper evaluation now distinguishes interpolation vs extrapolation vs novel regimes
 
-Next Steps with Proper Isolation:
-- [ ] **Improve Model Architecture**: Research extrapolation-focused architectures (meta-learning, causal models)
-- [ ] **Data Augmentation**: Investigate physics-aware data augmentation for better generalization
-- [ ] **Multi-task Learning**: Train on multiple physics tasks simultaneously
-- [ ] **Causal Representation Learning**: Explicitly model causal relationships in physics
-- [ ] **Progressive Training**: Start with interpolation, gradually extend to extrapolation
+Next Steps with Proper Isolation (Updated with Reviewer Feedback):
+- [ ] **Implement Baseline Comparisons**: 
+  - ERM + physics-aware data augmentation
+  - GFlowNet-guided physics exploration
+  - Graph extrapolation baseline
+  - Meta-learning (MAML) for physics adaptation
+- [ ] **Integrate Advanced Architectures**:
+  - CGNN-based CausalRuleExtractor
+  - Independence-guided encoding
+  - Attention mechanisms for rule identification
+- [ ] **Apply Progressive Curriculum**:
+  - Stage 1: Master interpolation (in-distribution)
+  - Stage 2: Near-distribution extrapolation
+  - Stage 3: Far-distribution extrapolation
+  - Stage 4: Novel physics regime generation
+- [ ] **Safety Integration**:
+  - Physics plausibility validators
+  - Energy conservation checks
+  - Adversarial prompt testing
 
 Documentation Created:
 - DATA_ISOLATION_FIX_PLAN.md: Comprehensive analysis and solution plan
@@ -172,6 +201,17 @@ Training Infrastructure:
 
 **Goal**: Validate distribution invention capabilities across multiple metrics
 
+#### New Evaluation Framework:
+1. **Standard Benchmarks**: 
+   - Integrate physics subset of ARC-AGI tasks
+   - Custom physics OOD benchmark inspired by WOODS
+   
+2. **Refined Metrics**:
+   - **In-distribution consistency**: Test on held-out but similar physics
+   - **Intervention consistency**: Test on specific rule modifications
+   - **Extrapolation accuracy**: Test on physics regimes far from training
+   - **Novel regime performance**: Test on completely new physics combinations
+
 - [ ] **Rule Extraction Accuracy Evaluation**
   - Test extraction accuracy on held-out physics configurations
   - Measure per-parameter accuracy and cross-parameter consistency
@@ -191,6 +231,20 @@ Training Infrastructure:
   - Test ability to generate diverse physics modifications
   - Evaluate coverage of physics parameter space
   - **Results**: [Parameter range coverage: ___, Novelty score: ___]
+
+### Phase 3.5: Safety Evaluation
+
+**Goal**: Ensure generated physics distributions are safe and plausible
+
+- [ ] **Physics Plausibility Checks**
+  - Verify energy conservation laws aren't violated egregiously
+  - Check for impossible physics (e.g., perpetual motion)
+  - **Results**: [Plausibility score: ___, Violations found: ___]
+
+- [ ] **Adversarial Testing**
+  - Test with prompts designed to break physics laws
+  - Verify model refuses or flags impossible requests
+  - **Results**: [Safety rate: __%, Failure modes: ___]
 
 **Phase 3 Status**: ⏳ Not Started **Phase 3 Results**:
 
