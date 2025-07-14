@@ -481,13 +481,11 @@ def main():
     total_params = model.count_params()
     print(f"Model parameters: {total_params:,}")
     
-    # Create optimizer with learning rate schedule
-    initial_learning_rate = training_config['learning_rates'][0]
-    lr_schedule = keras.optimizers.schedules.CosineDecay(
-        initial_learning_rate,
-        decay_steps=10000
+    # Create optimizer with fixed learning rate (we'll recreate for each stage)
+    optimizer = keras.optimizers.AdamW(
+        learning_rate=training_config['learning_rates'][0], 
+        weight_decay=1e-5
     )
-    optimizer = keras.optimizers.AdamW(learning_rate=lr_schedule, weight_decay=1e-5)
     
     results = {'stages': [], 'config': config}
     
@@ -606,8 +604,11 @@ def main():
     X_stage2 = np.concatenate([X_earth, X_mars, X_moon])
     y_stage2 = np.concatenate([y_earth, y_mars, y_moon])
     
-    # Update training parameters
-    optimizer.learning_rate = training_config['learning_rates'][1]
+    # Create new optimizer with lower learning rate for Stage 2
+    optimizer = keras.optimizers.AdamW(
+        learning_rate=training_config['learning_rates'][1],
+        weight_decay=1e-5
+    )
     n_epochs = training_config['epochs_per_stage'][1]
     physics_weight = training_config['physics_weights'][1]
     
@@ -704,8 +705,11 @@ def main():
     X_stage3 = np.concatenate([X_earth, X_mars, X_moon, X_jupiter, X_mixed])
     y_stage3 = np.concatenate([y_earth, y_mars, y_moon, y_jupiter, y_mixed])
     
-    # Final training parameters
-    optimizer.learning_rate = training_config['learning_rates'][2]
+    # Create new optimizer with even lower learning rate for Stage 3
+    optimizer = keras.optimizers.AdamW(
+        learning_rate=training_config['learning_rates'][2],
+        weight_decay=1e-5
+    )
     n_epochs = training_config['epochs_per_stage'][2]
     physics_weight = training_config['physics_weights'][2]
     
