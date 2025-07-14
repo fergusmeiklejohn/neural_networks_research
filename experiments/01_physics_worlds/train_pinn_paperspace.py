@@ -297,6 +297,7 @@ def create_large_dataset(n_samples, gravity_range, name="dataset"):
     return np.array(X), np.array(y), np.array(physics_params)
 
 
+@tf.function(reduce_retracing=True)
 def train_step(model, optimizer, x_batch, y_batch, physics_weight=0.01):
     """Training step with physics loss."""
     with tf.GradientTape() as tape:
@@ -517,11 +518,12 @@ def main():
         mse_losses = []
         physics_losses = []
         
-        # Mini-batch training
-        for i in range(0, len(indices), batch_size):
-            batch_indices = indices[i:i+batch_size]
-            if len(batch_indices) < batch_size // 2:
-                continue
+        # Mini-batch training with consistent batch sizes
+        n_batches = len(indices) // batch_size
+        for batch_idx in range(n_batches):
+            start_idx = batch_idx * batch_size
+            end_idx = start_idx + batch_size
+            batch_indices = indices[start_idx:end_idx]
                 
             x_batch = tf.constant(X_stage1[batch_indices])
             y_batch = tf.constant(y_stage1[batch_indices])
@@ -626,10 +628,11 @@ def main():
         mse_losses = []
         physics_losses = []
         
-        for i in range(0, len(indices), batch_size):
-            batch_indices = indices[i:i+batch_size]
-            if len(batch_indices) < batch_size // 2:
-                continue
+        n_batches = len(indices) // batch_size
+        for batch_idx in range(n_batches):
+            start_idx = batch_idx * batch_size
+            end_idx = start_idx + batch_size
+            batch_indices = indices[start_idx:end_idx]
                 
             x_batch = tf.constant(X_stage2[batch_indices])
             y_batch = tf.constant(y_stage2[batch_indices])
@@ -730,10 +733,11 @@ def main():
         mse_losses = []
         physics_losses = []
         
-        for i in range(0, len(indices), batch_size):
-            batch_indices = indices[i:i+batch_size]
-            if len(batch_indices) < batch_size // 2:
-                continue
+        n_batches = len(indices) // batch_size
+        for batch_idx in range(n_batches):
+            start_idx = batch_idx * batch_size
+            end_idx = start_idx + batch_size
+            batch_indices = indices[start_idx:end_idx]
                 
             x_batch = tf.constant(X_stage3[batch_indices])
             y_batch = tf.constant(y_stage3[batch_indices])
