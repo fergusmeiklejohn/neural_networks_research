@@ -1,0 +1,138 @@
+{
+  "ERM+Aug": {
+    "total_samples": 900,
+    "interpolation_count": 841,
+    "near_extrapolation_count": 59,
+    "far_extrapolation_count": 0,
+    "density_threshold": -5.305684035132461,
+    "distance_threshold": 0.2780084870340757,
+    "by_label": {
+      "in_distribution": {
+        "total": 300,
+        "interpolation": 279,
+        "near_extrapolation": 21,
+        "far_extrapolation": 0,
+        "avg_log_density": -4.591755347716364,
+        "avg_distance": 0.15736519009761799
+      },
+      "near_ood": {
+        "total": 300,
+        "interpolation": 282,
+        "near_extrapolation": 18,
+        "far_extrapolation": 0,
+        "avg_log_density": -4.5370090668632415,
+        "avg_distance": 0.14747726668330113
+      },
+      "far_ood": {
+        "total": 300,
+        "interpolation": 280,
+        "near_extrapolation": 20,
+        "far_extrapolation": 0,
+        "avg_log_density": -4.5806661002608715,
+        "avg_distance": 0.14719703318570776
+      }
+    }
+  },
+  "GFlowNet": {
+    "total_samples": 900,
+    "interpolation_count": 841,
+    "near_extrapolation_count": 59,
+    "far_extrapolation_count": 0,
+    "density_threshold": -5.305684035132461,
+    "distance_threshold": 0.2780084870340757,
+    "by_label": {
+      "in_distribution": {
+        "total": 300,
+        "interpolation": 279,
+        "near_extrapolation": 21,
+        "far_extrapolation": 0,
+        "avg_log_density": -4.591755347716364,
+        "avg_distance": 0.15736519009761799
+      },
+      "near_ood": {
+        "total": 300,
+        "interpolation": 282,
+        "near_extrapolation": 18,
+        "far_extrapolation": 0,
+        "avg_log_density": -4.5370090668632415,
+        "avg_distance": 0.14747726668330113
+      },
+      "far_ood": {
+        "total": 300,
+        "interpolation": 280,
+        "near_extrapolation": 20,
+        "far_extrapolation": 0,
+        "avg_log_density": -4.5806661002608715,
+        "avg_distance": 0.14719703318570776
+      }
+    }
+  },
+  "GraphExtrap": {
+    "total_samples": 900,
+    "interpolation_count": 818,
+    "near_extrapolation_count": 82,
+    "far_extrapolation_count": 0,
+    "density_threshold": -8.217786500887343,
+    "distance_threshold": 0.5338694981792241,
+    "by_label": {
+      "in_distribution": {
+        "total": 300,
+        "interpolation": 276,
+        "near_extrapolation": 24,
+        "far_extrapolation": 0,
+        "avg_log_density": -7.536753231294814,
+        "avg_distance": 0.35745263937012034
+      },
+      "near_ood": {
+        "total": 300,
+        "interpolation": 273,
+        "near_extrapolation": 27,
+        "far_extrapolation": 0,
+        "avg_log_density": -7.479106908076055,
+        "avg_distance": 0.3527374349818533
+      },
+      "far_ood": {
+        "total": 300,
+        "interpolation": 269,
+        "near_extrapolation": 31,
+        "far_extrapolation": 0,
+        "avg_log_density": -7.543242282631962,
+        "avg_distance": 0.35900722040857763
+      }
+    }
+  },
+  "MAML": {
+    "total_samples": 900,
+    "interpolation_count": 841,
+    "near_extrapolation_count": 59,
+    "far_extrapolation_count": 0,
+    "density_threshold": -5.305684035132461,
+    "distance_threshold": 0.2780084870340757,
+    "by_label": {
+      "in_distribution": {
+        "total": 300,
+        "interpolation": 279,
+        "near_extrapolation": 21,
+        "far_extrapolation": 0,
+        "avg_log_density": -4.591755347716364,
+        "avg_distance": 0.15736519009761799
+      },
+      "near_ood": {
+        "total": 300,
+        "interpolation": 282,
+        "near_extrapolation": 18,
+        "far_extrapolation": 0,
+        "avg_log_density": -4.5370090668632415,
+        "avg_distance": 0.14747726668330113
+      },
+      "far_ood": {
+        "total": 300,
+        "interpolation": 280,
+        "near_extrapolation": 20,
+        "far_extrapolation": 0,
+        "avg_log_density": -4.5806661002608715,
+        "avg_distance": 0.14719703318570776
+      }
+    }
+  }
+}

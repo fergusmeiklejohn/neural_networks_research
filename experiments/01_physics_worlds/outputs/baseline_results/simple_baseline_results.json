@@ -1,0 +1,20 @@
+{
+  "Standard_NN": {
+    "description": "Standard neural network (like ERM baseline)",
+    "train_time": 0.919287,
+    "final_train_loss": 0.003723994828760624,
+    "final_val_loss": 0.006327665876597166,
+    "test_mse": 0.006613084115087986,
+    "test_mae": 0.05843702703714371,
+    "model_params": 100484
+  },
+  "Augmented_NN": {
+    "description": "NN with data augmentation",
+    "train_time": 1.089414,
+    "final_train_loss": 0.01895315945148468,
+    "final_val_loss": 0.011689023114740849,
+    "test_mse": 0.010880310088396072,
+    "test_mae": 0.07496144622564316,
+    "model_params": 100484
+  }
+}

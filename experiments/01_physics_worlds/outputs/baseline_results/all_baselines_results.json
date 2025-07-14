@@ -1,0 +1,98 @@
+{
+  "ERM+Aug": {
+    "train_time": 5.516742,
+    "overall_mse": 0.4313066601753235,
+    "overall_mae": 0.3664294183254242,
+    "extrapolation": {
+      "in_distribution": {
+        "mse": 0.09095186619265884,
+        "mae": 0.22763608096442547,
+        "count": 300
+      },
+      "near_ood": {
+        "mse": 0.07454704096793627,
+        "mae": 0.21025349437406912,
+        "count": 300
+      },
+      "far_ood": {
+        "mse": 1.1284210308852651,
+        "mae": 0.6613984733157213,
+        "count": 300
+      }
+    },
+    "special_metrics": {}
+  },
+  "GFlowNet": {
+    "train_time": 2.8717,
+    "overall_mse": 0.31199759244918823,
+    "overall_mae": 0.238018199801445,
+    "extrapolation": {
+      "in_distribution": {
+        "mse": 0.02525512306578708,
+        "mae": 0.09384918649592985,
+        "count": 300
+      },
+      "near_ood": {
+        "mse": 0.0607558254131042,
+        "mae": 0.13910249854521534,
+        "count": 300
+      },
+      "far_ood": {
+        "mse": 0.8499818042169519,
+        "mae": 0.48110286615946923,
+        "count": 300
+      }
+    },
+    "special_metrics": {
+      "param_diversity": 0.3283730149269104
+    }
+  },
+  "GraphExtrap": {
+    "train_time": 3.228552,
+    "overall_mse": 0.31663355231285095,
+    "overall_mae": 0.3334796726703644,
+    "extrapolation": {
+      "in_distribution": {
+        "mse": 0.059975767545346365,
+        "mae": 0.19058087780001984,
+        "count": 300
+      },
+      "near_ood": {
+        "mse": 0.123641112323018,
+        "mae": 0.2645767950639181,
+        "count": 300
+      },
+      "far_ood": {
+        "mse": 0.7662838234287276,
+        "mae": 0.5452814348669436,
+        "count": 300
+      }
+    },
+    "special_metrics": {}
+  },
+  "MAML": {
+    "train_time": 4.085036,
+    "overall_mse": 0.30542171001434326,
+    "overall_mae": 0.2434573918581009,
+    "extrapolation": {
+      "in_distribution": {
+        "mse": 0.0250853632750373,
+        "mae": 0.09897242451162894,
+        "count": 300
+      },
+      "near_ood": {
+        "mse": 0.06842409597591949,
+        "mae": 0.15191687404971302,
+        "count": 300
+      },
+      "far_ood": {
+        "mse": 0.8227556718247606,
+        "mae": 0.47948282042102675,
+        "count": 300
+      }
+    },
+    "special_metrics": {
+      "adaptation_score": 0.4003866150975227
+    }
+  }
+}

@@ -22,6 +22,10 @@ creativity and extrapolation capabilities.
 - **Insight Transfer**: Create mechanisms for mapping insights from invented
   distributions back to base distributions
 
+# Most important thing to remember is that we are doing research. We are not trying to get the code to run or finish a task to complete a Jira ticket. We are trying to discover new things. This means that often we must persevere and figure out how to do difficult things. Cutting corners is not a good idea because it will not lead us to truth.
+
+## Second most important thing to remember is that we need to consult the documentation when coding new and difficult things and we can fetch it from Context7 MCP.
+
 ## Development Environment
 
 ### Python Environment Setup
@@ -35,6 +39,7 @@ conda activate dist-invention
 # Key dependencies
 pip install keras>=3.0 torch jax[metal] transformers wandb
 ```
+Sometimes Claude cannot run scripts and sees errors like that a package isn't available in the python environment. Often this is an environment error and Claude should ask for help running files in these cases rather than change our strategy or scripts to get round the problem.
 
 ### Backend Configuration
 
