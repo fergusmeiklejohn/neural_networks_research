@@ -1,0 +1,131 @@
+{
+  "stages": [
+    {
+      "stage": "Earth Only",
+      "epochs_trained": 100,
+      "training_time": 132.61680102348328,
+      "test_results": {
+        "Earth": {
+          "name": "Earth",
+          "mse": 1122.298095703125,
+          "gravity_error": 9.800000000000093,
+          "smoothness_error": 0.23749147355556488
+        },
+        "Moon": {
+          "name": "Moon",
+          "mse": 1096.922119140625,
+          "gravity_error": 1.600000000000014,
+          "smoothness_error": 0.21224363148212433
+        },
+        "Jupiter": {
+          "name": "Jupiter",
+          "mse": 1220.6531982421875,
+          "gravity_error": 24.799999999999837,
+          "smoothness_error": 0.2777000665664673
+        }
+      }
+    },
+    {
+      "stage": "Earth + Mars + Moon",
+      "epochs_trained": 75,
+      "training_time": 195.12741470336914,
+      "test_results": {
+        "Earth": {
+          "name": "Earth",
+          "mse": 905.368896484375,
+          "gravity_error": 9.800000000000093,
+          "smoothness_error": 0.16896556317806244
+        },
+        "Moon": {
+          "name": "Moon",
+          "mse": 892.1094970703125,
+          "gravity_error": 1.600000000000014,
+          "smoothness_error": 0.15157431364059448
+        },
+        "Jupiter": {
+          "name": "Jupiter",
+          "mse": 874.52587890625,
+          "gravity_error": 24.799999999999837,
+          "smoothness_error": 0.19750626385211945
+        }
+      }
+    },
+    {
+      "stage": "Full Curriculum",
+      "epochs_trained": 50,
+      "training_time": 198.7539930343628,
+      "test_results": {
+        "Earth": {
+          "name": "Earth",
+          "mse": 908.5435180664062,
+          "gravity_error": 9.800000000000093,
+          "smoothness_error": 0.15178431570529938
+        },
+        "Moon": {
+          "name": "Moon",
+          "mse": 889.1825561523438,
+          "gravity_error": 1.600000000000014,
+          "smoothness_error": 0.13627995550632477
+        },
+        "Jupiter": {
+          "name": "Jupiter",
+          "mse": 880.8787231445312,
+          "gravity_error": 24.799999999999837,
+          "smoothness_error": 0.17761975526809692
+        }
+      }
+    }
+  ],
+  "config": {
+    "hidden_dim": 512,
+    "num_layers": 6,
+    "dropout_rate": 0.2,
+    "batch_size": 64,
+    "learning_rates": [
+      0.001,
+      0.0005,
+      0.0002
+    ],
+    "epochs_per_stage": [
+      100,
+      75,
+      50
+    ],
+    "physics_weights": [
+      0.01,
+      0.05,
+      0.1
+    ]
+  },
+  "final_comparison": {
+    "pinn": {
+      "earth": 908.5435180664062,
+      "moon": 889.1825561523438,
+      "jupiter": 880.8787231445312
+    },
+    "baselines": {
+      "ERM+Aug": {
+        "earth": 0.091,
+        "moon": 0.075,
+        "jupiter": 1.128
+      },
+      "GFlowNet": {
+        "earth": 0.025,
+        "moon": 0.061,
+        "jupiter": 0.85
+      },
+      "GraphExtrap": {
+        "earth": 0.06,
+        "moon": 0.124,
+        "jupiter": 0.766
+      },
+      "MAML": {
+        "earth": 0.025,
+        "moon": 0.068,
+        "jupiter": 0.823
+      }
+    },
+    "model_params": 1925708,
+    "training_time": 542.727236032486
+  }
+}
