@@ -297,7 +297,6 @@ def create_large_dataset(n_samples, gravity_range, name="dataset"):
     return np.array(X), np.array(y), np.array(physics_params)
 
 
-@tf.function
 def train_step(model, optimizer, x_batch, y_batch, physics_weight=0.01):
     """Training step with physics loss."""
     with tf.GradientTape() as tape:
@@ -609,6 +608,9 @@ def main():
         learning_rate=training_config['learning_rates'][1],
         weight_decay=1e-5
     )
+    # Build optimizer with model variables to avoid tf.function issues
+    optimizer.build(model.trainable_variables)
+    
     n_epochs = training_config['epochs_per_stage'][1]
     physics_weight = training_config['physics_weights'][1]
     
@@ -710,6 +712,9 @@ def main():
         learning_rate=training_config['learning_rates'][2],
         weight_decay=1e-5
     )
+    # Build optimizer with model variables to avoid tf.function issues
+    optimizer.build(model.trainable_variables)
+    
     n_epochs = training_config['epochs_per_stage'][2]
     physics_weight = training_config['physics_weights'][2]
     
