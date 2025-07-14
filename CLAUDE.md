@@ -22,9 +22,28 @@ creativity and extrapolation capabilities.
 - **Insight Transfer**: Create mechanisms for mapping insights from invented
   distributions back to base distributions
 
-# Most important thing to remember is that we are doing research. We are not trying to get the code to run or finish a task to complete a Jira ticket. We are trying to discover new things. This means that often we must persevere and figure out how to do difficult things. Cutting corners is not a good idea because it will not lead us to truth.
+## Core Research Philosophy
 
-## Second most important thing to remember is that we need to consult the documentation when coding new and difficult things and we can fetch it from Context7 MCP.
+**We are doing research, not engineering.** We seek truth through rigorous experimentation. This means:
+- Persevere through difficult problems - don't cut corners
+- Document everything - failures teach as much as successes
+- Verify assumptions - what seems like OOD might be interpolation
+- Consult documentation (eg Context7 MCP or if that doesn't work the internet) when implementing new approaches
+
+## 🧭 Knowledge Navigation
+
+### Where to Find Current Information
+- **Latest Research Status**: `research_diary/` - Check most recent entry
+- **Experiment Progress**: `experiments/*/CURRENT_STATUS.md` - Real-time updates
+- **All Documentation**: `DOCUMENTATION_INDEX.md` - Master index of everything
+- **Code Reliability**: `CODE_RELIABILITY_GUIDE.md` - MUST READ before coding
+- **Cloud Training**: `PAPERSPACE_TRAINING_GUIDE.md` - Essential for GPU runs
+
+### Critical Process Reminders
+1. **Before Starting Work**: Read latest research diary entry for context
+2. **Before Writing Code**: Check CODE_RELIABILITY_GUIDE.md for common pitfalls
+3. **Before Training**: Review PAPERSPACE_TRAINING_GUIDE.md for cloud setup
+4. **When Lost**: DOCUMENTATION_INDEX.md has links to everything
 
 ## Development Environment
 
@@ -58,56 +77,34 @@ The project uses **Keras 3** with multi-backend support:
 
 ## Project Structure
 
-### Current State
+### Current Research Status
+The project is in **active experimentation**. For latest status:
+- Check `experiments/*/CURRENT_STATUS.md` for each experiment
+- Read most recent `research_diary/` entry for overall progress
+- See `DOCUMENTATION_INDEX.md` for comprehensive status tracking
 
-The project is in **active implementation** with two experiments completed:
+**Key Learning**: Most "OOD" benchmarks actually test interpolation. We discovered the "OOD Illusion" - true extrapolation requires careful experimental design.
 
-**Experiment 01: Physics Worlds** ✅
-- Progressive curriculum achieved **83.51% extrapolation accuracy**
-- Proved neural networks can extrapolate with proper inductive biases
-- 4-stage curriculum successfully implemented
-
-**Experiment 02: Compositional Language** 🚧
-- Successfully trained minimal LSTM model (267K params)
-- Training loss: 0.4026 → 0.038 (excellent convergence)
-- Progressive curriculum completed all 4 stages
-- Final metrics lost due to save script issues (lesson learned!)
-- Ready to retry with improved infrastructure
-
-### Architecture (partially implemented)
+### Architecture (evolving - check experiment folders for latest)
 
 ```
-experiments/                    # 6 major experiments
-├── 01_physics_worlds/         # Physics simulation with rule modifications
-├── 02_compositional_language/ # Language tasks with compositional rules
-├── 03_visual_concepts/        # Visual concept blending
-├── 04_abstract_reasoning/     # ARC-like puzzle solving
-├── 05_mathematical_extension/ # Mathematical concept extension
-└── 06_multimodal_transfer/    # Cross-modal rule transfer
+experiments/                    # Each has CURRENT_STATUS.md and EXPERIMENT_PLAN.md
+├── 01_physics_worlds/         # Active: Discovered PINN failures, designing true OOD
+├── 02_compositional_language/ # Ready to retry with improved infrastructure
+├── 03_visual_concepts/        # Planned: Visual concept blending
+├── 04_abstract_reasoning/     # Planned: ARC-like puzzle solving
+├── 05_mathematical_extension/ # Planned: Mathematical concept extension
+└── 06_multimodal_transfer/    # Planned: Cross-modal rule transfer
 
-models/
-├── core/
-│   ├── physics_rule_extractor.py  # ✅ Transformer-based rule extraction
-│   ├── distribution_generator.py   # Main distribution invention model
-│   ├── consistency_checker.py     # Ensures rule consistency
-│   └── insight_extractor.py       # Maps insights back to base
-├── physics_informed_components.py  # ✅ HamiltonianNN, attention layers
-├── collision_models.py            # ✅ Soft collision handling
-├── physics_losses.py              # ✅ Conservation losses, ReLoBRaLo
-├── physics_informed_transformer.py # ✅ Hybrid PINN-Transformer
-└── utils/                         # Shared utilities
+models/                        # Check git status for latest implementations
+├── core/                      # Core architecture components
+├── baseline_models.py         # All 4 baseline implementations
+├── unified_evaluation.py      # Standardized evaluation framework
+└── minimal_physics_model.py   # Recent PINN experiment
 
-configs/
-└── experiment_configs.yaml        # Experiment hyperparameters
-
-data/
-├── raw/                           # Original datasets
-├── processed/                     # Preprocessed data
-└── generated/                     # Generated distributions
-
-scripts/
-├── train_paperspace.py           # Training scripts for cloud
-└── evaluate_distribution.py      # Evaluation utilities
+data/                          # Note: processed data is gitignored
+scripts/                       # Training and evaluation scripts
+research_diary/                # Daily progress and insights
 ```
 
 ## Core Architecture Components
@@ -302,24 +299,29 @@ DATA_DIR=./data                          # Data directory
 OUTPUT_DIR=./outputs                     # Output directory
 ```
 
-## Next Implementation Steps
+## Research Process
 
-1. **Setup Development Environment**: Execute setup guide to create directory
-   structure
-2. **Implement Core Architecture**: Create `DistributionInventor` base classes
-3. **Physics Experiment**: Start with simplest experiment (2D physics worlds)
-4. **Evaluation Framework**: Build consistent evaluation metrics across
-   experiments
-5. **Scale Gradually**: Move from local prototyping to cloud training
+### Daily Workflow
+1. **Start**: Read latest research diary entry for context
+2. **Plan**: Check experiment CURRENT_STATUS.md for next steps
+3. **Code**: Reference CODE_RELIABILITY_GUIDE.md to avoid known issues
+4. **Test**: Run minimal tests (100 samples, 2 epochs) before full training
+5. **Document**: Update research diary with findings and next steps
 
-## Notes
+### When Starting New Work
+1. Check DOCUMENTATION_INDEX.md for relevant existing work
+2. Read the experiment's EXPERIMENT_PLAN.md
+3. Review any existing code in the experiment folder
+4. Create timestamped plan in `claude-plans/` if needed
+5. Always test with minimal data first
 
-- **Current State**: Planning phase complete, ready for implementation
-- **Multi-Backend**: Keras 3 provides flexibility across JAX/PyTorch/TensorFlow
-- **Interactive Development**: Use VS Code with Python Interactive files for
-  rapid prototyping
-- **Experiment Tracking**: All experiments should log to Weights & Biases
-- **Timeline**: 4-month research plan with systematic experiment progression
+## Key Principles
+
+- **Research Focus**: We prioritize understanding over implementation speed
+- **Reproducibility**: Every experiment must be reproducible from scratch
+- **Failure Documentation**: Negative results are as valuable as positive ones
+- **Progressive Complexity**: Start simple, add complexity gradually
+- **Continuous Learning**: Update guides as we discover new patterns
 
 ## Notes for execution
 
@@ -425,3 +427,26 @@ We maintain a research diary in `research_diary/` with daily entries documenting
 3. Use format: `YYYY-MM-DD_research_diary.md`
 4. Keep entries concise but comprehensive
 5. Include specific code changes, test results, and insights
+
+**CRITICAL: Make diary entries actionable for tomorrow**
+The diary must serve as a practical working document that enables immediate productivity the next day. Include:
+
+1. **Specific file paths and line numbers** - Enable jumping directly to relevant code
+   - Example: "Check geometric features in `models/baseline_models.py:L142-156`"
+
+2. **Exact commands to run** - No searching needed
+   - Example: "Run: `python train_baselines.py --model graph_extrap --verbose`"
+
+3. **Current state summary** - What's working, what's ready
+   - Example: "Have working data pipeline: `train_minimal_pinn.py` loads 2-ball trajectories"
+
+4. **Critical context** - Quirks and conversions to remember
+   - Example: "Data is in PIXELS not meters! Use `physics_config['gravity'] / 40.0`"
+
+5. **Open questions with hypotheses** - Guide tomorrow's investigation
+   - Example: "Does GraphExtrap train on multiple gravity values? This could explain interpolation success"
+
+6. **Next steps with entry points** - Specific starting locations
+   - Example: "Start from: `TRUE_OOD_BENCHMARK.md:L36-47` for time-varying gravity"
+
+The goal is zero friction when resuming work - the diary should contain everything needed to pick up exactly where you left off with full context and clear direction.

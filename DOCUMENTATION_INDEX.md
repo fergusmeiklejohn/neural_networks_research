@@ -3,10 +3,11 @@
 ## 📚 Quick Navigation Guide
 
 ### Getting Started
-- **Project Overview**: `CLAUDE.md` - Start here for project goals and current state
+- **Project Overview**: `CLAUDE.md` - Start here for project goals and navigation
+- **Code Reliability**: `CODE_RELIABILITY_GUIDE.md` - ⚠️ MUST READ before coding
 - **Research Plan**: `distribution_invention_research_plan.md` - Complete technical approach
 - **Setup Guide**: `setup_distribution_invention.md` - Development environment setup
-- **What to Do Next**: `NEXT_STEPS.md` - Clear action items for implementation
+- **What to Do Next**: Check experiment `CURRENT_STATUS.md` files
 
 ### Current Status & Progress
 - **Feedback Integration**: `FEEDBACK_INTEGRATION.md` - 90% complete, tracks all reviewer feedback
@@ -16,10 +17,11 @@
 ### 🔬 Experiments
 
 #### Experiment 01: Physics Worlds
+- **Current Status**: `experiments/01_physics_worlds/CURRENT_STATUS.md` - ⭐ Check this first!
 - **Plan**: `experiments/01_physics_worlds/EXPERIMENT_PLAN.md`
-- **Status**: Phase 1 ✅ Complete, Phase 2 🚧 In Progress (data isolation fixed)
-- **Key Results**: 83.51% extrapolation accuracy achieved
-- **Critical Fix**: `DATA_ISOLATION_FIX_PLAN.md` - Addresses data leakage
+- **Major Finding**: Discovered "OOD Illusion" - most OOD is actually interpolation
+- **PINN Analysis**: Physics-informed models failed catastrophically (1,150x worse)
+- **Key Documents**: `TRUE_OOD_BENCHMARK.md`, `PINN_LESSONS_LEARNED.md`
 
 #### Experiment 02: Compositional Language  
 - **Plan**: `experiments/02_compositional_language/EXPERIMENT_PLAN.md`
@@ -105,8 +107,34 @@ Based on our current 90% feedback integration:
 3. Update baseline models
 4. Complete safety documentation
 
+### 🚀 Fast Access - Common Commands & Paths
+
+#### Quick Test Commands
+```bash
+# Test minimal physics model
+cd experiments/01_physics_worlds
+python train_minimal_pinn.py --test_mode
+
+# Train baseline model
+python train_baselines.py --model graph_extrap --verbose
+
+# Check environment
+python -c "import keras; print(keras.backend.backend())"
+```
+
+#### Key Paths
+- Latest findings: `research_diary/2025-01-14_research_diary.md`
+- Physics status: `experiments/01_physics_worlds/CURRENT_STATUS.md`
+- Code pitfalls: `CODE_RELIABILITY_GUIDE.md`
+- Cloud setup: `PAPERSPACE_TRAINING_GUIDE.md`
+
+#### Data Format Reminders
+- Physics data: 40 pixels = 1 meter
+- Gravity: ~400-1200 pixels/s² (divide by 40 for m/s²)
+- Trajectory: [time, x1, y1, vx1, vy1, mass1, radius1, x2, y2, vx2, vy2, mass2, radius2]
+
 ---
 
 *This index is the single source of truth for finding project documentation. Update it when adding major new documents.*
 
-Last Updated: 2025-07-12
+Last Updated: 2025-01-14

@@ -45,3 +45,5 @@ experiments/01_physics_worlds/train_pinn_keras3.py
 
 # Individual training outputs (keep baseline_results)
 experiments/01_physics_worlds/outputs/pinn_*/
+
+/outputs

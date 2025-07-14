@@ -1,0 +1,52 @@
+{
+  "initial": {
+    "test_interpolation": {
+      "mse": 2160887296.0,
+      "gravity": -752.9752066115702,
+      "predicted_gravity": -9.800000190734863
+    },
+    "test_extrapolation": {
+      "mse": 2460464384.0,
+      "gravity": -790.721732427744,
+      "predicted_gravity": -9.800000190734863
+    },
+    "test_novel": {
+      "mse": 7016036352.0,
+      "gravity": -1093.4705882352941,
+      "predicted_gravity": -9.800000190734863
+    },
+    "test_jupiter": {
+      "mse": 2460464384.0,
+      "gravity": -790.721732427744,
+      "predicted_gravity": -9.800000190734863
+    }
+  },
+  "stages": [
+    {
+      "stage": "Earth/Mars",
+      "results": {
+        "test_interpolation": {
+          "mse": 2166784000.0,
+          "gravity": -752.9752066115702,
+          "predicted_gravity": -14.243095397949219
+        },
+        "test_extrapolation": {
+          "mse": 2465057280.0,
+          "gravity": -790.721732427744,
+          "predicted_gravity": -14.243095397949219
+        },
+        "test_novel": {
+          "mse": 7022001152.0,
+          "gravity": -1093.4705882352941,
+          "predicted_gravity": -14.243095397949219
+        },
+        "test_jupiter": {
+          "mse": 2465057280.0,
+          "gravity": -790.721732427744,
+          "predicted_gravity": -14.243095397949219
+        }
+      },
+      "final_loss": 4.887132046465434e+16
+    }
+  ]
+}
