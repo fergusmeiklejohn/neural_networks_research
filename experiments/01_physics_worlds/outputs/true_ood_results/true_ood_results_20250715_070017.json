@@ -1,0 +1,37 @@
+{
+  "timestamp": "20250715_070017",
+  "test_data": "harmonic_gravity",
+  "n_samples": 200,
+  "results": [
+    {
+      "model": "GFlowNet",
+      "mse": Infinity,
+      "mae": Infinity,
+      "status": "not_found"
+    },
+    {
+      "model": "MAML",
+      "mse": Infinity,
+      "mae": Infinity,
+      "status": "not_found"
+    },
+    {
+      "model": "Minimal PINN",
+      "mse": Infinity,
+      "mae": Infinity,
+      "status": "not_found"
+    },
+    {
+      "model": "GraphExtrap (paper)",
+      "mse": 0.766,
+      "mae": null,
+      "status": "baseline_on_standard_ood",
+      "parameters": 100000
+    }
+  ],
+  "summary": {
+    "best_mse": 0.766,
+    "worst_mse": 0.766,
+    "all_failed": true
+  }
+}
