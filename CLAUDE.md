@@ -323,6 +323,57 @@ OUTPUT_DIR=./outputs                     # Output directory
 - **Progressive Complexity**: Start simple, add complexity gradually
 - **Continuous Learning**: Update guides as we discover new patterns
 
+## End of Session Protocol
+
+**IMPORTANT**: Before ending any work session, complete these documentation updates to ensure the next session starts with accurate information:
+
+### 1. Update Research Diary
+- Create or update today's diary entry in `research_diary/YYYY-MM-DD_research_diary.md`
+- Ensure it includes all actionable elements from the template
+- Focus on making it actionable for tomorrow (specific commands, file paths, line numbers)
+
+### 2. Update Experiment Status
+If you worked on an experiment:
+- Update the relevant `experiments/*/CURRENT_STATUS.md` file
+- Include latest results, what's working, known issues, and immediate next steps
+- Update status tags (Active, Complete, Blocked, etc.)
+
+### 3. Update Documentation Index
+If any of these changed:
+- Latest diary date in `DOCUMENTATION_INDEX.md`
+- Experiment status or major findings
+- New key documents created
+- Important file paths or commands discovered
+
+### 4. Update CLAUDE.md (if needed)
+Update this file if:
+- Experiment phases changed significantly
+- New critical process discovered
+- Important warnings or gotchas found
+- Key commands or paths changed
+
+### 5. Verify Consistency
+Quick check that:
+- All cross-references between documents are accurate
+- Status descriptions match across files
+- Latest findings are reflected in relevant places
+- No conflicting information exists
+
+### 6. Commit Changes
+```bash
+git add -A
+git commit -m "Update documentation: [brief description of session work]
+
+- Updated research diary with [key findings]
+- Updated [experiment] status
+- [Other key updates]
+
+🤖 Generated with Claude Code
+Co-Authored-By: Claude <noreply@anthropic.com>"
+```
+
+This protocol ensures documentation stays synchronized and the next session can start immediately with full context.
+
 ## Notes for execution
 
 We always keep an EXPERIMENT_PLAN.md file in each Experiment folder. We keep it

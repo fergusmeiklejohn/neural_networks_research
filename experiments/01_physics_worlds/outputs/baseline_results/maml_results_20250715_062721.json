@@ -1,0 +1,8 @@
+{
+  "model": "maml",
+  "parameters": 55824,
+  "training_loss": 511.9967956542969,
+  "validation_loss": 534.8554077148438,
+  "jupiter_mse": 3298.69287109375,
+  "timestamp": "20250715_062721"
+}

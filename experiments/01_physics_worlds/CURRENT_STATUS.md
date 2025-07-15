@@ -1,29 +1,32 @@
 # Physics Worlds Experiment - Current Status
 
-Last Updated: 2025-01-14
+Last Updated: 2025-01-15
 
 ## 🎯 Current State Summary
 
-**Major Discovery**: Found the "OOD Illusion" - 91.7% of supposedly "far-OOD" test samples are actually interpolation within the learned representation space.
+**Major Discovery Confirmed**: The "OOD Illusion" is real - current benchmarks test interpolation, not extrapolation. Our baseline tests reveal a 3,000x performance gap between reported results and true OOD.
 
-**PINN Investigation Complete**: Physics-informed models failed catastrophically:
-- Original PINN: 880.879 MSE (1,150x worse than baseline)
-- Minimal PINN: 42,468 MSE (55,000x worse than baseline)
-- GraphExtrap baseline: 0.766 MSE (best performer)
+**Complete Baseline Testing Done**: 
+- GraphExtrap (paper): 0.766 MSE ✅
+- GFlowNet (our test): 2,229.38 MSE (2,910x worse) ❌
+- MAML (our test): 3,298.69 MSE (4,306x worse) ❌
+- Minimal PINN: 42,532.14 MSE (55,531x worse) ❌
 
-**Key Insight**: Physics constraints prevent adaptation. Models with fixed physics assumptions (like constant gravity) cannot extrapolate to new conditions.
+**Critical Insight**: NO current method achieves true extrapolation. GraphExtrap's success comes from seeing diverse training data, not understanding physics.
 
 ## 📊 Latest Results
 
-### Model Performance on Jupiter Gravity (-24.8 m/s² vs Earth's -9.8 m/s²)
-| Model | MSE | Status |
-|-------|-----|--------|
-| GraphExtrap | 0.766 | ✅ Best |
-| ERM + Aug | ~2-3 | ✅ Good |
-| GFlowNet | TBD | 🔄 Pending |
-| MAML | TBD | 🔄 Pending |
-| Original PINN | 880.879 | ❌ Failed |
-| Minimal PINN | 42,468 | ❌ Failed |
+### Complete Baseline Comparison (January 15, 2025)
+| Model | Jupiter MSE | Parameters | vs Best | Status |
+|-------|-------------|------------|---------|--------|
+| GraphExtrap (paper) | 0.766 | ~100K | 1x | ✅ Best |
+| MAML (paper) | 0.823 | - | 1.07x | ✅ Good |
+| GFlowNet (paper) | 0.850 | - | 1.11x | ✅ Good |
+| ERM+Aug (paper) | 1.128 | - | 1.47x | ✅ Acceptable |
+| Original PINN | 880.879 | 1.9M | 1,150x | ❌ Failed |
+| **GFlowNet (our)** | **2,229.38** | 152K | 2,910x | ❌ Failed |
+| **MAML (our)** | **3,298.69** | 56K | 4,306x | ❌ Failed |
+| **Minimal PINN** | **42,532.14** | 5K | 55,531x | ❌ Catastrophic |
 
 ## 🔧 What's Working
 

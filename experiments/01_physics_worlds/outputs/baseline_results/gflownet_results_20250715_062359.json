@@ -1,0 +1,8 @@
+{
+  "model": "gflownet",
+  "parameters": 152464,
+  "training_loss": 360.0367126464844,
+  "validation_loss": 368.8810729980469,
+  "jupiter_mse": 2229.38134765625,
+  "timestamp": "20250715_062359"
+}
