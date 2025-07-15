@@ -1,108 +1,94 @@
 # Research Diary - July 14, 2025
 
-## Summary
-Analyzed Paperspace PINN results and discovered a catastrophic failure that provides critical insights into physics-informed machine learning.
+## Today's Focus: Testing Minimal PINN Implementation
 
-## Major Discovery: PINN Catastrophic Failure
+### Goals
+- Test if a minimal physics-informed neural network could beat GraphExtrap's baseline
+- Understand why PINNs fail so catastrophically on physics extrapolation
+- Apply lessons learned from our previous analyses
 
-### The Shocking Results
-After running our scaled PINN on Paperspace GPU, we discovered:
-- **PINN MSE on Jupiter: 880.879**
-- **Best Baseline MSE: 0.766**
-- **PINN is 1,150x WORSE than the baseline!**
+### Key Activities
 
-This is despite:
-- 1.9M parameters (vs ~100K for baselines)
-- Explicit physics losses (energy, momentum, gravity)
-- Progressive curriculum training
-- 9 minutes of GPU training
+#### 1. Implemented Minimal PINN Architecture
+Created a stripped-down PINN based on our lessons learned:
+- Started with F=ma as base, added small neural corrections
+- Used physics-aware features (polar coordinates like GraphExtrap)
+- Weighted physics losses 100x more than MSE
+- Only 2 layers with 64 hidden units (vs 1.9M params in original)
 
-### Why This Matters
+#### 2. Discovered Major Data Format Issues
+Spent significant time debugging data loading:
+- Data uses pixel coordinates, not meters (gravity ~400-1200 pixels/s²)
+- Trajectory format was different than expected: [time, x1, y1, vx1, vy1, mass1, radius1, ...]
+- Had to extract correct columns and convert units properly
+- Fixed negative friction issue by enforcing positivity constraint
 
-This negative result is **extremely valuable** because it reveals fundamental challenges in physics-informed ML:
+#### 3. Results: Another PINN Failure Mode
 
-1. **Architecture Trumps Physics Knowledge**
-   - Simply adding physics losses isn't enough
-   - The model completely ignored conservation constraints
-   - Deep networks can fail where simple models succeed
+**MSE on Jupiter Gravity:**
+- GraphExtrap: 0.766 (best)
+- Minimal PINN: 42,468 (55,000x worse!)
+- Original PINN: 880.879
 
-2. **Loss Imbalance Problem**
-   - MSE: ~1000
-   - Physics losses: ~10
-   - The reconstruction loss completely dominated
+The minimal PINN learned Earth gravity perfectly (-9.81 m/s²) but couldn't adapt to Jupiter (-42.8 m/s²).
 
-3. **Gravity Blindness**
-   - Model predicts -9.8 m/s² (Earth) for everything
-   - Jupiter gravity error: 24.8 m/s²
-   - Physics losses failed to enforce gravity variation
+### Key Insights
 
-## Combined Findings: Two Groundbreaking Discoveries
+1. **Physics Constraints Are a Liability**: The model's assumption of fixed gravity prevents adaptation. What should be a strength (knowing F=ma) becomes a fundamental weakness.
 
-### Discovery 1: The OOD Illusion (Yesterday)
-- 91.7% of "far-OOD" Jupiter samples are actually interpolation
-- Models fail with >10x degradation despite interpolation
-- Proves models learn statistics, not physics
+2. **GraphExtrap's Secret**: It succeeds by NOT assuming specific physics. It learns patterns from data and can interpolate between different gravity values.
 
-### Discovery 2: PINN Failure (Today)
-- Physics-informed model performs 1,150x worse than baseline
-- Explicit physics knowledge doesn't guarantee extrapolation
-- Architecture and optimization matter more than domain knowledge
+3. **Data Understanding is Critical**: We lost hours to data format issues - pixel vs meter coordinates, wrong column extraction, etc. 
 
-### The Complete Picture
+4. **PINNs Have a Fundamental Flaw**: They encode assumptions that become invalid under distribution shift. The more "physics" we add, the more rigid and brittle the model becomes.
 
-Together, these findings show:
-1. **Current benchmarks are flawed** - They test interpolation, not extrapolation
-2. **Physics understanding is hard** - Even with perfect knowledge of laws
-3. **Inductive bias is key** - Simple models with good priors beat complex ones
+### Challenges Encountered
 
-## Technical Analysis
+1. **Data Format Confusion**: The trajectory data structure was completely different than documented
+2. **Unit Conversion Hell**: Mixing pixel and meter units caused massive MSE values
+3. **Numerical Instability**: Had to reduce learning rates and physics weights to avoid NaN losses
+4. **JAX Immutability**: Required rewriting array updates to avoid in-place modifications
 
-### What Worked
-- Progressive curriculum helped slightly (28% improvement)
-- Model did learn to reduce MSE within each stage
-- Paperspace setup worked flawlessly with safety features
+### Current State & Next Steps
 
-### What Failed
-- Physics losses were ignored due to scale mismatch
-- Deep architecture didn't help (made things worse?)
-- Optimizer (Adam) might conflict with conservation laws
+**Where we are:**
+- Confirmed PINNs fail due to rigid physics assumptions (2 experiments, both catastrophic)
+- Have working data pipeline: `/experiments/01_physics_worlds/train_minimal_pinn.py` loads filtered 2-ball trajectories
+- GraphExtrap baseline: 0.766 MSE on Jupiter (need to understand WHY - check their feature engineering)
+- Key files ready: `TRUE_OOD_BENCHMARK.md` has Level 2 design, `models/baseline_models.py` has GraphExtrap implementation
 
-### Hypotheses for Failure
-1. **Architecture mismatch** - LSTM + Dense doesn't encode physics well
-2. **Optimization conflict** - Gradient descent vs conservation laws
-3. **Feature representation** - Raw states might not be ideal
+**Immediate next steps (with entry points):**
+1. **Understand GraphExtrap's success** 
+   - Run: `python train_baselines.py --model graph_extrap --verbose`
+   - Check their geometric features in `models/baseline_models.py:L142-156`
+   - Key question: Do they train on multiple gravity values?
 
-## Research Impact
+2. **Implement True OOD Benchmark Level 2**
+   - Start from: `TRUE_OOD_BENCHMARK.md:L36-47` (time-varying gravity)
+   - Modify: `improved_data_generator.py` to add `gravity_fn=lambda t: -9.8 * (1 + 0.1*sin(t))`
+   - Test with: `RepresentationSpaceAnalyzer` to verify >60% true OOD
 
-These negative results are publishable because they:
-- Challenge assumptions about physics-informed ML
-- Reveal flaws in current OOD benchmarks
-- Provide clear failure cases for future work
+3. **Paper 1: "The OOD Illusion"**
+   - Evidence collected: `CRITICAL_OOD_INSIGHTS.md` (91.7% interpolation finding)
+   - Structure template: `NEXT_RESEARCH_STEPS.md:L47-54`
+   - Key figure: t-SNE plot showing "OOD" samples inside training manifold
 
-## Next Steps
+**Critical context for tomorrow:**
+- Data is in PIXELS not meters! (40 pixels = 1 meter)
+- Gravity range: Earth ~-9.8 m/s², Jupiter ~-24.8 m/s² (but data shows -42.8)
+- Use `physics_config['gravity'] / 40.0` for conversion
+- Trajectories are 300 timesteps but we use first 50
 
-1. **Write up findings** for potential publication
-2. **Analyze GraphExtrap** - Why did it succeed?
-3. **Design better architecture** - Start from physics equations
-4. **Fix loss balance** - Make physics dominant
+### Questions to Investigate Tomorrow
 
-## Code and Documentation
+1. **Does GraphExtrap train on multiple gravity values?** This could explain its interpolation success
+2. **What happens if we make gravity a function of features?** E.g., `gravity = f(positions)`
+3. **Can we detect distribution shift online?** If model could recognize "this is Jupiter", it could adapt
 
-Created comprehensive analysis:
-- `PINN_FAILURE_ANALYSIS.md` - Detailed failure analysis
-- `COMPLETE_FINDINGS_SUMMARY.md` - Both discoveries combined
-- `analyze_pinn_failure.py` - Visualization code
-- Updated all documentation with findings
+### Reflection
 
-## Reflection
+Today confirmed our hypothesis: physics-informed approaches fail when test conditions violate encoded assumptions. Even a "perfect" physics model can't extrapolate if it assumes wrong constants. This is profound - it suggests that for true extrapolation, we need models that can discover and adapt their own "physics" rather than having it hardcoded.
 
-Today's work exemplifies why research is exciting - negative results can be more valuable than positive ones. We've discovered:
-- A fundamental flaw in OOD benchmarking (the illusion)
-- A dramatic failure of physics-informed ML
-- Clear evidence that the problem is causal understanding
+The irony is striking: knowing the correct physics equations makes models WORSE at extrapolation, not better. This challenges fundamental assumptions about how to incorporate domain knowledge into ML systems.
 
-These findings will help the community avoid dead ends and focus on what really matters: teaching neural networks to understand causality, not just fit patterns.
-
-## Key Takeaway
-
-**"Physics-informed" doesn't mean physics-aware.** Our 1.9M parameter model with explicit conservation laws lost to a simple baseline by 3 orders of magnitude. This proves that architecture and inductive bias matter more than domain knowledge alone.
+**Key takeaway for paper**: "Physics-informed" ≠ "Physics-aware". The former rigidly enforces equations, the latter flexibly uses physics-inspired features.
