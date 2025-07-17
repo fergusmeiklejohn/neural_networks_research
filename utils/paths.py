@@ -87,7 +87,7 @@ def get_data_path(subpath: str = "", create: bool = True) -> Path:
     Returns:
         Path to data directory
     """
-    from .config import get_config
+    from utils.config import get_config
     
     config = get_config()
     data_dir = Path(config["data_dir"])
@@ -119,7 +119,7 @@ def get_output_path(subpath: str = "", create: bool = True) -> Path:
     Returns:
         Path to output directory
     """
-    from .config import get_config
+    from utils.config import get_config
     
     config = get_config()
     output_dir = Path(config["output_dir"])
@@ -151,7 +151,7 @@ def get_model_path(subpath: str = "", create: bool = True) -> Path:
     Returns:
         Path to model directory
     """
-    from .config import get_config
+    from utils.config import get_config
     
     config = get_config()
     model_dir = Path(config["model_dir"])
@@ -183,7 +183,7 @@ def get_cache_path(subpath: str = "", create: bool = True) -> Path:
     Returns:
         Path to cache directory
     """
-    from .config import get_config
+    from utils.config import get_config
     
     config = get_config()
     cache_dir = Path(config["cache_dir"])
@@ -401,7 +401,7 @@ def get_platform_paths() -> dict:
     Returns:
         Dictionary with platform-specific path information
     """
-    from .config import detect_platform
+    from utils.config import detect_platform
     
     platform = detect_platform()
     
