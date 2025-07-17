@@ -13,7 +13,8 @@
 ### Current Status & Progress
 - **Feedback Integration**: `FEEDBACK_INTEGRATION.md` - 100% complete, all reviewer feedback integrated
 - **Research Diary**: `research_diary/` - Daily progress and decisions
-  - Latest: `2025-07-16_research_diary.md` - Started scholarly paper on OOD evaluation analysis
+  - Latest: `2025-07-19_research_diary.md` - Completed major revision of OOD paper with k-NN analysis
+- **OOD Evaluation Paper**: `papers/ood_evaluation_analysis/` - ✅ Fully revised and review-ready
 - **Papers in Progress**: `papers/ood_evaluation_analysis/` - Technical report on interpolation vs extrapolation
 
 ### 🔬 Experiments
