@@ -5,6 +5,7 @@
 ### Getting Started
 - **Project Overview**: `CLAUDE.md` - Start here for project goals and navigation
 - **Code Reliability**: `CODE_RELIABILITY_GUIDE.md` - ⚠️ MUST READ before coding
+- **Code Quality Setup**: `CODE_QUALITY_SETUP.md` - 🆕 New infrastructure for error-free development
 - **Research Plan**: `distribution_invention_research_plan.md` - Complete technical approach
 - **Setup Guide**: `setup_distribution_invention.md` - Development environment setup
 - **What to Do Next**: Check experiment `CURRENT_STATUS.md` files
@@ -46,6 +47,16 @@
 ### 📋 Process Documents
 - **Experiment Checklist**: `EXPERIMENT_CHECKLIST.md` - Step-by-step guide for running experiments
 - **Milestone Timeline**: `MILESTONE_TIMELINE.md` - 24-month plan with GPU estimates
+
+### 🛠️ Development Infrastructure (NEW)
+- **Code Quality Setup**: `CODE_QUALITY_SETUP.md` - Comprehensive guide to new quality infrastructure
+- **Centralized Utilities**: `utils/` - Import management, config, and path resolution
+  - `utils/imports.py` - Eliminates sys.path.append issues
+  - `utils/config.py` - Consistent environment configuration
+  - `utils/paths.py` - Cross-platform path resolution
+- **Testing**: `tests/` - Pytest infrastructure with comprehensive fixtures
+- **Pre-commit Hooks**: `.pre-commit-config.yaml` - Automated quality checks
+- **IDE Configuration**: `.vscode/settings.json` - Real-time error detection with Pylance
 
 ### 🚀 Cloud Training
 - **CRITICAL**: `PAPERSPACE_TRAINING_GUIDE.md` - READ BEFORE ANY CLOUD TRAINING

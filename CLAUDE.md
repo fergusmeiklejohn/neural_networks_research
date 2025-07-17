@@ -49,9 +49,12 @@ creativity and extrapolation capabilities.
 
 ### Critical Process Reminders
 1. **Before Starting Work**: Read latest research diary entry for context
-2. **Before Writing Code**: Check CODE_RELIABILITY_GUIDE.md for common pitfalls
+2. **Before Writing Code**: 
+   - Check CODE_RELIABILITY_GUIDE.md for common pitfalls
+   - Use centralized imports from `utils/` (see CODE_QUALITY_SETUP.md)
 3. **Before Training**: Review PAPERSPACE_TRAINING_GUIDE.md for cloud setup
 4. **When Lost**: DOCUMENTATION_INDEX.md has links to everything
+5. **For Code Quality**: See CODE_QUALITY_SETUP.md for new infrastructure
 
 ## Development Environment
 
@@ -78,10 +81,15 @@ The project uses **Keras 3** with multi-backend support:
 
 ### Development Tools
 
-- **IDE**: VS Code with Python Interactive files (`.py` with `# %%` cells)
+- **IDE**: Cursor/VS Code with Python Interactive files (`.py` with `# %%` cells)
+  - Configured with strict Pylance type checking (see `.vscode/settings.json`)
 - **Notebooks**: Jupyter for final presentations/sharing
 - **Experiment Tracking**: Weights & Biases (`wandb`)
-- **Code Quality**: black, flake8, isort, pytest
+- **Code Quality**: 
+  - **Automated**: Pre-commit hooks (black, flake8, isort, mypy)
+  - **Real-time**: Pylance strict mode in Cursor/VS Code
+  - **Centralized**: See `utils/` for imports, config, and paths
+  - **Setup Guide**: CODE_QUALITY_SETUP.md
 
 ## Project Structure
 
@@ -397,6 +405,33 @@ a `claude-plans` folder within each experiment directory. These plans should:
 - List specific, actionable steps in priority order
 - Include success metrics and risk mitigation strategies
 - Emphasize scientific validity and proper data isolation
+
+### Code Patterns - IMPORTANT UPDATE
+
+**We now use centralized utilities for consistent code quality across the project.**
+
+Instead of scattered `sys.path.append` calls, use:
+```python
+# At the top of every script
+from utils.imports import setup_project_paths
+setup_project_paths()
+
+# Then import project modules normally
+from utils.config import setup_environment
+from utils.paths import get_data_path, get_output_path
+from models.baseline_models import BaselineModel
+
+# Set up environment (includes logging, random seeds, Keras backend)
+config = setup_environment()
+```
+
+Key benefits:
+- **No more import errors** from path issues
+- **Consistent configuration** across environments
+- **Type checking** catches errors before runtime
+- **Pre-commit hooks** ensure code quality
+
+See `CODE_QUALITY_SETUP.md` for complete guide.
 
 ### Training Runs
 

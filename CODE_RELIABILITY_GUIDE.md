@@ -2,6 +2,33 @@
 
 This guide captures hard-won lessons from implementing neural network experiments. Reference this BEFORE writing code to avoid common pitfalls.
 
+## 🆕 NEW: Use Centralized Utilities (Added July 2025)
+
+**IMPORTANT**: We now have centralized utilities that eliminate many common issues. Always use these patterns:
+
+```python
+# Start every script with:
+from utils.imports import setup_project_paths
+setup_project_paths()
+
+# Use centralized configuration
+from utils.config import setup_environment
+config = setup_environment()
+
+# Use centralized path resolution
+from utils.paths import get_data_path, get_output_path
+data_path = get_data_path("processed/physics_worlds")
+output_path = get_output_path("results")
+```
+
+This eliminates:
+- Import errors from `sys.path.append`
+- Path issues between local/cloud
+- Inconsistent Keras backend settings
+- Missing directories
+
+See `CODE_QUALITY_SETUP.md` for complete details.
+
 ## Data Loading Best Practices
 
 ### Always Verify Data Format First
