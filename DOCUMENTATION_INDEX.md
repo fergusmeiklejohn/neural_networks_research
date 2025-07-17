@@ -10,9 +10,10 @@
 - **What to Do Next**: Check experiment `CURRENT_STATUS.md` files
 
 ### Current Status & Progress
-- **Feedback Integration**: `FEEDBACK_INTEGRATION.md` - 90% complete, tracks all reviewer feedback
+- **Feedback Integration**: `FEEDBACK_INTEGRATION.md` - 100% complete, all reviewer feedback integrated
 - **Research Diary**: `research_diary/` - Daily progress and decisions
-  - Latest: `2025-07-15_research_diary.md` - Complete baseline testing, 3000x performance gap
+  - Latest: `2025-07-16_research_diary.md` - Started scholarly paper on OOD evaluation analysis
+- **Papers in Progress**: `papers/ood_evaluation_analysis/` - Technical report on interpolation vs extrapolation
 
 ### 🔬 Experiments
 
@@ -76,6 +77,8 @@
 1. **June 27**: Initial physics experiment setup
 2. **June 28**: Achieved 83.51% extrapolation (but discovered data leakage)
 3. **July 12**: Comprehensive literature review transformed approach
+4. **July 14-15**: Discovered OOD illusion through baseline testing
+5. **July 16**: Began scholarly documentation of findings
 
 ### 🔍 Finding Information
 
@@ -123,10 +126,11 @@ python -c "import keras; print(keras.backend.backend())"
 ```
 
 #### Key Paths
-- Latest findings: `research_diary/2025-01-14_research_diary.md`
+- Latest findings: `research_diary/2025-07-16_research_diary.md`
 - Physics status: `experiments/01_physics_worlds/CURRENT_STATUS.md`
 - Code pitfalls: `CODE_RELIABILITY_GUIDE.md`
 - Cloud setup: `PAPERSPACE_TRAINING_GUIDE.md`
+- Paper draft: `papers/ood_evaluation_analysis/`
 
 #### Data Format Reminders
 - Physics data: 40 pixels = 1 meter
@@ -137,4 +141,4 @@ python -c "import keras; print(keras.backend.backend())"
 
 *This index is the single source of truth for finding project documentation. Update it when adding major new documents.*
 
-Last Updated: 2025-01-14
+Last Updated: 2025-07-16

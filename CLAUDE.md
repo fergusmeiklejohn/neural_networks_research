@@ -30,6 +30,14 @@ creativity and extrapolation capabilities.
 - Verify assumptions - what seems like OOD might be interpolation
 - Consult documentation (eg Context7 MCP or if that doesn't work the internet) when implementing new approaches
 
+### Scholarly Approach
+- **Avoid assumptions of novelty**: Others may have made similar observations - search thoroughly
+- **Present findings objectively**: Use measured language, not sensational claims
+- **Acknowledge limitations**: Be explicit about what we don't know
+- **Build on existing work**: Position findings within broader research context
+- **Maintain scientific skepticism**: Even about our own results
+- **Focus on reproducibility**: Evidence matters more than claims
+
 ## 🧭 Knowledge Navigation
 
 ### Where to Find Current Information

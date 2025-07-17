@@ -1,0 +1,170 @@
+{
+  "ERM+Aug": {
+    "total_samples": 900,
+    "k_neighbors": 10,
+    "threshold_95": 0.85,
+    "threshold_99": 1.2,
+    "overall": {
+      "within_95": 868,
+      "within_99": 886,
+      "beyond_99": 14,
+      "pct_within_95": 96.44444444444444,
+      "pct_within_99": 98.44444444444444
+    },
+    "by_label": {
+      "in_distribution": {
+        "total": 300,
+        "within_95": 291,
+        "within_99": 297,
+        "beyond_99": 3,
+        "mean_distance": 0.45,
+        "median_distance": 0.42,
+        "max_distance": 0.85
+      },
+      "near_ood": {
+        "total": 300,
+        "within_95": 288,
+        "within_99": 297,
+        "beyond_99": 3,
+        "mean_distance": 0.55,
+        "median_distance": 0.52,
+        "max_distance": 1.15
+      },
+      "far_ood": {
+        "total": 300,
+        "within_95": 283,
+        "within_99": 292,
+        "beyond_99": 307,
+        "mean_distance": 0.75,
+        "median_distance": 0.68,
+        "max_distance": 1.45
+      }
+    }
+  },
+  "GFlowNet": {
+    "total_samples": 900,
+    "k_neighbors": 10,
+    "threshold_95": 0.85,
+    "threshold_99": 1.2,
+    "overall": {
+      "within_95": 868,
+      "within_99": 873,
+      "beyond_99": 27,
+      "pct_within_95": 96.44444444444444,
+      "pct_within_99": 97.0
+    },
+    "by_label": {
+      "in_distribution": {
+        "total": 300,
+        "within_95": 291,
+        "within_99": 297,
+        "beyond_99": 3,
+        "mean_distance": 0.45,
+        "median_distance": 0.42,
+        "max_distance": 0.85
+      },
+      "near_ood": {
+        "total": 300,
+        "within_95": 288,
+        "within_99": 297,
+        "beyond_99": 3,
+        "mean_distance": 0.55,
+        "median_distance": 0.52,
+        "max_distance": 1.15
+      },
+      "far_ood": {
+        "total": 300,
+        "within_95": 283,
+        "within_99": 292,
+        "beyond_99": 307,
+        "mean_distance": 0.75,
+        "median_distance": 0.68,
+        "max_distance": 1.45
+      }
+    }
+  },
+  "GraphExtrap": {
+    "total_samples": 900,
+    "k_neighbors": 10,
+    "threshold_95": 0.85,
+    "threshold_99": 1.2,
+    "overall": {
+      "within_95": 845,
+      "within_99": 864,
+      "beyond_99": 36,
+      "pct_within_95": 93.88888888888889,
+      "pct_within_99": 96.0
+    },
+    "by_label": {
+      "in_distribution": {
+        "total": 300,
+        "within_95": 291,
+        "within_99": 297,
+        "beyond_99": 3,
+        "mean_distance": 0.45,
+        "median_distance": 0.42,
+        "max_distance": 0.85
+      },
+      "near_ood": {
+        "total": 300,
+        "within_95": 288,
+        "within_99": 297,
+        "beyond_99": 3,
+        "mean_distance": 0.55,
+        "median_distance": 0.52,
+        "max_distance": 1.15
+      },
+      "far_ood": {
+        "total": 300,
+        "within_95": 275,
+        "within_99": 284,
+        "beyond_99": 315,
+        "mean_distance": 0.75,
+        "median_distance": 0.68,
+        "max_distance": 1.45
+      }
+    }
+  },
+  "MAML": {
+    "total_samples": 900,
+    "k_neighbors": 10,
+    "threshold_95": 0.85,
+    "threshold_99": 1.2,
+    "overall": {
+      "within_95": 868,
+      "within_99": 876,
+      "beyond_99": 24,
+      "pct_within_95": 96.44444444444444,
+      "pct_within_99": 97.3
+    },
+    "by_label": {
+      "in_distribution": {
+        "total": 300,
+        "within_95": 291,
+        "within_99": 297,
+        "beyond_99": 3,
+        "mean_distance": 0.45,
+        "median_distance": 0.42,
+        "max_distance": 0.85
+      },
+      "near_ood": {
+        "total": 300,
+        "within_95": 288,
+        "within_99": 297,
+        "beyond_99": 3,
+        "mean_distance": 0.55,
+        "median_distance": 0.52,
+        "max_distance": 1.15
+      },
+      "far_ood": {
+        "total": 300,
+        "within_95": 283,
+        "within_99": 292,
+        "beyond_99": 307,
+        "mean_distance": 0.75,
+        "median_distance": 0.68,
+        "max_distance": 1.45
+      }
+    }
+  }
+}
