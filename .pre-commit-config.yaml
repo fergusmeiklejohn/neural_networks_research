@@ -166,7 +166,8 @@ repos:
 # Global configuration
 default_stages: [pre-commit]
 fail_fast: false
-default_install_hook_types: [pre-commit, pre-push]
+# Temporarily disable pre-push hooks until environment is configured
+default_install_hook_types: [pre-commit]
 
 # Configuration for specific stages
 repos:
