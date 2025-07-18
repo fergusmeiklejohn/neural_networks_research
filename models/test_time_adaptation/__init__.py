@@ -6,7 +6,14 @@ This module provides various test-time adaptation techniques including:
 - Physics-aware adaptation methods
 """
 
-from .base_tta import BaseTTA
+import keras
+
+# Auto-select base class based on backend
+if keras.backend.backend() == 'jax':
+    from .base_tta_jax import BaseTTAJax as BaseTTA
+else:
+    from .base_tta import BaseTTA
+
 from .tent import TENT, PhysicsTENT
 from .ttt_physics import PhysicsTTT
 
