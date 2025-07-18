@@ -93,28 +93,47 @@ The date confusion highlights the importance of accurate documentation maintenan
 
 ## Status Update
 
-- **Documentation**: ✅ Dates fixed, cleanup in progress
+- **Documentation**: ✅ Dates fixed, cleanup completed
 - **Paper**: ✅ Fully revised and review-ready
-- **Git**: ⏳ Needs cleanup (next task)
-- **Decision**: ❓ Paper submission vs experiments
-- **Next Step**: Complete git cleanup, then strategic decision
+- **Git**: ✅ Changes committed
+- **Decision**: ✅ Moving forward with paper submission
+- **Next Direction**: ✅ True OOD Benchmark implementation
+
+## New Research Direction: True OOD Benchmark
+
+### Decision
+Proceeding with Option 2: Implement True OOD Benchmark with time-varying physics. This builds on our existing physics infrastructure while creating a genuinely challenging benchmark that tests true extrapolation.
+
+### Implementation Plan Created
+Created comprehensive plan in `experiments/01_physics_worlds/true_ood_implementation_plan.md` focusing on:
+- **Level 2**: Time-varying gravity g(t) = -9.8 * (1 + 0.1*sin(0.5*t))
+- **Key Innovation**: Gravity changes DURING trajectories (not just between them)
+- **Expected Result**: ~60% of samples will be truly OOD
+
+### Next Implementation Steps
+1. Create `generate_true_ood_data.py` for time-varying physics
+2. Implement `verify_true_ood.py` for representation-based verification
+3. Test all baselines on true OOD data
+4. Document why current models fail catastrophically
 
 ## Commands for Reference
+
+View implementation plan:
+```bash
+cat experiments/01_physics_worlds/true_ood_implementation_plan.md
+```
+
+Start implementation:
+```bash
+cd experiments/01_physics_worlds
+# Create data generation script
+touch generate_true_ood_data.py
+# Test with minimal data
+python generate_true_ood_data.py --n_trajectories 100 --test_mode
+```
 
 View revised paper:
 ```bash
 open papers/ood_evaluation_analysis/paper_for_review.html
 cat papers/ood_evaluation_analysis/ood_evaluation_analysis_complete.md
-```
-
-Check baseline training status:
-```bash
-ls experiments/01_physics_worlds/outputs/models/
-```
-
-Run missing experiments:
-```bash
-cd experiments/01_physics_worlds
-python train_baselines.py --models erm,graph_extrap --verbose
-python incremental_coverage_ablation.py
 ```
