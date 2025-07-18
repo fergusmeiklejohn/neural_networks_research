@@ -1,6 +1,6 @@
 """Data augmentation utilities for physics test-time adaptation."""
 
-from typing import List, Tuple, Callable
+from typing import List, Tuple, Callable, Any
 import numpy as np
 import keras
 from keras import ops
@@ -22,8 +22,8 @@ def create_physics_augmentations() -> List[Callable]:
 
 
 def flip_trajectory_horizontal(
-    trajectory: keras.ops.Tensor
-) -> keras.ops.Tensor:
+    trajectory: Any
+) -> Any:
     """Flip trajectory horizontally (mirror in y-axis).
     
     Args:
@@ -46,9 +46,9 @@ def flip_trajectory_horizontal(
 
 
 def rotate_trajectory(
-    trajectory: keras.ops.Tensor,
+    trajectory: Any,
     angle: float = None
-) -> keras.ops.Tensor:
+) -> Any:
     """Rotate trajectory by given angle.
     
     Args:
@@ -89,9 +89,9 @@ def rotate_trajectory(
 
 
 def add_gaussian_noise(
-    trajectory: keras.ops.Tensor,
+    trajectory: Any,
     noise_scale: float = 0.01
-) -> keras.ops.Tensor:
+) -> Any:
     """Add small Gaussian noise to trajectory.
     
     Args:
@@ -111,8 +111,8 @@ def add_gaussian_noise(
 
 
 def time_reversal(
-    trajectory: keras.ops.Tensor
-) -> keras.ops.Tensor:
+    trajectory: Any
+) -> Any:
     """Reverse trajectory in time.
     
     Args:
@@ -134,9 +134,9 @@ def time_reversal(
 
 
 def interpolate_trajectory(
-    trajectory: keras.ops.Tensor,
+    trajectory: Any,
     factor: int = 2
-) -> keras.ops.Tensor:
+) -> Any:
     """Interpolate trajectory to higher time resolution.
     
     Args:
@@ -171,10 +171,10 @@ def interpolate_trajectory(
 
 
 def create_augmented_batch(
-    trajectory: keras.ops.Tensor,
+    trajectory: Any,
     augmentations: List[Callable],
     num_augmentations: int = 2
-) -> keras.ops.Tensor:
+) -> Any:
     """Create batch of augmented trajectories.
     
     Args:

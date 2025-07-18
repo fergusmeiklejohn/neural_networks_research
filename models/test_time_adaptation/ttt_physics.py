@@ -57,9 +57,9 @@ class PhysicsTTT(BaseTTA):
     
     def compute_reconstruction_loss(
         self, 
-        trajectory: keras.ops.Tensor,
+        trajectory: Any,
         start_idx: int = 0
-    ) -> Tuple[keras.ops.Tensor, keras.ops.Tensor]:
+    ) -> Tuple[Any, Any]:
         """Reconstruction task: predict masked timesteps.
         
         Args:
@@ -89,8 +89,8 @@ class PhysicsTTT(BaseTTA):
     
     def compute_consistency_loss(
         self,
-        trajectory: keras.ops.Tensor
-    ) -> keras.ops.Tensor:
+        trajectory: Any
+    ) -> Any:
         """Physics consistency loss.
         
         Ensures predictions follow physical laws.
@@ -115,8 +115,8 @@ class PhysicsTTT(BaseTTA):
     
     def compute_smoothness_loss(
         self,
-        trajectory: keras.ops.Tensor
-    ) -> keras.ops.Tensor:
+        trajectory: Any
+    ) -> Any:
         """Trajectory smoothness loss.
         
         Penalizes non-smooth trajectories.
@@ -134,7 +134,7 @@ class PhysicsTTT(BaseTTA):
     
     def estimate_physics_parameters(
         self,
-        trajectory: keras.ops.Tensor
+        trajectory: Any
     ) -> Dict[str, float]:
         """Estimate physical parameters from observed trajectory.
         
@@ -163,7 +163,7 @@ class PhysicsTTT(BaseTTA):
             'time_varying': bool(is_time_varying)
         }
     
-    def compute_adaptation_loss(self, x: Any, y_pred: Any) -> keras.ops.Tensor:
+    def compute_adaptation_loss(self, x: Any, y_pred: Any) -> Any:
         """Compute combined loss for test-time training.
         
         Args:
@@ -196,7 +196,7 @@ class PhysicsTTT(BaseTTA):
     
     def adapt_online(
         self,
-        new_observation: keras.ops.Tensor
+        new_observation: Any
     ) -> Dict[str, Any]:
         """Online adaptation with new observations.
         
@@ -231,9 +231,9 @@ class PhysicsTTT(BaseTTA):
     
     def predict_next(
         self,
-        context: keras.ops.Tensor,
+        context: Any,
         adapt: bool = True
-    ) -> keras.ops.Tensor:
+    ) -> Any:
         """Predict next timestep with optional adaptation.
         
         Args:

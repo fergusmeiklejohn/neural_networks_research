@@ -1,12 +1,13 @@
 """Base class for Test-Time Adaptation methods."""
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple, Union
 import copy
 
 import numpy as np
 import keras
 from keras import ops
+import keras.backend as K
 
 
 class BaseTTA(ABC):
@@ -70,7 +71,7 @@ class BaseTTA(ABC):
         return keras.optimizers.Adam(learning_rate=self.learning_rate)
     
     @abstractmethod
-    def compute_adaptation_loss(self, x: Any, y_pred: Any) -> keras.ops.Tensor:
+    def compute_adaptation_loss(self, x: Any, y_pred: Any) -> Any:
         """Compute the loss used for test-time adaptation.
         
         Args:
@@ -91,7 +92,10 @@ class BaseTTA(ABC):
         Returns:
             Tuple of (adapted predictions, adaptation loss)
         """
-        with keras.ops.GradientTape() as tape:
+        # Use Keras 3's backend-agnostic training step
+        @keras.Function
+        def train_step(x):
+            with keras.ops.GradientTape() as tape:
             # Forward pass
             y_pred = self.model(x, training=True)
             

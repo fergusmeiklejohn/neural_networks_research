@@ -1,10 +1,11 @@
 """Entropy-based utilities for test-time adaptation."""
 
+from typing import Any
 import keras
 from keras import ops
 
 
-def entropy_loss(probs: keras.ops.Tensor, eps: float = 1e-7) -> keras.ops.Tensor:
+def entropy_loss(probs: Any, eps: float = 1e-7) -> Any:
     """Compute entropy of probability distributions.
     
     H(p) = -sum(p * log(p))
@@ -26,9 +27,9 @@ def entropy_loss(probs: keras.ops.Tensor, eps: float = 1e-7) -> keras.ops.Tensor
 
 
 def confidence_selection(
-    probs: keras.ops.Tensor, 
+    probs: Any, 
     threshold: float = 0.9
-) -> keras.ops.Tensor:
+) -> Any:
     """Select samples based on prediction confidence.
     
     Args:
@@ -48,9 +49,9 @@ def confidence_selection(
 
 
 def symmetric_entropy_loss(
-    probs: keras.ops.Tensor,
+    probs: Any,
     eps: float = 1e-7
-) -> keras.ops.Tensor:
+) -> Any:
     """Compute symmetric entropy loss.
     
     This variant is more robust to label noise.
@@ -70,9 +71,9 @@ def symmetric_entropy_loss(
 
 
 def diversity_loss(
-    probs: keras.ops.Tensor,
-    target_distribution: keras.ops.Tensor = None
-) -> keras.ops.Tensor:
+    probs: Any,
+    target_distribution: Any = None
+) -> Any:
     """Encourage diversity in predictions.
     
     Prevents collapse to uniform predictions.

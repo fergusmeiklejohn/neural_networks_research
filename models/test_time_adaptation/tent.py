@@ -60,7 +60,7 @@ class TENT(BaseTTA):
                 else:
                     layer.trainable = False
     
-    def compute_adaptation_loss(self, x: Any, y_pred: Any) -> keras.ops.Tensor:
+    def compute_adaptation_loss(self, x: Any, y_pred: Any) -> Any:
         """Compute entropy loss for adaptation.
         
         Args:
@@ -121,7 +121,7 @@ class PhysicsTENT(TENT):
         )
         self.physics_loss_weight = physics_loss_weight
     
-    def compute_physics_loss(self, x: Any, y_pred: Any) -> keras.ops.Tensor:
+    def compute_physics_loss(self, x: Any, y_pred: Any) -> Any:
         """Compute physics-based consistency loss.
         
         Args:
@@ -159,7 +159,7 @@ class PhysicsTENT(TENT):
             # Single state prediction - no physics loss
             return ops.zeros(())
     
-    def compute_adaptation_loss(self, x: Any, y_pred: Any) -> keras.ops.Tensor:
+    def compute_adaptation_loss(self, x: Any, y_pred: Any) -> Any:
         """Compute combined entropy and physics loss.
         
         Args:

@@ -1,6 +1,7 @@
 """Utilities for model adaptation during test time."""
 
-from typing import List, Dict, Tuple
+from typing import List, Dict, Tuple, Any
+import numpy as np
 import keras
 from keras import ops
 
@@ -29,7 +30,7 @@ def collect_bn_params(model: keras.Model) -> List[keras.Variable]:
 
 def update_bn_stats(
     model: keras.Model,
-    data: keras.ops.Tensor,
+    data: Any,
     momentum: float = 0.1
 ) -> None:
     """Update BatchNorm running statistics with new data.
@@ -81,8 +82,8 @@ def create_adaptation_optimizer(
 
 
 def compute_feature_statistics(
-    features: keras.ops.Tensor
-) -> Tuple[keras.ops.Tensor, keras.ops.Tensor]:
+    features: Any
+) -> Tuple[Any, Any]:
     """Compute mean and variance of features.
     
     Args:
@@ -98,11 +99,11 @@ def compute_feature_statistics(
 
 
 def align_features(
-    source_features: keras.ops.Tensor,
-    target_mean: keras.ops.Tensor,
-    target_var: keras.ops.Tensor,
+    source_features: Any,
+    target_mean: Any,
+    target_var: Any,
     eps: float = 1e-5
-) -> keras.ops.Tensor:
+) -> Any:
     """Align source features to target statistics.
     
     Args:
@@ -127,10 +128,10 @@ def align_features(
 
 
 def exponential_moving_average_update(
-    current_value: keras.ops.Tensor,
-    new_value: keras.ops.Tensor,
+    current_value: Any,
+    new_value: Any,
     momentum: float = 0.9
-) -> keras.ops.Tensor:
+) -> Any:
     """Update value using exponential moving average.
     
     Args:
