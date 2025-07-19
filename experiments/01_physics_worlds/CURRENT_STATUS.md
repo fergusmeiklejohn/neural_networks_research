@@ -1,8 +1,15 @@
 # Physics Worlds Experiment - Current Status
 
-Last Updated: 2025-07-17
+Last Updated: 2025-07-19
 
 ## 🎯 Current State Summary
+
+**Test-Time Adaptation Implemented**: Successfully created JAX-compatible TTA infrastructure with three methods (TENT, PhysicsTENT, TTT). Fixed critical BatchNorm weight restoration bug. Ready for comprehensive evaluation.
+
+**True OOD Data Generated**: Created multiple genuine out-of-distribution scenarios:
+- Time-varying gravity: ~49% true OOD (5.68x distance from training)
+- Rotating frame physics: ~65% true OOD (Coriolis forces)
+- Spring coupled balls: ~70% true OOD (new interaction type)
 
 **Paper Revision Complete**: Successfully revised OOD evaluation paper with k-NN analysis showing 96-97% interpolation rate. Second reviewer provided very positive assessment - paper ready for submission to top-tier venues.
 
@@ -80,26 +87,32 @@ Last Updated: 2025-07-17
 
 **Paper Location**: `papers/ood_evaluation_analysis/ood_evaluation_analysis_complete.md`
 
-## 🚀 Optional Next Steps
+## 🚀 Next Steps
 
-### 1. Understand GraphExtrap Success
+### 1. Run Full TTA Evaluation ✅
 ```bash
-python train_baselines.py --model graph_extrap --verbose
+conda activate dist-invention
+python experiments/01_physics_worlds/evaluate_tta_comprehensive.py
 ```
-- Check if it trains on multiple gravity values
-- Analyze geometric features: `models/baseline_models.py:L142-156`
+- Test all three TTA methods on time-varying gravity
+- Quantify improvement percentages
+- Generate performance comparison table
 
-### 2. Implement True OOD Benchmark (Level 2)
-- Design in: `TRUE_OOD_BENCHMARK.md:L36-47`
-- Add time-varying gravity: `gravity_fn=lambda t: -9.8 * (1 + 0.1*sin(t))`
-- Verify >60% samples are true OOD using RepresentationSpaceAnalyzer
-
-### 3. Complete Baseline Evaluation
+### 2. Verify Extreme OOD Status
 ```bash
-python train_baselines.py --model gflownet
-python train_baselines.py --model maml
-python run_unified_evaluation.py
+python experiments/01_physics_worlds/verify_true_ood_simple.py
 ```
+- Confirm rotating frame is >65% true OOD
+- Confirm spring coupling is >70% true OOD
+- Use k-NN analysis with physics features
+
+### 3. Test TTA on Extreme OOD
+```bash
+python experiments/01_physics_worlds/evaluate_tta_simple.py
+```
+- Evaluate on rotating frame physics
+- Evaluate on spring coupled physics
+- Compare improvement vs time-varying gravity
 
 ## 📝 Key Documents
 

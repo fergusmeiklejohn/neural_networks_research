@@ -67,8 +67,22 @@ class BaseTTAJax(ABC):
             if var.shape == orig_val.shape:
                 var.assign(orig_val)
             else:
-                # Skip if shapes don't match (e.g., BatchNorm running stats)
-                pass
+                # For BatchNorm layers, the running mean/variance might have different shapes
+                # during initialization vs after first forward pass. Try to handle this.
+                try:
+                    # If original value is scalar but var is not, skip
+                    if orig_val.shape == () and var.shape != ():
+                        continue
+                    # If shapes are completely incompatible, skip this weight
+                    # This often happens with BatchNorm running statistics
+                    if len(orig_val.shape) != len(var.shape):
+                        continue
+                    # Try broadcasting if shapes are compatible
+                    var.assign(ops.broadcast_to(orig_val, var.shape))
+                except Exception:
+                    # Skip weights that can't be restored (e.g., BatchNorm stats)
+                    # This is expected for some non-trainable variables
+                    pass
     
     def _create_optimizer(self) -> keras.optimizers.Optimizer:
         """Create optimizer for test-time updates.

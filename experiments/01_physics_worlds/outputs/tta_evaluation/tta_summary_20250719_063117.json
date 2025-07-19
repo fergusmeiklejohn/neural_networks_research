@@ -1,0 +1,13 @@
+{
+  "timestamp": "20250719_063117",
+  "baseline_mse": Infinity,
+  "ood_degradation": NaN,
+  "best_tta_method": "No TTA",
+  "best_tta_improvement": 0.0,
+  "methods_tested": [
+    "No TTA",
+    "TENT",
+    "PhysicsTENT",
+    "TTT"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "constant_gravity": {
+    "mse": NaN,
+    "mse_std": NaN,
+    "mae": NaN,
+    "time_per_sample": NaN,
+    "physics_violation": NaN,
+    "n_samples": 0
+  },
+  "time_varying_gravity": {
+    "No TTA": {
+      "mse": 6833.06783861297,
+      "mse_std": 874.7297500159524,
+      "mae": 82.66237256825484,
+      "time_per_sample": 0.002974092960357666,
+      "physics_violation": 0.8897998456244934,
+      "n_samples": 20
+    },
+    "TENT": {
+      "mse": 

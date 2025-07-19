@@ -1,0 +1,98 @@
+{
+  "constant_gravity": {
+    "mse": Infinity,
+    "mse_std": 0.0,
+    "mae": Infinity,
+    "time_per_sample": 0.0,
+    "physics_violation": 0.0,
+    "n_samples": 0
+  },
+  "time_varying_gravity": {
+    "No TTA": {
+      "mse": 6808.457669056275,
+      "mse_std": 843.5134749158387,
+      "mae": 82.51337872767225,
+      "time_per_sample": 0.003011763095855713,
+      "physics_violation": 0.8945446539942431,
+      "n_samples": 20
+    },
+    "TENT": {
+      "mse": 6884.2705078125,
+      "mse_std": 921.1279296875,
+      "mae": 82.97150421142578,
+      "time_per_sample": 0.05266736745834351,
+      "physics_violation": 0.9937549406208215,
+      "n_samples": 20
+    },
+    "PhysicsTENT": {
+      "mse": 6884.2705078125,
+      "mse_std": 921.1279296875,
+      "mae": 82.97150421142578,
+      "time_per_sample": 0.021450650691986085,
+      "physics_violation": 0.9937549397923535,
+      "n_samples": 20
+    },
+    "TTT": {
+      "mse": 6884.2705078125,
+      "mse_std": 921.1279296875,
+      "mae": 82.97150421142578,
+      "time_per_sample": 0.04667197465896607,
+      "physics_violation": 0.9937549402776316,
+      "n_samples": 20
+    }
+  },
+  "rotating_frame": {
+    "No TTA": {
+      "mse": 82789.453125,
+      "mse_std": 1089.4188232421875,
+      "mae": 287.7315673828125,
+      "time_per_sample": 0.005083489418029785,
+      "physics_violation": 0.840539813041687,
+      "n_samples": 10
+    },
+    "PhysicsTENT": {
+      "mse": 83723.015625,
+      "mse_std": 1059.0272216796875,
+      "mae": 289.34930419921875,
+      "time_per_sample": 0.01525130271911621,
+      "physics_violation": 0.99773770570755,
+      "n_samples": 10
+    }
+  },
+  "spring_coupled": {
+    "No TTA": {
+      "mse": 153803.67886790537,
+      "mse_std": 23786.606306437563,
+      "mae": 392.1781213529197,
+      "time_per_sample": 0.0004612445831298828,
+      "physics_violation": 0.8882665112270336,
+      "n_samples": 10
+    },
+    "PhysicsTENT": {
+      "mse": 155101.453125,
+      "mse_std": 23685.845703125,
+      "mae": 393.8292236328125,
+      "time_per_sample": 0.01513533592224121,
+      "physics_violation": 0.9984957949436548,
+      "n_samples": 10
+    }
+  },
+  "height_dependent": {
+    "No TTA": {
+      "mse": 3584.3172781403205,
+      "mse_std": 498.6695613200514,
+      "mae": 59.86916800942135,
+      "time_per_sample": 0.00046122074127197266,
+      "physics_violation": 0.911190694631516,
+      "n_samples": 10
+    },
+    "PhysicsTENT": {
+      "mse": 3655.39501953125,
+      "mse_std": 541.623291015625,
+      "mae": 60.459861755371094,
+      "time_per_sample": 0.015552234649658204,
+      "physics_violation": 0.9943848018532873,
+      "n_samples": 10
+    }
+  }
+}

@@ -8,7 +8,7 @@ from typing import Any, List, Optional
 import keras
 from keras import ops
 
-from .base_tta import BaseTTA
+from . import BaseTTA
 from .utils.entropy import entropy_loss, confidence_selection
 
 
