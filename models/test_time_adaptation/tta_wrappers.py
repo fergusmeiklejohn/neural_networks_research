@@ -5,6 +5,7 @@ import keras
 from keras import ops
 
 from .tent import TENT, PhysicsTENT
+from .tent_regression import TENTRegression, PhysicsTENTRegression
 from .ttt_physics import PhysicsTTT
 from ..baseline_models import BaselineModel
 
@@ -20,6 +21,7 @@ class TTAWrapper:
         self,
         model: Union[keras.Model, BaselineModel],
         tta_method: str = 'tent',
+        task_type: str = 'auto',
         **tta_kwargs
     ):
         """Initialize TTA wrapper.
@@ -27,6 +29,7 @@ class TTAWrapper:
         Args:
             model: Base model to wrap
             tta_method: TTA method to use ('tent', 'physics_tent', 'ttt')
+            task_type: 'classification', 'regression', or 'auto' (auto-detect)
             **tta_kwargs: Arguments passed to TTA method
         """
         self.base_model = model
@@ -38,11 +41,31 @@ class TTAWrapper:
         else:
             keras_model = model
         
+        # Auto-detect task type if needed
+        if task_type == 'auto':
+            # Check output layer activation
+            output_layer = keras_model.layers[-1]
+            if hasattr(output_layer, 'activation'):
+                act_name = getattr(output_layer.activation, '__name__', '')
+                if act_name in ['softmax', 'sigmoid']:
+                    task_type = 'classification'
+                else:
+                    task_type = 'regression'
+            else:
+                # Default to regression for physics tasks
+                task_type = 'regression'
+        
         # Create TTA adapter
         if tta_method == 'tent':
-            self.tta_adapter = TENT(keras_model, **tta_kwargs)
+            if task_type == 'regression':
+                self.tta_adapter = TENTRegression(keras_model, **tta_kwargs)
+            else:
+                self.tta_adapter = TENT(keras_model, **tta_kwargs)
         elif tta_method == 'physics_tent':
-            self.tta_adapter = PhysicsTENT(keras_model, **tta_kwargs)
+            if task_type == 'regression':
+                self.tta_adapter = PhysicsTENTRegression(keras_model, **tta_kwargs)
+            else:
+                self.tta_adapter = PhysicsTENT(keras_model, **tta_kwargs)
         elif tta_method == 'ttt':
             self.tta_adapter = PhysicsTTT(keras_model, **tta_kwargs)
         else:

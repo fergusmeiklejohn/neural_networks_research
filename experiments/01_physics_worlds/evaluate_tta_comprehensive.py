@@ -63,7 +63,7 @@ def evaluate_with_tta(model, test_trajectories, tta_config=None, n_samples=20):
     
     # Create TTA wrapper if config provided
     if tta_config:
-        tta_model = TTAWrapper(model, **tta_config)
+        tta_model = TTAWrapper(model, task_type='regression', **tta_config)
     else:
         tta_model = model
     
