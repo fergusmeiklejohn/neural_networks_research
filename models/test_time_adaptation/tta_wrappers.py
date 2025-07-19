@@ -6,6 +6,7 @@ from keras import ops
 
 from .tent import TENT, PhysicsTENT
 from .ttt_physics import PhysicsTTT
+from .regression_tta import RegressionTTA, PhysicsRegressionTTA
 from ..baseline_models import BaselineModel
 
 
@@ -26,7 +27,7 @@ class TTAWrapper:
         
         Args:
             model: Base model to wrap
-            tta_method: TTA method to use ('tent', 'physics_tent', 'ttt')
+            tta_method: TTA method to use ('tent', 'physics_tent', 'ttt', 'regression', 'physics_regression')
             **tta_kwargs: Arguments passed to TTA method
         """
         self.base_model = model
@@ -45,6 +46,10 @@ class TTAWrapper:
             self.tta_adapter = PhysicsTENT(keras_model, **tta_kwargs)
         elif tta_method == 'ttt':
             self.tta_adapter = PhysicsTTT(keras_model, **tta_kwargs)
+        elif tta_method == 'regression':
+            self.tta_adapter = RegressionTTA(keras_model, **tta_kwargs)
+        elif tta_method == 'physics_regression':
+            self.tta_adapter = PhysicsRegressionTTA(keras_model, **tta_kwargs)
         else:
             raise ValueError(f"Unknown TTA method: {tta_method}")
     
