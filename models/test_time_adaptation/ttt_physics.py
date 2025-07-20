@@ -9,7 +9,7 @@ import numpy as np
 import keras
 from keras import ops
 
-from .base_tta import BaseTTA
+from . import BaseTTA
 from .utils.augmentation import create_physics_augmentations
 
 
@@ -69,8 +69,18 @@ class PhysicsTTT(BaseTTA):
         Returns:
             Tuple of (loss, predictions)
         """
+        # Check if we have enough timesteps for reconstruction
+        n_timesteps = ops.shape(trajectory)[1]
+        
+        if n_timesteps < 2:
+            # Not enough timesteps for reconstruction - return dummy loss
+            # This happens when adapting on single timestep inputs
+            predictions = self.model(trajectory, training=True)
+            # Return small dummy loss to avoid NaN
+            return ops.ones((1,)) * 0.01, predictions
+        
         # Use first half to predict second half
-        mid_point = ops.shape(trajectory)[1] // 2
+        mid_point = n_timesteps // 2
         
         context = trajectory[:, :mid_point]
         target = trajectory[:, mid_point:]
@@ -95,6 +105,11 @@ class PhysicsTTT(BaseTTA):
         
         Ensures predictions follow physical laws.
         """
+        # Check if we have enough timesteps
+        if ops.shape(trajectory)[1] < 2:
+            # Not enough timesteps for consistency check
+            return ops.ones((1,)) * 0.01
+        
         # Forward prediction
         pred_forward = self.model(trajectory[:, :-1], training=True)
         

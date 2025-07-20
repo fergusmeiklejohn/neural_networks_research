@@ -4,7 +4,12 @@ import numpy as np
 import pickle
 from pathlib import Path
 import time
-import matplotlib.pyplot as plt
+# Skip matplotlib if not available
+try:
+    import matplotlib.pyplot as plt
+    HAS_MATPLOTLIB = True
+except ImportError:
+    HAS_MATPLOTLIB = False
 
 import sys
 sys.path.append(str(Path(__file__).parent.parent.parent))
@@ -147,37 +152,40 @@ def main():
         print(f"   Time per sample: {tta_results['time']:.3f}s")
     
     # Visualize results
-    print("\n5. Creating visualization...")
-    
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-    
-    # MSE comparison
-    methods = list(results.keys())
-    mses = [results[m]['mse'] for m in methods]
-    stds = [results[m]['mse_std'] for m in methods]
-    
-    ax1.bar(methods, mses, yerr=stds, capsize=5, alpha=0.7)
-    ax1.axhline(y=const_results['mse'], color='green', linestyle='--', 
-                label='Constant gravity baseline')
-    ax1.set_ylabel('Mean Squared Error')
-    ax1.set_title('TTA Performance on Time-Varying Gravity')
-    ax1.legend()
-    ax1.grid(True, alpha=0.3)
-    
-    # Time comparison
-    times = [results[m]['time'] for m in methods]
-    ax2.bar(methods, times, alpha=0.7, color='orange')
-    ax2.set_ylabel('Time per sample (seconds)')
-    ax2.set_title('Computational Cost')
-    ax2.grid(True, alpha=0.3)
-    
-    plt.tight_layout()
-    
-    # Save results
-    output_dir = get_output_path() / "tta_evaluation"
-    output_dir.mkdir(parents=True, exist_ok=True)
-    plt.savefig(output_dir / "simple_tta_results.png", dpi=150, bbox_inches='tight')
-    plt.show()
+    if HAS_MATPLOTLIB:
+        print("\n5. Creating visualization...")
+        
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+        
+        # MSE comparison
+        methods = list(results.keys())
+        mses = [results[m]['mse'] for m in methods]
+        stds = [results[m]['mse_std'] for m in methods]
+        
+        ax1.bar(methods, mses, yerr=stds, capsize=5, alpha=0.7)
+        ax1.axhline(y=const_results['mse'], color='green', linestyle='--', 
+                    label='Constant gravity baseline')
+        ax1.set_ylabel('Mean Squared Error')
+        ax1.set_title('TTA Performance on Time-Varying Gravity')
+        ax1.legend()
+        ax1.grid(True, alpha=0.3)
+        
+        # Time comparison
+        times = [results[m]['time'] for m in methods]
+        ax2.bar(methods, times, alpha=0.7, color='orange')
+        ax2.set_ylabel('Time per sample (seconds)')
+        ax2.set_title('Computational Cost')
+        ax2.grid(True, alpha=0.3)
+        
+        plt.tight_layout()
+        
+        # Save results
+        output_dir = get_output_path() / "tta_evaluation"
+        output_dir.mkdir(parents=True, exist_ok=True)
+        plt.savefig(output_dir / "simple_tta_results.png", dpi=150, bbox_inches='tight')
+        plt.close()
+    else:
+        print("\n5. Skipping visualization (matplotlib not available)")
     
     # Summary
     print("\n" + "="*60)

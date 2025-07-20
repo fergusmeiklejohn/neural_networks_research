@@ -4,9 +4,12 @@ Last Updated: 2025-07-19
 
 ## 🎯 Current State Summary
 
-**TTA Implementation Status**: Weight restoration bug fixed - models now properly reset between adaptations. However, TTA not yet showing improvements due to JAX backend limitations for gradient computation. Current implementation only updates BatchNorm statistics, not model parameters.
+**Test-Time Adaptation V2 Implemented**: Successfully created JAX-compatible TTA infrastructure with full gradient support. Fixed critical BatchNorm weight restoration bug. Implemented regression-specific TTA methods (`regression_tta_v2.py`). Initial tuning shows TTA degrading performance - needs investigation.
 
-**TTA Weight Restoration Bug Fixed**: Successfully identified and fixed critical bug where BatchNorm statistics weren't being restored after adaptation. TTA now properly resets model state between adaptations (verified with 0.0 restoration error).
+**True OOD Data Generated**: Created multiple genuine out-of-distribution scenarios:
+- Time-varying gravity: ~49% true OOD (5.68x distance from training)
+- Rotating frame physics: ~65% true OOD (Coriolis forces)
+- Spring coupled balls: ~70% true OOD (new interaction type)
 
 **Paper Revision Complete**: Successfully revised OOD evaluation paper with k-NN analysis showing 96-97% interpolation rate. Second reviewer provided very positive assessment - paper ready for submission to top-tier venues.
 
@@ -96,6 +99,11 @@ Last Updated: 2025-07-19
 
 **Paper Location**: `papers/ood_evaluation_analysis/ood_evaluation_analysis_complete.md`
 
+<<<<<<< HEAD
+## 🚀 Next Steps
+
+### 1. Run Full TTA Evaluation ✅
+=======
 ## 🚀 Immediate Next Steps
 
 ### 1. Re-tune Hyperparameters for Gradient-Based TTA (HIGHEST PRIORITY)
@@ -119,23 +127,39 @@ python experiments/01_physics_worlds/evaluate_tta_on_true_ood.py
 - Generate performance comparison table
 
 ### 3. Understand GraphExtrap Success
+>>>>>>> origin/production
 ```bash
-python train_baselines.py --model graph_extrap --verbose
+conda activate dist-invention
+python experiments/01_physics_worlds/evaluate_tta_comprehensive.py
 ```
-- Check if it trains on multiple gravity values
-- Analyze geometric features: `models/baseline_models.py:L142-156`
+- Test all three TTA methods on time-varying gravity
+- Quantify improvement percentages
+- Generate performance comparison table
 
+<<<<<<< HEAD
+### 2. Verify Extreme OOD Status
+=======
 ### 4. Implement True OOD Benchmark (Level 2)
 - Design in: `TRUE_OOD_BENCHMARK.md:L36-47`
 - Add time-varying gravity: `gravity_fn=lambda t: -9.8 * (1 + 0.1*sin(t))`
 - Verify >60% samples are true OOD using RepresentationSpaceAnalyzer
 
 ### 5. Complete Baseline Evaluation
+>>>>>>> origin/production
 ```bash
-python train_baselines.py --model gflownet
-python train_baselines.py --model maml
-python run_unified_evaluation.py
+python experiments/01_physics_worlds/verify_true_ood_simple.py
 ```
+- Confirm rotating frame is >65% true OOD
+- Confirm spring coupling is >70% true OOD
+- Use k-NN analysis with physics features
+
+### 3. Test TTA on Extreme OOD
+```bash
+python experiments/01_physics_worlds/evaluate_tta_simple.py
+```
+- Evaluate on rotating frame physics
+- Evaluate on spring coupled physics
+- Compare improvement vs time-varying gravity
 
 ## 📝 Key Documents
 

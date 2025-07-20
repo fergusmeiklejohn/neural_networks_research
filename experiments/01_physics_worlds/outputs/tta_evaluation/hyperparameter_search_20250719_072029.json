@@ -1,0 +1,522 @@
+[
+  {
+    "baseline_mse": 8738.349738812572,
+    "tta_mse": 8730.90625,
+    "improvement": 0.08252935856580734,
+    "improvement_std": 0.5356729626655579,
+    "improved_ratio": 0.5,
+    "training_loss": 4833.7822265625,
+    "config": "TENT_lr0.01_s5_deep",
+    "hyperparameters": {
+      "learning_rate": 0.01,
+      "adaptation_steps": 5,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8720.549348142127,
+    "tta_mse": 8731.8740234375,
+    "improvement": -0.148342102766037,
+    "improvement_std": 0.8028746843338013,
+    "improved_ratio": 0.4,
+    "training_loss": 4832.06298828125,
+    "config": "TENT_lr0.001_s1_dense",
+    "hyperparameters": {
+      "learning_rate": 0.001,
+      "adaptation_steps": 1,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8712.3261377522,
+    "tta_mse": 8732.216796875,
+    "improvement": -0.2143913209438324,
+    "improvement_std": 0.5470544695854187,
+    "improved_ratio": 0.3,
+    "training_loss": 4827.53759765625,
+    "config": "TENT_lr0.0001_s10_deep",
+    "hyperparameters": {
+      "learning_rate": 0.0001,
+      "adaptation_steps": 10,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8707.665028601406,
+    "tta_mse": 8731.859375,
+    "improvement": -0.25883322954177856,
+    "improvement_std": 0.4809802770614624,
+    "improved_ratio": 0.2,
+    "training_loss": 4828.30419921875,
+    "config": "TENT_lr1e-05_s20_deep",
+    "hyperparameters": {
+      "learning_rate": 1e-05,
+      "adaptation_steps": 20,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8710.362625883143,
+    "tta_mse": 8730.7080078125,
+    "improvement": -0.26477357745170593,
+    "improvement_std": 0.6381072402000427,
+    "improved_ratio": 0.4,
+    "training_loss": 4835.59130859375,
+    "config": "PhysicsTENT_pw0.1",
+    "physics_weight": 0.1
+  },
+  {
+    "baseline_mse": 8706.27848504765,
+    "tta_mse": 8731.984375,
+    "improvement": -0.2896675765514374,
+    "improvement_std": 0.41253963112831116,
+    "improved_ratio": 0.3,
+    "training_loss": 4832.71142578125,
+    "config": "TENT_lr0.001_s5_deep",
+    "hyperparameters": {
+      "learning_rate": 0.001,
+      "adaptation_steps": 5,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8700.010397093078,
+    "tta_mse": 8731.4189453125,
+    "improvement": -0.35498538613319397,
+    "improvement_std": 0.7495895028114319,
+    "improved_ratio": 0.3,
+    "training_loss": 4839.744140625,
+    "config": "TENT_lr0.0001_s1_deep",
+    "hyperparameters": {
+      "learning_rate": 0.0001,
+      "adaptation_steps": 1,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8697.898998599792,
+    "tta_mse": 8732.291015625,
+    "improvement": -0.40977269411087036,
+    "improvement_std": 0.565089225769043,
+    "improved_ratio": 0.1,
+    "training_loss": 4837.298828125,
+    "config": "TENT_lr0.001_s20_deep",
+    "hyperparameters": {
+      "learning_rate": 0.001,
+      "adaptation_steps": 20,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8698.560637849534,
+    "tta_mse": 8732.2158203125,
+    "improvement": -0.4356602728366852,
+    "improvement_std": 0.9580662846565247,
+    "improved_ratio": 0.4,
+    "training_loss": 4834.9462890625,
+    "config": "TENT_lr1e-05_s5_deep",
+    "hyperparameters": {
+      "learning_rate": 1e-05,
+      "adaptation_steps": 5,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8694.942547244338,
+    "tta_mse": 8730.900390625,
+    "improvement": -0.45725327730178833,
+    "improvement_std": 0.9595491290092468,
+    "improved_ratio": 0.2,
+    "training_loss": 4827.880859375,
+    "config": "TENT_lr0.01_s5_dense",
+    "hyperparameters": {
+      "learning_rate": 0.01,
+      "adaptation_steps": 5,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8690.465672699878,
+    "tta_mse": 8731.8251953125,
+    "improvement": -0.49613505601882935,
+    "improvement_std": 0.6629673838615417,
+    "improved_ratio": 0.1,
+    "training_loss": 4835.24853515625,
+    "config": "TENT_lr1e-05_s10_deep",
+    "hyperparameters": {
+      "learning_rate": 1e-05,
+      "adaptation_steps": 10,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8688.080946289243,
+    "tta_mse": 8730.4541015625,
+    "improvement": -0.5377655029296875,
+    "improvement_std": 0.8637063503265381,
+    "improved_ratio": 0.4,
+    "training_loss": 4833.60009765625,
+    "config": "TENT_lr0.01_s20_deep",
+    "hyperparameters": {
+      "learning_rate": 0.01,
+      "adaptation_steps": 20,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8674.53156700271,
+    "tta_mse": 8730.791015625,
+    "improvement": -0.6638532280921936,
+    "improvement_std": 0.5507798194885254,
+    "improved_ratio": 0.1,
+    "training_loss": 4831.77001953125,
+    "config": "TENT_lr0.0001_s5_dense",
+    "hyperparameters": {
+      "learning_rate": 0.0001,
+      "adaptation_steps": 5,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8679.255554591346,
+    "tta_mse": 8731.54296875,
+    "improvement": -0.6676914691925049,
+    "improvement_std": 1.2128803730010986,
+    "improved_ratio": 0.2,
+    "training_loss": 4835.0791015625,
+    "config": "TENT_lr0.001_s10_dense",
+    "hyperparameters": {
+      "learning_rate": 0.001,
+      "adaptation_steps": 10,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8677.334671222236,
+    "tta_mse": 8732.169921875,
+    "improvement": -0.6685172915458679,
+    "improvement_std": 0.5168415904045105,
+    "improved_ratio": 0.0,
+    "training_loss": 4828.23583984375,
+    "config": "PhysicsTENT_pw0.01",
+    "physics_weight": 0.01
+  },
+  {
+    "baseline_mse": 8675.416729865947,
+    "tta_mse": 8730.8828125,
+    "improvement": -0.6774691939353943,
+    "improvement_std": 0.6646959781646729,
+    "improved_ratio": 0.1,
+    "training_loss": 4832.666015625,
+    "config": "TENT_lr0.001_s1_deep",
+    "hyperparameters": {
+      "learning_rate": 0.001,
+      "adaptation_steps": 1,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8676.828336668466,
+    "tta_mse": 8732.361328125,
+    "improvement": -0.6868255138397217,
+    "improvement_std": 0.5840707421302795,
+    "improved_ratio": 0.0,
+    "training_loss": 4837.68798828125,
+    "config": "TENT_lr0.001_s10_deep",
+    "hyperparameters": {
+      "learning_rate": 0.001,
+      "adaptation_steps": 10,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8671.795721214312,
+    "tta_mse": 8730.8779296875,
+    "improvement": -0.7196580171585083,
+    "improvement_std": 0.8050305247306824,
+    "improved_ratio": 0.3,
+    "training_loss": 4839.36181640625,
+    "config": "TENT_lr1e-05_s10_dense",
+    "hyperparameters": {
+      "learning_rate": 1e-05,
+      "adaptation_steps": 10,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8663.760448907324,
+    "tta_mse": 8732.267578125,
+    "improvement": -0.7763222455978394,
+    "improvement_std": 0.662688136100769,
+    "improved_ratio": 0.1,
+    "training_loss": 4833.12255859375,
+    "config": "TENT_lr0.01_s10_dense",
+    "hyperparameters": {
+      "learning_rate": 0.01,
+      "adaptation_steps": 10,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8661.067601174216,
+    "tta_mse": 8731.830078125,
+    "improvement": -0.8231710195541382,
+    "improvement_std": 0.7229886651039124,
+    "improved_ratio": 0.1,
+    "training_loss": 4830.0048828125,
+    "config": "TENT_lr1e-05_s20_dense",
+    "hyperparameters": {
+      "learning_rate": 1e-05,
+      "adaptation_steps": 20,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8669.567586315849,
+    "tta_mse": 8731.72265625,
+    "improvement": -0.8327189683914185,
+    "improvement_std": 1.3682738542556763,
+    "improved_ratio": 0.5,
+    "training_loss": 4839.724609375,
+    "config": "PhysicsTENT_pw1.0",
+    "physics_weight": 1.0
+  },
+  {
+    "baseline_mse": 8655.261726218547,
+    "tta_mse": 8730.83984375,
+    "improvement": -0.8644286394119263,
+    "improvement_std": 0.8817657232284546,
+    "improved_ratio": 0.2,
+    "training_loss": 4838.36328125,
+    "config": "TENT_lr0.0001_s20_dense",
+    "hyperparameters": {
+      "learning_rate": 0.0001,
+      "adaptation_steps": 20,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8658.094083933942,
+    "tta_mse": 8730.912109375,
+    "improvement": -0.8720070123672485,
+    "improvement_std": 0.9259265065193176,
+    "improved_ratio": 0.1,
+    "training_loss": 4839.7373046875,
+    "config": "TENT_lr0.01_s20_dense",
+    "hyperparameters": {
+      "learning_rate": 0.01,
+      "adaptation_steps": 20,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8658.74173154274,
+    "tta_mse": 8731.884765625,
+    "improvement": -0.8766555786132812,
+    "improvement_std": 1.0751842260360718,
+    "improved_ratio": 0.1,
+    "training_loss": 4832.67236328125,
+    "config": "TENT_lr0.0001_s20_deep",
+    "hyperparameters": {
+      "learning_rate": 0.0001,
+      "adaptation_steps": 20,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8655.372894744805,
+    "tta_mse": 8732.3271484375,
+    "improvement": -0.880291759967804,
+    "improvement_std": 1.102013349533081,
+    "improved_ratio": 0.1,
+    "training_loss": 4837.2685546875,
+    "config": "TENT_lr0.001_s20_dense",
+    "hyperparameters": {
+      "learning_rate": 0.001,
+      "adaptation_steps": 20,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8658.701525397559,
+    "tta_mse": 8732.2802734375,
+    "improvement": -0.8943520784378052,
+    "improvement_std": 0.7043607234954834,
+    "improved_ratio": 0.0,
+    "training_loss": 4836.822265625,
+    "config": "TENT_lr0.0001_s1_dense",
+    "hyperparameters": {
+      "learning_rate": 0.0001,
+      "adaptation_steps": 1,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8649.256984185608,
+    "tta_mse": 8730.4453125,
+    "improvement": -0.9505161046981812,
+    "improvement_std": 0.7827621102333069,
+    "improved_ratio": 0.1,
+    "training_loss": 4837.67236328125,
+    "config": "TENT_lr1e-05_s1_dense",
+    "hyperparameters": {
+      "learning_rate": 1e-05,
+      "adaptation_steps": 1,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8638.670012609562,
+    "tta_mse": 8731.341796875,
+    "improvement": -1.0579240322113037,
+    "improvement_std": 0.8012291193008423,
+    "improved_ratio": 0.1,
+    "training_loss": 4838.3330078125,
+    "config": "TENT_lr1e-05_s5_dense",
+    "hyperparameters": {
+      "learning_rate": 1e-05,
+      "adaptation_steps": 5,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8636.588166676109,
+    "tta_mse": 8730.85546875,
+    "improvement": -1.0667378902435303,
+    "improvement_std": 0.8630580306053162,
+    "improved_ratio": 0.1,
+    "training_loss": 4827.666015625,
+    "config": "TENT_lr1e-05_s1_deep",
+    "hyperparameters": {
+      "learning_rate": 1e-05,
+      "adaptation_steps": 1,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8641.643266484734,
+    "tta_mse": 8730.7958984375,
+    "improvement": -1.0671350955963135,
+    "improvement_std": 0.8778077960014343,
+    "improved_ratio": 0.0,
+    "training_loss": 4832.69287109375,
+    "config": "TENT_lr0.01_s1_deep",
+    "hyperparameters": {
+      "learning_rate": 0.01,
+      "adaptation_steps": 1,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8645.228319540905,
+    "tta_mse": 8731.4814453125,
+    "improvement": -1.088132619857788,
+    "improvement_std": 0.9556917548179626,
+    "improved_ratio": 0.0,
+    "training_loss": 4828.78173828125,
+    "config": "TENT_lr0.01_s10_deep",
+    "hyperparameters": {
+      "learning_rate": 0.01,
+      "adaptation_steps": 10,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8622.455976890256,
+    "tta_mse": 8731.798828125,
+    "improvement": -1.2176413536071777,
+    "improvement_std": 0.6504026055335999,
+    "improved_ratio": 0.1,
+    "training_loss": 4835.412109375,
+    "config": "PhysicsTENT_pw0.5",
+    "physics_weight": 0.5
+  },
+  {
+    "baseline_mse": 8628.893424781545,
+    "tta_mse": 8730.3515625,
+    "improvement": -1.2349690198898315,
+    "improvement_std": 1.0156054496765137,
+    "improved_ratio": 0.1,
+    "training_loss": 4829.8642578125,
+    "config": "TENT_lr0.0001_s5_deep",
+    "hyperparameters": {
+      "learning_rate": 0.0001,
+      "adaptation_steps": 5,
+      "architecture": "deep",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8624.705173797618,
+    "tta_mse": 8731.18359375,
+    "improvement": -1.265411138534546,
+    "improvement_std": 1.3928866386413574,
+    "improved_ratio": 0.1,
+    "training_loss": 4823.80712890625,
+    "config": "TENT_lr0.001_s5_dense",
+    "hyperparameters": {
+      "learning_rate": 0.001,
+      "adaptation_steps": 5,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8605.068954204198,
+    "tta_mse": 8729.76953125,
+    "improvement": -1.4308769702911377,
+    "improvement_std": 1.1776602268218994,
+    "improved_ratio": 0.1,
+    "training_loss": 4832.79541015625,
+    "config": "TENT_lr0.0001_s10_dense",
+    "hyperparameters": {
+      "learning_rate": 0.0001,
+      "adaptation_steps": 10,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  },
+  {
+    "baseline_mse": 8607.707720473898,
+    "tta_mse": 8730.8310546875,
+    "improvement": -1.4781639575958252,
+    "improvement_std": 0.9573892951011658,
+    "improved_ratio": 0.0,
+    "training_loss": 4833.35400390625,
+    "config": "TENT_lr0.01_s1_dense",
+    "hyperparameters": {
+      "learning_rate": 0.01,
+      "adaptation_steps": 1,
+      "architecture": "dense",
+      "hidden_units": 128
+    }
+  }
+]
