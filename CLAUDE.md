@@ -68,6 +68,9 @@ conda activate dist-invention
 
 # Key dependencies
 pip install keras>=3.0 torch jax[metal] transformers wandb
+
+# IMPORTANT: When Claude needs to run Python scripts, use the full path:
+/Users/fergusmeiklejohn/miniconda3/envs/dist-invention/bin/python script.py
 ```
 Sometimes Claude cannot run scripts and sees errors like that a package isn't available in the python environment. Often this is an environment error and Claude should ask for help running files in these cases rather than change our strategy or scripts to get round the problem.
 
