@@ -99,11 +99,6 @@ Last Updated: 2025-07-19
 
 **Paper Location**: `papers/ood_evaluation_analysis/ood_evaluation_analysis_complete.md`
 
-<<<<<<< HEAD
-## 🚀 Next Steps
-
-### 1. Run Full TTA Evaluation ✅
-=======
 ## 🚀 Immediate Next Steps
 
 ### 1. Re-tune Hyperparameters for Gradient-Based TTA (HIGHEST PRIORITY)
@@ -118,16 +113,7 @@ Last Updated: 2025-07-19
 - Now need to find optimal hyperparameters for gradient-based updates
 - Try much lower learning rates (1e-5 to 1e-6) for full parameter updates
 
-### 2. Run Full TTA Evaluation
-```bash
-python experiments/01_physics_worlds/evaluate_tta_on_true_ood.py
-```
-- Compare all baselines with/without TTA
-- Test on time-varying gravity data
-- Generate performance comparison table
-
-### 3. Understand GraphExtrap Success
->>>>>>> origin/production
+### 2. Run Full TTA Evaluation ✅
 ```bash
 conda activate dist-invention
 python experiments/01_physics_worlds/evaluate_tta_comprehensive.py
@@ -136,16 +122,7 @@ python experiments/01_physics_worlds/evaluate_tta_comprehensive.py
 - Quantify improvement percentages
 - Generate performance comparison table
 
-<<<<<<< HEAD
-### 2. Verify Extreme OOD Status
-=======
-### 4. Implement True OOD Benchmark (Level 2)
-- Design in: `TRUE_OOD_BENCHMARK.md:L36-47`
-- Add time-varying gravity: `gravity_fn=lambda t: -9.8 * (1 + 0.1*sin(t))`
-- Verify >60% samples are true OOD using RepresentationSpaceAnalyzer
-
-### 5. Complete Baseline Evaluation
->>>>>>> origin/production
+### 3. Verify Extreme OOD Status
 ```bash
 python experiments/01_physics_worlds/verify_true_ood_simple.py
 ```
@@ -153,13 +130,26 @@ python experiments/01_physics_worlds/verify_true_ood_simple.py
 - Confirm spring coupling is >70% true OOD
 - Use k-NN analysis with physics features
 
-### 3. Test TTA on Extreme OOD
+### 4. Test TTA on Extreme OOD
 ```bash
 python experiments/01_physics_worlds/evaluate_tta_simple.py
 ```
 - Evaluate on rotating frame physics
 - Evaluate on spring coupled physics
 - Compare improvement vs time-varying gravity
+
+### 5. Implement True OOD Benchmark (Level 2)
+- Design in: `TRUE_OOD_BENCHMARK.md:L36-47`
+- Add time-varying gravity: `gravity_fn=lambda t: -9.8 * (1 + 0.1*sin(t))`
+- Verify >60% samples are true OOD using RepresentationSpaceAnalyzer
+
+### 6. Complete Baseline Evaluation
+```bash
+python train_baselines.py --model graph_extrap --verbose
+python train_baselines.py --model gflownet
+python train_baselines.py --model maml
+python run_unified_evaluation.py
+```
 
 ## 📝 Key Documents
 
