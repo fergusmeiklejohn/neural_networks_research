@@ -4,7 +4,7 @@ Last Updated: 2025-07-19
 
 ## 🎯 Current State Summary
 
-**Test-Time Adaptation Implemented**: Successfully created JAX-compatible TTA infrastructure with three methods (TENT, PhysicsTENT, TTT). Fixed critical BatchNorm weight restoration bug. Ready for comprehensive evaluation.
+**Test-Time Adaptation V2 Implemented**: Successfully created JAX-compatible TTA infrastructure with full gradient support. Fixed critical BatchNorm weight restoration bug. Implemented regression-specific TTA methods (`regression_tta_v2.py`). Initial tuning shows TTA degrading performance - needs investigation.
 
 **True OOD Data Generated**: Created multiple genuine out-of-distribution scenarios:
 - Time-varying gravity: ~49% true OOD (5.68x distance from training)
@@ -52,15 +52,27 @@ Last Updated: 2025-07-19
 3. **Analysis Tools**:
    - `RepresentationSpaceAnalyzer` can verify true OOD
    - t-SNE visualization shows interpolation vs extrapolation
+   
+4. **Test-Time Adaptation (TTA)**:
+   - Fixed critical weight restoration bug in `base_tta.py` and `base_tta_jax.py`
+   - TTA now properly saves/restores ALL variables including BatchNorm statistics
+   - Ready for hyperparameter tuning and full evaluation
 
 ## ❗ Known Issues
 
-1. **Data Format Quirks**:
+1. **TTA Performance** (UPDATED July 19 - JAX Implementation Complete):
+   - ✅ Full JAX gradient computation implemented (`base_tta_jax_v2.py`)
+   - ✅ Regression-specific TTA created (`regression_tta_v2.py`)
+   - ✅ Complete state restoration working (0.0 error)
+   - ⚠️ Performance still negative - needs hyperparameter re-tuning
+   - 📝 Can now update all parameters, not just BatchNorm stats
+
+2. **Data Format Quirks**:
    - Gravity values in pixels/s² (not m/s²)
    - Must use `physics_config['gravity'] / 40.0` for SI units
    - Jupiter gravity shows as -42.8 in some data (should be -24.8)
 
-2. **Unfinished Baselines**:
+3. **Unfinished Baselines**:
    - GFlowNet and MAML not yet tested on physics
    - Need to verify GraphExtrap training conditions
 
@@ -87,9 +99,35 @@ Last Updated: 2025-07-19
 
 **Paper Location**: `papers/ood_evaluation_analysis/ood_evaluation_analysis_complete.md`
 
+<<<<<<< HEAD
 ## 🚀 Next Steps
 
 ### 1. Run Full TTA Evaluation ✅
+=======
+## 🚀 Immediate Next Steps
+
+### 1. Re-tune Hyperparameters for Gradient-Based TTA (HIGHEST PRIORITY)
+```bash
+# Test the new JAX TTA implementation
+/Users/fergusmeiklejohn/miniconda3/envs/dist-invention/bin/python experiments/01_physics_worlds/test_jax_tta_v2.py
+
+# Create new hyperparameter tuning script for V2
+/Users/fergusmeiklejohn/miniconda3/envs/dist-invention/bin/python experiments/01_physics_worlds/tune_tta_hyperparameters_v2.py
+```
+- ✅ JAX gradient computation implemented and working
+- Now need to find optimal hyperparameters for gradient-based updates
+- Try much lower learning rates (1e-5 to 1e-6) for full parameter updates
+
+### 2. Run Full TTA Evaluation
+```bash
+python experiments/01_physics_worlds/evaluate_tta_on_true_ood.py
+```
+- Compare all baselines with/without TTA
+- Test on time-varying gravity data
+- Generate performance comparison table
+
+### 3. Understand GraphExtrap Success
+>>>>>>> origin/production
 ```bash
 conda activate dist-invention
 python experiments/01_physics_worlds/evaluate_tta_comprehensive.py
@@ -98,7 +136,16 @@ python experiments/01_physics_worlds/evaluate_tta_comprehensive.py
 - Quantify improvement percentages
 - Generate performance comparison table
 
+<<<<<<< HEAD
 ### 2. Verify Extreme OOD Status
+=======
+### 4. Implement True OOD Benchmark (Level 2)
+- Design in: `TRUE_OOD_BENCHMARK.md:L36-47`
+- Add time-varying gravity: `gravity_fn=lambda t: -9.8 * (1 + 0.1*sin(t))`
+- Verify >60% samples are true OOD using RepresentationSpaceAnalyzer
+
+### 5. Complete Baseline Evaluation
+>>>>>>> origin/production
 ```bash
 python experiments/01_physics_worlds/verify_true_ood_simple.py
 ```

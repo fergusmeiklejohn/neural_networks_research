@@ -1,146 +1,213 @@
-"""Test the regression-specific TTA implementation."""
-
-import os
-os.environ['KERAS_BACKEND'] = 'jax'
+"""Test regression-specific TTA methods on physics data."""
 
 import numpy as np
-import sys
+import pickle
 from pathlib import Path
+import sys
+
+# Add project root to path
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
+from utils.imports import setup_project_paths
+setup_project_paths()
 
-def test_regression_tta():
-    """Test TTA for regression tasks."""
-    print("Testing Regression-Specific TTA")
+from utils.config import setup_environment
+from utils.paths import get_data_path
+import keras
+from models.test_time_adaptation.tta_wrappers import TTAWrapper
+
+
+def create_physics_model():
+    """Create a physics prediction model."""
+    model = keras.Sequential([
+        keras.layers.Input(shape=(8,)),
+        keras.layers.Dense(128, activation='relu'),
+        keras.layers.BatchNormalization(),
+        keras.layers.Dense(64, activation='relu'),
+        keras.layers.BatchNormalization(),
+        keras.layers.Dense(32, activation='relu'),
+        keras.layers.Dense(8)
+    ])
+    
+    model.compile(
+        optimizer=keras.optimizers.Adam(learning_rate=1e-3),
+        loss='mse',
+        metrics=['mae']
+    )
+    return model
+
+
+def main():
+    """Test regression-specific TTA."""
+    print("Testing Regression-Specific TTA Methods")
     print("="*60)
     
-    try:
-        import keras
-        from models.test_time_adaptation.tta_wrappers import TTAWrapper
+    config = setup_environment()
+    
+    # Load data
+    data_dir = get_data_path() / "true_ood_physics"
+    
+    # Load constant gravity
+    const_files = sorted(data_dir.glob("constant_gravity_*.pkl"))
+    with open(const_files[-1], 'rb') as f:
+        const_data = pickle.load(f)
+    
+    # Load time-varying gravity  
+    varying_files = sorted(data_dir.glob("time_varying_gravity_*.pkl"))
+    with open(varying_files[-1], 'rb') as f:
+        ood_data = pickle.load(f)
+    
+    print(f"Loaded {len(const_data['trajectories'])} constant gravity trajectories")
+    print(f"Loaded {len(ood_data['trajectories'])} time-varying gravity trajectories")
+    
+    # Prepare training data
+    X_train = []
+    y_train = []
+    for traj in const_data['trajectories'][:60]:
+        for i in range(len(traj) - 1):
+            X_train.append(traj[i])
+            y_train.append(traj[i+1])
+    
+    X_train = np.array(X_train)
+    y_train = np.array(y_train)
+    
+    # Train model
+    print("\nTraining model...")
+    model = create_physics_model()
+    model.fit(X_train, y_train, epochs=15, batch_size=64, verbose=0)
+    
+    # Baseline evaluation
+    print("\nBaseline evaluation (no TTA):")
+    
+    # Constant gravity
+    X_test_const = []
+    y_test_const = []
+    for traj in const_data['trajectories'][80:85]:
+        for i in range(len(traj) - 1):
+            X_test_const.append(traj[i])
+            y_test_const.append(traj[i+1])
+    X_test_const = np.array(X_test_const)
+    y_test_const = np.array(y_test_const)
+    
+    mse_const = model.evaluate(X_test_const, y_test_const, verbose=0)[0]
+    print(f"  Constant gravity MSE: {mse_const:.4f}")
+    
+    # Time-varying gravity
+    X_test_ood = []
+    y_test_ood = []
+    for traj in ood_data['trajectories'][:5]:
+        for i in range(len(traj) - 1):
+            X_test_ood.append(traj[i])
+            y_test_ood.append(traj[i+1])
+    X_test_ood = np.array(X_test_ood)
+    y_test_ood = np.array(y_test_ood)
+    
+    mse_ood_baseline = model.evaluate(X_test_ood, y_test_ood, verbose=0)[0]
+    print(f"  Time-varying gravity MSE: {mse_ood_baseline:.4f}")
+    print(f"  Degradation: {mse_ood_baseline/mse_const:.2f}x")
+    
+    # Test different TTA methods
+    print("\n" + "="*60)
+    print("TESTING TTA METHODS")
+    print("="*60)
+    
+    tta_configs = [
+        # Original TENT (for comparison)
+        {'method': 'tent', 'lr': 1e-4, 'steps': 5, 'name': 'TENT (original)'},
         
-        # Create a regression model
-        model = keras.Sequential([
-            keras.layers.Input(shape=(1, 8)),
-            keras.layers.Flatten(),
-            keras.layers.Dense(64, activation='relu'),
-            keras.layers.BatchNormalization(),
-            keras.layers.Dense(32, activation='relu'),
-            keras.layers.BatchNormalization(),
-            keras.layers.Dense(10 * 8),
-            keras.layers.Reshape((10, 8))
-        ])
+        # Regression-specific TTA
+        {'method': 'regression', 'lr': 1e-3, 'steps': 5, 'name': 'RegressionTTA (lr=1e-3)'},
+        {'method': 'regression', 'lr': 5e-4, 'steps': 5, 'name': 'RegressionTTA (lr=5e-4)'},
+        {'method': 'regression', 'lr': 1e-4, 'steps': 5, 'name': 'RegressionTTA (lr=1e-4)'},
+        {'method': 'regression', 'lr': 1e-4, 'steps': 10, 'name': 'RegressionTTA (10 steps)'},
         
-        model.compile(optimizer='adam', loss='mse')
-        print("Model created successfully")
+        # Physics-aware regression TTA
+        {'method': 'physics_regression', 'lr': 5e-4, 'steps': 5, 'name': 'PhysicsRegressionTTA'},
+        {'method': 'physics_regression', 'lr': 1e-4, 'steps': 10, 'name': 'PhysicsRegressionTTA (10 steps)'},
+    ]
+    
+    results = []
+    
+    for config in tta_configs:
+        print(f"\nTesting {config['name']}:")
         
-        # Create dummy training data
-        X_train = np.random.randn(50, 1, 8).astype(np.float32)
-        y_train = np.random.randn(50, 10, 8).astype(np.float32)
+        # Create TTA wrapper
+        tta_kwargs = {
+            'adaptation_steps': config['steps'],
+            'learning_rate': config['lr'],
+            'update_bn_only': True
+        }
         
-        # Quick training
-        print("\nTraining model...")
-        model.fit(X_train, y_train, epochs=10, batch_size=16, verbose=0)
+        if config['method'] == 'physics_regression':
+            tta_kwargs['physics_weight'] = 0.5
         
-        # Test data
-        X_test = np.random.randn(5, 1, 8).astype(np.float32)
+        tta_model = TTAWrapper(model, tta_method=config['method'], **tta_kwargs)
         
-        # Baseline predictions
-        print("\nBaseline predictions:")
-        y_baseline = model.predict(X_test, verbose=0)
-        print(f"  Shape: {y_baseline.shape}")
-        print(f"  Mean: {np.mean(y_baseline):.4f}")
-        print(f"  Std: {np.std(y_baseline):.4f}")
+        # Test on OOD data batch by batch
+        batch_errors = []
+        batch_size = 10
         
-        # Test different configurations
-        configs = [
-            {'learning_rate': 1e-4, 'adaptation_steps': 5},
-            {'learning_rate': 1e-3, 'adaptation_steps': 10},
-            {'learning_rate': 1e-2, 'adaptation_steps': 10},
-            {'learning_rate': 1e-2, 'adaptation_steps': 20},
-        ]
-        
-        print("\nTesting TTA configurations:")
-        print("-" * 60)
-        
-        for config in configs:
-            print(f"\nConfig: lr={config['learning_rate']}, steps={config['adaptation_steps']}")
-            
-            # Test TENT
-            tta_tent = TTAWrapper(
-                model,
-                tta_method='tent',
-                task_type='regression',
-                **config
-            )
-            
-            # Reset to original weights
-            tta_tent.reset()
+        for i in range(0, len(X_test_ood), batch_size):
+            X_batch = X_test_ood[i:i+batch_size]
+            y_batch = y_test_ood[i:i+batch_size]
             
             # Adapt and predict
-            y_tent = tta_tent.predict(X_test[0:1], adapt=True)
+            y_pred = tta_model.predict(X_batch, adapt=True)
+            error = np.mean((y_pred - y_batch)**2)
+            batch_errors.append(error)
             
-            change = np.mean(np.abs(y_tent - y_baseline[0:1]))
-            print(f"  TENT change: {change:.6f}")
-            
-            # Test PhysicsTENT
-            tta_physics = TTAWrapper(
-                model,
-                tta_method='physics_tent',
-                task_type='regression',
-                physics_loss_weight=0.1,
-                **config
-            )
-            
-            tta_physics.reset()
-            y_physics = tta_physics.predict(X_test[0:1], adapt=True)
-            
-            change_physics = np.mean(np.abs(y_physics - y_baseline[0:1]))
-            print(f"  PhysicsTENT change: {change_physics:.6f}")
-            
-            # Check if adaptation is actually happening
-            if change < 1e-6 and change_physics < 1e-6:
-                print("  WARNING: No adaptation occurred!")
+            # Reset for next batch
+            tta_model.reset()
         
-        # Test with multiple samples (batch adaptation)
-        print("\n\nBatch adaptation test:")
-        print("-" * 60)
+        mean_mse = np.mean(batch_errors)
+        improvement = (1 - mean_mse/mse_ood_baseline) * 100
         
-        tta_batch = TTAWrapper(
-            model,
-            tta_method='physics_tent',
-            task_type='regression',
-            learning_rate=1e-2,
-            adaptation_steps=20,
-            physics_loss_weight=0.1
-        )
+        print(f"  MSE: {mean_mse:.4f}")
+        print(f"  Improvement: {improvement:+.1f}%")
         
-        # Adapt on batch
-        y_batch = tta_batch.predict(X_test, adapt=True)
-        
-        batch_changes = [np.mean(np.abs(y_batch[i] - y_baseline[i])) for i in range(len(X_test))]
-        print(f"Average change per sample: {np.mean(batch_changes):.6f}")
-        print(f"Max change: {np.max(batch_changes):.6f}")
-        
-        # Conclusion
-        print("\n" + "="*60)
-        print("CONCLUSION")
-        print("="*60)
-        
-        if np.max(batch_changes) > 0.01:
-            print("✓ TTA is working! Predictions are being adapted.")
-            print("  Higher learning rates and more steps = more adaptation")
-        else:
-            print("✗ TTA is not working effectively.")
-            print("  Possible issues:")
-            print("  1. Learning rate still too small")
-            print("  2. Loss function not appropriate")
-            print("  3. Model architecture limitations")
-            
-    except Exception as e:
-        print(f"Error: {e}")
-        import traceback
-        traceback.print_exc()
+        results.append({
+            'name': config['name'],
+            'mse': mean_mse,
+            'improvement': improvement
+        })
+    
+    # Weight restoration check
+    print("\n" + "="*60)
+    print("WEIGHT RESTORATION CHECK")
+    print("="*60)
+    
+    # Test with regression TTA
+    test_input = X_test_ood[:1]
+    pred_before = model.predict(test_input, verbose=0)
+    
+    tta_model = TTAWrapper(model, tta_method='regression', learning_rate=1e-3, adaptation_steps=10)
+    _ = tta_model.predict(X_test_ood[:10], adapt=True)
+    tta_model.reset()
+    
+    pred_after = model.predict(test_input, verbose=0)
+    restoration_error = np.mean(np.abs(pred_before - pred_after))
+    
+    print(f"Restoration error: {restoration_error:.6f}")
+    print(f"Weight restoration: {'✓ WORKING' if restoration_error < 1e-3 else '✗ FAILED'}")
+    
+    # Summary
+    print("\n" + "="*60)
+    print("SUMMARY")
+    print("="*60)
+    
+    # Sort by improvement
+    results.sort(key=lambda x: x['improvement'], reverse=True)
+    
+    print("\nTop 3 configurations:")
+    for i, result in enumerate(results[:3]):
+        print(f"{i+1}. {result['name']}")
+        print(f"   MSE: {result['mse']:.4f}, Improvement: {result['improvement']:+.1f}%")
+    
+    if results[0]['improvement'] > 0:
+        print(f"\n✓ TTA is showing improvement on OOD data!")
+    else:
+        print(f"\n✗ TTA needs more tuning for this task")
 
 
 if __name__ == "__main__":
-    test_regression_tta()
+    main()

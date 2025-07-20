@@ -54,14 +54,23 @@ class BaseTTA(ABC):
     
     def _copy_weights(self) -> Dict[str, np.ndarray]:
         """Create a deep copy of model weights."""
-        return {var.name: ops.convert_to_numpy(var.value) 
-                for var in self.model.trainable_variables}
+        # Store ALL variables, not just trainable ones
+        # This includes BatchNorm moving statistics
+        return {var.name: ops.convert_to_numpy(var.value).copy() 
+                for var in self.model.variables}
     
     def _restore_weights(self):
         """Restore model to original weights."""
-        for var in self.model.trainable_variables:
+        # Restore ALL variables, not just trainable ones
+        for var in self.model.variables:
             if var.name in self._original_weights:
-                var.assign(self._original_weights[var.name])
+                original_value = self._original_weights[var.name]
+                # Check shape compatibility
+                if var.shape == original_value.shape:
+                    var.assign(original_value)
+                else:
+                    # Skip if shapes don't match (shouldn't happen)
+                    pass
     
     def _create_optimizer(self) -> keras.optimizers.Optimizer:
         """Create optimizer for test-time updates.
