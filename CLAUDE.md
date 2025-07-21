@@ -547,3 +547,79 @@ The diary must serve as a practical working document that enables immediate prod
    - Example: "Start from: `TRUE_OOD_BENCHMARK.md:L36-47` for time-varying gravity"
 
 The goal is zero friction when resuming work - the diary should contain everything needed to pick up exactly where you left off with full context and clear direction.
+
+### Daily Workflow (Git Worktree Setup)
+
+We use git worktrees for parallel development, with automated tools for daily merging to production:
+
+**End-of-Day Workflow:**
+```bash
+# Single command handles everything:
+./scripts/daily_merge.sh
+```
+
+This automated workflow:
+1. **Updates Research Diary** (optional prompt)
+   - Auto-generates template with git activity
+   - Tracks modified files and recent commits
+   - Opens in editor for completion
+   
+2. **Runs Pre-Merge Tests**
+   - Python environment verification
+   - Critical imports testing
+   - Code quality checks (black, flake8)
+   - TTA weight restoration tests
+   - Warns about uncommitted changes
+   
+3. **Creates and Merges PR**
+   - Pushes current branch to origin
+   - Auto-generates PR description from commits
+   - Merges to production branch
+   - Updates local branches
+
+**Manual Commands (if needed):**
+```bash
+# Update research diary separately
+./scripts/update_research_diary.sh
+
+# Run tests without merging
+./scripts/pre_merge_tests.sh
+
+# Switch between worktrees
+cd /Users/fergusmeiklejohn/conductor/repo/neural_networks_research/.main   # production
+cd /Users/fergusmeiklejohn/conductor/repo/neural_networks_research/vienna  # feature branch
+```
+
+**Important Notes:**
+- Always commit all changes before running daily merge
+- Tests must pass (or be manually overridden) to proceed
+- Branch remains active for continued work next day
+- Research diary helps maintain continuity between sessions
+
+### Research Paper Writing Style
+
+**CRITICAL**: When writing research papers, always follow the comprehensive style guide in `papers/ood_illusion/SCIENTIFIC_WRITING_NOTES.md`. This guide incorporates both our internal standards and valuable feedback from external reviewers.
+
+**Key Principles**:
+1. **Measured, Objective Tone**: Let data speak for itself without emotional language
+2. **Statistical Rigor**: Include confidence intervals, p-values, and error bars
+3. **Precise Scope**: Claims must match evidence (e.g., "in physics tasks with mechanism shifts")
+4. **Recent Citations**: Include 2023-2025 work to show current relevance
+5. **No Rhetorical Questions**: Use declarative statements instead
+6. **Avoid Repetition**: State key numbers prominently once, then vary presentation
+
+**Before Writing Papers**:
+- Read `SCIENTIFIC_WRITING_NOTES.md` thoroughly
+- Review examples of good vs bad phrasing
+- Check scope of claims against actual evidence
+- Ensure all figures/tables are referenced in text
+- Move speculation to clearly labeled Future Work sections
+
+**Common Pitfalls to Avoid**:
+- Universal claims from limited evidence
+- Emotional/hyperbolic language ("catastrophic", "shocking")
+- Unsupported absolute statements ("proves", "cannot work")
+- Missing statistical support for comparative claims
+- Speculation mixed with results
+
+The style guide includes specific examples and transformations to ensure professional, defensible scientific writing that will withstand peer review

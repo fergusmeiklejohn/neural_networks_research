@@ -5,10 +5,30 @@ set -e  # Exit on error
 
 echo "🚀 Starting daily merge process..."
 
+# 0. Update research diary (optional)
+read -p "📝 Update research diary before merge? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    ./scripts/update_research_diary.sh
+fi
+
 # 1. Check for uncommitted changes
 if ! git diff-index --quiet HEAD --; then
     echo "❌ You have uncommitted changes. Please commit them first."
     exit 1
+fi
+
+# 1.5 Run pre-merge tests
+echo "🧪 Running pre-merge tests..."
+if ./scripts/pre_merge_tests.sh; then
+    echo "✅ Pre-merge tests passed"
+else
+    echo "❌ Pre-merge tests failed. Check output above."
+    read -p "Continue anyway? (y/n) " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        exit 1
+    fi
 fi
 
 # 2. Get current branch name
