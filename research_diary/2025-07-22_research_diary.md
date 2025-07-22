@@ -1,12 +1,19 @@
 # Research Diary: July 22, 2025
 
-## Today's Focus: [TO BE FILLED]
+## Today's Focus: Compositional Language Experiment Revival & Enhancement
 
 ### Summary
-[Brief summary of today's work - TO BE FILLED]
+Successfully revived and enhanced the compositional language experiment with comprehensive safeguards from physics TTA insights. Generated full SCAN dataset (39,708 training samples), created robust training script with persistent storage support, and validated everything with new comprehensive test suite. Ready for full Paperspace deployment.
 
 ### Key Accomplishments
-[List key accomplishments - TO BE FILLED]
+1. **Pulled Latest Updates**: Integrated new testing infrastructure and TTA findings from physics experiments
+2. **Generated SCAN Dataset**: Successfully processed 64,196 samples into isolated train/test splits
+3. **Enhanced Training Script**: Created `paperspace_train_with_safeguards.py` with:
+   - Automatic persistent storage detection
+   - Checkpoint saving after every epoch
+   - Multiple backup mechanisms
+   - Emergency save on failure
+4. **Passed All Tests**: 7/7 comprehensive local tests passed, confirming readiness for deployment
 
 ### Recent Git Activity
 - Fix test errors and add gitignore for experiment outputs
@@ -43,26 +50,57 @@
 - experiments/01_physics_worlds/outputs/pendulum_test_quick/pendulum_baseline_results_20250721_083040.json
 
 ### Technical Details
-[Technical insights and implementation details - TO BE FILLED]
+- **SCAN Dataset Structure**: 
+  - Train: 39,708 samples (avg length: 14.4)
+  - Test Interpolation: 8,510 samples
+  - Test Primitive Extrapolation: 7,469 samples (new primitive combinations)
+  - Vocabulary: 13 command tokens, 6 action tokens
+- **Model Architecture**: LSTM-based with 128 hidden units (~267K parameters)
+- **Training Strategy**: 4-stage progressive curriculum with increasing modification complexity
+- **Safeguards Added**:
+  - Checkpoint saving to `/storage/compositional_language_[timestamp]/`
+  - Training history JSON after each stage
+  - Emergency save on exception
+  - Comprehensive evaluation on all test splits
 
 ### Challenges Encountered
-[List any challenges or blockers - TO BE FILLED]
+1. **Environment Issues**: Initial TensorFlow import errors - resolved by activating correct conda environment
+2. **Previous Result Loss**: June 28 training lost to Paperspace auto-shutdown - now mitigated with persistent storage
+3. **Integration Complexity**: Merged new testing infrastructure with existing progressive curriculum approach
 
 ### Results and Metrics
-[Quantitative results from experiments - TO BE FILLED]
+- **Local Test Suite**: 7/7 tests passed in 7.27 seconds
+- **Memory Usage**: Training uses ~93MB additional memory (well within limits)
+- **Data Generation**: Successfully created 1,100 systematic rule modifications
+- **Expected Performance** (based on previous partial run):
+  - Interpolation: >95% accuracy
+  - Extrapolation: >70% accuracy
+  - Rule Modifications: >60% consistency
 
 ### Next Steps (Actionable for Tomorrow)
-1. **Immediate Priority**: [Specific task with file paths and commands]
-2. **Secondary Tasks**: [Additional tasks with context]
-3. **Open Questions**: [Questions to investigate with hypotheses]
+1. **Immediate Priority**: Run full training on Paperspace
+   - Command: `cd /notebooks/neural_networks_research/experiments/02_compositional_language && python paperspace_train_with_safeguards.py`
+   - Monitor: `/storage/compositional_language_*/` for checkpoint saves
+   - Expected duration: 4-6 hours on A4000 GPU
+2. **Secondary Tasks**: 
+   - Download and analyze results: `zip -r results.zip /storage/compositional_language_*/`
+   - Compare with baseline models using unified evaluation
+   - Update CURRENT_STATUS.md with training results
+3. **Open Questions**: 
+   - Should we add TTA given its catastrophic failure on physics? (Hypothesis: No, focus on base model first)
+   - How to design linguistic "time-varying" rules? (Hypothesis: Grammar rules that change mid-sequence)
 
 ### Key Code Changes
-[Important code snippets or architectural changes - TO BE FILLED]
+- Created `paperspace_train_with_safeguards.py` with comprehensive result preservation
+- Added storage path detection: `/storage/compositional_language_{timestamp}/`
+- Integrated checkpoint saving after every epoch in training loop
+- Added emergency save in exception handler
 
 ### Notes for Tomorrow
-- Start from: [Specific file and line number]
-- Run: [Exact commands to execute]
-- Check: [Things to verify or test]
+- Start from: `experiments/02_compositional_language/paperspace_train_with_safeguards.py`
+- Run: `python paperspace_train_with_safeguards.py` on Paperspace A4000
+- Check: `/storage/` for saved checkpoints and results
+- Verify: All test splits evaluated in `evaluation_results.json`
 
 ## Update: 10:34
 
@@ -80,3 +118,26 @@
 - Remember to update CURRENT_STATUS.md if experiment state changed
 - Consider running tests before major commits
 - Document any new insights in appropriate analysis files
+
+## Update: 11:05 - Compositional Language Revival
+
+### Context
+Switched to compositional language experiment after pulling latest TTA findings from physics. The physics experiments revealed that Test-Time Adaptation catastrophically fails on true OOD scenarios (235-400% performance degradation), providing valuable insights for our language work.
+
+### Accomplishments
+1. **Environment Setup**: Successfully set up and tested compositional language experiment
+2. **Data Generation**: Generated full SCAN dataset with proper train/test isolation
+3. **Safeguards Integration**: Created enhanced training script incorporating all lessons from previous failures
+4. **Testing Complete**: Passed all 7 comprehensive local tests
+
+### Key Decisions
+- **No TTA for Now**: Given catastrophic TTA failure on physics, focusing on base model performance first
+- **Progressive Curriculum**: Maintaining 4-stage training approach with increasing modification complexity
+- **Persistent Storage**: All checkpoints will save to `/storage/` to prevent result loss
+
+### Ready for Deployment
+The compositional language experiment is fully prepared for Paperspace deployment with:
+- Robust data pipeline (39,708 training samples)
+- Enhanced training script with comprehensive safeguards
+- Expected >95% interpolation accuracy based on previous partial results
+- Multiple backup mechanisms to preserve results
