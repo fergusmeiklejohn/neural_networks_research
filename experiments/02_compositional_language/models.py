@@ -448,6 +448,13 @@ def create_model(command_vocab_size: int,
         }
     )
     
+    # Compile the model with standard settings
+    model.compile(
+        optimizer='adam',
+        loss='sparse_categorical_crossentropy',
+        metrics=['accuracy']
+    )
+    
     return model
 
 

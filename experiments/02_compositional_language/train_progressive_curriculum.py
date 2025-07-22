@@ -218,6 +218,25 @@ def create_dataset(samples: List[Dict],
     has_modification = np.array(has_modification)
     modification_commands = np.array(modification_commands)
     
+    # Create dataset with proper format for model.fit()
+    # The model expects inputs as a dict and targets as the shifted action sequence
+    def prepare_for_training(data):
+        # Extract the action sequence for teacher forcing
+        # Input: action[:-1], Target: action[1:]
+        action = data['action']
+        
+        # Prepare inputs dict for the model
+        inputs = {
+            'command': data['command'],
+            'target': action[:, :-1],  # All tokens except the last
+            'modification': data['modification']
+        }
+        
+        # Targets are the shifted action sequence
+        targets = action[:, 1:]  # All tokens except the first
+        
+        return inputs, targets
+    
     # Create dataset
     dataset = tf.data.Dataset.from_tensor_slices({
         'command': commands,
@@ -229,6 +248,9 @@ def create_dataset(samples: List[Dict],
     # Shuffle and batch
     dataset = dataset.shuffle(buffer_size=10000)
     dataset = dataset.batch(batch_size)
+    
+    # Map to prepare for training
+    dataset = dataset.map(prepare_for_training, num_parallel_calls=tf.data.AUTOTUNE)
     dataset = dataset.prefetch(tf.data.AUTOTUNE)
     
     return dataset
@@ -239,28 +261,30 @@ def compute_accuracy(model, dataset, tokenizer, max_samples=1000):
     correct = 0
     total = 0
     
-    for batch in dataset:
+    for batch_inputs, batch_targets in dataset:
         if total >= max_samples:
             break
             
         # Generate predictions
-        commands = batch['command']
+        commands = batch_inputs['command']
         batch_size = tf.shape(commands)[0]
         
         # Get model predictions
         generated = model.generate_action(
             commands, 
-            modification=None,
+            modification=batch_inputs.get('modification', None),
             start_token=tokenizer.action_to_id['<START>'],
             end_token=tokenizer.action_to_id['<END>']
         )
         
-        # Compare with targets
-        targets = batch['action']
+        # Reconstruct full action sequences from targets
+        # targets are action[:, 1:], so we need to add START token back
+        start_tokens = tf.fill([batch_size, 1], tokenizer.action_to_id['<START>'])
+        full_targets = tf.concat([start_tokens, batch_targets], axis=1)
         
         for i in range(batch_size):
             pred_str = tokenizer.decode_action(generated[i].numpy())
-            target_str = tokenizer.decode_action(targets[i].numpy())
+            target_str = tokenizer.decode_action(full_targets[i].numpy())
             
             if pred_str == target_str:
                 correct += 1
@@ -381,30 +405,17 @@ def train_progressive_curriculum(config: Dict):
             train_loss = 0
             num_batches = 0
             
-            for batch in tqdm(dataset, desc="Training"):
+            for batch_inputs, batch_targets in tqdm(dataset, desc="Training"):
                 with tf.GradientTape() as tape:
                     # Forward pass
-                    # Check if this batch has modifications
-                    has_mod = tf.reduce_any(batch['has_modification'] > 0)
-                    
-                    inputs = {
-                        'command': batch['command'],
-                        'target': batch['action'][:, :-1]  # Exclude last token
-                    }
-                    
-                    # Only add modification if present
-                    if stage_config.get('use_modifications', False) and has_mod:
-                        inputs['modification'] = batch['modification']
-                    
-                    outputs = model(inputs, training=True)
+                    outputs = model(batch_inputs, training=True)
                     
                     # Compute loss
                     logits = outputs['logits']
-                    targets = batch['action'][:, 1:]  # Exclude first token
                     
                     # Mask padding
-                    mask = tf.cast(targets != tokenizer.action_to_id['<PAD>'], tf.float32)
-                    loss = loss_fn(targets, logits) * mask
+                    mask = tf.cast(batch_targets != tokenizer.action_to_id['<PAD>'], tf.float32)
+                    loss = loss_fn(batch_targets, logits) * mask
                     loss = tf.reduce_sum(loss) / tf.reduce_sum(mask)
                     
                     train_loss += loss.numpy()
