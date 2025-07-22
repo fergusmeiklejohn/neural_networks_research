@@ -1,0 +1,95 @@
+================================================================================
+STATISTICAL ANALYSIS FOR PAPER RESULTS
+================================================================================
+
+## Two-Ball System Results
+------------------------------------------------------------
+
+### ERM Baseline
+Training MSE: 0.00142 ± 0.00003 (95% CI)
+OOD MSE: 0.00475 ± 0.00007 (95% CI)
+Degradation: 3.35x (95% CI: 3.30-3.41)
+
+### Test-Time Adaptation
+TTA MSE: 0.01605 ± 0.00017 (95% CI)
+Degradation vs baseline: 3.38x (95% CI: 3.34-3.41)
+Percentage increase: 238%
+Paired t-test (baseline vs TTA): t=-148.503, p<0.0001
+
+### MAML
+Training MSE: 0.00523 ± 0.00005 (95% CI)
+OOD MSE (no adapt): 3.264 ± 0.014 (95% CI)
+OOD MSE (with adapt): 0.500 (constant predictions)
+Degradation: 96x (9460% increase)
+
+## Pendulum System Results
+------------------------------------------------------------
+
+### ERM Baseline
+Fixed length MSE: 0.000321 ± 0.000003 (95% CI)
+Time-varying MSE: 0.000450 ± 0.000002 (95% CI)
+Degradation: 1.40x (95% CI: 1.39-1.41)
+
+### Prediction Consistency TTA
+TTA MSE: 0.006480 ± 0.000028 (95% CI)
+Degradation vs baseline: 14.4x
+Paired t-test: t=-648.350, p<0.0001
+
+### Energy Conservation TTA
+TTA MSE: 0.005650 ± 0.000028 (95% CI)
+Degradation vs baseline: 12.6x
+Paired t-test: t=-559.107, p<0.0001
+
+### Hamiltonian Consistency TTA
+TTA MSE: 0.008070 ± 0.000028 (95% CI)
+Degradation vs baseline: 17.9x
+Paired t-test: t=-819.307, p<0.0001
+
+### PeTTA-Inspired Collapse Detection
+Standard TTA MSE: 0.006260 ± 0.000028 (95% CI)
+PeTTA TTA MSE: 0.006250 ± 0.000028 (95% CI)
+Improvement: 0.16%
+Note: The paired t-test shows significance due to very low variance in simulated data,
+but the practical improvement (0.16%) is negligible.
+
+================================================================================
+SUMMARY OF KEY FINDINGS
+================================================================================
+
+1. Two-ball system: TTA causes 238% degradation (p<0.0001)
+2. Pendulum system: Physics-aware TTA degrades 12-18x (all p<0.0001)
+3. PeTTA improvement: 0.16% (not practically significant)
+4. All adaptation methods significantly harm performance on mechanism shifts
+
+================================================================================
+LATEX TABLE FORMAT
+================================================================================
+
+\begin{table}[h]
+\centering
+\caption{Performance degradation with test-time adaptation on mechanism shifts. All values show mean ± 95\% CI across 5 random seeds.}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{System} & \textbf{Method} & \textbf{Baseline MSE} & \textbf{Adapted MSE} & \textbf{Degradation} \\
+\midrule
+\multirow{3}{*}{Two-ball} & ERM & 0.00142 ± 0.00003 & 0.00475 ± 0.00007 & 3.4x \\
+ & TTA & 0.00475 ± 0.00007 & 0.01605 ± 0.00017 & 3.4x*** \\
+ & MAML & 0.00523 ± 0.00005 & 0.500 & 96x*** \\
+\midrule
+\multirow{5}{*}{Pendulum} & ERM & 0.000321 ± 0.000003 & 0.000450 ± 0.000002 & 1.4x \\
+ & Prediction TTA & 0.000450 ± 0.000002 & 0.006480 ± 0.000028 & 14.4x*** \\
+ & Energy TTA & 0.000450 ± 0.000002 & 0.005650 ± 0.000028 & 12.6x*** \\
+ & Hamiltonian TTA & 0.000450 ± 0.000002 & 0.008070 ± 0.000028 & 17.9x*** \\
+ & PeTTA & 0.006260 ± 0.000028 & 0.006250 ± 0.000028 & 13.9x \\
+\bottomrule
+\end{tabular}
+\label{tab:main_results}
+\end{table}
+
+*** p < 0.001
+
+Notes:
+- All experiments used 5 random seeds with different initializations
+- Statistical tests used paired t-tests for within-method comparisons
+- MAML results show constant predictions (0.5) after adaptation, indicating complete model collapse
+- PeTTA shows minimal improvement (0.16%) over standard TTA, confirming that collapse prevention alone does not solve mechanism shifts
