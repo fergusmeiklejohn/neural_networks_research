@@ -319,8 +319,8 @@ def test_memory_usage():
         
         # Create data
         data_size = 1000
-        x_data = np.random.rand(data_size, 50)
-        y_data = np.random.randint(0, 10, (data_size, 20))
+        x_data = np.random.randint(0, 100, (data_size, 50))  # Integer inputs for embedding
+        y_data = np.random.randint(0, 20, (data_size,))  # 1D labels for sparse_categorical_crossentropy
         
         data_memory = process.memory_info().rss / 1024 / 1024
         print(f"   After data creation: {data_memory:.2f} MB (+{data_memory-initial_memory:.2f} MB)")
@@ -331,7 +331,7 @@ def test_memory_usage():
             layers.LSTM(256),
             layers.Dense(20, activation='softmax')
         ])
-        model.compile(optimizer='adam', loss='sparse_categorical_crossentropy')
+        model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
         
         model_memory = process.memory_info().rss / 1024 / 1024
         print(f"   After model build: {model_memory:.2f} MB (+{model_memory-data_memory:.2f} MB)")

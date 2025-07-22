@@ -78,14 +78,17 @@ class CompositionalLanguageModel:
         decoder_outputs, _, _ = decoder_lstm(
             decoder_embedding, initial_state=encoder_states
         )
-        decoder_dense = layers.Dense(
+        
+        # Keep the Dense layer separate for reuse
+        decoder_dense_layer = layers.Dense(
             self.output_vocab_size, activation='softmax',
             name='decoder_output'
-        )(decoder_outputs)
+        )
+        decoder_dense = decoder_dense_layer(decoder_outputs)
         
         # Full model
         model = keras.Model(
-            [encoder_inputs, decoder_inputs], decoder_outputs,
+            [encoder_inputs, decoder_inputs], decoder_dense,
             name='seq2seq_model'
         )
         
@@ -94,15 +97,15 @@ class CompositionalLanguageModel:
         decoder_state_input_c = layers.Input(shape=(self.lstm_dim,))
         decoder_states_inputs = [decoder_state_input_h, decoder_state_input_c]
         
-        decoder_outputs, state_h, state_c = decoder_lstm(
+        decoder_outputs_inf, state_h, state_c = decoder_lstm(
             decoder_embedding, initial_state=decoder_states_inputs
         )
         decoder_states = [state_h, state_c]
-        decoder_outputs = decoder_dense(decoder_outputs)
+        decoder_outputs_inf = decoder_dense_layer(decoder_outputs_inf)
         
         decoder = keras.Model(
             [decoder_inputs] + decoder_states_inputs,
-            [decoder_outputs] + decoder_states,
+            [decoder_outputs_inf] + decoder_states,
             name='decoder'
         )
         
