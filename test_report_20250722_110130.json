@@ -1,0 +1,49 @@
+{
+  "timestamp": "2025-07-22T11:01:30.806518",
+  "summary": "7/7 tests passed",
+  "results": [
+    {
+      "test": "Environment Setup",
+      "status": "PASSED",
+      "message": "",
+      "duration": 0.38002896308898926
+    },
+    {
+      "test": "Path Flexibility",
+      "status": "PASSED",
+      "message": "",
+      "duration": 0.00023031234741210938
+    },
+    {
+      "test": "SCAN Data Generation",
+      "status": "PASSED",
+      "message": "",
+      "duration": 1.8835067749023438e-05
+    },
+    {
+      "test": "Model Building",
+      "status": "PASSED",
+      "message": "",
+      "duration": 0.6240546703338623
+    },
+    {
+      "test": "Checkpoint/Recovery",
+      "status": "PASSED",
+      "message": "",
+      "duration": 0.6704452037811279
+    },
+    {
+      "test": "Memory Usage",
+      "status": "PASSED",
+      "message": "",
+      "duration": 4.65772008895874
+    },
+    {
+      "test": "Integration Test",
+      "status": "PASSED",
+      "message": "",
+      "duration": 0.9325299263000488
+    }
+  ],
+  "total_duration": 7.265200138092041
+}
