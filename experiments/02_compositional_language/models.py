@@ -377,21 +377,22 @@ class CompositionalLanguageModel(keras.Model):
         # Apply modification if provided and not all zeros (dummy modification)
         if modification is not None:
             # Check if modification is not just padding (all zeros)
+            # Use tf.cond for graph mode compatibility
             mod_sum = tf.reduce_sum(tf.abs(modification))
-            if mod_sum > 0:
-                rule_embeddings = self.rule_modifier(
-                    rule_embeddings, modification, training=training
-                )
+            rule_embeddings = tf.cond(
+                mod_sum > 0,
+                lambda: self.rule_modifier(rule_embeddings, modification, training=training),
+                lambda: rule_embeddings
+            )
         
         # Generate sequence if target provided (training mode)
         if target is not None:
             logits = self.sequence_generator(
                 rule_embeddings, target, training=training
             )
-            return {
-                'logits': logits,
-                'rule_outputs': rule_outputs
-            }
+            # For training with model.fit(), return just the logits tensor
+            # Keras expects the model output to match the target shape
+            return logits
         
         # Otherwise return embeddings for generation
         return {
