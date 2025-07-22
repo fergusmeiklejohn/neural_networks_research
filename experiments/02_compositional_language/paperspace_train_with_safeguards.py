@@ -192,7 +192,18 @@ def train_with_safeguards(storage_dir):
     
     # Load modifications
     mod_generator = ModificationGenerator()
-    modifications = mod_generator.load_modifications()
+    modification_pairs = mod_generator.load_modifications()
+    
+    # Convert ModificationPair objects to training format
+    modifications = []
+    for pair in modification_pairs:
+        # Create training sample from modified version
+        sample = {
+            'command': pair.modified_sample.command,
+            'action': pair.modified_sample.action,
+            'modification': pair.modification_description,
+        }
+        modifications.append(sample)
     
     # Training stages
     stages = [
@@ -223,7 +234,7 @@ def train_with_safeguards(storage_dir):
         if mods:
             # Mix base data with modifications
             stage_data = base_data[:int(len(base_data) * 0.7)]  # 70% base
-            stage_data.extend([m for m in mods if m['modification']])  # 30% mods
+            stage_data.extend(mods)  # 30% modifications (all have modifications)
         else:
             stage_data = base_data
         
