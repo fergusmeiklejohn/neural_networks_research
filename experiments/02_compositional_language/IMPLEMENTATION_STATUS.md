@@ -66,14 +66,30 @@
 
 ## 🎯 Success Criteria
 
-- [ ] >95% accuracy on standard SCAN
-- [ ] >70% consistency on rule modifications
-- [ ] >60% validity on novel combinations
-- [ ] Evidence of true compositional understanding
+- [x] >95% accuracy on standard SCAN ❌ (Achieved: 86.2%)
+- [ ] >70% consistency on rule modifications ❌ (Achieved: 84.4% but with catastrophic interference)
+- [ ] >60% validity on novel combinations ❌ (Achieved: 82.6% with further degradation)
+- [ ] Evidence of true compositional understanding ❌ (Shows catastrophic interference instead)
 
-## 📝 Notes
+## 📝 Training Results (July 22, 2025)
 
-- Built on successful physics experiment (83.51% extrapolation)
-- Uses same progressive curriculum strategy
-- Adapted for linguistic domain challenges
-- Ready for cloud deployment
+### First Complete 4-Stage Run
+- **Stage 1 (Basic SCAN)**: 86.2% accuracy ✓ - Strong baseline
+- **Stage 2 (Simple Mods)**: 84.4% accuracy, 8x loss increase ⚠️
+- **Stage 3 (Complex Mods)**: 84.4% accuracy, complete stagnation ⚠️
+- **Stage 4 (Novel Gen)**: 82.6% accuracy, further degradation ⚠️
+
+### Key Finding: Catastrophic Interference
+- Parallels physics TTA failure (235-400% degradation)
+- 800% loss increase when modifications introduced
+- Confirms distribution invention is fundamentally different from standard learning
+
+### Next Architecture Improvements
+1. Stronger modification signals (concatenate to all layers)
+2. Explicit gating mechanisms
+3. Mixed training with unmodified examples
+4. Memory components to maintain base knowledge
+
+### Files
+- Full results: `compositional_language_complete_20250722_185804/`
+- Analysis: `TRAINING_RESULTS_ANALYSIS.md`
