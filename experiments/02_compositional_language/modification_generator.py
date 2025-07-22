@@ -372,6 +372,52 @@ class ModificationGenerator:
             json.dump(metadata, f, indent=2)
         
         print(f"Saved {len(all_pairs)} modification pairs")
+    
+    def load_modifications(self) -> List[ModificationPair]:
+        """Load saved modification pairs"""
+        filepath = self.processed_dir / 'modification_pairs.pkl'
+        
+        if not filepath.exists():
+            print(f"WARNING: No modifications found at {filepath}")
+            return []
+        
+        with open(filepath, 'rb') as f:
+            data = pickle.load(f)
+        
+        # Convert dict format back to ModificationPair objects
+        pairs = []
+        for item in data:
+            # Reconstruct SCANSample objects
+            original_sample = SCANSample(
+                command=item['original']['command'],
+                action=item['original']['action'],
+                primitives=set(item['original']['primitives']),
+                modifiers=set(item['original']['modifiers']),
+                connectors=set(item['original']['connectors']),
+                length=item['original']['length']
+            )
+            
+            modified_sample = SCANSample(
+                command=item['modified']['command'],
+                action=item['modified']['action'],
+                primitives=set(item['modified']['primitives']),
+                modifiers=set(item['modified']['modifiers']),
+                connectors=set(item['modified']['connectors']),
+                length=item['modified']['length']
+            )
+            
+            # Create ModificationPair
+            pair = ModificationPair(
+                original_sample=original_sample,
+                modified_sample=modified_sample,
+                modification_type=item['modification_type'],
+                modification_description=item['modification_description'],
+                modification_rules=item['modification_rules']
+            )
+            pairs.append(pair)
+        
+        print(f"Loaded {len(pairs)} modification pairs")
+        return pairs
 
 
 def main():

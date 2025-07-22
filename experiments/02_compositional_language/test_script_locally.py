@@ -100,6 +100,15 @@ def test_script(script_path: str):
             if 'tokenizer.save(' in content:
                 issues.append("❌ Uses tokenizer.save() - should be tokenizer.save_vocabulary()")
             
+            # Check for ModificationGenerator.load_modifications()
+            if 'mod_generator.load_modifications()' in content or 'generator.load_modifications()' in content:
+                # Verify the method exists
+                from modification_generator import ModificationGenerator
+                if not hasattr(ModificationGenerator, 'load_modifications'):
+                    issues.append("❌ Calls load_modifications() but method doesn't exist in ModificationGenerator")
+                else:
+                    print("✓ ModificationGenerator.load_modifications() exists")
+            
             # Check for proper error handling
             if 'try:' not in content or 'except' not in content:
                 issues.append("⚠️  No try/except blocks for error handling")
