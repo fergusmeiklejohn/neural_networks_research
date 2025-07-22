@@ -177,10 +177,10 @@ def train_with_safeguards(storage_dir):
     tokenizer.build_vocabulary(splits['train'])
     
     # Save tokenizer
-    tokenizer_path = os.path.join(config['output_dir'], 'tokenizer.json')
-    tokenizer.save(tokenizer_path)
+    tokenizer_path = os.path.join(config['output_dir'], 'vocabulary.json')
+    tokenizer.save_vocabulary(Path(tokenizer_path))
     if storage_dir:
-        shutil.copy(tokenizer_path, os.path.join(storage_dir, 'tokenizer.json'))
+        shutil.copy(tokenizer_path, os.path.join(storage_dir, 'vocabulary.json'))
     
     # Create model
     print("Creating model...")
@@ -312,11 +312,12 @@ def comprehensive_evaluation(storage_dir):
     splits = loader.load_processed_splits()
     
     # Load tokenizer
-    tokenizer = SCANTokenizer()
-    tokenizer_path = 'outputs/safeguarded_training/tokenizer.json'
-    if os.path.exists(tokenizer_path):
-        tokenizer.load(tokenizer_path)
+    tokenizer_path = Path('outputs/safeguarded_training/vocabulary.json')
+    if tokenizer_path.exists():
+        tokenizer = SCANTokenizer(vocab_path=tokenizer_path)
+        tokenizer.load_vocabulary()
     else:
+        tokenizer = SCANTokenizer()
         tokenizer.build_vocabulary(splits['train'])
     
     # Create model and load weights
