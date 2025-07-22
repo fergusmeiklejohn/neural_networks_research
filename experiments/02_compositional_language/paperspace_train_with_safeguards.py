@@ -142,7 +142,8 @@ def train_with_safeguards(storage_dir):
     print("="*60)
     
     # Import the minimal training (most reliable)
-    from train_progressive_minimal import create_model, create_dataset, SCANTokenizer
+    from models import create_model
+    from train_progressive_curriculum import create_dataset, SCANTokenizer
     from scan_data_loader import SCANDataLoader
     from modification_generator import ModificationGenerator
     
@@ -302,7 +303,8 @@ def comprehensive_evaluation(storage_dir):
     print("STEP 3: Comprehensive Evaluation")
     print("="*60)
     
-    from train_progressive_minimal import create_model, create_dataset, SCANTokenizer
+    from models import create_model
+    from train_progressive_curriculum import create_dataset, SCANTokenizer
     from scan_data_loader import SCANDataLoader
     
     # Load everything
