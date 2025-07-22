@@ -1,0 +1,21 @@
+# Generated data and outputs
+data/
+outputs/
+storage/
+test_checkpoints/
+mock_storage/
+
+# Test reports
+test_report_*.json
+
+# Model weights
+*.h5
+*.weights.h5
+
+# Cache
+__pycache__/
+*.pyc
+
+# Temporary files
+*.tmp
+.DS_Store

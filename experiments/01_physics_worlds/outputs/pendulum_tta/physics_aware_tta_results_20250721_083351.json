@@ -1,0 +1,20 @@
+{
+  "prediction": {
+    "mse_original": 0.000450151191629555,
+    "mse_adapted": 0.006487509270066713,
+    "adaptation_factor": 14.411845154917437,
+    "adaptation_type": "prediction"
+  },
+  "energy": {
+    "mse_original": 0.000450151191629555,
+    "mse_adapted": 0.00565561456677256,
+    "adaptation_factor": 12.56381116375398,
+    "adaptation_type": "energy"
+  },
+  "hamiltonian": {
+    "mse_original": 0.000450151191629555,
+    "mse_adapted": 0.008077535081576229,
+    "adaptation_factor": 17.944049092340318,
+    "adaptation_type": "hamiltonian"
+  }
+}
