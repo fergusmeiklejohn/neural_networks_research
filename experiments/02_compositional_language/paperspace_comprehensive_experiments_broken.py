@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 """
-Fixed version of paperspace_comprehensive_experiments.py
+Comprehensive Paperspace experiment runner for compositional language.
 
-Fixes:
-1. Build v1 models before calling count_params
-2. Use fixed v2 model with proper tf.cond structure
+Runs multiple experiments to test:
+1. Original model (v1) with standard training
+2. Original model (v1) with mixed training
+3. Improved model (v2) with standard training  
+4. Improved model (v2) with mixed training
+
+All with comprehensive safeguards and result preservation.
 """
 
 import os
@@ -21,7 +25,7 @@ import numpy as np
 
 # Import all our modules
 from models import create_model
-from models_v2 import create_model_v2  # Now using fixed version
+from models_v2 import create_model_v2
 from train_progressive_curriculum import SCANTokenizer, create_dataset
 from scan_data_loader import SCANDataLoader
 from modification_generator import ModificationGenerator
@@ -179,17 +183,7 @@ class ComprehensiveExperimentRunner:
         
         if model_version == 'v1':
             model = create_model(cmd_vocab, act_vocab, d_model=128)
-            
-            # FIX: Build model before counting params
-            dummy_inputs = {
-                'command': tf.constant([[1, 2, 3, 4, 5]]),
-                'target': tf.constant([[1, 2, 3, 4, 5, 6]]),
-                'modification': tf.constant([[1, 2, 3]])
-            }
-            _ = model(dummy_inputs, training=False)
-            
         else:
-            # Use fixed v2 model
             model = create_model_v2(cmd_vocab, act_vocab, d_model=128)
         
         print(f"Model: {model_version}, Parameters: {model.count_params():,}")
@@ -392,7 +386,7 @@ class ComprehensiveExperimentRunner:
 
 def main():
     """Run comprehensive experiments."""
-    print("COMPOSITIONAL LANGUAGE COMPREHENSIVE EXPERIMENTS (FIXED)")
+    print("COMPOSITIONAL LANGUAGE COMPREHENSIVE EXPERIMENTS")
     print("Starting at:", datetime.now().isoformat())
     
     runner = ComprehensiveExperimentRunner()
