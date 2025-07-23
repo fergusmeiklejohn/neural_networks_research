@@ -1,0 +1,49 @@
+{
+  "timestamp": "2025-07-23T06:12:32.879692",
+  "tests": {
+    "Data loading": {
+      "success": true,
+      "details": "Loaded 39708 train samples"
+    },
+    "Tokenizer": {
+      "success": true,
+      "details": "Vocab sizes: cmd=17, act=10"
+    },
+    "Modification generation": {
+      "success": true,
+      "details": "Generated 313 total modifications"
+    },
+    "Model v1": {
+      "success": true,
+      "details": "Parameters: 400,151"
+    },
+    "Model v2": {
+      "success": true,
+      "details": "Parameters: 2,078,743"
+    },
+    "Base dataset creation": {
+      "success": true,
+      "details": "Batch size correct"
+    },
+    "Mixed dataset creation": {
+      "success": true,
+      "details": "Modifications included"
+    },
+    "Training loop": {
+      "success": false,
+      "details": "Exception encountered when calling CompositionalLanguageModelV2.call().\n\n\u001b[1m[5, 2]\u001b[0m\n\nArguments received by CompositionalLanguageModelV2.call():\n  \u2022 inputs={'command': 'tf.Tensor(shape=(None, 50), dtype=int32)', 'target': 'tf.Tensor(shape=(None, 99), dtype=int32)', 'modification': 'tf.Tensor(shape=(None, 20), dtype=int32)'}\n  \u2022 training=True"
+    },
+    "Path detection": {
+      "success": true,
+      "details": "Using: /Users/fergusmeiklejohn/conductor/repo/neural_networks_research/calgary"
+    },
+    "Directory creation": {
+      "success": true,
+      "details": "Can create directories"
+    }
+  },
+  "errors": [
+    "Training: Exception encountered when calling CompositionalLanguageModelV2.call().\n\n\u001b[1m[5, 2]\u001b[0m\n\nArguments received by CompositionalLanguageModelV2.call():\n  \u2022 inputs={'command': 'tf.Tensor(shape=(None, 50), dtype=int32)', 'target': 'tf.Tensor(shape=(None, 99), dtype=int32)', 'modification': 'tf.Tensor(shape=(None, 20), dtype=int32)'}\n  \u2022 training=True"
+  ],
+  "warnings": []
+}
