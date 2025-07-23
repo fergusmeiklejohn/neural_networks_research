@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """
-Fixed version of models_v2.py addressing the tf.cond issue.
+Improved Neural Network Models for Compositional Language Distribution Invention
 
-Key fix: Both branches of tf.cond must return the same structure.
+Key improvements over v1:
+1. Explicit gating mechanism for selective rule modification
+2. Stronger modification signal propagation (concatenated to all layers)
+3. Memory component to maintain base knowledge
+4. Residual connections to prevent catastrophic forgetting
 """
 
 import os
@@ -46,6 +50,11 @@ class PositionalEncoding(keras.layers.Layer):
 class GatedModificationLayer(keras.layers.Layer):
     """
     Gated modification layer that selectively applies modifications.
+    
+    Key innovation: Explicit gating mechanism that determines:
+    1. Which parts of the representation to modify
+    2. How strongly to apply the modification
+    3. What to preserve from the original representation
     """
     
     def __init__(self, d_model, dropout_rate=0.1):
@@ -72,6 +81,13 @@ class GatedModificationLayer(keras.layers.Layer):
     def call(self, original_embedding, modification_signal, training=None):
         """
         Apply gated modification to embeddings.
+        
+        Args:
+            original_embedding: Original rule embeddings
+            modification_signal: Encoded modification request
+            
+        Returns:
+            Modified embeddings with selective gating
         """
         # Concatenate original and modification for gate computation
         combined = tf.concat([original_embedding, modification_signal], axis=-1)
@@ -94,6 +110,11 @@ class GatedModificationLayer(keras.layers.Layer):
 class ImprovedRuleModificationComponent(keras.Model):
     """
     Improved component that modifies extracted rules with explicit gating.
+    
+    Key improvements:
+    1. Modification signal is propagated to ALL layers, not just cross-attention
+    2. Explicit gating mechanism for selective modification
+    3. Multiple modification layers for progressive refinement
     """
     
     def __init__(self,
@@ -102,9 +123,6 @@ class ImprovedRuleModificationComponent(keras.Model):
                  num_layers: int = 4,
                  dropout_rate: float = 0.1):
         super().__init__()
-        
-        self.num_layers = num_layers  # Store for creating dummy gates
-        self.d_model = d_model
         
         # Modification request encoder
         self.mod_embedding = keras.layers.Embedding(vocab_size, d_model)
@@ -158,7 +176,10 @@ class CompositionalLanguageModelV2(keras.Model):
     """
     Improved model for compositional language distribution invention.
     
-    Key fix: tf.cond branches now return the same structure.
+    Key improvements:
+    1. Uses ImprovedRuleModificationComponent with gating
+    2. Maintains separate pathways for base and modified knowledge
+    3. Better handling of modification signals
     """
     
     def __init__(self,
@@ -212,29 +233,18 @@ class CompositionalLanguageModelV2(keras.Model):
             # Check if modification is not just padding
             mod_sum = tf.reduce_sum(tf.abs(modification))
             
-            # FIX: Both branches must return the same structure
+            # Use conditional logic for modification
             def apply_modification():
-                modified, gates_list = self.rule_modifier(
+                modified, gates = self.rule_modifier(
                     rule_embeddings, 
                     modification, 
                     training=training
                 )
-                return modified, gates_list
+                return modified, gates
             
             def keep_original():
-                # Create dummy gates with same structure as apply_modification
-                batch_size = tf.shape(rule_embeddings)[0]
-                seq_len = tf.shape(rule_embeddings)[1]
-                
-                # Create list of dummy gate tensors matching the structure
-                dummy_gates = []
-                for _ in range(self.rule_modifier.num_layers):
-                    dummy_gate = tf.zeros([batch_size, seq_len, self.rule_modifier.d_model])
-                    dummy_gates.append(dummy_gate)
-                
-                return rule_embeddings, dummy_gates
+                return rule_embeddings, None
             
-            # Now both branches return (tensor, list_of_tensors)
             rule_embeddings, gates = tf.cond(
                 mod_sum > 0,
                 apply_modification,
@@ -269,7 +279,7 @@ def create_model_v2(command_vocab_size: int,
         **kwargs
     )
     
-    # Build model with dummy inputs
+    # Build model
     dummy_command = tf.constant([[1, 2, 3, 4, 5]])
     dummy_target = tf.constant([[1, 2, 3, 4, 5, 6]])
     dummy_modification = tf.constant([[1, 2, 3]])
@@ -284,8 +294,8 @@ def create_model_v2(command_vocab_size: int,
 
 
 if __name__ == '__main__':
-    # Test the fixed model
-    print("Testing fixed compositional language model...")
+    # Test the improved model
+    print("Testing improved compositional language model...")
     
     model = create_model_v2(
         command_vocab_size=20,
@@ -296,17 +306,13 @@ if __name__ == '__main__':
     print(f"\nModel created successfully!")
     print(f"Total parameters: {model.count_params():,}")
     
-    # Test with Paperspace-like shapes
+    # Test forward pass
     test_inputs = {
-        'command': tf.constant(np.random.randint(0, 20, size=(4, 50))),
-        'target': tf.constant(np.random.randint(0, 10, size=(4, 99))),
-        'modification': tf.constant(np.random.randint(0, 20, size=(4, 20)))
+        'command': tf.constant([[1, 2, 3, 4, 5]]),
+        'target': tf.constant([[1, 2, 3, 4, 5, 6]]),
+        'modification': tf.constant([[7, 8, 9]])
     }
     
-    print("\nTesting with Paperspace shapes:")
-    for k, v in test_inputs.items():
-        print(f"  {k}: {v.shape}")
-    
     output = model(test_inputs, training=True)
-    print(f"\nOutput shape: {output.shape}")
-    print("\n✓ Fixed model works with Paperspace shapes!")
+    print(f"Output shape: {output.shape}")
+    print("\n✓ Model v2 is ready for training!")

@@ -1,0 +1,30 @@
+{
+  "timestamp": "2025-07-23T06:53:04.570308",
+  "tests": {
+    "Model Parameter Counting": {
+      "success": true,
+      "details": "v1: 400,535, v2: 2,079,127"
+    },
+    "Realistic Training Shapes": {
+      "success": true,
+      "details": "Both models work with realistic shapes"
+    },
+    "Modification Conditions": {
+      "success": true,
+      "details": "tf.cond works with all modification conditions"
+    },
+    "Model Save/Load": {
+      "success": false,
+      "error": "The filename must end in `.weights.h5`. Received: filepath=temp_v1_weights.h5",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/fergusmeiklejohn/conductor/repo/neural_networks_research/calgary/experiments/02_compositional_language/validate_experiments_improved.py\", line 51, in test\n    result = func()\n             ^^^^^^\n  File \"/Users/fergusmeiklejohn/conductor/repo/neural_networks_research/calgary/experiments/02_compositional_language/validate_experiments_improved.py\", line 201, in test_model_save_load\n    model_v1.save_weights(v1_path)\n  File \"/Users/fergusmeiklejohn/miniconda3/envs/dist-invention/lib/python3.11/site-packages/keras/src/utils/traceback_utils.py\", line 122, in error_handler\n    raise e.with_traceback(filtered_tb) from None\n  File \"/Users/fergusmeiklejohn/miniconda3/envs/dist-invention/lib/python3.11/site-packages/keras/src/saving/saving_api.py\", line 227, in save_weights\n    raise ValueError(\nValueError: The filename must end in `.weights.h5`. Received: filepath=temp_v1_weights.h5\n"
+    },
+    "Full Training Pipeline": {
+      "success": true,
+      "details": "Full pipeline works for both models"
+    }
+  },
+  "errors": [
+    "Model Save/Load: The filename must end in `.weights.h5`. Received: filepath=temp_v1_weights.h5"
+  ],
+  "warnings": []
+}
