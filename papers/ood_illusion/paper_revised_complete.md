@@ -1,16 +1,22 @@
-# The OOD Illusion in Physics Learning: When Generalization Methods Make Things Worse
+# Beyond the OOD Illusion: When Generalization Methods Make Things Worse and Evaluation Hides It
 
 ## Abstract
 
-Recent advances in out-of-distribution (OOD) generalization have shown promising results on benchmarks involving style changes, corruptions, and domain shifts. However, when we evaluated these methods on physics prediction tasks with mechanism shifts—where the underlying dynamical equations change—we observed considerable performance degradation: test-time adaptation (TTA) increased prediction error by 235% on time-varying gravity tasks, while Model-Agnostic Meta-Learning (MAML) with adaptation showed a 62,290% increase. To test generality, we implemented pendulum experiments with time-varying length and found that even physics-aware TTA variants (using energy and Hamiltonian consistency) degraded performance by 12-18x. We propose a taxonomy distinguishing surface variations, statistical shifts, and mechanism changes, showing that current self-supervised adaptation methods succeed on the former but face systematic limitations on the latter. Our analysis reveals that when test distributions involve different generative processes, gradient alignment between self-supervised and true objectives becomes negative, causing adaptation to move away from correct solutions. These findings suggest that achieving OOD generalization on physics tasks with mechanism shifts may require approaches beyond current self-supervised adaptation methods.
+Recent advances in out-of-distribution (OOD) generalization have shown promising results on benchmarks involving style changes, corruptions, and domain shifts. However, when we evaluated these methods on tasks with mechanism shifts—where underlying generative processes change—we observed considerable performance degradation across multiple domains. In physics prediction, test-time adaptation (TTA) increased error by 235% on time-varying gravity tasks, while MAML with adaptation showed a 62,290% increase. Physics-aware TTA variants degraded performance by 12-18x on pendulum tasks. In compositional language learning, we discovered a deeper issue: validation sets that appeared to show stable 84.3% accuracy actually contained no modified examples, masking complete failure on rule modification tasks. This led us to identify "layers of illusions" in machine learning research—evaluation illusions, architectural illusions, metric illusions, and training illusions—that compound to obscure fundamental limitations. We propose a taxonomy distinguishing surface variations, statistical shifts, and mechanism changes, showing that current self-supervised adaptation methods succeed on the former but face systematic limitations on the latter. Our analysis reveals that when test distributions involve different generative processes, gradient alignment between self-supervised and true objectives becomes negative. These findings suggest that achieving generalization on mechanism shifts requires not only new methods but also fundamental changes to how we evaluate and develop machine learning systems.
 
 ## 1. Introduction
 
-Machine learning models for physics prediction face a particular challenge: when the underlying physical mechanisms change over time, performance can degrade considerably. While recent advances in out-of-distribution (OOD) generalization—including test-time adaptation methods like PeTTA (Bohdal et al., 2024) and physics-informed approaches like TAIP (Fu et al., 2025)—show promise for many distribution shifts, we investigate a specific class that poses unique challenges: mechanism shifts in physics, where the generative equations themselves change.
+Machine learning faces a fundamental challenge: when underlying mechanisms change, performance can degrade considerably. While recent advances in out-of-distribution (OOD) generalization—including test-time adaptation methods like PeTTA (Bohdal et al., 2024) and physics-informed approaches like TAIP (Fu et al., 2025)—show promise for many distribution shifts, we investigate a specific class that poses unique challenges: mechanism shifts, where the generative processes themselves change. Our investigation spans two domains—physics prediction and compositional language learning—revealing not only consistent failures but also systemic issues in how such failures can be hidden by standard evaluation practices.
 
 We evaluated state-of-the-art adaptation methods on two physics prediction tasks with mechanism shifts. In a two-ball system with time-varying gravity, test-time adaptation (TTA) increased prediction error by 235%, while MAML with adaptation showed a 62,290% increase. To test generality, we implemented pendulum experiments with time-varying length and found that even physics-aware TTA variants—using energy conservation and Hamiltonian consistency losses—degraded performance by 12-18x. We also implemented collapse detection inspired by PeTTA, which successfully prevented degenerate solutions but provided negligible improvement (0.06%) in accuracy.
 
 These results reveal a fundamental challenge: when test distributions require new computational operations absent from the training regime (such as the L̇/L term that emerges with time-varying pendulum length), current self-supervised adaptation methods cannot bridge this gap. This finding complements recent advances rather than contradicting them—methods like PeTTA excel at maintaining stability within the model's computational framework, while TAIP succeeds when physical laws remain fixed. Our work identifies the boundaries where new approaches are needed.
+
+### Beyond Physics: Compositional Language and Layers of Illusions
+
+To test the generality of these findings, we conducted experiments on compositional language tasks using the SCAN dataset, where models learn rule-based command-to-action mappings. When introducing rule modifications (e.g., "walk" → "skip"), we observed an 8.2x loss increase and architectural improvements that decreased rather than improved performance. Most significantly, we discovered that validation accuracy remained constant at 84.3% across all training stages—not due to successful adaptation, but because the validation set contained no modified examples.
+
+This discovery revealed a broader pattern: multiple "layers of illusions" in machine learning research that compound to mask fundamental limitations. We identify four types: (1) evaluation illusions where metrics don't measure intended capabilities, (2) architectural illusions where added complexity hinders rather than helps, (3) metric illusions where aggregates hide failure modes, and (4) training illusions where curricula prevent the generalization they aim to promote. These illusions extend beyond individual model failures to affect how we design, evaluate, and interpret machine learning systems.
 
 ### The Challenge of Mechanism Shifts
 
@@ -52,19 +58,23 @@ Our analysis reveals why adaptation fails on mechanism shifts:
 
 This paper makes the following contributions:
 
-1. **Empirical demonstration across multiple systems**: We show TTA degradation on two different mechanism shifts (gravity variation, pendulum length variation), with comprehensive testing including physics-aware variants and collapse detection.
+1. **Empirical demonstration across multiple domains**: We show consistent failures on mechanism shifts in both physics (gravity variation, pendulum length variation) and compositional language (rule modifications), with comprehensive testing including physics-aware variants and architectural improvements.
 
-2. **Mechanistic understanding**: We identify gradient misalignment as the cause of adaptation failure and show why physics-aware losses don't help when physics changes.
+2. **Discovery of evaluation illusions**: Through compositional language experiments, we reveal how standard evaluation practices can mask complete failure on intended tasks, with constant 84.3% validation accuracy hiding inability to handle modifications.
 
-3. **Taxonomy of distribution shifts**: We distinguish surface variations, statistical shifts, and mechanism changes, showing current methods succeed on the former but fail on the latter.
+3. **Identification of layers of illusions**: We document how evaluation, architectural, metric, and training illusions compound to create false confidence in approaches that cannot work, extending beyond model failures to research methodology.
 
-4. **Positioning relative to recent advances**: We clarify that methods like PeTTA and TAIP succeed in their intended domains (stability preservation, parameter adaptation) while mechanism shifts require fundamentally different solutions.
+4. **Mechanistic understanding**: We identify gradient misalignment as the cause of adaptation failure and show why self-supervised losses fail when generative processes change.
+
+5. **Comprehensive taxonomy**: We distinguish surface variations, statistical shifts, and mechanism changes based on computational requirements, showing current methods succeed on the former but systematically fail on the latter.
+
+6. **Methodological implications**: We demonstrate the need for fundamental changes to how we evaluate and develop machine learning systems, not just new algorithms.
 
 ### Paper Organization
 
-Section 2 reviews OOD methods and positions our work relative to recent advances. Section 3 describes our experimental setup for both physics systems. Section 4 presents comprehensive results including physics-aware TTA and collapse detection. Section 5 analyzes gradient alignment and why adaptation fails. Section 6 proposes a taxonomy of distribution shifts. Section 7 discusses implications for future method development. Section 8 concludes.
+Section 2 reviews OOD methods and positions our work relative to recent advances. Section 3 describes our experimental setup for physics and language systems. Section 4 presents comprehensive results including physics experiments, compositional language findings, and the discovery of evaluation illusions. Section 5 analyzes why adaptation fails, including gradient alignment and the layers of illusions framework. Section 6 proposes a taxonomy of distribution shifts. Section 7 discusses implications for future method development. Section 8 concludes.
 
-Our findings suggest that achieving OOD generalization on physics tasks with mechanism shifts may require approaches beyond current self-supervised adaptation methods—potentially involving modular architectures that can express new computational operations or program synthesis methods that can introduce new terms at test time. This work aims to delineate the boundaries of current approaches and inspire development of methods for this challenging but important class of distribution shift.
+Our findings suggest that achieving generalization on mechanism shifts requires addressing both algorithmic and methodological challenges. Beyond developing new approaches—potentially involving modular architectures or program synthesis—we must fundamentally reconsider how we evaluate and validate machine learning systems. The layers of illusions we identify affect not just individual experiments but the entire research pipeline. This work aims to delineate the boundaries of current approaches while highlighting systemic issues that may be obscuring progress across machine learning research.
 
 ## 2. Background and Related Work
 
@@ -285,6 +295,42 @@ We compare against:
 
 All code and data generation scripts are available for reproducibility.
 
+### 3.9 Compositional Language Experiments
+
+To test mechanism shifts beyond physics, we designed experiments using the SCAN dataset (Lake & Baroni, 2018), which requires learning compositional mappings from commands to action sequences.
+
+#### Task Structure
+
+We implemented a 4-stage progressive curriculum:
+- **Stage 1**: Basic SCAN commands (e.g., "walk" → "I_WALK", "turn left" → "I_TURN_LEFT")
+- **Stage 2**: Simple modifications (e.g., "walk" → "skip", introducing new action mappings)
+- **Stage 3**: Complex modifications (multiple simultaneous rule changes)
+- **Stage 4**: Novel generation (creative combinations of modifications)
+
+This parallels physics mechanism shifts: Stage 1 learns base rules (like constant gravity), while Stages 2-4 require adapting to modified rules (like time-varying parameters).
+
+#### Model Architectures
+
+**v1 Architecture**: Transformer-based with separate rule extraction and sequence generation components
+- Command encoder: 4 transformer layers (256 dimensions, 8 heads)
+- Rule extraction heads: Primitive, direction, modifier, and connector predictions
+- Sequence generator: Decoder with cross-attention to rule embeddings
+
+**v2 Architecture**: Enhanced with gating mechanisms for selective modification
+- Gated modification layers: Learn when to apply vs. preserve original rules
+- Cross-attention between modifications and base representations
+- Explicit pathways for unmodified information flow
+
+#### Training Strategies
+
+We compared two approaches:
+1. **Standard training**: Each stage uses only its designated data
+2. **Mixed training**: Later stages include unmodified examples (70/30 ratio in Stage 2, decreasing to 30/70 in Stage 4)
+
+#### Evaluation Design
+
+Critically, we used standard train/validation/test splits from SCAN. As we discovered, this created a fundamental evaluation issue that would reveal broader methodological problems in machine learning research.
+
 ## 4. Empirical Results
 
 We present comprehensive results across two physics systems with mechanism shifts, including tests of physics-aware adaptation variants and collapse detection.
@@ -411,6 +457,51 @@ All reported degradations are statistically significant (p < 0.001 unless noted)
 
 These results demonstrate that current self-supervised adaptation methods, including recent advances, face fundamental limitations when test distributions involve different generative processes than training data.
 
+### 4.6 Compositional Language Experiments
+
+To test the generality of our findings beyond physics domains, we conducted experiments on compositional language tasks using the SCAN dataset (Lake & Baroni, 2018), where models learn to map commands to action sequences.
+
+#### 4.6.1 Task Design
+
+We designed a progressive curriculum with rule modifications:
+- **Stage 1**: Basic SCAN commands (e.g., "walk" → "I_WALK")
+- **Stage 2**: Simple modifications (e.g., "walk" → "skip")
+- **Stage 3**: Complex modifications (combinations of rule changes)
+- **Stage 4**: Novel generation tasks
+
+This setup parallels our physics experiments: base rules (like constant gravity) are modified (like time-varying gravity), requiring models to adapt to new compositional structures.
+
+#### 4.6.2 Architecture Variants
+
+We tested two architectures:
+- **v1**: Standard transformer with rule extraction and sequence generation
+- **v2**: Enhanced with gating mechanisms for selective modification
+
+We also compared standard training versus mixed training (including unmodified examples in later stages).
+
+#### 4.6.3 Key Results
+
+Training four model variants revealed consistent patterns:
+
+**Table: Compositional Language Results**
+| Model | Stage 1 Acc | Stage 2 Acc | Val Acc | Loss Increase |
+|-------|-------------|-------------|---------|---------------|
+| v1_standard | 86.2% | 84.4% | 84.3% | 8.2x |
+| v1_mixed | 86.0% | 85.6% | 84.3% | 4.1x |
+| v2_standard | 99.8% | 4.2% | 4.2% | 31.7x |
+| v2_mixed | 91.2% | 86.6% | 84.3% | 3.6x |
+
+The most significant finding: **validation accuracy remained constant at 84.3%** across all stages for three of four models, despite substantial training changes.
+
+#### 4.6.4 The Evaluation Illusion
+
+Further investigation revealed that the validation set contained no modified examples—it tested only base SCAN performance. This meant that apparent "stable performance" masked complete failure on modification tasks. When modifications were introduced in training:
+- Loss increased 8.2x (v1_standard) indicating learning difficulty
+- v2_standard collapsed to 4.2% accuracy despite architectural improvements
+- Mixed training reduced loss spikes but validation couldn't measure modification performance
+
+This discovery led to a broader realization about evaluation methodology in machine learning research, which we analyze in Section 5.9.
+
 ## 5. Analysis: Why Adaptation Methods Fail
 
 ### 5.1 The Objective Mismatch
@@ -528,6 +619,53 @@ Combine strengths of current methods:
 ### 5.8 Summary
 
 Current TTA improvements operate successfully within their intended domains. PeTTA prevents collapse, TAIP leverages valid physics knowledge, and comprehensive benchmarks like TTAB map the landscape of challenges. Our work identifies mechanism shifts as a frontier where current methods reach their limits—not due to implementation issues but fundamental assumptions about what adaptation can achieve within fixed computational frameworks. This delineation helps focus future research on the distinct challenge of mechanism learning.
+
+### 5.9 Layers of Illusions in Machine Learning Research
+
+The compositional language experiments revealed a broader pattern extending beyond model failures. We identify four interconnected illusions that can mask fundamental limitations in machine learning systems:
+
+#### 5.9.1 Evaluation Illusions
+
+Our constant 84.3% validation accuracy across all training stages exemplifies how evaluation design can create false confidence. The validation set, containing only unmodified SCAN examples, could not measure modification performance. This pattern appears across machine learning:
+- ImageNet "generalization" benchmarks that may test memorization
+- Robustness evaluations using only superficial perturbations  
+- Language benchmarks solvable through shallow heuristics
+
+The illusion: metrics appear to measure capability X but actually measure simpler capability Y.
+
+#### 5.9.2 Architectural Illusions
+
+Our v2 architecture with sophisticated gating mechanisms achieved 4.2% accuracy—worse than the simpler v1 model. The added complexity created new failure modes rather than solving the core problem. This reflects a broader pattern where architectural innovations may hinder rather than help:
+- Attention mechanisms that increase optimization difficulty
+- Modular designs that fail to coordinate effectively
+- Gating mechanisms that never learn when to activate
+
+The illusion: complex architectures seem like they should improve performance but introduce additional learning challenges that dominate any benefits.
+
+#### 5.9.3 Metric Illusions
+
+Aggregate metrics can hide critical failure patterns. An 82% average accuracy might represent:
+- Perfect performance on base tasks (100%) but complete failure on modifications (0%)
+- Consistent mediocre performance across all tasks (82%)
+- High variance with unpredictable failures
+
+Without decomposition by task type and difficulty, these scenarios appear identical in standard reporting.
+
+#### 5.9.4 Training Illusions
+
+Progressive curricula and mixed training strategies seemed beneficial but may prevent the generalization they aim to promote. By carefully scaffolding learning, we might teach models to depend on scaffolding rather than develop robust representations. Our mixed training reduced loss spikes but couldn't overcome the fundamental inability to handle rule modifications.
+
+#### 5.9.5 Implications for Research Methodology
+
+These illusions compound: flawed evaluation (constant validation accuracy) combines with architectural complexity (gating mechanisms) and training assumptions (progressive curriculum) to create false confidence in approaches that fundamentally cannot work.
+
+This suggests the need for:
+- **Multi-perspective evaluation**: Test behavioral capabilities, mechanistic understanding, and failure modes separately
+- **Simplicity preference**: Start with minimal architectures to understand core challenges
+- **Honest reporting**: Prominently feature what doesn't work alongside successes
+- **Evaluation scrutiny**: Verify that test sets actually measure intended capabilities
+
+The compositional language experiments thus provide a second domain demonstrating mechanism shift failures while revealing how standard research practices can systematically obscure these limitations.
 
 ## 6. A Taxonomy of Distribution Shifts
 
@@ -782,9 +920,9 @@ These questions suggest directions for future research in out-of-distribution ge
 
 ## 8. Conclusion
 
-We have shown that on physics tasks involving mechanism shifts—where the data-generating equations change—current self-supervised adaptation methods show systematic performance degradation. Test-time adaptation increased error by 235% on time-varying gravity and 12-18x on variable-length pendulum tasks, even when using physics-aware losses. Our implementation of collapse detection inspired by PeTTA successfully prevented degenerate solutions but provided negligible accuracy improvement (0.06%), demonstrating that stability and accuracy are orthogonal challenges for mechanism shifts.
+We have shown that mechanism shifts—where underlying generative processes change—pose fundamental challenges across multiple domains. In physics, test-time adaptation increased error by 235% on time-varying gravity and 12-18x on variable-length pendulum tasks, even with physics-aware losses. In compositional language learning, we observed 8.2x loss increases when introducing rule modifications, with architectural improvements decreasing rather than improving performance. Most significantly, our discovery that validation accuracy remained constant at 84.3% revealed not successful adaptation but evaluation sets lacking modified examples entirely.
 
-These empirical results across two different physics systems reveal a fundamental limitation: when test distributions require new computational operations (such as the L̇/L term in variable pendulum dynamics), parameter adaptation within fixed architectures cannot bridge this gap. Our gradient alignment analysis explains why—self-supervised objectives become negatively aligned with true prediction error under mechanism shifts, causing adaptation to move away from accurate solutions.
+This finding led to identifying "layers of illusions" in machine learning research that compound to obscure fundamental limitations. Evaluation illusions mask what metrics actually measure, architectural illusions add complexity that hinders rather than helps, metric illusions hide critical failure modes, and training illusions prevent the generalization they aim to promote. These results across physics and language domains reveal that when test distributions require new computational operations, parameter adaptation within fixed architectures cannot bridge this gap—and standard evaluation practices may systematically hide these failures.
 
 ### Positioning Within Current Research
 
@@ -825,9 +963,15 @@ We acknowledge several limitations:
 
 ### Final Thoughts
 
-This work identifies mechanism shifts in physics as a concrete challenge where current self-supervised adaptation methods fail despite recent advances. By demonstrating this across multiple systems with comprehensive testing—including physics-aware losses and collapse detection—we hope to inspire development of methods that can handle changes in computational requirements, not just parameter values.
+This work identifies mechanism shifts as a fundamental challenge where current adaptation methods fail across domains. More critically, our discovery of layers of illusions reveals how standard research practices can systematically obscure these failures. The constant 84.3% validation accuracy that masked complete failure on modifications exemplifies a broader pattern where evaluation design, architectural choices, metrics, and training strategies compound to create false confidence.
 
-The ability to adapt to new mechanisms has implications beyond physics prediction, from climate models encountering tipping points to financial systems experiencing regime changes. Understanding the boundaries of current methods is essential for their safe deployment and for directing research toward the remaining challenges in out-of-distribution generalization.
+These findings have implications beyond specific algorithms. They suggest we need fundamental changes to how we develop and evaluate machine learning systems:
+- Evaluation sets must explicitly test intended capabilities, not proxies
+- Architectural complexity should be justified by improved understanding, not hope
+- Metrics must decompose performance to reveal failure modes
+- Research must prominently report what doesn't work alongside successes
+
+The ability to adapt to new mechanisms remains crucial for applications from climate modeling to economic forecasting. But achieving this requires not just new methods but also confronting the illusions that may be hiding how far we still have to go. By documenting both algorithmic limitations and methodological blind spots, we hope to inspire more rigorous approaches to one of machine learning's most important challenges.
 
 ## References
 
@@ -879,29 +1023,31 @@ The ability to adapt to new mechanisms has implications beyond physics predictio
 
 20. **Miller, J., Krauth, K., Recht, B., & Schmidt, L.** (2020). The Effect of Natural Distribution Shift on Question Answering Models. *International Conference on Machine Learning (ICML)*, 119, 6905-6916.
 
+21. **Lake, B. M., & Baroni, M.** (2018). Generalization without Systematicity: On the Compositional Skills of Sequence-to-Sequence Recurrent Networks. *International Conference on Machine Learning (ICML)*, 80, 2873-2882.
+
 ### Physics-Informed Machine Learning
 
-21. **Raissi, M., Perdikaris, P., & Karniadakis, G. E.** (2019). Physics-Informed Neural Networks: A Deep Learning Framework for Solving Forward and Inverse Problems Involving Nonlinear Partial Differential Equations. *Journal of Computational Physics*, 378, 686-707.
+22. **Raissi, M., Perdikaris, P., & Karniadakis, G. E.** (2019). Physics-Informed Neural Networks: A Deep Learning Framework for Solving Forward and Inverse Problems Involving Nonlinear Partial Differential Equations. *Journal of Computational Physics*, 378, 686-707.
 
-22. **Chen, R. T., Rubanova, Y., Bettencourt, J., & Duvenaud, D. K.** (2018). Neural Ordinary Differential Equations. *Advances in Neural Information Processing Systems (NeurIPS)*, 31.
+23. **Chen, R. T., Rubanova, Y., Bettencourt, J., & Duvenaud, D. K.** (2018). Neural Ordinary Differential Equations. *Advances in Neural Information Processing Systems (NeurIPS)*, 31.
 
-23. **Greydanus, S., Dzamba, M., & Yosinski, J.** (2019). Hamiltonian Neural Networks. *Advances in Neural Information Processing Systems (NeurIPS)*, 32.
+24. **Greydanus, S., Dzamba, M., & Yosinski, J.** (2019). Hamiltonian Neural Networks. *Advances in Neural Information Processing Systems (NeurIPS)*, 32.
 
-24. **Cranmer, M., Greydanus, S., Hoyer, S., Battaglia, P., Spergel, D., & Ho, S.** (2020). Lagrangian Neural Networks. *arXiv preprint*.
+25. **Cranmer, M., Greydanus, S., Hoyer, S., Battaglia, P., Spergel, D., & Ho, S.** (2020). Lagrangian Neural Networks. *arXiv preprint*.
 
-25. **Lu, L., Jin, P., Pang, G., Zhang, Z., & Karniadakis, G. E.** (2021). Learning Nonlinear Operators via DeepONet Based on the Universal Approximation Theorem of Operators. *Nature Machine Intelligence*, 3(3), 218-229.
+26. **Lu, L., Jin, P., Pang, G., Zhang, Z., & Karniadakis, G. E.** (2021). Learning Nonlinear Operators via DeepONet Based on the Universal Approximation Theorem of Operators. *Nature Machine Intelligence*, 3(3), 218-229.
 
 ### Ensemble and Exploration Methods
 
-26. **Lakshminarayanan, B., Pritzel, A., & Blundell, C.** (2017). Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles. *Advances in Neural Information Processing Systems (NeurIPS)*, 30.
+27. **Lakshminarayanan, B., Pritzel, A., & Blundell, C.** (2017). Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles. *Advances in Neural Information Processing Systems (NeurIPS)*, 30.
 
-27. **Bengio, E., Jain, M., Korablyov, M., Precup, D., & Bengio, Y.** (2021). Flow Network based Generative Models for Non-Iterative Diverse Candidate Generation. *Advances in Neural Information Processing Systems (NeurIPS)*, 34.
+28. **Bengio, E., Jain, M., Korablyov, M., Precup, D., & Bengio, Y.** (2021). Flow Network based Generative Models for Non-Iterative Diverse Candidate Generation. *Advances in Neural Information Processing Systems (NeurIPS)*, 34.
 
-28. **Fort, S., Hu, H., & Lakshminarayanan, B.** (2019). Deep Ensembles: A Loss Landscape Perspective. *arXiv preprint*.
+29. **Fort, S., Hu, H., & Lakshminarayanan, B.** (2019). Deep Ensembles: A Loss Landscape Perspective. *arXiv preprint*.
 
-29. **Ovadia, Y., Fertig, E., Ren, J., Nado, Z., Sculley, D., Nowozin, S., ... & Snoek, J.** (2019). Can You Trust Your Model's Uncertainty? Evaluating Predictive Uncertainty Under Dataset Shift. *Advances in Neural Information Processing Systems (NeurIPS)*, 32.
+30. **Ovadia, Y., Fertig, E., Ren, J., Nado, Z., Sculley, D., Nowozin, S., ... & Snoek, J.** (2019). Can You Trust Your Model's Uncertainty? Evaluating Predictive Uncertainty Under Dataset Shift. *Advances in Neural Information Processing Systems (NeurIPS)*, 32.
 
-30. **Wenzel, F., Roth, K., Veeling, B., Świątkowski, J., Tran, L., Mandt, S., ... & Louizos, C.** (2020). How Good is the Bayes Posterior in Deep Neural Networks Really? *International Conference on Machine Learning (ICML)*, 119, 10248-10259.
+31. **Wenzel, F., Roth, K., Veeling, B., Świątkowski, J., Tran, L., Mandt, S., ... & Louizos, C.** (2020). How Good is the Bayes Posterior in Deep Neural Networks Really? *International Conference on Machine Learning (ICML)*, 119, 10248-10259.
 
 [References continue through #50 as in original paper...]
 

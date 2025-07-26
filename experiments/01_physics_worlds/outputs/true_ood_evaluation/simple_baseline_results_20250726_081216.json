@@ -1,0 +1,46 @@
+{
+  "timestamp": "20250726_081216",
+  "model": "Simple Neural Network Baseline",
+  "parameters": 50448,
+  "training_samples": 850000,
+  "validation_results": {
+    "test_set": "Constant Gravity (Val)",
+    "mse": 3315.340417850104,
+    "mae": 20.23657692853454,
+    "status": "major_degradation",
+    "timestep_mse": [
+      2016.2663135280068,
+      2507.8188965402483,
+      2936.5549067425854,
+      3128.6461082396245,
+      3195.134344458802,
+      3265.6660243691204,
+      3384.9682531261005,
+      3684.097331257082,
+      4150.428229033564,
+      4883.823771205913
+    ],
+    "n_samples": 100
+  },
+  "ood_results": {
+    "test_set": "Harmonic Gravity",
+    "mse": 1657392775.6182919,
+    "mae": 5596.83400960089,
+    "status": "catastrophic_failure",
+    "timestep_mse": [
+      1031944835.9649152,
+      1228544047.6652813,
+      1397336422.9804394,
+      1608132071.142446,
+      1722818547.400206,
+      1818144470.0325065,
+      1935063473.9328713,
+      1969323238.8171048,
+      1957786507.8585174,
+      1904834140.3887005
+    ],
+    "n_samples": 34000
+  },
+  "degradation_factor": 499916.31830467045,
+  "conclusion": "Catastrophic failure on time-varying gravity"
+}
