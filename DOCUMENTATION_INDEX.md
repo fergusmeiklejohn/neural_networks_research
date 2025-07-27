@@ -48,6 +48,7 @@
 ### 📋 Process Documents
 - **Experiment Checklist**: `EXPERIMENT_CHECKLIST.md` - Step-by-step guide for running experiments
 - **Milestone Timeline**: `MILESTONE_TIMELINE.md` - 24-month plan with GPU estimates
+- **Scientific Writing Guide**: `SCIENTIFIC_WRITING_GUIDE.md` - Comprehensive style guide for papers with reviewer feedback
 
 ### 🛠️ Development Infrastructure (NEW)
 - **Code Quality Setup**: `CODE_QUALITY_SETUP.md` - Comprehensive guide to new quality infrastructure
