@@ -166,12 +166,17 @@ class BoundVariableExecutor(layers.Layer):
     based on current variable bindings.
     """
     
-    def __init__(self, action_vocab_size: int, hidden_dim: int = 256, **kwargs):
+    def __init__(self, action_vocab_size: int, hidden_dim: int = 256, embed_dim: int = 128, **kwargs):
         super().__init__(**kwargs)
         self.action_vocab_size = action_vocab_size
         self.hidden_dim = hidden_dim
+        self.embed_dim = embed_dim
         
     def build(self, input_shape):
+        # Command embedding (needed to convert tokens to vectors)
+        # Note: vocab_size will be set from parent model
+        self.command_embedding = None  # Will use parent's embedding
+        
         # Command encoder
         self.command_encoder = layers.LSTM(self.hidden_dim, return_sequences=True)
         
@@ -185,19 +190,19 @@ class BoundVariableExecutor(layers.Layer):
             key_dim=self.hidden_dim // 4
         )
         
-    def call(self, command_tokens, bound_variables, training=None):
+    def call(self, command_embeds, bound_variables, training=None):
         """
         Execute command using current variable bindings.
         
         Args:
-            command_tokens: Tokenized command (batch_size, seq_len)
+            command_embeds: Embedded command (batch_size, seq_len, embed_dim)
             bound_variables: Variables retrieved from memory based on bindings
             
         Returns:
             action_sequence: Predicted action sequence
         """
         # Encode command structure
-        command_encoded = self.command_encoder(command_tokens)
+        command_encoded = self.command_encoder(command_embeds)
         
         # Incorporate bound variables via cross-attention
         attended_command = self.cross_attention(
@@ -242,7 +247,7 @@ class MinimalBindingModel(keras.Model):
         self.embedding = layers.Embedding(vocab_size, embed_dim)
         self.variable_memory = VariableMemory(n_slots, embed_dim)
         self.binder = BindingAttention(hidden_dim)
-        self.executor = BoundVariableExecutor(action_vocab_size, hidden_dim)
+        self.executor = BoundVariableExecutor(action_vocab_size, hidden_dim, embed_dim)
         
     def parse_to_variables(self, command):
         """Parse command into variables that can be bound."""
@@ -300,8 +305,8 @@ class MinimalBindingModel(keras.Model):
         if modification is not None:
             bound_variables = self.apply_modification(bindings, bound_variables, modification)
         
-        # Execute with bound variables
-        action_logits = self.executor(command, bound_variables)
+        # Execute with bound variables (pass embedded command, not raw tokens)
+        action_logits = self.executor(variables, bound_variables)
         
         # Return logits and bindings for analysis
         return {

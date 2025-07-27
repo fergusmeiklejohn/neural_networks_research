@@ -48,10 +48,10 @@ class BindingTrainer:
         self.train_loss_metric = keras.metrics.Mean()
         self.train_acc_metric = keras.metrics.SparseCategoricalAccuracy()
         
-    @keras.utils.function  
     def train_step(self, commands, actions):
-        """Single training step."""
-        with keras.GradientTape() as tape:
+        """Single training step - works across all Keras 3 backends."""
+        # Use keras.ops for backend-agnostic gradient computation
+        with keras.ops.GradientTape() as tape:
             # Forward pass
             outputs = self.model({'command': commands}, training=True)
             action_logits = outputs['action_logits']
@@ -59,9 +59,11 @@ class BindingTrainer:
             # Compute loss
             loss = self.loss_fn(actions, action_logits)
             
-        # Compute gradients and update
-        gradients = tape.gradient(loss, self.model.trainable_variables)
-        self.optimizer.apply(gradients, self.model.trainable_variables)
+        # Get gradients
+        grads = tape.gradient(loss, self.model.trainable_variables)
+        
+        # Apply gradients
+        self.optimizer.apply_gradients(zip(grads, self.model.trainable_variables))
         
         # Update metrics
         self.train_loss_metric.update_state(loss)
