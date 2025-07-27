@@ -55,6 +55,7 @@ creativity and extrapolation capabilities.
 3. **Before Training**: Review PAPERSPACE_TRAINING_GUIDE.md for cloud setup
 4. **When Lost**: DOCUMENTATION_INDEX.md has links to everything
 5. **For Code Quality**: See CODE_QUALITY_SETUP.md for new infrastructure
+6. **For Paper Writing**: Follow SCIENTIFIC_WRITING_GUIDE.md for style and reviewer feedback
 
 ## Development Environment
 
@@ -598,7 +599,7 @@ cd /Users/fergusmeiklejohn/conductor/repo/neural_networks_research/vienna  # fea
 
 ### Research Paper Writing Style
 
-**CRITICAL**: When writing research papers, always follow the comprehensive style guide in `papers/ood_illusion/SCIENTIFIC_WRITING_NOTES.md`. This guide incorporates both our internal standards and valuable feedback from external reviewers.
+**CRITICAL**: When writing research papers, always follow the comprehensive style guide in `SCIENTIFIC_WRITING_GUIDE.md`. This guide incorporates both our internal standards and valuable feedback from external reviewers.
 
 **Key Principles**:
 1. **Measured, Objective Tone**: Let data speak for itself without emotional language
@@ -609,7 +610,7 @@ cd /Users/fergusmeiklejohn/conductor/repo/neural_networks_research/vienna  # fea
 6. **Avoid Repetition**: State key numbers prominently once, then vary presentation
 
 **Before Writing Papers**:
-- Read `SCIENTIFIC_WRITING_NOTES.md` thoroughly
+- Read `SCIENTIFIC_WRITING_GUIDE.md` thoroughly
 - Review examples of good vs bad phrasing
 - Check scope of claims against actual evidence
 - Ensure all figures/tables are referenced in text
