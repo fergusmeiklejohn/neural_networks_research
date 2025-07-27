@@ -17,7 +17,8 @@ The core insight is that models need explicit variable binding through dereferen
 
 - `minimal_binding_scan.py`: Core binding model implementation
 - `dereferencing_tasks.py`: Generates tasks that force variable binding
-- `train_binding_model.py`: Original training script (has Keras 3 API issues)
+- `train_binding_jax.py`: **WORKING** - JAX-compatible training script
+- `train_binding_model.py`: Original training script (has `keras.ops.GradientTape` error)
 - `train_binding_model_simple.py`: Simplified version using model.fit()
 - `run_training.py`: Manual training loop version
 - `test_binding_components.py`: Basic component tests
@@ -26,18 +27,42 @@ The core insight is that models need explicit variable binding through dereferen
 
 ## Running the Experiment
 
-Due to Keras 3 API changes, the training scripts need adjustment for your specific backend. The model architecture is sound, but the training loop needs to match your Keras version.
+### Environment Setup
+```bash
+conda activate dist-invention
+```
 
 ### Quick Test
 ```bash
-/Users/fergusmeiklejohn/miniconda3/envs/dist-invention/bin/python test_binding_components.py
+python test_binding_components.py
 ```
 
-### Training Options
+### Training (Use this script!)
 
-1. **For TensorFlow backend**: `train_binding_model.py` should work with minor fixes
-2. **For JAX backend**: Use `run_training.py` or adapt for JAX-specific training
-3. **For PyTorch backend**: Adapt the training loop for PyTorch gradients
+**IMPORTANT**: `keras.ops.GradientTape` doesn't exist. Use the JAX-compatible script:
+
+```bash
+python train_binding_jax.py
+```
+
+This script:
+- Works with JAX backend (default in this project)
+- Uses `model.train_on_batch()` for stable training
+- Tests modification capability every 10 epochs
+- Saves checkpoints and final results
+
+### Alternative Scripts (may have issues)
+
+1. **train_binding_model.py**: Has `AttributeError: module 'keras.ops' has no attribute 'GradientTape'`
+2. **train_binding_model_simple.py**: Uses `model.fit()` but may have custom model issues
+3. **run_training.py**: Manual loop, needs backend-specific fixes
+
+### Known Keras 3 Issues
+
+- `keras.ops.GradientTape` doesn't exist (it's TensorFlow-specific)
+- `keras.utils.function` doesn't exist (removed in Keras 3)
+- `GradientTape` is only in `tf.GradientTape`, not portable across backends
+- JAX backend requires different gradient computation approach
 
 ## Success Criteria
 
