@@ -105,3 +105,107 @@ class NSRScanParser:
 - Next steps: ✓ Clear and actionable
 
 The path forward is clear: implement variable binding, fix evaluation, and build toward true distribution invention through explicit structure rather than hoping emergence from complexity.
+
+---
+
+## Second Session: Variable Binding Implementation & Framework Performance
+
+### Session Overview
+Implemented the variable binding architecture from the morning's plan, encountered significant performance issues with Keras, and discovered MLX as a game-changing alternative for Apple Silicon.
+
+### Key Achievements
+
+1. **Successfully Bypassed Keras Compilation Issues**
+   - Encountered persistent `AttributeError: module 'keras.ops' has no attribute 'GradientTape'`
+   - Multi-output model complications with loss mapping
+   - Solution: Manual training loops avoiding `model.compile()`
+   - Result: Training works but reveals deeper performance issues
+
+2. **TensorFlow Implementation Results**
+   - File: `experiments/03_binding_architecture/train_binding_tensorflow.py`
+   - Training successful: 25.7% validation accuracy after 5 epochs
+   - **Critical Discovery: Only ~33% GPU utilization**
+   - Performance: ~3-4 seconds per epoch
+   - Modification tests: 100% success (but likely overfitting to simple cases)
+
+3. **MLX Framework Discovery**
+   - Switched to Apple's MLX for native Metal optimization
+   - File: `experiments/03_binding_architecture/train_binding_mlx_simple.py`
+   - **Performance Results:**
+     - Training: 0.20s per epoch (15-20x faster!)
+     - Throughput: ~200 steps/second
+     - Inference: **284,205 samples/second**
+     - Latency: 0.90ms per batch
+   - Full GPU utilization on Apple Silicon
+
+### Technical Insights
+
+1. **Framework Overhead Matters**
+   - Keras multi-backend abstraction adds significant overhead
+   - Complex gradient paths limit GPU utilization
+   - Research benefit doesn't justify engineering complexity
+
+2. **MLX Advantages for Research**
+   - Simple NumPy-like API
+   - Native Metal optimization
+   - Lazy evaluation
+   - Unified memory (no CPU/GPU transfer overhead)
+   - Perfect for rapid architecture prototyping
+
+3. **Architecture Status**
+   - Basic binding mechanism implemented
+   - Needs refinement - current accuracy too low
+   - Modification capability present but untested on real tasks
+
+### Code Snippets for Tomorrow
+
+```python
+# MLX model structure that works
+class SimpleBindingModel(nn.Module):
+    def __init__(self, vocab_size, action_vocab_size):
+        self.embedding = nn.Embedding(vocab_size, embed_dim)
+        self.encoder1 = nn.Linear(embed_dim, hidden_dim)
+        self.bind_proj = nn.Linear(hidden_dim, hidden_dim)
+        # ...
+
+# Training loop in MLX
+loss_and_grad_fn = nn.value_and_grad(model, loss_fn)
+loss, grads = loss_and_grad_fn(model, batch_x, batch_y)
+optimizer.update(model, grads)
+mx.eval(model.parameters(), optimizer.state)
+```
+
+### Next Steps for Tomorrow
+
+1. **Refine MLX Binding Architecture**
+   - Implement proper attention-based binding
+   - Add explicit slot retrieval mechanism
+   - Test on real dereferencing tasks
+
+2. **Create Proper Test Suite**
+   - "X means jump. Do X." → "JUMP"
+   - "X means jump. Now X means hop. Do X." → "HOP"
+   - Measure true modification capability
+
+3. **Integrate with SCAN Dataset**
+   - Use existing data loaders
+   - Test compositional generalization
+   - Compare with baselines
+
+### Key Learning
+
+**Research Priority Decision**: When framework complexity impedes research progress, simplify. MLX's 15-20x performance improvement and cleaner API enable faster experimentation cycles, which is more valuable than multi-backend support for research purposes.
+
+### Files Created/Modified
+- `train_binding_tensorflow.py` - Working but slow
+- `train_binding_mlx.py` - Initial attempt (dimension issues)
+- `train_binding_mlx_simple.py` - Working MLX implementation
+- `train_binding_simple.py` - Keras debugging version
+
+### Tomorrow's Starting Point
+1. Open `train_binding_mlx_simple.py`
+2. Enhance binding mechanism with proper attention
+3. Create dereferencing task dataset
+4. Run: `/Users/fergusmeiklejohn/miniconda3/envs/dist-invention/bin/python experiments/03_binding_architecture/train_binding_mlx_enhanced.py`
+
+The transition from planning to implementation revealed unexpected insights about framework choice. MLX enables the rapid experimentation cycles needed for architecture research.
