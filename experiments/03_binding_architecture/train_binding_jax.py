@@ -99,17 +99,23 @@ class BindingTrainer:
         # Use Keras built-in gradient computation
         # This works by compiling the model first
         if not hasattr(self, '_compiled'):
+            # Since our model returns multiple outputs, we need to specify
+            # loss and metrics for the output we care about (action_logits)
             self.model.compile(
                 optimizer=self.optimizer,
-                loss=self.loss_fn,
-                metrics=['accuracy']
+                loss={'action_logits': self.loss_fn},
+                loss_weights={'action_logits': 1.0},
+                metrics={'action_logits': ['accuracy']}
             )
             self._compiled = True
         
         # Perform one training step
+        # Target should be a dict matching our model's output structure
+        y_dict = {'action_logits': actions}
+        
         metrics = self.model.train_on_batch(
             {'command': commands},
-            actions
+            y_dict
         )
         
         # Get loss value
