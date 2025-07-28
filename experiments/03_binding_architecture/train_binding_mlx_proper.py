@@ -69,11 +69,12 @@ class BindingAttention(nn.Module):
     Uses hard binding (argmax) to force discrete assignments
     """
     
-    def __init__(self, embed_dim: int = 128, num_heads: int = 8):
+    def __init__(self, embed_dim: int = 128, num_heads: int = 8, temperature: float = 1.0):
         super().__init__()
         self.embed_dim = embed_dim
         self.num_heads = num_heads
         self.head_dim = embed_dim // num_heads
+        self.temperature = temperature
         
         # Query projection for words
         self.q_proj = nn.Linear(embed_dim, embed_dim)
@@ -89,9 +90,28 @@ class BindingAttention(nn.Module):
         
         self.scale = self.head_dim ** -0.5
         
+    def gumbel_softmax(self, logits: mx.array, temperature: float, hard: bool = False) -> mx.array:
+        """Gumbel-Softmax for differentiable discrete sampling"""
+        # Sample from Gumbel(0, 1)
+        shape = logits.shape
+        uniform = mx.random.uniform(shape=shape, low=1e-8, high=1.0)
+        gumbel = -mx.log(-mx.log(uniform))
+        
+        # Add Gumbel noise to logits and apply temperature
+        y_soft = mx.softmax((logits + gumbel) / temperature, axis=-1)
+        
+        if hard:
+            # Straight-through estimator: hard sample in forward, soft in backward
+            indices = mx.argmax(y_soft, axis=-1)
+            # For now, return soft scores and indices separately
+            return y_soft, indices
+        
+        return y_soft, None
+    
     def __call__(self, 
                  words: mx.array,          # (batch, seq_len, embed_dim)
-                 slot_keys: mx.array       # (num_slots, embed_dim)
+                 slot_keys: mx.array,      # (num_slots, embed_dim)
+                 training: bool = True     # Whether we're in training mode
                 ) -> Tuple[mx.array, mx.array]:
         """
         Returns:
@@ -117,11 +137,17 @@ class BindingAttention(nn.Module):
         scores = (Q @ K.transpose(0, 1, 3, 2)) * self.scale
         scores = mx.mean(scores, axis=1)  # Average over heads: (batch, seq_len, num_slots)
         
-        # Apply softmax for soft scores (used for gradients)
-        soft_scores = mx.softmax(scores, axis=-1)
-        
-        # Hard binding via argmax
-        bindings = mx.argmax(scores, axis=-1)  # (batch, seq_len)
+        if training:
+            # Use Gumbel-Softmax during training for differentiable binding
+            soft_scores, hard_indices = self.gumbel_softmax(scores, self.temperature, hard=True)
+            if hard_indices is not None:
+                bindings = hard_indices
+            else:
+                bindings = mx.argmax(scores, axis=-1)  # Fallback
+        else:
+            # Use regular softmax and argmax during evaluation
+            soft_scores = mx.softmax(scores, axis=-1)
+            bindings = mx.argmax(scores, axis=-1)
         
         return bindings, soft_scores
 
@@ -197,7 +223,8 @@ class ProperBindingModel(nn.Module):
         
     def __call__(self, 
                  command_ids: mx.array,          # (batch, seq_len)
-                 modification: Optional[mx.array] = None
+                 modification: Optional[mx.array] = None,
+                 training: bool = True
                 ) -> Dict[str, mx.array]:
         """Forward pass with variable binding"""
         
@@ -207,23 +234,28 @@ class ProperBindingModel(nn.Module):
         # Get memory slots
         slot_values, slot_keys = self.memory(None)
         
-        # Bind words to slots
-        bindings, binding_scores = self.binder(word_embeds, slot_keys)
+        # Bind words to slots (with training flag for Gumbel-Softmax)
+        bindings, binding_scores = self.binder(word_embeds, slot_keys, training=training)
         
-        # Retrieve bound values for each word
-        batch_size, seq_len = bindings.shape
-        bound_values = []
+        # Retrieve bound values using soft attention for differentiability
+        # binding_scores: (batch, seq_len, num_slots)
+        # slot_values: (num_slots, embed_dim)
         
-        for i in range(seq_len):
-            # Get slot index for each word in batch
-            slot_indices = bindings[:, i]  # (batch,)
-            
-            # Retrieve values from those slots
-            # This is the key dereferencing operation!
-            retrieved = slot_values[slot_indices]  # (batch, embed_dim)
-            bound_values.append(retrieved)
-            
-        bound_values = mx.stack(bound_values, axis=1)  # (batch, seq_len, embed_dim)
+        # Expand slot_values for batch processing
+        batch_size, seq_len, num_slots = binding_scores.shape
+        _, embed_dim = slot_values.shape
+        
+        # Broadcast slot_values to match batch and sequence dimensions
+        slot_values_expanded = slot_values[None, None, :, :]  # (1, 1, num_slots, embed_dim)
+        slot_values_expanded = mx.broadcast_to(slot_values_expanded, 
+                                              (batch_size, seq_len, num_slots, embed_dim))
+        
+        # Use soft attention to retrieve values (differentiable!)
+        # binding_scores needs to be expanded to match slot_values_expanded
+        binding_weights = binding_scores[:, :, :, None]  # (batch, seq_len, num_slots, 1)
+        
+        # Weighted sum over slots
+        bound_values = mx.sum(slot_values_expanded * binding_weights, axis=2)  # (batch, seq_len, embed_dim)
         
         # Apply modifications if provided
         if modification is not None:
@@ -252,7 +284,7 @@ def train_step(model, batch, loss_fn, optimizer):
     """Single training step"""
     
     def loss_wrapper(model):
-        outputs = model(batch['command'])
+        outputs = model(batch['command'], training=False)
         logits = outputs['action_logits']
         
         # Handle sequence length mismatch
@@ -292,9 +324,23 @@ def train_step(model, batch, loss_fn, optimizer):
     optimizer.update(model, grads)
     
     # Get outputs for logging (run forward pass again)
-    outputs = model(batch['command'])
+    outputs = model(batch['command'], training=True)
     
-    return loss, outputs
+    # Compute gradient norms for debugging
+    grad_norms = {}
+    
+    def compute_grad_norms(grads_dict, prefix=""):
+        for name, grad in grads_dict.items():
+            full_name = f"{prefix}.{name}" if prefix else name
+            if isinstance(grad, dict):
+                compute_grad_norms(grad, full_name)
+            elif hasattr(grad, 'shape'):  # It's an array
+                norm = mx.sqrt(mx.sum(grad * grad))
+                grad_norms[full_name] = norm.item()
+    
+    compute_grad_norms(grads)
+    
+    return loss, outputs, grad_norms
 
 
 def evaluate(model, generator, num_samples=100):
@@ -304,7 +350,7 @@ def evaluate(model, generator, num_samples=100):
     
     for _ in range(num_samples // 32):
         batch = generate_batch_from_dataset(generator, 32)
-        outputs = model(batch['command'])
+        outputs = model(batch['command'], training=False)
         
         # Get predictions
         logits = outputs['action_logits']
@@ -446,7 +492,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', type=int, default=20, help='Number of epochs')
     parser.add_argument('--batch_size', type=int, default=32, help='Batch size')
-    parser.add_argument('--lr', type=float, default=0.001, help='Learning rate')
+    parser.add_argument('--lr', type=float, default=0.003, help='Learning rate')
     parser.add_argument('--quick', action='store_true', help='Quick test run')
     args = parser.parse_args()
     
@@ -471,6 +517,12 @@ def main():
         num_heads=8
     )
     
+    # Temperature schedule for Gumbel-Softmax
+    # Start with moderate temperature for better gradient flow
+    initial_temperature = 1.5
+    min_temperature = 0.1
+    temperature_decay = 0.95  # Faster decay
+    
     # Initialize model parameters
     mx.eval(model.parameters())
     
@@ -485,9 +537,13 @@ def main():
         epoch_loss = 0
         num_batches = 100 if not args.quick else 10
         
+        # Update temperature for this epoch
+        current_temp = max(min_temperature, initial_temperature * (temperature_decay ** epoch))
+        model.binder.temperature = current_temp
+        
         for _ in range(num_batches):
             batch = generate_batch_from_dataset(generator, args.batch_size)
-            loss, outputs = train_step(model, batch, loss_fn, optimizer)
+            loss, outputs, grad_norms = train_step(model, batch, loss_fn, optimizer)
             epoch_loss += loss.item()
             mx.eval(model.parameters(), optimizer.state)
         
@@ -495,8 +551,15 @@ def main():
         accuracy = evaluate(model, generator, num_samples=200 if not args.quick else 50)
         
         epoch_time = time.time() - epoch_start
+        # Print gradient norms for key components
+        if epoch == 0 and grad_norms:
+            print("  Gradient norms:")
+            for key in ['binder.q_proj', 'binder.k_proj', 'memory.slot_values', 'executor.encoder.0']:
+                if key in grad_norms:
+                    print(f"    {key}: {grad_norms[key]:.6f}")
+        
         print(f"Epoch {epoch+1}/{args.epochs} - Loss: {epoch_loss/num_batches:.4f}, "
-              f"Accuracy: {accuracy:.2%}, Time: {epoch_time:.2f}s")
+              f"Accuracy: {accuracy:.2%}, Time: {epoch_time:.2f}s, Temperature: {current_temp:.3f}")
     
     # Test modifications
     test_modifications(model, generator)
@@ -508,7 +571,7 @@ def main():
     batch = generate_batch_from_dataset(generator, 128)
     start_time = time.time()
     for _ in range(100):
-        _ = model(batch['command'])
+        _ = model(batch['command'], training=False)
         mx.eval(_['action_logits'])
     inference_time = time.time() - start_time
     
