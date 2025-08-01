@@ -563,14 +563,16 @@ def main():
         print(f"\nCommand: {pattern}")
         print(f"Predicted: {predicted}")
     
-    # Save improved model
+    # Save improved model using pickle for reliability
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_dir = get_output_path('models')
     os.makedirs(output_dir, exist_ok=True)
     
-    model_path = os.path.join(output_dir, f'sequential_improved_{timestamp}.npz')
-    weights = dict(model.parameters())
-    mx.savez(model_path, **weights)
+    # Import save function
+    from mlx_model_io import save_model_simple
+    
+    model_path = os.path.join(output_dir, f'sequential_improved_{timestamp}.pkl')
+    save_model_simple(model_path, model)
     print(f"\nImproved model saved to: {model_path}")
 
 

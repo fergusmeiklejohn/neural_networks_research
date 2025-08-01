@@ -1,16 +1,18 @@
 # Current Status: Variable Binding Architecture
 
-**Status**: Active - Output Interpretation Fixed  
-**Last Updated**: 2025-07-31 (07:55 AM)
+**Status**: Active - MLX Persistence Fixed & Baselines Compared  
+**Last Updated**: 2025-08-01 (Morning)
 
 ## Major Achievements
 - 🎉 **Solved the "twice" pattern!** Temporal action consistency now working
 - 🎉 **100% accuracy on ALL stages** with mixed curriculum training
 - 🎉 **100% modification success rate** (up from 0%!)
 - 🎉 **Complete theoretical understanding** of variable binding requirements
-- 🚀 **NEW: Sequential planning implemented** for "then" operator support
-- 🚀 **NEW: MLX-compatible implementation** achieved without sacrificing performance
-- 🚀 **NEW: Output interpretation fixed** - model now outputs only at action positions
+- 🚀 **Sequential planning implemented** for "then" operator support
+- 🚀 **MLX-compatible implementation** achieved without sacrificing performance
+- 🚀 **Output interpretation fixed** - model now outputs only at action positions
+- 🚀 **NEW: MLX persistence solved** - custom save/load utilities for reliable model storage
+- 🚀 **NEW: Baseline comparison complete** - our model achieves 100% vs baselines' 0-40%
 
 ## Progress Summary
 - ✓ Created experiment directory structure
@@ -112,16 +114,16 @@ See `COMPOSITIONAL_LIMITS_FINDINGS.md` for detailed analysis.
 2. ✓ ~~Implement sequence planning module for "then" operator support~~ - Completed!
 3. ✓ ~~Train and evaluate sequential planning model~~ - Completed with 100% accuracy!
 4. ✓ ~~Fix model output interpretation for proper action extraction~~ - Completed with ActionPositionTracker!
-5. Solve model persistence issues in MLX
-6. Add versioned memory for variable rebinding capability
-7. Compare systematically against baseline models
+5. ✓ ~~Solve model persistence issues in MLX~~ - Solved with pickle/parameter flattening
+6. ✓ ~~Compare systematically against baseline models~~ - Completed, see BASELINE_COMPARISON_RESULTS.md
+7. Add versioned memory for variable rebinding capability
 8. Write up findings for publication
 
 ## Known Issues
-- MLX model saving throws `std::bad_cast` error - need alternative serialization
+- ✓ ~~MLX model saving throws `std::bad_cast` error~~ - FIXED with custom save/load utilities
 - ✓ ~~Model outputs predictions for all token positions instead of just actions~~ - FIXED with ActionPositionTracker
 - ✓ ~~Output interpretation needs refinement for correct action extraction~~ - FIXED with improved model
-- Baseline comparisons not yet completed
+- ✓ ~~Baseline comparisons not yet completed~~ - COMPLETED (our model: 100%, baselines: 0-40%)
 
 ## Success Metrics Achieved
 - ✓ >50% modification success (achieved 100% with mixed training!)
