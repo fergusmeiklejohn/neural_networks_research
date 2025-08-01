@@ -209,3 +209,129 @@ mx.eval(model.parameters(), optimizer.state)
 4. Run: `/Users/fergusmeiklejohn/miniconda3/envs/dist-invention/bin/python experiments/03_binding_architecture/train_binding_mlx_enhanced.py`
 
 The transition from planning to implementation revealed unexpected insights about framework choice. MLX enables the rapid experimentation cycles needed for architecture research.
+
+---
+
+## Third Session: Proper Variable Binding Architecture Implementation
+
+### Session Overview
+Implemented the full variable binding architecture with proper components (VariableMemory, BindingAttention, BoundVariableExecutor) and identified the key gradient flow issue preventing learning.
+
+### Major Accomplishments
+
+1. **Comprehensive Architecture Analysis**
+   - Analyzed gaps between simplified MLX version and intended design
+   - Original vision: Explicit slots, hard binding, true dereferencing
+   - Simplified version: Just pattern matching, no real binding
+   - Created detailed improvement plan
+
+2. **Full Architecture Implementation**
+   - File: `train_binding_mlx_proper.py`
+   - **VariableMemory**: Explicit slots with content-based addressing
+   - **BindingAttention**: Multi-head attention with hard binding via argmax
+   - **BoundVariableExecutor**: Uses retrieved slot values (not just embeddings)
+   - Real dereferencing tasks from `DereferencingTaskGenerator`
+
+3. **Comprehensive Test Suite**
+   - File: `test_binding_capabilities.py`
+   - Tests: Basic binding, rebinding, compositional, chained references
+   - Example: "X means jump. Now X means hop. Do X." → Should output "HOP"
+   - Structured evaluation by capability type
+
+4. **Performance Results**
+   - Training runs successfully: Loss decreases 1.96 → 1.35
+   - Inference speed: **97,098 samples/second** (1.32ms latency)
+   - BUT: 0% modification success - model not learning binding
+
+### Critical Discovery: Gradient Flow Problem
+
+The model fails because hard argmax blocks gradients:
+```python
+bindings = mx.argmax(scores, axis=-1)  # No gradients flow through this!
+retrieved = slot_values[slot_indices]  # Indexing also blocks gradients
+```
+
+Without gradients, the model can't learn which slots to bind variables to.
+
+### Solution Identified: Gumbel-Softmax
+
+Need differentiable binding mechanism:
+```python
+# Forward: hard selection, Backward: soft gradients
+bindings_soft = mx.softmax(scores / temperature, axis=-1)
+retrieved = mx.sum(bindings_soft[:, :, :, None] * slot_values[None, None, :, :], axis=2)
+```
+
+### Key Files Created
+
+1. **train_binding_mlx_proper.py**
+   - Full architecture with all components
+   - Training on real dereferencing tasks
+   - 538 lines of proper implementation
+
+2. **test_binding_capabilities.py**
+   - Comprehensive test cases
+   - Failure mode analysis
+   - Clear success metrics
+
+3. **BINDING_IMPROVEMENT_PLAN.md**
+   - Detailed architectural gaps analysis
+   - Step-by-step improvement roadmap
+   - Research impact statement
+
+4. **NEXT_STEPS_BINDING.md**
+   - Immediate fixes needed (Gumbel-Softmax)
+   - Architecture improvements
+   - Testing protocol with commands
+
+### Next Steps (Immediate)
+
+1. **Fix Gradient Flow**
+   ```python
+   # Implement in BindingAttention
+   def gumbel_softmax(logits, temperature=1.0):
+       gumbel_noise = -mx.log(-mx.log(mx.random.uniform(logits.shape)))
+       return mx.softmax((logits + gumbel_noise) / temperature, axis=-1)
+   ```
+
+2. **Start Simple**
+   - First: Word-to-action copying (no variables)
+   - Then: Single variable binding
+   - Finally: Multiple variables and rebinding
+
+3. **Add Diagnostics**
+   - Log gradient norms for all parameters
+   - Visualize attention patterns
+   - Track slot usage statistics
+
+### Commands for Tomorrow
+
+```bash
+# Continue from train_binding_mlx_proper.py
+cd experiments/03_binding_architecture
+
+# Add Gumbel-Softmax to BindingAttention
+# Test gradient flow
+python test_gradient_flow.py
+
+# Try simplified task first
+python train_binding_mlx_proper.py --task copying --epochs 10
+
+# Once working, full training
+python train_binding_mlx_proper.py --epochs 50 --lr 0.001
+```
+
+### Research Insight
+
+We're at a critical juncture: The architecture is correct in principle, but the optimization challenge (gradient flow through discrete operations) is blocking progress. This mirrors a fundamental challenge in AI - how to learn discrete symbolic operations with gradient descent.
+
+The solution (Gumbel-Softmax) bridges symbolic and connectionist approaches, allowing us to have discrete bindings (symbolic) while maintaining differentiability (connectionist).
+
+### Status Summary
+- ✅ Architecture design complete
+- ✅ Implementation working (no crashes)  
+- ✅ Fast inference (97k samples/sec)
+- ❌ Not learning binding (gradient issue)
+- 🔧 Clear fix identified (Gumbel-Softmax)
+
+Tomorrow's priority: Make gradients flow through binding mechanism.
