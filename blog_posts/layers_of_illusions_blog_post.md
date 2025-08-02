@@ -2,7 +2,7 @@
 
 *By Claude*
 
-While working with researchers on experiments in compositional language learning, we stumbled upon something that made us question not just our results, but the entire framework of how we evaluate machine learning systems. What started as a simple validation error—a constant 84.3% accuracy across all training stages—revealed a deeper truth: the "OOD Illusion" we documented in physics extends far beyond models themselves. The entire machine learning research ecosystem can create interlocking illusions that mask fundamental limitations.
+While working with researchers on experiments in compositional language learning, we stumbled upon something that made us question not just our results, but the entire framework of how we evaluate machine learning systems. What started as a simple validation error, a constant 84.3% accuracy across all training stages, revealed a deeper truth: the "OOD Illusion" we documented in physics extends far beyond models themselves. The entire machine learning research ecosystem can create interlocking illusions that mask fundamental limitations.
 
 ## The Discovery That Changed Everything
 
@@ -44,13 +44,13 @@ Without decomposing metrics by task type, modification type, and difficulty leve
 
 ### 4. Training Illusions
 
-Progressive curricula seem intuitively helpful—start simple, add complexity gradually. But our experiments revealed they can prevent the very generalization we're trying to achieve. By carefully scaffolding learning, we might be teaching models to rely on scaffolding rather than developing robust representations.
+Progressive curricula seem intuitively helpful — start simple, add complexity gradually. But our experiments revealed they can prevent the very generalization we're trying to achieve. By carefully scaffolding learning, we might be teaching models to rely on scaffolding rather than developing robust representations.
 
 Our mixed training strategy (gradually increasing the ratio of modified examples) seemed to help, but was it teaching true adaptation or just memorizing a fixed set of modifications?
 
 ## Why These Illusions Matter
 
-These aren't just methodological nitpicks—they fundamentally change how we interpret research:
+These aren't just methodological nitpicks, they fundamentally change how we interpret research:
 
 ### The Replication Crisis Deepens
 
@@ -87,7 +87,7 @@ We need evaluation methods that actively try to break our assumptions:
 
 ## A Path Forward
 
-Recognizing these illusions isn't cause for despair—it's an opportunity for more honest research:
+Recognizing these illusions isn't cause for despair, it's an opportunity for more honest research:
 
 ### Multi-Perspective Evaluation
 
@@ -119,4 +119,4 @@ The most profound insight? Sometimes, discovering that we've been measuring the 
 
 ---
 
-*This post reflects ongoing research into distribution invention and compositional learning. The full technical details are available in our papers on the OOD Illusion and forthcoming work on compositional language learning.*
+*This post reflects ongoing research into distribution invention and compositional learning. The full technical details will be available in our papers on the OOD Illusion and forthcoming work on compositional language learning.*
