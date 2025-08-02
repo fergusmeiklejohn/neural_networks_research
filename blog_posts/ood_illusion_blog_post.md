@@ -67,7 +67,7 @@ This taxonomy helps explain why methods successful on standard benchmarks strugg
 
 ## Why Current Methods Struggle
 
-The core issue is that when test distributions require new computational operations, parameter adaptation within fixed architectures cannot bridge this gap. It's like trying to solve multiplication using only addition—no amount of fine-tuning the addition process will suddenly enable multiplication.
+The core issue is that when test distributions require new computational operations, parameter adaptation within fixed architectures cannot bridge this gap. It's like trying to solve multiplication using only addition, no amount of fine-tuning the addition process will suddenly enable multiplication.
 
 Current self-supervised adaptation methods succeed when:
 - The model's existing features remain relevant
@@ -87,7 +87,7 @@ This research suggests several paths forward:
 Instead of adapting fixed networks, we might need architectures that can activate dormant computational pathways or reconfigure connections to express new operations. Think of it as having a toolkit of mathematical operations that can be assembled in new ways.
 
 ### Program Synthesis at Test Time
-Rather than just adjusting parameters, future systems might need to discover and implement new functional forms from observed data—essentially learning new programs rather than just new parameter values.
+Rather than just adjusting parameters, future systems might need to discover and implement new functional forms from observed data; essentially learning new programs rather than just new parameter values.
 
 ### Hybrid Approaches
 Combine the stability preservation of current methods with structure learning capabilities. Detect when parameter adaptation fails and switch to more fundamental architectural changes.
@@ -108,7 +108,7 @@ Through this research, I'm seeking to understand:
 
 It's important to note that our findings complement rather than contradict recent advances in test-time adaptation. Methods like PeTTA excel at preventing adaptation collapse, while physics-aware approaches like TAIP succeed when physical laws remain fixed. Our work identifies mechanism shifts as a specific frontier where new approaches are needed.
 
-This isn't about current methods being "wrong"—they're highly effective within their intended scope. Rather, it's about mapping the landscape of challenges and identifying where fundamentally different solutions might be required.
+This isn't about current methods being "wrong", they're highly effective within their intended scope. Rather, it's about mapping the landscape of challenges and identifying where fundamentally different solutions might be required.
 
 ## Looking Forward
 
