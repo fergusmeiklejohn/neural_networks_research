@@ -7,48 +7,58 @@ This extends the integrated model to support:
 - "while" operator for repeated execution
 """
 
-from utils.imports import setup_project_paths
-setup_project_paths()
-
-from utils.config import setup_environment
-from utils.paths import get_output_path
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import mlx.core as mx
 import mlx.nn as nn
 import mlx.optimizers as optim
 import numpy as np
-import os
 from typing import Dict, List, Any
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+# Import from local modules
 from train_integrated_model import IntegratedBindingModel, VOCAB, ACTIONS
-from compositional_operators import CompositionalParser, CompositionalExecutor, ParseNode
+from compositional_operators_fixed import CompositionalParser, CompositionalExecutor, ParseNode
 from mlx_model_io import save_model_simple
 
-config = setup_environment()
+# Ensure all required operators are in VOCAB before model creation
+REQUIRED_OPERATORS = ['and', 'then', 'while', 'or', 'do', 'true']
+for op in REQUIRED_OPERATORS:
+    if op not in VOCAB:
+        VOCAB[op] = len(VOCAB)
+
+print(f"Initial VOCAB size: {len(VOCAB)}")
+print(f"Operators in VOCAB: {[op for op in REQUIRED_OPERATORS if op in VOCAB]}")
 
 
 class CompositionalBindingModel(IntegratedBindingModel):
-    """Extended binding model with compositional operator support."""
+    """Extended binding model with FIXED compositional operator support."""
     
     def __init__(self, vocab_size: int, num_actions: int, embed_dim: int = 256,
                  num_slots: int = 4, num_heads: int = 8, mlp_hidden_dim: int = 512):
         super().__init__(vocab_size, num_actions, embed_dim, num_slots, num_heads, mlp_hidden_dim)
         
-        # Add compositional components
+        # Use FIXED compositional components that properly separate bindings
         self.compositional_parser = CompositionalParser(VOCAB)
         self.compositional_executor = CompositionalExecutor(self, VOCAB)
     
     def __call__(self, inputs: Dict[str, mx.array], stage: str = "full") -> mx.array:
-        """Forward pass with compositional operator support."""
+        """Forward pass with FIXED compositional operator support."""
         command_ids = inputs['command']
         
         # Clear versioned memory for new sequence
         self.versioned_memory.clear()
         
-        # Parse command for compositional structure
-        parse_tree = self.compositional_parser.parse(command_ids)
+        # Parse command and extract bindings separately (THE FIX)
+        parse_tree, bindings = self.compositional_parser.parse_with_bindings(command_ids)
         
-        # Execute using compositional executor
-        bindings = {}
+        # Execute using compositional executor with proper bindings
         outputs = self.compositional_executor.execute(
             parse_tree, command_ids, bindings, stage
         )
@@ -68,10 +78,11 @@ class CompositionalBindingModel(IntegratedBindingModel):
 
 def generate_compositional_data(num_samples: int = 100) -> List[Dict[str, Any]]:
     """Generate training data with compositional operators."""
-    # Ensure operators are in vocabulary
-    for op in ['then', 'and', 'or', 'while']:
-        if op not in VOCAB:
-            VOCAB[op] = len(VOCAB)
+    # Operators should already be in VOCAB from initialization
+    # Verify they exist
+    missing_ops = [op for op in REQUIRED_OPERATORS if op not in VOCAB]
+    if missing_ops:
+        raise ValueError(f"Missing operators in VOCAB: {missing_ops}")
     
     data = []
     
@@ -161,13 +172,10 @@ def generate_compositional_data(num_samples: int = 100) -> List[Dict[str, Any]]:
 def train_compositional_model():
     """Train model with compositional operators."""
     print("=== Training Compositional Variable Binding Model ===")
-    print("Operators: AND (parallel), OR (choice), WHILE (loop), THEN (sequence)\n")
+    print("Operators: AND (parallel), OR (choice), WHILE (loop), THEN (sequence)")
+    print(f"Using FIXED compositional parser that separates bindings from execution\n")
     
-    # Ensure operators in vocabulary
-    for op in ['then', 'and', 'or', 'while', 'true']:
-        if op not in VOCAB:
-            VOCAB[op] = len(VOCAB)
-    
+    # Operators should already be in VOCAB from initialization at module level
     # Create model
     model = CompositionalBindingModel(
         vocab_size=len(VOCAB),
