@@ -59,7 +59,7 @@ This approach leads to cleaner, more principled solutions and deeper understandi
 
 ### Critical Process Reminders
 1. **Before Starting Work**: Read latest research diary entry for context
-2. **Before Writing Code**: 
+2. **Before Writing Code**:
    - Check CODE_RELIABILITY_GUIDE.md for common pitfalls
    - Use centralized imports from `utils/` (see CODE_QUALITY_SETUP.md)
 3. **Before Training**: Review PAPERSPACE_TRAINING_GUIDE.md for cloud setup
@@ -99,7 +99,7 @@ The project uses **Keras 3** with multi-backend support:
   - Configured with strict Pylance type checking (see `.vscode/settings.json`)
 - **Notebooks**: Jupyter for final presentations/sharing
 - **Experiment Tracking**: Weights & Biases (`wandb`)
-- **Code Quality**: 
+- **Code Quality**:
   - **Automated**: Pre-commit hooks (black, flake8, isort, mypy)
   - **Real-time**: Pylance strict mode in Cursor/VS Code
   - **Centralized**: See `utils/` for imports, config, and paths
@@ -574,14 +574,14 @@ This automated workflow:
    - Auto-generates template with git activity
    - Tracks modified files and recent commits
    - Opens in editor for completion
-   
+
 2. **Runs Pre-Merge Tests**
    - Python environment verification
    - Critical imports testing
    - Code quality checks (black, flake8)
    - TTA weight restoration tests
    - Warns about uncommitted changes
-   
+
 3. **Creates and Merges PR**
    - Pushes current branch to origin
    - Auto-generates PR description from commits
@@ -634,3 +634,52 @@ cd /Users/fergusmeiklejohn/conductor/repo/neural_networks_research/vienna  # fea
 - Speculation mixed with results
 
 The style guide includes specific examples and transformations to ensure professional, defensible scientific writing that will withstand peer review
+
+### CI/CD System
+
+The project uses pre-commit hooks for code quality. The system has been streamlined for practicality:
+
+**Pre-commit hooks (run on every commit):**
+- **Automatic fixes**: Black formatting, isort, trailing whitespace
+- **Warnings only**: TODO/FIXME tracking, hardcoded paths (non-blocking)
+
+**Pre-push hooks (run before pushing):**
+- **Heavier checks**: flake8 linting, mypy type checking, pytest
+- **All non-blocking**: You can override with `git push --no-verify` if needed
+
+**Usage:**
+```bash
+# Normal commits will auto-format your code
+git commit -m "Your message"
+
+# Skip hooks if needed (e.g., WIP commits)
+git commit -m "WIP: testing" --no-verify
+
+# Run all hooks manually
+pre-commit run --all-files
+
+# Run specific hook
+pre-commit run black --all-files
+```
+
+**Key Points:**
+- Hooks are installed and working in the conda environment
+- Fast formatting hooks run on commit (auto-fix)
+- Slow checks only run on push (can be skipped)
+- TODOs and hardcoded paths are allowed with warnings
+- Use `--no-verify` flag when you need to bypass hooks
+
+**If hooks fail unexpectedly:**
+```bash
+# Update hooks to latest versions
+pre-commit autoupdate
+
+# Clean and reinstall
+pre-commit clean
+pre-commit install
+
+# Or temporarily disable
+pre-commit uninstall  # Disables hooks
+# ... do your work ...
+pre-commit install    # Re-enable when ready
+```
