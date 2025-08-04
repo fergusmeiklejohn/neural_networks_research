@@ -13,7 +13,7 @@
 ### Current Status & Progress
 - **Feedback Integration**: `FEEDBACK_INTEGRATION.md` - 100% complete, all reviewer feedback integrated
 - **Research Diary**: `research_diary/` - Daily progress and decisions
-  - Latest: `2025-07-18_research_diary.md` - Documentation cleanup and strategic planning
+  - Latest: `2025-08-04_research_diary.md` - Variable binding as distribution invention breakthrough
 - **OOD Evaluation Paper**: `papers/ood_evaluation_analysis/` - ✅ Fully revised and review-ready
 - **Papers in Progress**: `papers/ood_evaluation_analysis/` - Technical report on interpolation vs extrapolation
 
@@ -30,6 +30,13 @@
 - **Plan**: `experiments/02_compositional_language/EXPERIMENT_PLAN.md`
 - **Status**: Ready for retry (infrastructure fixed after lost results)
 - **Training Template**: `train_template.py` - Use this for safe cloud training
+
+#### Experiment 03: Variable Binding Architecture ⭐ NEW
+- **Current Status**: `experiments/03_binding_architecture/WORKSPACE_STATUS.md` - Major theoretical breakthrough!
+- **Key Finding**: Variable binding IS distribution invention in miniature
+- **Theoretical Analysis**: `THEORETICAL_ANALYSIS_BINDING_AS_DISTRIBUTION_INVENTION.md`
+- **Implementation**: Memory networks tested, Two-Stage Compiler recommended next
+- **Progress**: Discovered why models plateau at 50% - need explicit discrete operations
 
 ### 🧠 Key Insights & Learning
 
