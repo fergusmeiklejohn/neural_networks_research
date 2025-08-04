@@ -13,7 +13,7 @@ Demonstrate that GraphExtrap-level performance on Jupiter gravity can be achieve
 
 #### Training Conditions
 - **Base**: Earth (-9.8 m/s²) + Mars (-3.7 m/s²) [current setup]
-- **Coverage-1**: Base + Mercury (-3.7 m/s²) 
+- **Coverage-1**: Base + Mercury (-3.7 m/s²)
 - **Coverage-2**: Base + Mercury + Venus (-8.87 m/s²)
 - **Coverage-3**: Base + Mercury + Venus + Asteroid Belt (~-6.0 m/s²)
 - **Coverage-4**: Base + Mercury + Venus + Asteroid + Saturn moon (-1.35 m/s²)
@@ -24,7 +24,7 @@ Demonstrate that GraphExtrap-level performance on Jupiter gravity can be achieve
 
 #### Models to Test
 1. Simple MLP (no physics)
-2. GFlowNet 
+2. GFlowNet
 3. GraphExtrap architecture
 4. MAML
 
@@ -53,13 +53,13 @@ Demonstrate that GraphExtrap-level performance on Jupiter gravity can be achieve
 gravity_sets = {
     'base': [('Earth', -9.8), ('Mars', -3.7)],
     'coverage_1': [('Earth', -9.8), ('Mars', -3.7), ('Mercury', -3.7)],
-    'coverage_2': [('Earth', -9.8), ('Mars', -3.7), ('Mercury', -3.7), 
+    'coverage_2': [('Earth', -9.8), ('Mars', -3.7), ('Mercury', -3.7),
                    ('Venus', -8.87)],
-    'coverage_3': [('Earth', -9.8), ('Mars', -3.7), ('Mercury', -3.7), 
+    'coverage_3': [('Earth', -9.8), ('Mars', -3.7), ('Mercury', -3.7),
                    ('Venus', -8.87), ('Asteroid', -6.0)],
-    'coverage_4': [('Earth', -9.8), ('Mars', -3.7), ('Mercury', -3.7), 
+    'coverage_4': [('Earth', -9.8), ('Mars', -3.7), ('Mercury', -3.7),
                    ('Venus', -8.87), ('Asteroid', -6.0), ('Titan', -1.35)],
-    'coverage_5': [('Earth', -9.8), ('Mars', -3.7), ('Mercury', -3.7), 
+    'coverage_5': [('Earth', -9.8), ('Mars', -3.7), ('Mercury', -3.7),
                    ('Venus', -8.87), ('Asteroid', -6.0), ('Titan', -1.35),
                    ('Neptune', -11.15)]
 }

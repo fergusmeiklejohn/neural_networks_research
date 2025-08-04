@@ -25,7 +25,7 @@ This maintains our contribution while addressing universality concerns.
 
 **The Problem**: All evidence from 2-ball gravity system limits generalizability.
 
-**Our Response**: 
+**Our Response**:
 - Add **pendulum with time-varying length** as second mechanism shift
   - Different physics (angular vs linear motion)
   - Different mechanism type (geometric vs force change)
@@ -40,7 +40,7 @@ This maintains our contribution while addressing universality concerns.
 
 **The Problem**: Claims like "genuine OOD generalization may require fundamentally different approaches" sound universal.
 
-**Our Response**: 
+**Our Response**:
 - Scope all claims to "physics tasks with mechanism shifts"
 - Define mechanism shifts precisely (generative equation changes)
 - Give examples: climate tipping points, market regime changes
@@ -54,7 +54,7 @@ This maintains our contribution while addressing universality concerns.
 
 **Our Response**:
 - **PeTTA**: Acknowledge collapse prevention, explain why it doesn't discover new mechanisms
-- **TAIP**: Recognize physics-aware success, distinguish parameter vs mechanism shifts  
+- **TAIP**: Recognize physics-aware success, distinguish parameter vs mechanism shifts
 - **TTAB**: Position our work as identifying specific failure mode in their taxonomy
 
 **Key Insight**: These methods solve different problems:
@@ -80,7 +80,7 @@ This maintains our contribution while addressing universality concerns.
 
 ### Statistical Rigor
 - Add 95% confidence intervals to all metrics
-- Report p-values for "no improvement" claims  
+- Report p-values for "no improvement" claims
 - Include standard errors in tables
 - Show per-seed results in appendix
 
@@ -104,7 +104,7 @@ This maintains our contribution while addressing universality concerns.
 3. Write literature integration section
 4. Create response to reviewer document
 
-### Week 2 (Medium Impact)  
+### Week 2 (Medium Impact)
 1. Run pendulum experiments
 2. Implement physics-aware losses
 3. Add statistical analysis
@@ -120,7 +120,7 @@ This maintains our contribution while addressing universality concerns.
 
 ### Strengthened Paper
 - **Broader Evidence**: 2+ mechanism shift tasks
-- **Precise Claims**: Scoped to physics mechanism shifts  
+- **Precise Claims**: Scoped to physics mechanism shifts
 - **Current Context**: Integrated with 2024-2025 advances
 - **Statistical Rigor**: CIs, p-values, proper analysis
 - **Professional Polish**: Publication-ready format
@@ -134,7 +134,7 @@ We identify and diagnose a specific, important failure mode (mechanism shifts) t
 
 2. **Empirical breadth**: Added pendulum and energy-aware losses per suggestion
 
-3. **Claim scoping**: Revised throughout to specify "physics mechanism shifts"  
+3. **Claim scoping**: Revised throughout to specify "physics mechanism shifts"
 
 4. **Literature integration**: Added discussion of PeTTA/TAIP as complementary
 

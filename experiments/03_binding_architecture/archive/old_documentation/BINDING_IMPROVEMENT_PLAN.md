@@ -20,7 +20,7 @@ We have identified critical gaps between our simplified MLX implementation and t
 ### 2. Comprehensive Test Suite (`test_binding_capabilities.py`)
 Tests for:
 - Basic dereferencing: "X means jump. Do X." → "JUMP"
-- Rebinding: "X means jump. Now X means hop. Do X." → "HOP"  
+- Rebinding: "X means jump. Now X means hop. Do X." → "HOP"
 - Compositional: "X means jump. Do X twice." → "JUMP", "JUMP"
 - Chained references: "X means Y. Y means jump. Do X." → "JUMP"
 

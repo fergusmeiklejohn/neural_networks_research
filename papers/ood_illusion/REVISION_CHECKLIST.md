@@ -29,7 +29,7 @@
    - [ ] Add mentions of PeTTA, TAIP, TTAB as recent advances
    - [ ] Use tempered language throughout
 
-2. [ ] **Background Section**  
+2. [ ] **Background Section**
    - [ ] Insert new subsection on recent TTA advances
    - [ ] Position our work relative to recent papers
 
@@ -89,7 +89,7 @@
 ## Time Estimate
 
 - Paper integration: 4-6 hours
-- Statistical analysis: 2-3 hours  
+- Statistical analysis: 2-3 hours
 - Figures: 2-3 hours
 - Final review: 2 hours
 - **Total: 10-14 hours of focused work**

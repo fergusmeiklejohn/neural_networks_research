@@ -29,7 +29,7 @@ In-distribution (constant gravity):
 - Baseline MSE: 1,206
 - After TTA: 6,031 (+400% degradation)
 
-Out-of-distribution (time-varying gravity):  
+Out-of-distribution (time-varying gravity):
 - Baseline MSE: 2,070
 - After TTA: 6,935 (+235% degradation)
 ```
@@ -118,7 +118,7 @@ All analysis code is in `experiments/01_physics_worlds/`:
 - Debugging tools: `debug_tta_adaptation.py`, `diagnose_tta_zeros.py`
 - Results: `outputs/tta_analysis/` and comprehensive documentation
 
-To reproduce: 
+To reproduce:
 ```bash
 python experiments/01_physics_worlds/analyze_tta_degradation.py
 ```

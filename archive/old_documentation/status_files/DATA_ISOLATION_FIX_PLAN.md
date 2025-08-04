@@ -23,7 +23,7 @@ def _generate_random_physics_config(self) -> PhysicsConfig:
     )
 ```
 
-**Why this is a problem**: 
+**Why this is a problem**:
 - Test samples are statistically indistinguishable from training samples
 - We can't measure true generalization or distribution invention
 - High "test accuracy" may be meaningless - just interpolation
@@ -34,7 +34,7 @@ Current generation for all splits:
 ```python
 # Random sampling means gaps and overlaps
 train_physics = [random_physics() for _ in range(10000)]
-val_physics = [random_physics() for _ in range(2000)]  
+val_physics = [random_physics() for _ in range(2000)]
 test_physics = [random_physics() for _ in range(1000)]
 ```
 
@@ -79,7 +79,7 @@ if abs(energy_conservation) > self.config.energy_conservation_threshold:
 - Example: Gravity=-800 when trained on range [-1500, -200]
 
 **Extrapolation Test Set**: Tests outside training distribution
-- Purpose: Verify distribution invention capability  
+- Purpose: Verify distribution invention capability
 - Example: Gravity=-2000 or Gravity=-100 (outside training range)
 
 ### 2.2 Systematic Parameter Space Coverage
@@ -112,7 +112,7 @@ TRAIN_RANGES = {
 }
 ```
 
-**Sampling strategy**: 
+**Sampling strategy**:
 - Random uniform sampling within ranges
 - Ensure minimum coverage via grid initialization
 
@@ -132,8 +132,8 @@ Two types of validation data:
 NEAR_VAL_RANGES = {
     'gravity': (-1400, -200),      # 15% extension
     'friction': (0.05, 0.9),       # Include more extremes
-    'elasticity': (0.1, 0.95),     
-    'damping': (0.82, 0.99)        
+    'elasticity': (0.1, 0.95),
+    'damping': (0.82, 0.99)
 }
 ```
 
@@ -178,7 +178,7 @@ class ImprovedPhysicsDataGenerator:
     def __init__(self, config: DataConfig):
         self.config = config
         self.define_data_splits()
-        
+
     def define_data_splits(self):
         """Define parameter ranges for each data split"""
         self.splits = {
@@ -189,7 +189,7 @@ class ImprovedPhysicsDataGenerator:
             },
             'val_in_dist': {
                 'ranges': TRAIN_RANGES,
-                'sampling': 'random_uniform', 
+                'sampling': 'random_uniform',
                 'size': 0.1
             },
             'val_near_dist': {
@@ -220,19 +220,19 @@ class ImprovedPhysicsDataGenerator:
 ```python
 def generate_modification_pairs_v2(self):
     """Generate modification pairs with proper train/test split"""
-    
+
     # Training modifications: Standard types on training physics
     train_modifications = {
         'base_physics': 'train_ranges',
         'modification_types': [
             'gravity_increase_20%',
-            'gravity_decrease_20%', 
+            'gravity_decrease_20%',
             'friction_increase',
             'friction_decrease',
             # ... standard modifications
         ]
     }
-    
+
     # Test modifications: Novel types and out-of-distribution base physics
     test_modifications = {
         'base_physics': 'test_ranges',
@@ -255,19 +255,19 @@ class DistributionInventionMetrics:
     def __init__(self):
         self.metrics = {
             'interpolation_accuracy': None,      # Performance on in-distribution test
-            'extrapolation_accuracy': None,      # Performance on out-of-distribution  
+            'extrapolation_accuracy': None,      # Performance on out-of-distribution
             'novel_regime_success': None,        # Performance on predefined regimes
             'modification_consistency': None,     # Rule modification accuracy
             'distribution_distance': None,       # KL divergence from training
             'physics_plausibility': None,        # Energy conservation, smoothness
             'invention_score': None              # Combined metric for paper
         }
-        
+
     def compute_invention_score(self):
         """Weighted combination emphasizing true generalization"""
         weights = {
             'interpolation': 0.2,    # Less important
-            'extrapolation': 0.4,    # Most important  
+            'extrapolation': 0.4,    # Most important
             'novel_regime': 0.3,     # Important
             'consistency': 0.1       # Supporting metric
         }
@@ -279,7 +279,7 @@ To maintain compatibility while fixing issues:
 
 1. **Keep old data files**: Don't delete existing datasets
 2. **Version new data**: Use `_v2` suffix for new data files
-3. **Add compatibility flag**: 
+3. **Add compatibility flag**:
 ```python
 use_improved_data_split = True  # Flag in config
 ```

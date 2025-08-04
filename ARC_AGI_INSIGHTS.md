@@ -79,10 +79,10 @@ class ARCPhysicsTask:
             ("low_gravity", low_gravity_trajectory),
             ("high_friction", high_friction_trajectory)
         ]
-        
+
         # Test: Infer behavior with combined modifications
         test = "low_gravity + high_friction"
-        
+
         # Model must recombine learned modifications
         return demos, test
 ```

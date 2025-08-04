@@ -164,11 +164,11 @@ def main() -> None:
     """Main function."""
     # Set up environment
     config = setup_environment()
-    
+
     # Your code here
     data_path = get_data_path("processed")
     output_path = get_output_path("results")
-    
+
     logger.info(f"Processing data from {data_path}")
     logger.info(f"Saving results to {output_path}")
 
@@ -193,11 +193,11 @@ from typing import List, Dict, Any
 
 def process_data(data: List[Dict[str, Any]], config: Dict[str, Any]) -> List[Dict[str, Any]]:
     """Process data according to configuration.
-    
+
     Args:
         data: List of data items to process
         config: Configuration dictionary with 'param' key
-        
+
     Returns:
         List of processed results
     """

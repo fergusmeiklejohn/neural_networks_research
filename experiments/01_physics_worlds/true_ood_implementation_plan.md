@@ -36,7 +36,7 @@ class TrueOODVerifier:
         self.model = model
         self.train_representations = self._extract_representations(train_data)
         self.density_model = self._fit_density_model()
-    
+
     def verify_ood_percentage(self, test_data):
         """Verify what percentage of test data is truly OOD."""
         # Use k-NN distances + density estimation
@@ -55,10 +55,10 @@ class TrueOODVerifier:
 
 def plot_gravity_evolution(trajectory_data):
     """Show how gravity changes during a trajectory."""
-    
+
 def plot_representation_space(train_repr, test_repr):
     """Visualize OOD samples in representation space."""
-    
+
 def animate_trajectory_comparison(standard_physics, time_varying_physics):
     """Side-by-side animation showing difference."""
 ```
@@ -75,7 +75,7 @@ def simulate_time_varying_trajectory(
 ) -> np.ndarray:
     """
     Simulate 2-ball system with time-varying gravity.
-    
+
     Key differences from constant gravity:
     - Acceleration changes each timestep
     - Energy is not conserved
@@ -83,15 +83,15 @@ def simulate_time_varying_trajectory(
     """
     trajectory = []
     state = initial_state.copy()
-    
+
     for t in np.arange(0, duration, dt):
         # Gravity changes with time!
         g = gravity_fn(t)
-        
+
         # Update physics with current gravity
         state = physics_step(state, g, dt)
         trajectory.append(state)
-    
+
     return np.array(trajectory)
 ```
 
@@ -107,13 +107,13 @@ def compute_ood_metrics(train_data, test_data, model):
         'mahalanobis': compute_mahalanobis_distance(train_repr, test_repr),
         'energy_score': compute_energy_score(model, test_data)
     }
-    
+
     # Combine metrics for robust OOD detection
     is_ood = (
-        (metrics['knn_distance'] > percentile_95) & 
+        (metrics['knn_distance'] > percentile_95) &
         (metrics['density_score'] < percentile_5)
     )
-    
+
     return {
         'ood_percentage': np.mean(is_ood) * 100,
         'metrics': metrics

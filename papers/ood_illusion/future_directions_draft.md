@@ -10,7 +10,7 @@ Benchmarks should explicitly categorize their distribution shifts according to o
 ### Graduated Evaluation
 Rather than binary in-distribution/out-of-distribution classification, evaluation should measure performance across a spectrum:
 1. Interpolation within training support
-2. Near-extrapolation (slightly outside training)  
+2. Near-extrapolation (slightly outside training)
 3. Far-extrapolation (different mechanisms)
 
 ### Failure Mode Analysis

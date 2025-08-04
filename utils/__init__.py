@@ -12,11 +12,11 @@ Author: Fergus Meiklejohn
 
 from .config import get_config, setup_environment, validate_keras_backend
 from .imports import safe_import, setup_project_paths
-from .paths import get_project_root, resolve_path, get_data_path, get_output_path
+from .paths import get_data_path, get_output_path, get_project_root, resolve_path
 
 __all__ = [
     "get_config",
-    "setup_environment", 
+    "setup_environment",
     "validate_keras_backend",
     "safe_import",
     "setup_project_paths",

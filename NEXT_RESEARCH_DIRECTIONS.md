@@ -175,7 +175,7 @@ Our discovery of the "OOD Illusion" - where models appearing to generalize are a
 ## Key Papers to Implement/Extend
 
 1. **NSR (Li et al., 2024)**: For SCAN success
-2. **Modular Meta-Learning (Schug et al., 2024)**: For compositional modules  
+2. **Modular Meta-Learning (Schug et al., 2024)**: For compositional modules
 3. **MLC (Lake & Baroni, 2023)**: For curriculum design
 4. **CAMEL (Blanke & Lelarge, 2024)**: For interpretable physics
 5. **Energy-Based OOD (Chen et al., 2023)**: For detection and adaptation

@@ -109,7 +109,7 @@ total_loss = 1.0 * mse_loss + 100.0 * physics_loss
    features = [
        r,           # radius (distance from origin)
        theta,       # angle
-       v_r,         # radial velocity  
+       v_r,         # radial velocity
        v_theta,     # angular velocity
        L,           # angular momentum (r × v)
    ]
@@ -160,14 +160,14 @@ total_loss = 1.0 * mse_loss + 100.0 * physics_loss
 def loss_fn(y_true, y_pred):
     mse = mean_squared_error(y_true, y_pred)
     energy_violation = compute_energy_loss(y_pred)
-    
+
     # Heavy physics weighting
     total_loss = 1.0 * mse + 100.0 * energy_violation
-    
+
     # Log components separately
     log('mse', mse)
     log('energy', energy_violation)
-    
+
     return total_loss
 ```
 
@@ -198,11 +198,11 @@ A successful PINN should:
 
 ## Conclusion
 
-The key lesson: **Physics-informed doesn't mean physics-aware**. 
+The key lesson: **Physics-informed doesn't mean physics-aware**.
 
 Successful PINNs require:
 - Physics-aware features
-- Proper loss weighting  
+- Proper loss weighting
 - Minimal architectures
 - Domain-appropriate design
 

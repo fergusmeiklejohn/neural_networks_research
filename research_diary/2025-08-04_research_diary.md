@@ -28,7 +28,7 @@ Today we discovered that variable binding (e.g., "X means jump") is actually **d
 
 #### Memory Network Performance
 - Level 1 (single binding): 100% ✅
-- Level 2 (compositions): 40% ⚠️ 
+- Level 2 (compositions): 40% ⚠️
 - Level 3 (rebinding): 0% ❌
 - Level 4 (complex): 92% (likely measurement error)
 
@@ -45,7 +45,7 @@ The memory values remained at zero throughout training! This proves:
 - `memory_network_v2.py` - Improved version with compositional operators
 - `progressive_complexity_dataset.py` - Systematic test suite (Levels 1-4)
 
-#### Training Scripts  
+#### Training Scripts
 - `train_memory_simple.py` - Simplified single-sample training
 - `train_memory_v2.py` - Full training with diagnostic analysis
 
@@ -100,7 +100,7 @@ This work reveals that distribution invention requires:
 
 ### Reflections
 
-Today's work fundamentally changed how I think about distribution invention. It's not about better interpolation or more sophisticated attention mechanisms. It's about giving models the ability to perform discrete operations that create new rules. 
+Today's work fundamentally changed how I think about distribution invention. It's not about better interpolation or more sophisticated attention mechanisms. It's about giving models the ability to perform discrete operations that create new rules.
 
 The simplicity of variable binding revealed profound truths about why current architectures fail at creative tasks. If we can't even handle "X means jump" properly, no wonder we struggle with "imagine different physics"!
 

@@ -24,7 +24,7 @@ This is **exactly** the kind of empirical demonstration that makes our paper str
 
 Inspired by PeTTA's collapse detection approach, we implemented monitoring of:
 - Prediction entropy (diversity)
-- Variance tracking  
+- Variance tracking
 - Parameter drift
 
 Results show collapse detection working as intended but providing no accuracy benefit:
@@ -36,43 +36,43 @@ Table 3: PeTTA-Inspired Collapse Detection Results
 | Standard TTA | 0.006256 | 13.90x | N/A |
 | PeTTA-inspired | 0.006252 | 13.89x | 0/20 |
 
-The model maintained diverse predictions (entropy decreased only 2%) but these 
+The model maintained diverse predictions (entropy decreased only 2%) but these
 predictions remained systematically wrong due to missing L̇/L physics terms.
 ```
 
 ### 4. In Discussion:
 ```markdown
-Our implementation of collapse detection (inspired by PeTTA) empirically 
+Our implementation of collapse detection (inspired by PeTTA) empirically
 demonstrates the distinction between two failure modes:
 
 1. **Collapse to degeneracy**: Predictions become constant/trivial (PeTTA prevents this)
 2. **Wrong computational structure**: Diverse but incorrect predictions due to missing physics
 
-Mechanism shifts exhibit the second failure mode. No amount of stable adaptation 
+Mechanism shifts exhibit the second failure mode. No amount of stable adaptation
 can introduce the L̇/L term needed for variable-length pendulum dynamics.
 ```
 
 ### 5. In Related Work:
 ```markdown
-We implemented collapse detection similar in spirit to PeTTA, monitoring prediction 
-entropy and variance. Our experiments show this successfully prevents degenerate 
-solutions but cannot address mechanism shifts where new computational operations 
+We implemented collapse detection similar in spirit to PeTTA, monitoring prediction
+entropy and variance. Our experiments show this successfully prevents degenerate
+solutions but cannot address mechanism shifts where new computational operations
 are required.
 ```
 
 ## Key Messages
 
 1. **We didn't just theorize** - we implemented and tested
-2. **PeTTA works as designed** - no collapse occurred  
+2. **PeTTA works as designed** - no collapse occurred
 3. **But it doesn't help** - because the problem isn't instability
 4. **This strengthens our thesis** - mechanism shifts need new approaches
 
 ## For Reviewer Response
 
-"Following the reviewer's emphasis on empirical demonstration, we implemented 
-PeTTA-inspired collapse detection. Results show it prevents degenerate solutions 
-(maintaining prediction diversity) but provides negligible improvement (0.06%) 
-on mechanism shifts. This empirically confirms that stability (PeTTA's strength) 
+"Following the reviewer's emphasis on empirical demonstration, we implemented
+PeTTA-inspired collapse detection. Results show it prevents degenerate solutions
+(maintaining prediction diversity) but provides negligible improvement (0.06%)
+on mechanism shifts. This empirically confirms that stability (PeTTA's strength)
 is orthogonal to learning new physics (our challenge)."
 
 ## Figures to Include

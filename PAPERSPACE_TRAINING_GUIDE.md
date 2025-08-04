@@ -112,15 +112,15 @@ def train_with_safety():
     # 1. Setup storage paths
     storage_dir = Path(f'/storage/{experiment_name}_{timestamp}')
     storage_dir.mkdir(exist_ok=True)
-    
+
     # 2. Training loop with saves
     for stage in range(4):
         # ... training code ...
-        
+
         # Save after EVERY stage
         save_checkpoint(model, storage_dir / f'stage_{stage}.h5')
         save_metrics(metrics, storage_dir / f'stage_{stage}_metrics.json')
-    
+
     # 3. Final comprehensive save
     save_everything_to_storage(storage_dir)
     create_downloadable_zip()

@@ -5,7 +5,7 @@
 A key issue in the failure of adaptation methods appears to be a mismatch between their optimization objectives and the task objective. Test-time adaptation methods optimize self-supervised losses such as:
 
 - **Prediction consistency**: Encouraging similar predictions for similar inputs
-- **Temporal smoothness**: Minimizing variation in sequential predictions  
+- **Temporal smoothness**: Minimizing variation in sequential predictions
 - **Entropy minimization**: Reducing uncertainty in predictions
 
 These objectives are motivated by the assumption that confident, consistent predictions are more likely to be correct. This assumption holds when the test distribution involves corruptions or style changes that increase prediction variance. However, when the underlying dynamics change, these objectives may lead to reduced performance.

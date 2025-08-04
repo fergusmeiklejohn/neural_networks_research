@@ -59,14 +59,14 @@ def create_true_ood_benchmark():
         gravity_range=(-10, -5),
         n_samples=10000
     )
-    
+
     # Extract representations after initial training
     model = train_baseline(train_data)
     representations = model.get_representations(train_data)
-    
+
     # Fit density model
     density_model = fit_kde(representations)
-    
+
     return train_data, density_model
 ```
 
@@ -74,26 +74,26 @@ def create_true_ood_benchmark():
 ```python
 def generate_true_ood_tests(density_model):
     test_sets = {}
-    
+
     # Level 2: Time-varying gravity
     test_sets['varying_gravity'] = generate_physics_with(
         gravity_fn=lambda t: -9.8 * (1 + 0.1*np.sin(0.5*t)),
         filter_fn=lambda x: density_model.score(x) < threshold
     )
-    
+
     # Level 3: Add magnetic forces
     test_sets['magnetic'] = generate_electromagnetic_physics(
         B_field=0.1,  # Tesla
         charge=1e-6,  # Coulombs
         filter_fn=lambda x: density_model.score(x) < threshold
     )
-    
+
     # Level 4: Reversed causality
     test_sets['reversed'] = generate_reversed_physics(
         time_direction=-1,
         filter_fn=lambda x: density_model.score(x) < threshold
     )
-    
+
     return test_sets
 ```
 
@@ -101,15 +101,15 @@ def generate_true_ood_tests(density_model):
 ```python
 def verify_ood_percentage(train_repr, test_data, model):
     test_repr = model.get_representations(test_data)
-    
+
     # Use multiple metrics
     knn_distances = compute_knn_distances(train_repr, test_repr, k=10)
     densities = density_model.score_samples(test_repr)
-    
+
     # Classify as OOD if far from all training points
-    is_ood = (knn_distances > np.percentile(train_distances, 95)) & 
+    is_ood = (knn_distances > np.percentile(train_distances, 95)) &
              (densities < np.percentile(train_densities, 5))
-    
+
     return np.mean(is_ood) * 100
 ```
 

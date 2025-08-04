@@ -196,7 +196,7 @@
 ### Figure 5: Taxonomy of Distribution Shifts
 - Hierarchical diagram:
   - Surface changes
-  - Statistical changes  
+  - Statistical changes
   - Law changes (true OOD)
 
 ## Appendix (2-3 pages)

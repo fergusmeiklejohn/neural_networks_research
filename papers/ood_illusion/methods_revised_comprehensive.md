@@ -61,7 +61,7 @@ Our experiments specifically test mechanism shifts where the functional form of 
 
 All experiments use consistent architectures:
 
-**Two-ball system**: 
+**Two-ball system**:
 - Feedforward network: [8, 256, 256, 256, 8]
 - ReLU activations, MSE loss
 

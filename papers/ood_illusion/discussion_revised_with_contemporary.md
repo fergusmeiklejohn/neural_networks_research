@@ -5,7 +5,7 @@
 A key issue in the failure of adaptation methods on mechanism shifts is a mismatch between their optimization objectives and the task objective. Test-time adaptation methods optimize self-supervised losses such as:
 
 - **Prediction consistency**: Encouraging similar predictions for similar inputs
-- **Temporal smoothness**: Minimizing variation in sequential predictions  
+- **Temporal smoothness**: Minimizing variation in sequential predictions
 - **Entropy minimization**: Reducing uncertainty in predictions
 - **Physics-informed losses**: Enforcing energy conservation or Hamiltonian structure
 
@@ -50,7 +50,7 @@ Our findings might seem to contradict recent TTA successes. However, these appro
 ### PeTTA's Collapse Detection
 PeTTA successfully prevents parameter drift and maintains stable predictions by detecting when adaptation leads to degenerate solutions. In our experiments, PeTTA-inspired monitoring correctly identified that no collapse occurred—predictions remained diverse. However, detection alone cannot guide adaptation toward learning new physics terms. The model needs architectural capacity to express -2(L̇/L)θ̇, not just stable parameters.
 
-### TAIP's Physics Constraints  
+### TAIP's Physics Constraints
 TAIP elegantly uses energy conservation and Hamiltonian structure to constrain adaptation in molecular dynamics. This works brilliantly when underlying physics principles remain fixed—only atomic positions and velocities change. In our mechanism shifts, however, these constraints become actively harmful. For the time-varying pendulum, enforcing energy conservation (which no longer holds due to work done by length changes) prevents the model from learning correct dynamics. Our experiments confirm this: energy-based TTA degraded performance by 12.6x.
 
 ### TTAB's Comprehensive Analysis
@@ -84,7 +84,7 @@ This exemplifies a broader principle: domain knowledge helps only when its assum
 Improving predictions on mechanism shifts requires information not present in unlabeled test data:
 
 - Training provides: P(y|x, fixed_mechanism)
-- Test data provides: P(x|new_mechanism) 
+- Test data provides: P(x|new_mechanism)
 - Needed for accuracy: P(y|x, new_mechanism)
 
 The missing link—how the new mechanism transforms inputs to outputs—cannot be inferred from unlabeled data alone. Self-supervised losses provide no information about this transformation.

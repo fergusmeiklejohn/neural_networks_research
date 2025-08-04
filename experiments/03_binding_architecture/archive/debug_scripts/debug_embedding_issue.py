@@ -39,6 +39,7 @@ except Exception as e:
 # What happens with numpy arrays?
 try:
     import numpy as np
+
     tokens_np = np.array([[1, 2, 3]])
     tokens_mx = mx.array(tokens_np)
     sliced = tokens_mx[:, 0:1]
@@ -52,10 +53,12 @@ except Exception as e:
 try:
     segment_tokens = mx.array([[2, 4, 7, 3, 4, 12, 5, 6, 7, 8, 9, 10]])
     t = 0
-    token_slice = segment_tokens[:, t:t+1]
-    print(f"\nProblematic case - slice shape: {token_slice.shape}, dtype: {token_slice.dtype}")
+    token_slice = segment_tokens[:, t : t + 1]
+    print(
+        f"\nProblematic case - slice shape: {token_slice.shape}, dtype: {token_slice.dtype}"
+    )
     print(f"Slice content: {token_slice}")
-    
+
     # Try different approaches
     # Approach 1: Direct slice
     try:
@@ -63,7 +66,7 @@ try:
         print(f"Direct slice works! Output shape: {out.shape}")
     except Exception as e:
         print(f"Direct slice failed: {e}")
-    
+
     # Approach 2: Squeeze
     try:
         squeezed = token_slice.squeeze()
@@ -72,7 +75,7 @@ try:
         print(f"Squeezed works! Output shape: {out.shape}")
     except Exception as e:
         print(f"Squeezed failed: {e}")
-    
+
     # Approach 3: Index directly
     try:
         token_idx = segment_tokens[0, t]
@@ -81,6 +84,6 @@ try:
         print(f"Direct index works! Output shape: {out.shape}")
     except Exception as e:
         print(f"Direct index failed: {e}")
-        
+
 except Exception as e:
     print(f"Overall test failed: {e}")

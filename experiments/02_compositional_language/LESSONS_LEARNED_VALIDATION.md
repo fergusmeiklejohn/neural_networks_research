@@ -4,11 +4,11 @@
 
 We pushed scripts to Paperspace with 2 runtime errors that wasted GPU time:
 
-1. **Import Error**: 
+1. **Import Error**:
    ```python
    ImportError: cannot import name 'create_model' from 'train_progressive_minimal'
    ```
-   
+
 2. **AttributeError**:
    ```python
    AttributeError: 'SCANTokenizer' object has no attribute 'save'

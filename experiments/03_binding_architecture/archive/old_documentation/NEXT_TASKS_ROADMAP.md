@@ -1,6 +1,6 @@
 # Next Tasks Roadmap - Variable Binding Architecture
 
-**Last Updated**: 2025-08-01  
+**Last Updated**: 2025-08-01
 **Current Status**: 4/5 major architectural limitations solved
 
 ## Completed Achievements ✅
@@ -13,13 +13,13 @@
 ## Remaining Architectural Limitations
 
 ### 1. Compositional Operators ❌
-**Problem**: Cannot handle "and", "while", "or" operators  
-**Example**: "do X and Y twice" should do both X and Y, twice  
+**Problem**: Cannot handle "and", "while", "or" operators
+**Example**: "do X and Y twice" should do both X and Y, twice
 **Current**: Model treats these as regular tokens
 
 ### 2. Nested Temporal Patterns ❌
-**Problem**: Cannot handle nested repetitions  
-**Example**: "do X twice twice" should execute X four times  
+**Problem**: Cannot handle nested repetitions
+**Example**: "do X twice twice" should execute X four times
 **Current**: Only handles single-level temporal modifiers
 
 ## Priority Task List
@@ -127,7 +127,7 @@ Week 3:
 
 A single model that can handle:
 ```
-"X means jump and Y means walk do X and Y twice then 
+"X means jump and Y means walk do X and Y twice then
  X means turn do X while Y means run do Y thrice twice"
 ```
 

@@ -24,24 +24,24 @@ class MinimalBindingModel:
     def __init__(self):
         # Explicit variable slots (not just embeddings)
         self.variable_memory = VariableMemory(n_slots=10)
-        
+
         # Binding mechanism (associates words with slots)
         self.binder = BindingAttention()
-        
+
         # Execution with bound variables
         self.executor = BoundVariableExecutor()
-    
+
     def forward(self, command, modification=None):
         # Parse command into variables
         variables = self.parse_to_variables(command)
-        
+
         # Bind variables to memory slots
         bindings = self.binder(variables, self.variable_memory)
-        
+
         # Apply modifications to bindings
         if modification:
             bindings = self.apply_modification(bindings, modification)
-        
+
         # Execute with modified bindings
         return self.executor(bindings)
 ```
@@ -76,17 +76,17 @@ class TrueOODVerifier:
         # Get representations
         train_repr = model.get_representations(train_data)
         test_repr = model.get_representations(test_data)
-        
+
         # Compute convex hull
         hull = ConvexHull(train_repr)
-        
+
         # Classify each test point
         results = {
             'interpolation': [],
             'near_extrapolation': [],
             'far_extrapolation': []
         }
-        
+
         for point in test_repr:
             distance = distance_to_hull(point, hull)
             if distance < 0.01:
@@ -96,13 +96,13 @@ class TrueOODVerifier:
             else:
                 category = 'far_extrapolation'
             results[category].append(point)
-        
+
         return results
 ```
 
 ### Specific Tasks:
 1. Implement convex hull analysis (2-3 hours)
-2. Apply to our physics "OOD" results (2-3 hours)  
+2. Apply to our physics "OOD" results (2-3 hours)
 3. Visualize interpolation vs extrapolation (2-3 hours)
 4. Re-evaluate all baseline results (3-4 hours)
 5. Document true OOD requirements (1-2 hours)
@@ -125,34 +125,34 @@ class NSRScanParser:
     def __init__(self):
         # Neural perception: string → symbols
         self.perception = nn.LSTM(input_size=vocab_size, hidden_size=256)
-        
+
         # Symbolic parser: symbols → parse tree
         self.parser = SymbolicParser(
             grammar=SCAN_GRAMMAR,
             max_depth=5
         )
-        
+
         # Semantic executor: parse tree → actions
         self.executor = SemanticExecutor()
-        
+
         # Deduction-abduction learner
         self.rule_learner = DeductionAbduction()
-    
+
     def parse_command(self, command):
         # Neural → Symbolic
         symbols = self.perception(command)
-        
+
         # Build parse tree
         tree = self.parser(symbols)
-        
+
         # Return structured representation
         return tree
-    
+
     def execute(self, tree, modifications=None):
         # Apply modifications at symbolic level
         if modifications:
             tree = self.apply_symbolic_modifications(tree, modifications)
-        
+
         # Execute symbolically
         return self.executor(tree)
 ```
@@ -182,20 +182,20 @@ def meta_learning_episode():
     """
     # Sample a new "word" (e.g., "blip" means jump)
     new_word, meaning = sample_novel_word()
-    
+
     # Create support set (few examples)
     support = [
         (f"{new_word}", meaning),
         (f"{new_word} twice", f"{meaning} {meaning}"),
         (f"{new_word} left", f"TURN_LEFT {meaning}")
     ]
-    
+
     # Create query set (novel combinations)
     query = [
         (f"{new_word} around right", f"TURN_RIGHT {meaning} TURN_RIGHT {meaning}"),
         (f"{new_word} and walk", f"{meaning} WALK")
     ]
-    
+
     # Meta-update to improve compositional learning
     loss = model.adapt(support, query)
     meta_optimizer.step(loss)
@@ -214,7 +214,7 @@ def meta_learning_episode():
 - Morning: Start minimal binding implementation
 - Afternoon: Complete variable memory and binding attention
 
-### Tuesday (Day 2)  
+### Tuesday (Day 2)
 - Morning: Implement dereferencing tasks
 - Afternoon: Test binding on simple modifications
 
@@ -233,7 +233,7 @@ def meta_learning_episode():
 ## Success Metrics for Week 1
 
 1. **Binding Demo**: >50% accuracy on single modifications
-2. **Convex Hull**: Clear classification of our "OOD" results  
+2. **Convex Hull**: Clear classification of our "OOD" results
 3. **NSR Parser**: Successfully parses basic SCAN commands
 4. **Progress**: Move beyond 0% on SCAN modifications
 

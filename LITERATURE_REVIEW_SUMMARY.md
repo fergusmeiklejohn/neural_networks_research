@@ -47,12 +47,12 @@ for task in dynamically_generated_tasks:
 def modify_distribution(base_dist, modification_request):
     # Preserve semantic identity
     identity_features = extract_identity(base_dist)
-    
+
     # Apply targeted modifications
     modified_features = apply_semantic_abduction(
         base_dist, modification_request
     )
-    
+
     # Generate while maintaining consistency
     return generate_with_constraints(
         identity_features, modified_features
@@ -66,10 +66,10 @@ class UnifiedComputation:
     def forward(self, input):
         # Neural path for flexibility
         neural_output = self.neural_encoder(input)
-        
+
         # Symbolic path for interpretability
         symbolic_output = self.tree_operations(input)
-        
+
         # Combine for best of both
         return self.merge(neural_output, symbolic_output)
 ```

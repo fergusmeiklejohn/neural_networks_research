@@ -3,11 +3,12 @@ Debug shape issues in sequential planning model.
 """
 
 from utils.imports import setup_project_paths
+
 setup_project_paths()
 
-from utils.config import setup_environment
 import mlx.core as mx
-import numpy as np
+
+from utils.config import setup_environment
 
 config = setup_environment()
 

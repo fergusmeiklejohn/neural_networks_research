@@ -27,7 +27,7 @@ We propose categorizing distribution shifts based on the computational requireme
 
 **Why Current Methods Work**: The same features remain relevant; only their values change.
 
-### Level 2: Statistical Shifts  
+### Level 2: Statistical Shifts
 **Definition**: Changes in data statistics while maintaining the same generative process.
 
 **Examples**:

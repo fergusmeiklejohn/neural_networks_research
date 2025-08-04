@@ -49,14 +49,14 @@ This checklist ensures all experiments follow our standardized evaluation protoc
 - [ ] **Train All Baselines**
   ```python
   from models.baseline_models import ERMWithAugmentation, GFlowNetBaseline, etc.
-  
+
   baselines = {
       'ERM+Aug': ERMWithAugmentation(config),
       'GFlowNet': GFlowNetBaseline(config),
       'GraphExtrap': GraphExtrapolationBaseline(config),
       'MAML': MAMLBaseline(config)
   }
-  
+
   for name, model in baselines.items():
       model.build_model()
       model.train(train_data, val_data)
@@ -67,7 +67,7 @@ This checklist ensures all experiments follow our standardized evaluation protoc
 - [ ] **Run Unified Evaluation**
   ```python
   from models.unified_evaluation import UnifiedEvaluator
-  
+
   evaluator = UnifiedEvaluator(experiment_type)
   results = evaluator.evaluate_all_models(
       models={**baselines, 'DistInvention': our_model},

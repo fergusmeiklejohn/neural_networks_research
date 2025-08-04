@@ -5,7 +5,7 @@
 We've successfully created `train_nested_temporal_model_fixed.py` that trains a unified model on ALL data types simultaneously:
 
 1. **Basic patterns** (recognition, retrieval, full binding)
-2. **Variable rebinding** 
+2. **Variable rebinding**
 3. **Compositional operators** (and, or, while, then)
 4. **Nested temporal patterns** (do X twice twice)
 
@@ -23,7 +23,7 @@ MLX embedding layer was throwing "Cannot index mlx array using the given type" e
 
 **Root cause**: Model was created before vocabulary was fully populated during data generation.
 
-**Solution**: 
+**Solution**:
 1. Generate all data first (which adds new words to VOCAB)
 2. Create model after data generation with correct vocab size
 3. Workaround for persistent embedding issues using direct weight indexing
@@ -43,7 +43,7 @@ Correct: 7/8 = 87.5%
 - Mixed patterns: "do X thrice then do Y twice twice" ✓
 
 **One failure**:
-- Variable rebinding with nested temporal: 
+- Variable rebinding with nested temporal:
   - Command: "X means jump do X twice then X means walk do X twice twice"
   - Expected: ['JUMP', 'JUMP'] + ['WALK', 'WALK', 'WALK', 'WALK']
   - Got: ['WALK', 'WALK', 'WALK', 'WALK', 'WALK', 'WALK']
@@ -59,7 +59,7 @@ Correct: 7/8 = 87.5%
    - Fallback to compositional parsing for non-temporal patterns
 
 2. **Data Normalization**: Ensures all data has consistent format:
-   - Converts 'target' to 'labels' 
+   - Converts 'target' to 'labels'
    - Flattens label shapes to 1D
    - Tracks number of actions per sample
 

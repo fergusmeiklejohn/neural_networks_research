@@ -179,7 +179,7 @@ We've demonstrated that **controllable extrapolation through causal understandin
 1. **Initial JAX attempt** (`train_pinn_simple.py`): Hit gradient computation issues with JAX backend
 2. **Simplified version** (`train_pinn_simple_fit.py`): Used random perturbations, proved ineffective (MSE: 82k)
 3. **TensorFlow version** (`train_pinn_tensorflow.py`): Proper gradients but simple architecture
-4. **Scaled version** (`train_pinn_scaled.py`): 
+4. **Scaled version** (`train_pinn_scaled.py`):
    - 1.5M parameters (6 layers, 512 hidden dim)
    - 15,000+ training samples
    - Progressive curriculum: 100/75/50 epochs

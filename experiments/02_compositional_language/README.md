@@ -38,7 +38,7 @@ python paperspace_generate_and_train.py
 Based on our physics experiment success (83.51% extrapolation):
 - Stage 1: >95% accuracy on standard SCAN
 - Stage 2: >80% on simple modifications
-- Stage 3: >70% on complex modifications  
+- Stage 3: >70% on complex modifications
 - Stage 4: >60% on novel combinations
 
 ## Data

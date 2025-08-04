@@ -32,7 +32,7 @@ python validate_before_paperspace.py your_script.py
 
 This catches:
 - Syntax errors
-- Import errors  
+- Import errors
 - Missing dependencies
 - Code style issues
 - Common antipatterns
@@ -97,7 +97,7 @@ from models import create_model
 # ❌ Wrong
 tokenizer.save(path)
 
-# ✅ Correct  
+# ✅ Correct
 tokenizer.save_vocabulary(path)
 ```
 
@@ -175,7 +175,7 @@ If a script fails on Paperspace:
    ```bash
    # Edit the file
    nano your_script.py
-   
+
    # Test just the fixed part
    python -c "from your_script import fixed_function; fixed_function()"
    ```

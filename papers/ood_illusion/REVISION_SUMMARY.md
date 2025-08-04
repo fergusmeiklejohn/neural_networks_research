@@ -16,7 +16,7 @@
 - Acknowledges PeTTA and TAIP
 - Properly scoped claims
 
-#### Results (`results_revised.md`)  
+#### Results (`results_revised.md`)
 - Complete results for both physics systems
 - Physics-aware TTA results with statistical significance
 - PeTTA collapse detection analysis
@@ -74,7 +74,7 @@
 2. [ ] Create figures with error bars
 3. [ ] Final consistency check across sections
 
-### Medium Priority  
+### Medium Priority
 4. [ ] Complete bibliography (40-50 references)
 5. [ ] Format for submission
 6. [ ] Prepare supplementary materials

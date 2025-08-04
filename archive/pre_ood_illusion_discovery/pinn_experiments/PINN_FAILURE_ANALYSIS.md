@@ -17,7 +17,7 @@ Our Physics-Informed Neural Network (PINN) **catastrophically failed** at the ph
 
 ### Progressive Training Results
 - **Stage 1 (Earth only)**: 1220.65 MSE on Jupiter
-- **Stage 2 (Earth+Mars+Moon)**: 874.53 MSE on Jupiter  
+- **Stage 2 (Earth+Mars+Moon)**: 874.53 MSE on Jupiter
 - **Stage 3 (All gravity)**: 880.88 MSE on Jupiter
 
 While progressive training helped (28% improvement), the final performance is still catastrophic.
@@ -55,7 +55,7 @@ This failure is actually a **valuable research finding**:
 - Residual connections might interfere with physics learning
 - 1.9M parameters might be overparameterized
 
-### H2: Optimization Issues  
+### H2: Optimization Issues
 - Learning rates too high/low for physics losses
 - Adam optimizer might not respect conservation laws
 - Gradient conflicts between MSE and physics losses

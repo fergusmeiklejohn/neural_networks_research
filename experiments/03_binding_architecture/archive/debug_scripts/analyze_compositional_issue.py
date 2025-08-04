@@ -7,7 +7,7 @@
 # Example command: "X means jump Y means walk do X and Y"
 # Current parsing result:
 #   and[0:10]:
-#     LEAF[0:8]: X means jump Y means walk do X  
+#     LEAF[0:8]: X means jump Y means walk do X
 #     LEAF[9:10]: Y
 #
 # Desired parsing result:

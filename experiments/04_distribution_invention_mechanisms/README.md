@@ -2,7 +2,7 @@
 
 ## Overview
 
-This experiment explores the fundamental mechanisms required for neural networks to **invent new distributions** rather than merely interpolate within their training distribution. 
+This experiment explores the fundamental mechanisms required for neural networks to **invent new distributions** rather than merely interpolate within their training distribution.
 
 ## Key Insight
 
@@ -33,7 +33,7 @@ Based on our findings, we're implementing a Two-Stage Compiler that separates:
 ## Files in This Experiment
 
 - `progressive_complexity_dataset.py` - Test suite with 4 levels of complexity
-- `compositional_final_fix.py` - Working parser for Stage 1 
+- `compositional_final_fix.py` - Working parser for Stage 1
 - `two_stage_compiler.py` - Main implementation (to be created)
 - `THEORETICAL_FRAMEWORK.md` - Core theoretical insights
 - `IMPLEMENTATION_PLAN.md` - Detailed technical approach

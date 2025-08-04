@@ -24,7 +24,7 @@ except Exception as e:
     print(f"Failed: {e}")
     print(f"Embedding weight shape: {embed.weight.shape}")
     print(f"Embedding weight dtype: {embed.weight.dtype}")
-    
+
     # Try different approaches
     print("\nTrying squeeze approach:")
     try:
@@ -34,7 +34,7 @@ except Exception as e:
         print(f"Success with squeeze! Output shape: {out.shape}")
     except Exception as e2:
         print(f"Squeeze failed: {e2}")
-    
+
     print("\nTrying direct indexing:")
     try:
         idx_val = token_idx[0, 0]
@@ -47,11 +47,13 @@ except Exception as e:
 # Test if it's a version issue
 print("\nChecking MLX version:")
 import mlx
+
 print(f"MLX version: {mlx.__version__ if hasattr(mlx, '__version__') else 'Unknown'}")
 
 # Test with numpy array conversion
 print("\nTesting with numpy conversion:")
 import numpy as np
+
 np_idx = np.array([[2]], dtype=np.int32)
 mx_idx = mx.array(np_idx)
 try:

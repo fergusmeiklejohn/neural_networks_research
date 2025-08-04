@@ -6,33 +6,31 @@ Run this on Paperspace A4000 for complete progressive curriculum training.
 """
 
 import os
-os.environ['KERAS_BACKEND'] = 'tensorflow'
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
+os.environ["KERAS_BACKEND"] = "tensorflow"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
 from train_progressive_curriculum import train_progressive_curriculum
 
 # Full training configuration
 config = {
     # Model parameters
-    'd_model': 256,
-    'batch_size': 64,  # Larger batch for GPU
-    
+    "d_model": 256,
+    "batch_size": 64,  # Larger batch for GPU
     # Full training epochs
-    'stage1_epochs': 50,
-    'stage2_epochs': 50,
-    'stage3_epochs': 50,
-    'stage4_epochs': 50,
-    
+    "stage1_epochs": 50,
+    "stage2_epochs": 50,
+    "stage3_epochs": 50,
+    "stage4_epochs": 50,
     # Learning rates
-    'stage1_lr': 1e-3,
-    'stage2_lr': 5e-4,
-    'stage3_lr': 2e-4,
-    'stage4_lr': 1e-4,
-    
+    "stage1_lr": 1e-3,
+    "stage2_lr": 5e-4,
+    "stage3_lr": 2e-4,
+    "stage4_lr": 1e-4,
     # Output and logging
-    'output_dir': 'outputs/full_training',
-    'use_wandb': True,
-    'wandb_project': 'compositional-language-invention'
+    "output_dir": "outputs/full_training",
+    "use_wandb": True,
+    "wandb_project": "compositional-language-invention",
 }
 
 print("=" * 60)

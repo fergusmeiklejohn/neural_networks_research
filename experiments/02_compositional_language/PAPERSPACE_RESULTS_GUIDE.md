@@ -21,7 +21,7 @@ git commit -m "Add compositional language training results
 
 Training completed successfully in 9 minutes
 - Training history and metrics
-- Evaluation results  
+- Evaluation results
 - Vocabulary files
 - Logs and summaries
 
@@ -111,7 +111,7 @@ Machine: Paperspace P4000
 
 ## Files Included
 - training_history.json: Loss and accuracy per epoch
-- evaluation_results.json: Performance on test sets  
+- evaluation_results.json: Performance on test sets
 - vocabulary.json: Tokenizer vocabulary
 - final_model.h5: Trained model weights [Not in Git - too large]
 

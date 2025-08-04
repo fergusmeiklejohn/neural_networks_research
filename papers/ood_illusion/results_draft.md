@@ -77,7 +77,7 @@ Figure 2 summarizes all methods' performance on time-varying gravity:
 ```
 Method                        Relative MSE vs. Baseline
 ERM (baseline)               1.00x
-Deep Ensemble                0.99x  
+Deep Ensemble                0.99x
 GFlowNet-inspired            0.98x
 MAML (no adapt)              1.11x
 TTA (1 step)                 2.55x

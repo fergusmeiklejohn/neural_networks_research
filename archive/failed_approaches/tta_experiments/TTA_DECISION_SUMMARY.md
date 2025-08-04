@@ -8,7 +8,7 @@ After extensive experimentation and analysis, we have discovered that Test-Time 
 
 ### 1. Quantitative Results
 - **In-distribution degradation**: +400% MSE increase
-- **Out-of-distribution degradation**: +235% MSE increase  
+- **Out-of-distribution degradation**: +235% MSE increase
 - **Universal failure**: All variants, hyperparameters, and architectures fail
 
 ### 2. Root Cause Is Clear
@@ -102,7 +102,7 @@ Without ground truth, TTA lacks information to distinguish:
 ### To TTA Advocates
 "We implemented state-of-the-art TTA with:
 - Proper JAX gradients
-- Comprehensive hyperparameter search  
+- Comprehensive hyperparameter search
 - Multiple loss variants
 - Careful evaluation
 

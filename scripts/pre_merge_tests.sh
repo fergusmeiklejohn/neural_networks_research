@@ -21,10 +21,10 @@ TESTS_FAILED=0
 run_test() {
     local test_name=$1
     local test_command=$2
-    
+
     echo -e "\n${YELLOW}Running: $test_name${NC}"
     echo "Command: $test_command"
-    
+
     if eval "$test_command"; then
         echo -e "${GREEN}✅ PASSED: $test_name${NC}"
         ((TESTS_PASSED++))
@@ -92,41 +92,41 @@ try:
         keras.layers.BatchNormalization(),
         keras.layers.Dense(2)
     ])
-    
+
     # Initialize model
     dummy_input = np.random.randn(10, 4)
     _ = model(dummy_input)
-    
+
     # Test weight saving/restoration
     from models.test_time_adaptation.base_tta import BaseTTA
-    
+
     class TestTTA(BaseTTA):
         def _adaptation_loss(self, outputs, inputs):
             return keras.ops.mean(outputs)
-    
+
     tta = TestTTA(model)
     original_weights = tta._copy_weights()
-    
+
     # Modify weights
     for var in model.trainable_variables:
         var.assign(var + 0.1)
-    
+
     # Restore
     tta._restore_weights()
-    
+
     # Check restoration
     max_diff = 0
     for var, orig in zip(model.variables, original_weights):
         if var.shape == orig.shape:
             diff = np.max(np.abs(var.numpy() - orig))
             max_diff = max(max_diff, diff)
-    
+
     if max_diff < 1e-6:
         print(f"✓ Weight restoration working (max diff: {max_diff:.2e})")
     else:
         print(f"✗ Weight restoration issue (max diff: {max_diff:.2e})")
         exit(1)
-        
+
 except Exception as e:
     print(f"✗ TTA restoration test error: {e}")
     exit(1)

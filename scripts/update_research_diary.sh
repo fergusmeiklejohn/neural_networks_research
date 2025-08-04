@@ -10,13 +10,13 @@ DIARY_FILE="research_diary/${TODAY}_research_diary.md"
 # Function to create new diary entry
 create_diary_entry() {
     echo "📝 Creating new research diary entry for $TODAY..."
-    
+
     # Get recent git commits for context
     RECENT_COMMITS=$(git log --oneline -10 --pretty=format:"- %s")
-    
+
     # Get list of modified files today
     MODIFIED_FILES=$(git diff --name-only HEAD~5 HEAD | grep -v "\.pyc" | head -20)
-    
+
     cat > "$DIARY_FILE" << EOF
 # Research Diary: $(date +"%B %d, %Y")
 
@@ -63,16 +63,16 @@ EOF
 # Function to update existing diary entry
 update_diary_entry() {
     echo "📝 Updating existing research diary entry for $TODAY..."
-    
+
     # Create a backup
     cp "$DIARY_FILE" "${DIARY_FILE}.bak"
-    
+
     # Get the latest experiment status
     EXPERIMENT_STATUS=""
     if [ -f "experiments/01_physics_worlds/CURRENT_STATUS.md" ]; then
         EXPERIMENT_STATUS=$(head -20 experiments/01_physics_worlds/CURRENT_STATUS.md | grep -E "^\*\*" | head -3)
     fi
-    
+
     # Append update section
     cat >> "$DIARY_FILE" << EOF
 

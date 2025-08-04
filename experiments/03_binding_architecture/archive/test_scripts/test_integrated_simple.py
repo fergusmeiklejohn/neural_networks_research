@@ -2,21 +2,21 @@
 """Simple test for integrated model - validate architecture works before full training."""
 
 from utils.imports import setup_project_paths
+
 setup_project_paths()
 
 from utils.config import setup_environment
+
 config = setup_environment()
 
 import mlx.core as mx
-import mlx.nn as nn
-import numpy as np
-from train_integrated_model import IntegratedBindingModel, VOCAB, ACTIONS
+from train_integrated_model import ACTIONS, VOCAB, IntegratedBindingModel
 
 # Ensure necessary tokens
-if 'then' not in VOCAB:
-    VOCAB['then'] = len(VOCAB)
-if 'and' not in VOCAB:
-    VOCAB['and'] = len(VOCAB)
+if "then" not in VOCAB:
+    VOCAB["then"] = len(VOCAB)
+if "and" not in VOCAB:
+    VOCAB["and"] = len(VOCAB)
 
 # Create model
 print("Creating integrated model...")
@@ -24,20 +24,17 @@ model = IntegratedBindingModel(
     vocab_size=len(VOCAB),
     num_actions=len(ACTIONS),
     embed_dim=64,  # Smaller for testing
-    num_slots=4
+    num_slots=4,
 )
 
 # Test cases
 test_cases = [
     # Basic binding
     "X means jump do X",
-    
     # Temporal pattern
     "Y means walk do Y twice",
-    
     # Sequential pattern
     "X means jump do X then Y means walk do Y",
-    
     # Rebinding pattern
     "X means jump do X then X means walk do X",
 ]
@@ -45,21 +42,19 @@ test_cases = [
 print("\n=== Testing Model Forward Pass ===")
 for i, command in enumerate(test_cases):
     print(f"\nTest {i+1}: {command}")
-    
+
     # Tokenize
-    tokens = [VOCAB.get(word, VOCAB['<PAD>']) for word in command.split()]
+    tokens = [VOCAB.get(word, VOCAB["<PAD>"]) for word in command.split()]
     print(f"Tokens: {tokens}")
-    
+
     # Create input
-    inputs = {
-        'command': mx.array([tokens])
-    }
-    
+    inputs = {"command": mx.array([tokens])}
+
     # Forward pass
     try:
         outputs = model(inputs, stage="full")
         print(f"Output shape: {outputs.shape}")
-        
+
         # Get predictions
         if len(outputs.shape) == 1:
             # Single action
@@ -76,15 +71,15 @@ for i, command in enumerate(test_cases):
                         action_names.append(k)
                         break
             print(f"Predicted actions: {action_names}")
-            
+
     except Exception as e:
         print(f"Error: {type(e).__name__}: {e}")
 
 print("\n=== Testing Versioned Memory ===")
 # Test rebinding specifically
 command = "X means jump do X then X means walk do X"
-tokens = [VOCAB.get(word, VOCAB['<PAD>']) for word in command.split()]
-inputs = {'command': mx.array([tokens])}
+tokens = [VOCAB.get(word, VOCAB["<PAD>"]) for word in command.split()]
+inputs = {"command": mx.array([tokens])}
 
 print(f"\nCommand: {command}")
 print(f"Expected: ['JUMP', 'WALK']")

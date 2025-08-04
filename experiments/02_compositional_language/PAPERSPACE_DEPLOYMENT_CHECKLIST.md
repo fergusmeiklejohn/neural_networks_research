@@ -4,7 +4,7 @@
 
 ### 1. Code Validation
 - [x] All imports tested and working
-- [x] Model v1 creates and trains successfully  
+- [x] Model v1 creates and trains successfully
 - [x] Model v2 creates and trains successfully (with Keras warnings that don't affect functionality)
 - [x] Data loading pipeline validated
 - [x] Modification generation working
@@ -26,7 +26,7 @@
 
 ### 4. Expected Outcomes
 - **v1_standard**: Should show catastrophic interference (8x loss increase)
-- **v1_mixed**: Should show reduced interference  
+- **v1_mixed**: Should show reduced interference
 - **v2_standard**: May show some improvement due to gating
 - **v2_mixed**: Best expected performance - gating + mixed training
 

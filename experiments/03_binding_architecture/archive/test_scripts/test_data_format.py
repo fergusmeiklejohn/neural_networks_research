@@ -2,9 +2,14 @@
 """Test data format from curriculum stages."""
 
 import sys
-sys.path.append('../..')
 
-from train_binding_curriculum import generate_stage1_data, generate_stage2_data, generate_stage3_data
+sys.path.append("../..")
+
+from train_binding_curriculum import (
+    generate_stage1_data,
+    generate_stage2_data,
+    generate_stage3_data,
+)
 
 # Generate small samples
 print("Stage 1 data:")

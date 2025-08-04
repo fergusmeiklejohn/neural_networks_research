@@ -33,7 +33,7 @@ The binding space has V × A possible associations. Crucially, **any variable ca
 class StaticMemoryModel:
     def __init__(self):
         self.slot_values = learnable_parameters(shape=(num_slots, embedding_dim))
-    
+
     def forward(self, input):
         # slot_values are FIXED for all inputs
         binding = attention(input, self.slot_values)
@@ -86,13 +86,13 @@ class DynamicMemoryModel:
     def forward(self, input):
         # Extract what to store
         value_to_store = extract_value(input)  # "jump" from "X is jump"
-        
+
         # Identify where to store
         slot_id = compute_binding(input)       # Slot for "X"
-        
+
         # DYNAMICALLY update memory
         slot_values[slot_id] = value_to_store  # Key difference!
-        
+
         # Later retrieval uses updated memory
         return binding @ slot_values
 ```
@@ -183,12 +183,12 @@ To handle temporal modifiers, we need three new components:
 class TemporalActionBuffer:
     def __init__(self, max_history=5):
         self.history = []  # Store recent (action, source_variable) pairs
-        
+
     def push(self, action, variable):
         self.history.append((action, variable))
         if len(self.history) > self.max_history:
             self.history.pop(0)
-            
+
     def get_last_action(self):
         return self.history[-1] if self.history else None
 ```
@@ -216,18 +216,18 @@ def generate_temporal_actions(self, tokens, position, slot_values, action_buffer
     Generate multiple actions for temporal modifiers
     """
     is_modifier, repeat_count, variable = detect_temporal_modifiers(tokens, position)
-    
+
     if is_modifier:
         # Get the action bound to this variable
         variable_slot = self.get_binding(variable)
         action_embedding = slot_values[variable_slot]
-        
+
         # Generate repeated actions
         actions = []
         for _ in range(repeat_count):
             action = self.decoder(action_embedding)
             actions.append(action)
-            
+
         return actions
 ```
 

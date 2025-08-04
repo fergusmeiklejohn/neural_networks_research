@@ -128,7 +128,7 @@ def modify_distribution(base, request):
 
 1. **Our Approach Is Validated**: Literature supports controllable extrapolation through rule modification
 
-2. **We're Addressing Real Gaps**: 
+2. **We're Addressing Real Gaps**:
    - ARC-AGI shows 43% performance gap (human vs AI)
    - Materials OOD reveals most benchmarks test interpolation
    - Compositional generalization remains unsolved

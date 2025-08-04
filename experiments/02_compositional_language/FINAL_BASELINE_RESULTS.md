@@ -8,7 +8,7 @@ We successfully built and evaluated a simple baseline model for the compositiona
 
 ### Model 1: Small dataset (10K examples, 50 epochs)
 - **Training**: Reached 76% accuracy (epoch 46)
-- **Validation**: Reached 86% accuracy (epoch 46) 
+- **Validation**: Reached 86% accuracy (epoch 46)
 - **Issue**: Overfitting and instability in final epochs
 - **Generation**: Stuck generating "I_LOOK I_LOOK"
 
@@ -22,7 +22,7 @@ We successfully built and evaluated a simple baseline model for the compositiona
 
 Both models showed **0% accuracy on ALL validation sets**:
 - `val_base`: 0% (500 examples)
-- `val_mod_walk_skip`: 0% (500 examples)  
+- `val_mod_walk_skip`: 0% (500 examples)
 - `val_mod_jump_hop`: 0% (500 examples)
 - `val_mod_look_scan`: 0% (500 examples)
 - `val_mod_left_right`: 0% (341 examples)
@@ -69,7 +69,7 @@ Even a straightforward LSTM seq2seq model struggles with SCAN:
 1. **Use proper validation sets from the start**
    - Test on modifications explicitly
    - Include generation tests during training
-   
+
 2. **Build incrementally**
    - Get basic SCAN working first (>80% on base)
    - Then add modification handling

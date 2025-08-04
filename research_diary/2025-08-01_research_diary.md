@@ -54,7 +54,7 @@ Versioned memory unlocks an entirely new class of compositional behaviors:
 ## Summary of Progress
 
 **Solved Today**:
-1. ✅ MLX model persistence 
+1. ✅ MLX model persistence
 2. ✅ Baseline comparisons (100% vs 0-40%)
 3. ✅ Versioned memory implementation
 4. ✅ Rebinding test suite
@@ -67,7 +67,7 @@ Versioned memory unlocks an entirely new class of compositional behaviors:
 - Compositional operators: ❌ Not yet
 - Nested patterns: ❌ Limited
 
-**Next Priority**: 
+**Next Priority**:
 - Train full model with versioned memory
 - Implement compositional operators ("and", "while", "or")
 - Address nested temporal patterns

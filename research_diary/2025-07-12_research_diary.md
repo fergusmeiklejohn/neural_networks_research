@@ -133,7 +133,7 @@ Realized we had accumulated significant knowledge but it was scattered. Created:
 Created comprehensive baseline comparison system:
 - **baseline_models.py**: 4 baseline implementations
   - ERM + Data Augmentation
-  - GFlowNet-guided Search  
+  - GFlowNet-guided Search
   - Graph Extrapolation
   - MAML (Meta-learning)
 - **unified_evaluation.py**: Standardized evaluation framework

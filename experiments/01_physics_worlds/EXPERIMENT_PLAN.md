@@ -163,7 +163,7 @@ Key Insights:
 - Proper evaluation now distinguishes interpolation vs extrapolation vs novel regimes
 
 Next Steps with Proper Isolation (Updated with Reviewer Feedback):
-- [ ] **Implement Baseline Comparisons**: 
+- [ ] **Implement Baseline Comparisons**:
   - ERM + physics-aware data augmentation
   - GFlowNet-guided physics exploration
   - Graph extrapolation baseline
@@ -202,10 +202,10 @@ Training Infrastructure:
 **Goal**: Validate distribution invention capabilities across multiple metrics
 
 #### New Evaluation Framework:
-1. **Standard Benchmarks**: 
+1. **Standard Benchmarks**:
    - Integrate physics subset of ARC-AGI tasks
    - Custom physics OOD benchmark inspired by WOODS
-   
+
 2. **Refined Metrics**:
    - **In-distribution consistency**: Test on held-out but similar physics
    - **Intervention consistency**: Test on specific rule modifications
@@ -251,7 +251,7 @@ Training Infrastructure:
 ```
 Evaluation Summary:
 - Rule Extraction: ___%
-- Modification Consistency: ___%  
+- Modification Consistency: ___%
 - Trajectory Quality: ___%
 - Distribution Coverage: ___%
 - Overall Success Rate: ___%
@@ -370,7 +370,7 @@ FINAL EXPERIMENT RESULTS:
 
 Model Performance:
 - Rule Extraction Accuracy: ___%
-- Modification Success Rate: ___%  
+- Modification Success Rate: ___%
 - Trajectory Quality Score: ___/1.0
 - Energy Conservation Error: ___
 - Training Convergence: [Yes/No]
@@ -398,7 +398,7 @@ KEY INSIGHTS:
 SUCCESSFUL MODIFICATIONS:
 - [List modifications that worked well]
 
-CHALLENGING MODIFICATIONS:  
+CHALLENGING MODIFICATIONS:
 - [List modifications that failed or performed poorly]
 
 ARCHITECTURAL INSIGHTS:

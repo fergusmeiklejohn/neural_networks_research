@@ -15,7 +15,7 @@ Implement a 3-stage curriculum learning approach for variable binding based on y
 #### 2. Curriculum Learning Implementation
 Created `train_binding_curriculum.py` with 3 stages:
 
-**Stage 1: Variable Recognition** 
+**Stage 1: Variable Recognition**
 - Pattern: "X means jump Y means walk what is X?" → X (token id)
 - Tests if model can identify which variable is which
 - **Result: 100% accuracy achieved!** Model successfully learns variable identity
@@ -26,7 +26,7 @@ Created `train_binding_curriculum.py` with 3 stages:
 - **Result: Only 17.71% accuracy** - Critical failure point identified
 
 **Stage 3: Full Binding**
-- Pattern: "X means jump do X" → JUMP  
+- Pattern: "X means jump do X" → JUMP
 - Original task combining recognition and execution
 - Not yet tested due to Stage 2 issues
 
@@ -109,10 +109,10 @@ Key architectural change:
 #### Stage-by-Stage Performance:
 1. **Stage 1 (Recognition)**: 100% accuracy ✓
    - Perfect variable identification
-   
+
 2. **Stage 2 (Retrieval)**: 100% accuracy ✓ (up from 17.71%!)
    - Perfect storage and retrieval with dynamic memory
-   
+
 3. **Stage 3 (Full Binding)**: 84.38% accuracy ✓
    - Strong performance on complete task
 
@@ -121,7 +121,7 @@ Key architectural change:
 Test 1: X means jump do X → X means walk do X
 - Success: ✓ (correctly changes JUMP to WALK)
 
-Test 2: Y means turn do Y twice → Y means run do Y twice  
+Test 2: Y means turn do Y twice → Y means run do Y twice
 - Success: ✗ (predicts RUN, TURN instead of RUN, RUN)
 
 Test 3: Z means look do Z → Z means jump do Z
@@ -148,7 +148,7 @@ if stores_value:
     processed_values = self.value_extractor(value_embeds)
     slot_values = slot_values + updates  # Dynamic update!
 
-# During "recall X": retrieve value  
+# During "recall X": retrieve value
 retrieved = (binding_scores @ slot_values).squeeze(1)
 ```
 
@@ -156,7 +156,7 @@ retrieved = (binding_scores @ slot_values).squeeze(1)
 
 1. **Improve Temporal Consistency**: Address the "twice/thrice" limitation
 2. **Test on More Complex Patterns**: Nested bindings, multiple variables
-3. **Architectural Refinements**: 
+3. **Architectural Refinements**:
    - Better value extraction mechanisms
    - Explicit memory management (clear, update, protect)
 4. **Theoretical Analysis**: Why does this work? Connection to working memory?
@@ -177,7 +177,7 @@ python experiments/03_binding_architecture/train_binding_mlx_proper.py --epochs 
 
 We've achieved true variable binding! The model can now:
 - Recognize variables (Stage 1: 100%)
-- Store and retrieve values (Stage 2: 100%) 
+- Store and retrieve values (Stage 2: 100%)
 - Execute bound actions (Stage 3: 84%)
 - Modify bindings dynamically (66.7% success)
 

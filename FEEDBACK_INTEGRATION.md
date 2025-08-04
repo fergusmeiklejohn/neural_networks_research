@@ -13,7 +13,7 @@ This document tracks the incorporation of reviewer feedback into our Distributio
 
 #### Recent Papers to Review and Integrate:
 
-**Controlled Extrapolation & OOD** 
+**Controlled Extrapolation & OOD**
 - [x] Graph Structure Extrapolation for Out-of-Distribution Generalization (2023) - https://arxiv.org/abs/2306.08076
 - [x] Probing out-of-distribution generalization in ML for materials discovery (Nature, 2024) - https://www.nature.com/articles/s43246-024-00731-w
   - CRITICAL: Distinguishes "statistically OOD" from "representationally OOD" - most OOD tasks are actually interpolation!
@@ -97,7 +97,7 @@ This document tracks the incorporation of reviewer feedback into our Distributio
 - [x] Implement graph extrapolation model baseline (Added to research plan)
 - [x] Document baseline implementation requirements (In research plan)
 
-### 3. Evaluation Framework ✅ 
+### 3. Evaluation Framework ✅
 
 #### Refined Metrics
 - [x] Separate metrics:
@@ -110,7 +110,7 @@ This document tracks the incorporation of reviewer feedback into our Distributio
 #### Standard Benchmarks Integration
 - [ ] ARC-AGI evaluation suite
 - [ ] gSCAN for compositional generalization
-- [ ] COGS for systematic generalization  
+- [ ] COGS for systematic generalization
 - [ ] WOODS for time-series OOD
 - [ ] Document benchmark integration plan
 

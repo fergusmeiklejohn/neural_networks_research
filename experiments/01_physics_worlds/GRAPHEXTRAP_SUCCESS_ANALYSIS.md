@@ -14,10 +14,10 @@ def compute_graph_features(self, X):
     # Compute distance from origin (radius)
     positions = X[:, :2]  # x, y positions
     distances = np.sqrt(np.sum(positions**2, axis=1, keepdims=True))
-    
+
     # Compute angles (polar coordinates)
     angles = np.arctan2(X[:, 1], X[:, 0]).reshape(-1, 1)
-    
+
     # Combine with original features
     graph_features = np.hstack([X, distances, angles])
 ```

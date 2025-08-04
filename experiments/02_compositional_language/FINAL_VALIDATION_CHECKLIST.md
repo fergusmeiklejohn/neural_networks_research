@@ -4,7 +4,7 @@
 
 We've now had **4 deployment failures**, all with the same root cause:
 1. ImportError - wrong module
-2. AttributeError - tokenizer.save() 
+2. AttributeError - tokenizer.save()
 3. AttributeError - load_modifications() **existed locally but not committed**
 4. ValueError - prepare_for_training() **existed locally but not pushed**
 
@@ -71,7 +71,7 @@ Create a script that REFUSES to validate if local differs from production:
 ```python
 def validate_only_production():
     # Check if local differs from origin/production
-    result = subprocess.run(['git', 'diff', 'origin/production'], 
+    result = subprocess.run(['git', 'diff', 'origin/production'],
                           capture_output=True)
     if result.stdout:
         print("❌ STOP! You have local changes not in production!")

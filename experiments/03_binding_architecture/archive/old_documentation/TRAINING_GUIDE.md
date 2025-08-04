@@ -24,7 +24,7 @@ python train_binding_final.py
 python train_binding_jax.py
 ```
 - Handles multi-output model correctly
-- Uses `model.train_on_batch()` 
+- Uses `model.train_on_batch()`
 - Requires fixing the metrics specification for multiple outputs
 - Most "proper" Keras approach
 
@@ -36,7 +36,7 @@ If you need full control, implement backend-specific gradients:
 import jax
 loss_value, grads = jax.value_and_grad(loss_fn)(params)
 
-# For TensorFlow  
+# For TensorFlow
 import tensorflow as tf
 with tf.GradientTape() as tape:
     loss = loss_fn()

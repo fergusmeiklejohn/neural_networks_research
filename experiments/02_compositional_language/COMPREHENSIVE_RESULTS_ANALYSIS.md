@@ -12,7 +12,7 @@ The Paperspace experiments reveal surprising results that challenge our initial 
 
 ### v1_standard (Original Model, Standard Training)
 - **Stage 1**: 84.3% validation accuracy
-- **Stage 4**: 84.3% validation accuracy  
+- **Stage 4**: 84.3% validation accuracy
 - **Degradation**: 0%
 - **Training Loss Pattern**: Increased from 2.17 → 3.11 (43% increase)
 - **Training Accuracy**: Degraded from 84.9% → 80.7%
@@ -26,7 +26,7 @@ The Paperspace experiments reveal surprising results that challenge our initial 
 
 ### v2_standard (Gating Model, Standard Training) ❌
 - **Complete Failure**: Only 4.2% accuracy throughout
-- **Stage 1**: 4.2% validation accuracy  
+- **Stage 1**: 4.2% validation accuracy
 - **Stage 4**: 4.2% validation accuracy
 - **Training Pattern**: Model never learned basic SCAN
 

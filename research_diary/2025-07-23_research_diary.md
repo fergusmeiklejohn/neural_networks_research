@@ -11,7 +11,7 @@ The training history analysis revealed an 8.2x loss increase between Stage 1 and
 
 ### Diagnostic Tools Created
 
-1. **analyze_training_history.py**: 
+1. **analyze_training_history.py**:
    - Visualizes loss/accuracy progression across stages
    - Calculates catastrophic interference metrics
    - Generated clear visualization showing the dramatic performance cliff
@@ -79,7 +79,7 @@ Today's work provides concrete evidence that distribution invention requires fun
 
 ### Files Created Today
 - `analyze_training_history.py` - Training metrics analysis
-- `compare_stage_outputs.py` - Stage comparison framework  
+- `compare_stage_outputs.py` - Stage comparison framework
 - `analyze_predictions.py` - Prediction analysis tool
 - `models_v2.py` - Improved architecture with gating
 - `train_with_mixed_strategy.py` - Mixed training implementation

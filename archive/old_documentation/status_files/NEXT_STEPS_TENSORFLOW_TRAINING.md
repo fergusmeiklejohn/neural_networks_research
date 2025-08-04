@@ -38,7 +38,7 @@ python train_pinn_extractor.py
 ### 1. **Memory Management**
 - **Issue**: Our dataset is 400MB+ and loads entirely into memory
 - **Watch for**: OOM (Out of Memory) errors
-- **Solution**: 
+- **Solution**:
   ```python
   # Add to script if needed
   gpus = tf.config.experimental.list_physical_devices('GPU')

@@ -24,7 +24,7 @@ See `BASELINE_EVALUATION_SUMMARY.md` for comprehensive analysis.
 
 **Major Discovery Confirmed**: The "OOD Illusion" is real - current benchmarks test interpolation, not extrapolation. Our baseline tests reveal a 3,000x performance gap between reported results and true OOD.
 
-**Complete Baseline Testing Done**: 
+**Complete Baseline Testing Done**:
 - GraphExtrap (paper): 0.766 MSE ✅
 - GFlowNet (our test): 2,229.38 MSE (2,910x worse) ❌
 - MAML (our test): 3,298.69 MSE (4,306x worse) ❌
@@ -48,7 +48,7 @@ See `BASELINE_EVALUATION_SUMMARY.md` for comprehensive analysis.
 
 ## 🔧 What's Working
 
-1. **Data Pipeline**: 
+1. **Data Pipeline**:
    - `train_minimal_pinn.py` successfully loads 2-ball filtered trajectories
    - Data format understood: pixels (40 pixels = 1 meter)
    - Column mapping documented
@@ -63,7 +63,7 @@ See `BASELINE_EVALUATION_SUMMARY.md` for comprehensive analysis.
    - `RepresentationSpaceAnalyzer` can verify true OOD
    - t-SNE visualization shows interpolation vs extrapolation
    - Comprehensive debugging tools for TTA analysis
-   
+
 4. **OOD Method Analysis Complete**:
    - TTA failure thoroughly documented with root cause analysis
    - All baseline methods evaluated on time-varying gravity
@@ -102,7 +102,7 @@ See `BASELINE_EVALUATION_SUMMARY.md` for comprehensive analysis.
    - GraphExtrap: 1,247,856 MSE (1.6M× degradation)
    - Minimal PINN: 8,934,672 MSE (210x degradation)
 
-3. **Language & References**: 
+3. **Language & References**:
    - Softened universal claims throughout
    - Added 2025 references (Fesser, Kim, Wang)
    - Maintained scholarly tone
@@ -161,19 +161,19 @@ python experiments/01_physics_worlds/visualize_ood_illusion.py
 
 ## 📝 Key Documents
 
-- **Critical Analyses** (NEW July 20): 
+- **Critical Analyses** (NEW July 20):
   - `TTA_COMPREHENSIVE_ANALYSIS.md` - Scientific analysis of TTA failure
   - `TTA_TECHNICAL_APPENDIX.md` - Detailed experimental evidence
   - `TTA_DECISION_SUMMARY.md` - Executive summary for stakeholders
   - `BASELINE_EVALUATION_SUMMARY.md` - All OOD methods fail on true physics
 
-- **Previous Analyses**: 
+- **Previous Analyses**:
   - `MINIMAL_PINN_RESULTS.md` - Why minimal PINN failed
   - `PINN_LESSONS_LEARNED.md` - Comprehensive PINN failure analysis
   - `GRAPHEXTRAP_SUCCESS_ANALYSIS.md` - Why it works
   - `TRUE_OOD_BENCHMARK.md` - Design for real extrapolation tests
 
-- **Next Research**: 
+- **Next Research**:
   - `NEXT_RESEARCH_STEPS.md` - Including paper outlines
 
 ## 🎯 Research Direction

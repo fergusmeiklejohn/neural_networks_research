@@ -53,7 +53,7 @@ print(f"Value ranges: min={data.min(axis=0)}, max={data.max(axis=0)}")
    ```python
    # BAD
    positions = data[:, 1:3]  # What columns are these?
-   
+
    # GOOD
    X1_COL, Y1_COL = 1, 2  # Document at top of file
    positions = data[:, [X1_COL, Y1_COL]]
@@ -112,21 +112,21 @@ if keras.backend.backend() == 'jax':
 def save_checkpoint(model, stage, metrics, storage_path='/storage'):
     """Save model and metrics with automatic fallback"""
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    
+
     # Try persistent storage first
     if os.path.exists(storage_path):
         save_path = f"{storage_path}/stage_{stage}_{timestamp}"
     else:
         save_path = f"./outputs/stage_{stage}_{timestamp}"
         print(f"WARNING: No persistent storage, saving locally to {save_path}")
-    
+
     # Save model
     model.save_weights(f"{save_path}_model.h5")
-    
+
     # Save metrics
     with open(f"{save_path}_metrics.json", 'w') as f:
         json.dump(metrics, f, indent=2)
-    
+
     print(f"✓ Checkpoint saved: {save_path}")
     return save_path
 ```
@@ -143,14 +143,14 @@ def save_checkpoint(model, stage, metrics, storage_path='/storage'):
 for epoch in range(epochs):
     for batch_idx, (x, y) in enumerate(train_loader):
         loss = train_step(x, y)
-        
+
         # Catch numerical issues early
         if tf.math.is_nan(loss):
             print(f"ERROR: NaN loss at epoch {epoch}, batch {batch_idx}")
             print(f"Learning rate: {optimizer.learning_rate}")
             print(f"Batch stats: x mean={x.mean()}, std={x.std()}")
             break
-        
+
         if batch_idx % 10 == 0:
             print(f"Epoch {epoch}, Batch {batch_idx}: loss={loss:.6f}")
 ```
@@ -189,7 +189,7 @@ watch -n 1 nvidia-smi
 
 ### 2. "No gradients provided for any variable"
 **Cause**: tf.function compilation issues or disconnected graph
-**Solution**: 
+**Solution**:
 - Remove @tf.function decorator for debugging
 - Ensure loss is connected to trainable variables
 - Check for any operations that break gradient flow

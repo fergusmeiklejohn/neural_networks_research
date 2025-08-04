@@ -23,7 +23,7 @@ Implement `evaluation_v2.py` to properly evaluate models using the modification-
 ```
 Original validation (val_interpolation):
 - v1_standard: 84.31%
-- v1_mixed: 84.31%  
+- v1_mixed: 84.31%
 - v2_standard: 4.18% (catastrophic failure!)
 - v2_mixed: 84.31%
 

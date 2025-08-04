@@ -18,15 +18,15 @@ def verify_true_extrapolation(train_data, test_data, model):
     # Get learned representations
     train_reps = model.get_representations(train_data)
     test_reps = model.get_representations(test_data)
-    
+
     # Use UMAP + kernel density estimation
     umap_train = UMAP().fit_transform(train_reps)
     umap_test = UMAP().transform(test_reps)
-    
+
     # Check if test points fall outside training manifold
     kde = KernelDensity().fit(umap_train)
     test_densities = kde.score_samples(umap_test)
-    
+
     # Low density = true extrapolation
     return test_densities < threshold
 ```
@@ -59,15 +59,15 @@ def verify_true_extrapolation(train_data, test_data, model):
 class TrueExtrapolationEvaluator:
     def __init__(self, model):
         self.model = model
-        
+
     def categorize_test_data(self, train_data, test_data):
         # Returns: interpolation, near_extrapolation, far_extrapolation
         train_reps = self.model.encode(train_data)
         test_reps = self.model.encode(test_data)
-        
+
         # Use convex hull or density estimation
         in_domain = self.check_in_domain(train_reps, test_reps)
-        
+
         categories = {
             'interpolation': test_data[in_domain],
             'near_extrapolation': test_data[~in_domain & near_boundary],

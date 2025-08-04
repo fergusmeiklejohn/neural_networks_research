@@ -23,11 +23,11 @@ The gap between "distribution interpolation" and "distribution invention" is lar
 
 **Look for**:
 - Papers distinguishing memorization from systematic generalization
-- Work on "compositional cognitive functions" 
+- Work on "compositional cognitive functions"
 - Neural-symbolic integration approaches
 - Program synthesis and differentiable programming
 
-**Key terms**: 
+**Key terms**:
 - "systematic generalization"
 - "compositional reasoning"
 - "abstract reasoning"
@@ -44,7 +44,7 @@ The gap between "distribution interpolation" and "distribution invention" is lar
 - Causal representation learning
 - Energy-based models for OOD
 
-**Avoid**: 
+**Avoid**:
 - Standard transformer variants unless specifically designed for composition
 - Simple scaling approaches
 
@@ -91,7 +91,7 @@ The gap between "distribution interpolation" and "distribution invention" is lar
 
 **Look for**:
 - "Meta-learning for extrapolation"
-- "Structure learning" 
+- "Structure learning"
 - "Compositional meta-learning"
 - Work beyond MAML/Reptile that addresses architectural adaptation
 
@@ -196,8 +196,8 @@ For each relevant paper found, document:
 
 ```markdown
 ### Paper: [Title]
-**Authors**: 
-**Venue/Date**: 
+**Authors**:
+**Venue/Date**:
 **Relevance**: [Why this matters for our work]
 
 **Key Contributions**:

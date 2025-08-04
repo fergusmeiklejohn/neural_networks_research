@@ -127,7 +127,7 @@ The literature reveals our OOD Illusion is not a bug but a **fundamental limitat
 
 The solution requires:
 1. **Explicit Structure**: Binding, symbols, modules
-2. **Proper Training**: Meta-learning, interventions, curricula  
+2. **Proper Training**: Meta-learning, interventions, curricula
 3. **Real Evaluation**: True extrapolation tests
 4. **Principled Simplicity**: Interpretable components
 

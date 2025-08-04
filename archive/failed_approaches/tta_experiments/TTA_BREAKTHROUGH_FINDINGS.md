@@ -102,7 +102,7 @@ This finding significantly changes our TTA approach:
 
 We've moved from complete TTA failure (all methods converging to same value) to confirmed adaptation with task-appropriate methods. While current improvements are modest (0.1%), this proves the concept works. With:
 - Multi-timestep inputs
-- Optimized hyperparameters  
+- Optimized hyperparameters
 - More extreme OOD scenarios
 
 We expect to see significant improvements (10-20%) that would validate TTA as a viable approach for physics extrapolation.

@@ -37,7 +37,7 @@ Formula: `output = gate * modification + (1 - gate) * original`
 Created `train_with_mixed_strategy.py` that:
 - **Stage 1**: 100% base SCAN examples (no modifications)
 - **Stage 2**: 70% base + 30% modifications
-- **Stage 3**: 50% base + 50% modifications  
+- **Stage 3**: 50% base + 50% modifications
 - **Stage 4**: 30% base + 70% modifications
 
 This gradual introduction should help maintain base performance while learning modifications.
@@ -50,7 +50,7 @@ This gradual introduction should help maintain base performance while learning m
 
 ### Next Steps
 1. **Run Full Training**: Execute mixed training strategy with improved architecture on Paperspace
-2. **Ablation Studies**: 
+2. **Ablation Studies**:
    - Compare v1 vs v2 architecture on same data
    - Test different mix ratios (90/10, 80/20, etc.)
    - Evaluate gating mechanism effectiveness

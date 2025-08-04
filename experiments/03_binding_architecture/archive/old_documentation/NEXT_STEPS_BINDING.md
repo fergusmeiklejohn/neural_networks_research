@@ -2,7 +2,7 @@
 
 ## Current Status
 ✅ Proper architecture implemented in MLX
-✅ Training runs without errors  
+✅ Training runs without errors
 ✅ Good inference performance (97k samples/sec)
 ❌ Model not learning binding (0% modification success)
 ❌ Predictions are constant regardless of input
@@ -57,14 +57,14 @@ def gumbel_softmax(logits, temperature=1.0, hard=False):
     # Add Gumbel noise
     gumbel_noise = -mx.log(-mx.log(mx.random.uniform(logits.shape)))
     y_soft = mx.softmax((logits + gumbel_noise) / temperature, axis=-1)
-    
+
     if hard:
         # Straight-through estimator
         y_hard = mx.one_hot(mx.argmax(y_soft, axis=-1), logits.shape[-1])
         y = y_hard - mx.stop_gradient(y_soft) + y_soft
     else:
         y = y_soft
-    
+
     return y
 ```
 
@@ -154,14 +154,14 @@ python test_binding_capabilities.py --model proper_binding_model.npz
 
 ## Success Criteria
 
-1. **Immediate** (Today): 
+1. **Immediate** (Today):
    - Model learns simple copying task (>90% accuracy)
    - Gradients flow to all parameters
-   
+
 2. **Short-term** (This week):
    - Basic binding works (>80% on "X means jump. Do X.")
    - Some rebinding success (>50% on modifications)
-   
+
 3. **Medium-term** (Next week):
    - Full test suite passes (>70% overall)
    - Outperforms baselines on binding tasks

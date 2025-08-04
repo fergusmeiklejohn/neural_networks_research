@@ -13,7 +13,7 @@
 - Earth MSE: 1122.2981
 - Jupiter MSE: 1220.6532
 
-### Stage 2: Earth + Mars + Moon  
+### Stage 2: Earth + Mars + Moon
 - Earth MSE: 905.3689
 - Moon MSE: 892.1095
 - Jupiter MSE: 874.5259

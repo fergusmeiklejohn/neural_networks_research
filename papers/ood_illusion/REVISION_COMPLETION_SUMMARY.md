@@ -67,7 +67,7 @@
 2. **Statistics**: `calculate_statistics.py`, `statistical_results.txt`
 3. **Figures**: `create_figure1_mechanism_shift.py`, `figure1_mechanism_shift_taxonomy.pdf/png`
 4. **Bibliography**: `complete_bibliography.md` (50 references)
-5. **Experiments**: 
+5. **Experiments**:
    - `pendulum_data_generator.py`
    - `train_pendulum_baselines.py`
    - `pendulum_physics_aware_tta.py`

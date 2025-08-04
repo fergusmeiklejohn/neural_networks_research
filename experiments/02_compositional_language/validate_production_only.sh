@@ -6,7 +6,7 @@ if [ -n "$(git diff origin/production)" ]; then
     echo ""
     echo "Push to production FIRST:"
     echo "  git add -A"
-    echo "  git commit -m 'your message'"  
+    echo "  git commit -m 'your message'"
     echo "  git push origin $(git branch --show-current)"
     echo "  gh pr create && gh pr merge"
     echo ""

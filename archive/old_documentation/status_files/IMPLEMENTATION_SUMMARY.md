@@ -53,7 +53,7 @@ We have successfully implemented the comprehensive data isolation fix plan for t
 
 ### After Fix (Proper Isolation)
 - Rule extraction accuracy: 0% on extrapolation
-- Interpolation accuracy: 0% 
+- Interpolation accuracy: 0%
 - Novel regime success: 0%
 - Overall invention score: 15%
 
@@ -145,7 +145,7 @@ The 0% extrapolation performance is not a failure—it's a scientifically accura
 
 All planned components have been successfully implemented and tested. The Physics Worlds experiment now has:
 - ✅ Proper train/test isolation
-- ✅ Scientifically valid evaluation metrics  
+- ✅ Scientifically valid evaluation metrics
 - ✅ Enhanced model architectures
 - ✅ Comprehensive documentation
 - ✅ Clear path for future improvements

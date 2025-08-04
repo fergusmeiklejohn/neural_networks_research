@@ -9,7 +9,7 @@ When we train neural networks, we rely on validation accuracy to tell us how wel
 We were working on compositional generalization in language—teaching neural networks to understand systematic modifications like "jump → hop" or "walk → skip" in the SCAN dataset. Our sophisticated models, complete with specialized rule extraction and gating mechanisms, achieved impressive validation scores:
 
 - Model V1: 84.3% validation accuracy
-- Model V2: 84.3% validation accuracy  
+- Model V2: 84.3% validation accuracy
 - Training convergence: Smooth and stable
 - Loss curves: Textbook perfect
 
@@ -36,11 +36,11 @@ The Evaluation Illusion occurs when:
 1. **Training and validation data come from the same distribution**
    - Both include similar mixtures of base examples and modifications
    - The model can achieve high accuracy through memorization patterns
-   
+
 2. **Evaluation doesn't isolate specific capabilities**
    - We measure aggregate performance, not specific skills
    - A model that gets 50% of A and 50% of B correct shows 50% overall—even if it completely fails at B
-   
+
 3. **Complex architectures mask failure modes**
    - Sophisticated models can exploit spurious correlations
    - Gating mechanisms and specialized modules create an appearance of understanding
@@ -113,7 +113,7 @@ The Evaluation Illusion likely extends beyond our experiments:
 We propose that all ML research should include:
 
 1. **Capability-isolated evaluation sets**: Test each claimed ability separately
-2. **Simple baseline comparisons**: Always compare against the simplest possible approach  
+2. **Simple baseline comparisons**: Always compare against the simplest possible approach
 3. **Failure mode analysis**: Explicitly look for where models fail completely
 4. **Generation/behavior testing**: Don't just measure accuracy—examine actual model outputs
 

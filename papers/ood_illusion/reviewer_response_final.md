@@ -12,7 +12,7 @@ We implemented a complete second physics system as suggested:
 - **Results**:
   - Baseline degradation: 1.4x (milder than two-ball due to simpler system)
   - Standard TTA: 14.4x degradation
-  - Energy-based TTA: 12.6x degradation  
+  - Energy-based TTA: 12.6x degradation
   - Hamiltonian TTA: 17.9x degradation
 
 **Key insight**: While baseline degradation varies with system complexity, TTA consistently worsens performance across different mechanism types. This strengthens our core finding.
@@ -25,7 +25,7 @@ We implemented and tested physics-informed adaptation losses:
 - Minimizes variance of total energy: Var(KE + PE)
 - **Result**: 12.6x degradation on variable pendulum
 
-### Hamiltonian Consistency Loss  
+### Hamiltonian Consistency Loss
 - Enforces Hamilton's equations: θ̈ = -(g/L)sin(θ)
 - **Result**: 17.9x degradation
 

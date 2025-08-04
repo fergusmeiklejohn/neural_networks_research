@@ -7,7 +7,7 @@ To address concerns about empirical breadth and test whether our findings genera
 ### Experimental Setup
 
 **Training Distribution**: Fixed-length pendulum with L = 1.0m, slight parameter variations:
-- Length range: [0.8, 1.2]m  
+- Length range: [0.8, 1.2]m
 - Gravity range: [9.0, 10.6] m/s²
 - Initial angles: [-π/6, π/6] rad
 
@@ -56,7 +56,7 @@ The self-supervised objective (prediction consistency) optimizes for smooth, sta
 
 These results demonstrate that:
 1. Our findings generalize across different physics mechanism shifts
-2. The severity depends on system complexity and mechanism type  
+2. The severity depends on system complexity and mechanism type
 3. Even domain-specific (physics-aware) self-supervised losses fail when the mechanism changes
 4. The core issue—misalignment between adaptation objectives and true goals—persists regardless of the specific physics involved
 

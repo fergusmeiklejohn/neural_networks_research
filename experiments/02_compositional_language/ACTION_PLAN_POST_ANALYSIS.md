@@ -41,7 +41,7 @@ class ModificationEvaluator:
             'double': [],
             'skip': []
         }
-    
+
     def evaluate(self, model):
         return {
             'base_accuracy': self.eval_base(model),
@@ -98,11 +98,11 @@ Before full experiments, run minimal test:
 def create_validation_data(self, include_modifications=True):
     """Create validation set with both base and modified examples."""
     base_val = self.get_base_validation()
-    
+
     if include_modifications:
         modified_val = self.apply_modifications(base_val)
         return mix_datasets(base_val, modified_val, ratio=0.5)
-    
+
     return base_val
 ```
 
@@ -132,13 +132,13 @@ wandb.log({
 class GatedModificationLayer(keras.layers.Layer):
     def call(self, inputs, training=None):
         # ... existing code ...
-        
+
         # Add gate activation tracking
         self.add_metric(
             tf.reduce_mean(gate_values),
             name='gate_activation_mean'
         )
-        
+
         return modified_output
 ```
 

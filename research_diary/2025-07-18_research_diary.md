@@ -10,7 +10,7 @@ Major breakthrough in creating genuine out-of-distribution scenarios! Successful
 #### 1. Fixed JAX Compatibility for TTA ✓
 - **Problem**: Original TTA used TensorFlow's GradientTape, incompatible with JAX
 - **Solution**: Created `BaseTTAJax` with JAX-specific gradient computation
-- **Files**: 
+- **Files**:
   - `models/test_time_adaptation/base_tta_jax.py` - JAX base class
   - `models/test_time_adaptation/__init__.py` - Auto-detects backend
 - **Result**: All TTA methods (TENT, PhysicsTENT, TTT) now work with JAX
@@ -52,7 +52,7 @@ Major breakthrough in creating genuine out-of-distribution scenarios! Successful
 
 1. **Model Loading Issues**: Custom classes not registered
    - Solution: Created fresh models for testing
-   
+
 2. **Weight Restoration**: Shape mismatches in BatchNorm
    - Solution: Skip non-matching shapes during restore
 

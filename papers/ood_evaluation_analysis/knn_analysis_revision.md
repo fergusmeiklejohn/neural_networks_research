@@ -48,7 +48,7 @@ Based on k-NN analysis with k=10:
 2. Establish thresholds using the 95th and 99th percentiles of training set self-distances
 3. Classify test samples as:
    - Interpolation: distance ≤ 95th percentile
-   - Near-boundary: 95th < distance ≤ 99th percentile  
+   - Near-boundary: 95th < distance ≤ 99th percentile
    - Extrapolation: distance > 99th percentile
 
 This approach is more robust to high dimensionality than convex hull analysis and provides a continuous measure of extrapolation difficulty."

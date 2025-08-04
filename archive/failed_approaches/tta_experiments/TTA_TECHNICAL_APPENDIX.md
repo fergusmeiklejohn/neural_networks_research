@@ -48,7 +48,7 @@ t=0: [x=51.1, y=98.2, vx=1.2, vy=-5.1]
 t=1: [x=52.3, y=93.1, vx=1.2, vy=-5.1]
 t=2: [x=53.5, y=88.0, vx=1.2, vy=-5.1]
 
-# After 10 TTA steps  
+# After 10 TTA steps
 t=0: [x=52.0, y=95.0, vx=0.5, vy=-2.0]
 t=1: [x=52.5, y=93.0, vx=0.5, vy=-2.0]
 t=2: [x=53.0, y=91.0, vx=0.5, vy=-2.0]
@@ -64,7 +64,7 @@ We computed gradients of different loss components:
 
 ```
 ∇_θ L_consistency points toward: uniform predictions
-∇_θ L_smoothness points toward: static trajectories  
+∇_θ L_smoothness points toward: static trajectories
 ∇_θ L_prediction points toward: accurate dynamics
 
 These gradients are often orthogonal or opposing.
@@ -99,7 +99,7 @@ What if we had perfect knowledge of the adaptation objective?
 oracle_loss = MSE(predictions, true_labels)
 # Result: 15% improvement (expected)
 
-# Standard TTA: Self-supervised only  
+# Standard TTA: Self-supervised only
 tta_loss = consistency + smoothness
 # Result: 235% degradation (observed)
 ```
@@ -149,7 +149,7 @@ We implemented TENT on CIFAR-10-C (standard benchmark):
 
 Image corruption vs Physics OOD:
 1. **Preserves content**: ✓ vs ✗
-2. **Local changes**: ✓ vs ✗  
+2. **Local changes**: ✓ vs ✗
 3. **Semantic invariant**: ✓ vs ✗
 4. **Dynamics matter**: ✗ vs ✓
 
@@ -208,7 +208,7 @@ Physics reality:
 
 [Would include plots showing]:
 1. Trajectory evolution during adaptation
-2. Loss landscape visualization  
+2. Loss landscape visualization
 3. Gradient directions at each step
 4. Feature space t-SNE before/after
 

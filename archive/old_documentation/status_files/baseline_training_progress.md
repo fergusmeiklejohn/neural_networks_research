@@ -5,7 +5,7 @@
 ### GFlowNet Training Status
 - **Model Parameters**: 152,464
 - **Training Data**: 5,678 2-ball trajectories
-- **Validation Data**: 823 trajectories  
+- **Validation Data**: 823 trajectories
 - **Jupiter Test Data**: 57 trajectories (gravity range: -40 to -50 m/s²)
 
 ### Training Progress (First 40 epochs)

@@ -4,7 +4,7 @@
 
 ### Confirmed Experiments:
 1. **Standard TTA (TENT-style)**: Prediction consistency loss - degrades by 235% on 2-ball, 14.4x on pendulum
-2. **Energy-based TTA**: Physics-inspired energy conservation loss - degrades by 12.6x on pendulum  
+2. **Energy-based TTA**: Physics-inspired energy conservation loss - degrades by 12.6x on pendulum
 3. **Hamiltonian TTA**: Physics-inspired Hamiltonian consistency - degrades by 17.9x on pendulum
 4. **MAML baseline**: With and without adaptation - catastrophic failure with adaptation
 
@@ -18,7 +18,7 @@ Even physics-aware self-supervised losses fail when the physics mechanism change
 - **What we can say**: "PeTTA introduces collapse detection to prevent degenerate solutions during adaptation. While this addresses stability concerns, our mechanism shifts present a different challenge: the model needs new computational operations (e.g., the L̇/L term in variable pendulum), not just stable adaptation of existing parameters."
 - **Honest acknowledgment**: "Future work should investigate whether PeTTA's collapse detection could identify when adaptation is moving in fundamentally wrong directions, as occurs with mechanism shifts."
 
-### TAIP (Nature Communications 2025)  
+### TAIP (Nature Communications 2025)
 - **Core idea**: Uses self-supervised learning for molecular dynamics
 - **What we can say**: "TAIP demonstrates success using physics-informed losses for molecular systems. Our energy and Hamiltonian consistency losses are conceptually similar. However, TAIP assumes fixed physical laws—our mechanism shifts violate this assumption as conservation laws themselves change."
 - **Key distinction**: We actually tested physics-aware losses and showed they fail when physics changes
@@ -45,7 +45,7 @@ Even physics-aware self-supervised losses fail when the physics mechanism change
 ## Key Messages
 
 1. **We tested physics-aware losses**: Unlike speculation, we actually implemented and tested them
-2. **Clear distinction**: Parameter adaptation (TAIP succeeds) vs mechanism adaptation (our focus)  
+2. **Clear distinction**: Parameter adaptation (TAIP succeeds) vs mechanism adaptation (our focus)
 3. **Complementary findings**: Not contradicting recent work, but identifying boundaries
 4. **Honest about gaps**: Acknowledge what we didn't test while emphasizing what we did
 

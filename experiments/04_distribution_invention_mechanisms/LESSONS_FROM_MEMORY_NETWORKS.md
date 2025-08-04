@@ -43,7 +43,7 @@ The memory values remain at initialization despite training, indicating:
 - Interpretable structure aids debugging
 
 #### Fundamental Limitations
-1. **Non-differentiable Operations**: 
+1. **Non-differentiable Operations**:
    - Slot assignment via argmax
    - Memory addressing is discrete
    - Gradient flow is blocked
@@ -99,12 +99,12 @@ class TwoStageCompiler:
     def __init__(self):
         self.binding_extractor = RuleBasedExtractor()  # Start simple
         self.neural_executor = TransformerExecutor()   # Learn execution
-        
+
     def forward(self, tokens):
         # Stage 1: Extract bindings explicitly
         binding_table = self.binding_extractor(tokens)
         # Returns: {"X": action_embedding, "Y": action_embedding}
-        
+
         # Stage 2: Neural execution with binding context
         outputs = self.neural_executor(tokens, binding_table)
         return outputs

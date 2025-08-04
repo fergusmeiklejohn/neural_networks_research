@@ -9,7 +9,7 @@ The Physics-Informed Neural Network implementation has been successfully tested 
 ✅ **Component Integration Test Passed**
 - Transformer backbone: Working
 - Hamiltonian Neural Network: Computing energy values
-- Soft collision models: Producing smooth potentials  
+- Soft collision models: Producing smooth potentials
 - Physics losses: Energy conservation and smoothness working
 - Model save/load: Successful
 

@@ -14,7 +14,7 @@ The reviewer correctly notes that our claims sound too universal. We need to sco
 ### Original Finding Statement
 > "We find that current state-of-the-art OOD methods fail catastrophically"
 
-### Revised Finding Statement  
+### Revised Finding Statement
 > "We find that on physics prediction tasks with time-varying mechanisms, current adaptation methods show significant performance degradation"
 
 ## Introduction Revisions
@@ -44,7 +44,7 @@ The reviewer correctly notes that our claims sound too universal. We need to sco
 ### Original
 > "No tested method improves over the baseline"
 
-### Revised  
+### Revised
 > "On tasks with mechanism shifts, no tested method showed statistically significant improvement over the baseline (p > 0.05, n=5 seeds)"
 
 ## Discussion Section Revisions

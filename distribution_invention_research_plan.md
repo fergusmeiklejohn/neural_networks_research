@@ -169,12 +169,12 @@ To validate our approach, we compare against:
 
 ### Revised Timeline (24 months total)
 - **Phase 1 (Months 1-9)**: Foundation and core experiments 1-2
-- **Phase 2 (Months 10-18)**: Experiments 3-4 and scaling  
+- **Phase 2 (Months 10-18)**: Experiments 3-4 and scaling
 - **Phase 3 (Months 19-24)**: Advanced experiments 5-6 and integration
 
 ### GPU Hour Estimates
 - **Total Estimated**: 2.5M GPU hours across all experiments
-- **Breakdown by experiment**: 
+- **Breakdown by experiment**:
   - Physics Worlds: 200k hours
   - Compositional Language: 300k hours
   - Visual Concepts: 500k hours
@@ -225,7 +225,7 @@ env:
 datasets:
   - id: physics_sim_data
     path: /datasets/physics
-  - id: language_comp_data  
+  - id: language_comp_data
     path: /datasets/language
 ```
 
@@ -262,7 +262,7 @@ distribution-invention/
 - Implement core architecture components
 - Run Experiment 1 (Physics) as proof of concept
 
-#### Month 2: Core Development  
+#### Month 2: Core Development
 - Complete Experiments 2-3
 - Refine architecture based on findings
 - Establish evaluation metrics

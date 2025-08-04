@@ -14,7 +14,7 @@ Created `SequentialModelWithActionTracking` with the following improvements:
 ```python
 class ActionPositionTracker:
     """Track positions where actions should be generated."""
-    
+
     def find_action_positions(self, tokens: mx.array) -> List[Tuple[int, int]]:
         """Returns list of (position, repeat_count) tuples."""
         # Identifies "do VARIABLE" patterns

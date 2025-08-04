@@ -52,7 +52,7 @@ class NeuralMemoryBinding:
 
 **Implementation Plan**:
 1. Process command with LSTM/GRU sequentially
-2. On "X means jump": 
+2. On "X means jump":
    - Encode "jump" → value vector
    - Write to memory[X] with soft gating
 3. On "do X":
@@ -75,23 +75,23 @@ class CrossAttentionBinder:
         self.binding_encoder = TransformerEncoder(num_layers=2)
         self.execution_encoder = TransformerEncoder(num_layers=2)
         self.cross_attention = nn.MultiheadAttention(hidden_dim, num_heads=8)
-        
+
     def forward(self, tokens):
         # Step 1: Identify and encode all bindings
         binding_mask = find_binding_patterns(tokens)  # "X means Y"
         binding_representations = self.binding_encoder(tokens, binding_mask)
-        
+
         # Step 2: Encode execution commands
         exec_mask = find_execution_patterns(tokens)  # "do X"
         exec_representations = self.execution_encoder(tokens, exec_mask)
-        
+
         # Step 3: Cross-attend from execution to bindings
         attended_bindings = self.cross_attention(
             query=exec_representations,
             key=binding_representations,
             value=binding_representations
         )
-        
+
         # Step 4: Predict actions
         return self.action_predictor(attended_bindings)
 ```
@@ -116,11 +116,11 @@ class PointerBindingNetwork:
     def __init__(self):
         self.encoder = BiLSTM(hidden_dim)
         self.pointer_attention = PointerAttention(hidden_dim)
-        
+
     def forward(self, tokens):
         # Encode entire sequence
         encoded = self.encoder(tokens)  # [seq_len, hidden_dim]
-        
+
         outputs = []
         for i, token in enumerate(tokens):
             if is_variable_reference(token):  # e.g., "X" in "do X"
@@ -129,14 +129,14 @@ class PointerBindingNetwork:
                     query=encoded[i],
                     keys=encoded
                 )
-                
+
                 # Find where this variable was defined
                 pointed_position = argmax(attention_scores)
-                
+
                 # Extract action from definition
                 action = extract_action_from_definition(tokens, pointed_position)
                 outputs.append(action)
-                
+
         return outputs
 ```
 
@@ -160,12 +160,12 @@ class TwoStageBindingModel:
     def __init__(self):
         self.binding_compiler = BindingCompiler()
         self.neural_executor = NeuralExecutor()
-        
+
     def forward(self, tokens):
         # Stage 1: Compile all bindings into structured form
         binding_table = self.binding_compiler(tokens)
         # Returns: {"X": jump_embedding, "Y": walk_embedding}
-        
+
         # Stage 2: Execute with binding table
         outputs = self.neural_executor(tokens, binding_table)
         return outputs
@@ -174,13 +174,13 @@ class BindingCompiler(nn.Module):
     def forward(self, tokens):
         # Find all "VAR means ACTION" patterns
         patterns = find_binding_patterns(tokens)
-        
+
         binding_table = {}
         for var, action in patterns:
             # Encode action into embedding
             action_embedding = self.action_encoder(action)
             binding_table[var] = action_embedding
-            
+
         return binding_table
 ```
 
@@ -208,11 +208,11 @@ class GraphBindingNetwork:
         self.gnn_layers = nn.ModuleList([
             GraphConvLayer(hidden_dim) for _ in range(4)
         ])
-        
+
     def build_graph(self, tokens):
         # Create nodes for each token
         nodes = [self.node_encoder(t) for t in tokens]
-        
+
         # Add edges for bindings
         edges = []
         for i, token in enumerate(tokens):
@@ -221,7 +221,7 @@ class GraphBindingNetwork:
                 var_idx = i - 1
                 action_idx = i + 1
                 edges.append((var_idx, action_idx, BINDING_EDGE))
-                
+
         return Graph(nodes, edges)
 ```
 
@@ -246,32 +246,32 @@ class HierarchicalBindingProcessor:
     def __init__(self):
         self.segment_processor = SegmentProcessor()
         self.binding_merger = BindingMerger()
-        
+
     def process(self, tokens, parent_bindings=None):
         # Split by "then" for sequential processing
         segments = split_by_then(tokens)
-        
+
         current_bindings = parent_bindings or {}
         outputs = []
-        
+
         for segment in segments:
             # Extract local bindings
             local_bindings = extract_bindings(segment)
-            
+
             # Merge with current bindings (local overwrites)
             merged_bindings = self.binding_merger(
                 current_bindings, local_bindings
             )
-            
+
             # Process segment with merged bindings
             segment_outputs = self.segment_processor(
                 segment, merged_bindings
             )
             outputs.extend(segment_outputs)
-            
+
             # Update current bindings
             current_bindings = merged_bindings
-            
+
         return outputs
 ```
 

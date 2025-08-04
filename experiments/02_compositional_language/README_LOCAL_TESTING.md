@@ -119,7 +119,7 @@ import sys
 subprocess.run([sys.executable, "prepare_scan_data.py", "--subset", "10000"])
 
 # Run full training
-subprocess.run([sys.executable, "train_compositional_model.py", 
+subprocess.run([sys.executable, "train_compositional_model.py",
                 "--epochs", "100", "--batch-size", "64"])
 ```
 

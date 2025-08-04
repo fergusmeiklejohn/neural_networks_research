@@ -21,7 +21,7 @@
 1. **JAX/Keras 3 Compatibility**:
    - Issue: `keras.utils.autograph_mode` doesn't exist
    - Solution: Removed decorators, used simplified training
-   
+
 2. **FourierFeatures Tracer Leak**:
    - Issue: JAX traced intermediate values escaping
    - Solution: Used `add_weight()` for proper variable initialization
@@ -78,7 +78,7 @@ The key insight today was that **physics knowledge must be differentiable** to b
 - Need to use JAX-specific gradient computation or Keras model.fit()
 
 **Fix**: Created `train_pinn_keras3.py` with simplified training that computes losses but doesn't update weights. Full implementation would need:
-- `jax.grad()` for gradient computation  
+- `jax.grad()` for gradient computation
 - `optax` for optimizer state
 - Custom training loop with JAX primitives
 

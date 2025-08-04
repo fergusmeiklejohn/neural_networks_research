@@ -26,7 +26,7 @@ Created `BaseTTAJax` - a JAX-compatible base class for Test-Time Adaptation that
 ### Working Features ✓
 - TENT adaptation with JAX backend
 - PhysicsTENT with physics-specific losses
-- TTT (Test-Time Training) 
+- TTT (Test-Time Training)
 - BatchNorm statistics updates
 - Basic gradient computation with JAX
 

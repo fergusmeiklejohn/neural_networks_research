@@ -36,7 +36,7 @@ Several experimental limitations affect the interpretation of our results:
 
 Several natural extensions of this work would strengthen and broaden our findings:
 
-**Comprehensive Baseline Study**: 
+**Comprehensive Baseline Study**:
 - Test with multiple random seeds and report confidence intervals
 - Implement exact architectures from published papers
 - Systematically vary training distribution coverage

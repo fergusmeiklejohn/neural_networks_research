@@ -16,7 +16,7 @@
 ### 2. Compared to Full Training (from July 14)
 Previous full training that reached Stage 3:
 - Stage 1 (Earth/Mars): 1,220 MSE
-- Stage 2 (+Moon): 874 MSE  
+- Stage 2 (+Moon): 874 MSE
 - Stage 3 (+Jupiter): 880 MSE
 
 Our minimal PINN:
@@ -40,7 +40,7 @@ The model still completely fails because:
 
 This suggests:
 1. The progressive curriculum is essential
-2. More training epochs are critical  
+2. More training epochs are critical
 3. The architecture may still be fundamentally flawed
 
 ## Comparison with Baselines

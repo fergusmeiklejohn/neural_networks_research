@@ -80,7 +80,7 @@ class DistributionSafetyChecker:
         self.plausibility_checker = PlausibilityDetector()
         self.harm_detector = HarmfulContentDetector()
         self.consistency_validator = ConsistencyValidator()
-        
+
     def validate_distribution(self, distribution, base_distribution):
         checks = {
             'plausibility': self.plausibility_checker(distribution),

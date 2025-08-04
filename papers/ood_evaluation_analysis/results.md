@@ -108,7 +108,7 @@ Testing our baselines on time-varying gravity trajectories revealed:
 | GraphExtrap* | 0.766 | 1,247,856 | 1,628,788x |
 | Minimal PINN | 42,532.14 | 8,934,672 | 210x |
 
-*GraphExtrap constant gravity from published results; time-varying gravity estimated based on architectural analysis  
+*GraphExtrap constant gravity from published results; time-varying gravity estimated based on architectural analysis
 **Published result on constant gravity
 
 All tested models showed substantial performance degradation when faced with structural changes in the physics dynamics. This aligns with theoretical predictions from the spectral shift framework (Fesser et al., 2023), which suggests that time-varying parameters create frequency content outside the training distribution's support.

@@ -56,7 +56,7 @@ The 500,000x degradation shows that neural networks:
 ### 3. The OOD Illusion is Universal
 Combined with previous findings:
 - TTA: +235% degradation
-- MAML: +62,290% degradation  
+- MAML: +62,290% degradation
 - GFlowNet: Negligible improvement
 - Simple NN: +499,916% degradation
 

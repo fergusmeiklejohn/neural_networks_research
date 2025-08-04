@@ -67,7 +67,7 @@ This script:
 ## Success Criteria
 
 - Model successfully binds words to variable slots
-- Can modify bindings and execute with changes  
+- Can modify bindings and execute with changes
 - Achieves >50% accuracy on single-modification validation set
 
 ## Key Findings

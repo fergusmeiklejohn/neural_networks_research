@@ -125,7 +125,7 @@ python analyze_representations_knn.py
 The review process is working exactly as intended - strengthening our contribution through constructive criticism. The reviewer's suggestions don't weaken our findings; they make them more defensible:
 
 1. **k-NN is indeed better** for high-dimensional analysis
-2. **Recent papers support** our theoretical framework  
+2. **Recent papers support** our theoretical framework
 3. **Softened language** is more scholarly and precise
 4. **Full MSE values** emphasize the scale of failure
 

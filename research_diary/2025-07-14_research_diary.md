@@ -38,7 +38,7 @@ The minimal PINN learned Earth gravity perfectly (-9.81 m/s²) but couldn't adap
 
 2. **GraphExtrap's Secret**: It succeeds by NOT assuming specific physics. It learns patterns from data and can interpolate between different gravity values.
 
-3. **Data Understanding is Critical**: We lost hours to data format issues - pixel vs meter coordinates, wrong column extraction, etc. 
+3. **Data Understanding is Critical**: We lost hours to data format issues - pixel vs meter coordinates, wrong column extraction, etc.
 
 4. **PINNs Have a Fundamental Flaw**: They encode assumptions that become invalid under distribution shift. The more "physics" we add, the more rigid and brittle the model becomes.
 
@@ -58,7 +58,7 @@ The minimal PINN learned Earth gravity perfectly (-9.81 m/s²) but couldn't adap
 - Key files ready: `TRUE_OOD_BENCHMARK.md` has Level 2 design, `models/baseline_models.py` has GraphExtrap implementation
 
 **Immediate next steps (with entry points):**
-1. **Understand GraphExtrap's success** 
+1. **Understand GraphExtrap's success**
    - Run: `python train_baselines.py --model graph_extrap --verbose`
    - Check their geometric features in `models/baseline_models.py:L142-156`
    - Key question: Do they train on multiple gravity values?

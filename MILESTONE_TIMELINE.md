@@ -22,7 +22,7 @@ This timeline incorporates reviewer feedback about realistic expectations, inclu
 - Integrate MMD loss and meta-learning framework
 
 **GPU Hours**: 50 hours (testing and validation)
-**Deliverables**: 
+**Deliverables**:
 - Baseline model implementations
 - Evaluation framework with UMAP visualization
 - Updated training pipeline with meta-learning
@@ -47,7 +47,7 @@ This timeline incorporates reviewer feedback about realistic expectations, inclu
 
 **Risk Buffer**: +60 hours for hyperparameter tuning
 
-### Months 5-6: Compositional Language 
+### Months 5-6: Compositional Language
 **Goals**:
 - Retry compositional language with improved infrastructure
 - Target: >95% SCAN baseline, >70% modification success
@@ -187,7 +187,7 @@ This timeline incorporates reviewer feedback about realistic expectations, inclu
 
 ### GPU Hours by Phase
 - Phase 1 (Months 1-8): 510 hours base + 160 buffer = **670 hours**
-- Phase 2 (Months 9-16): 900 hours base + 300 buffer = **1,200 hours**  
+- Phase 2 (Months 9-16): 900 hours base + 300 buffer = **1,200 hours**
 - Phase 3 (Months 17-24): 850 hours base + 380 buffer = **1,230 hours**
 - **Total**: 2,260 hours base + 840 buffer = **3,100 hours**
 
@@ -201,7 +201,7 @@ This timeline incorporates reviewer feedback about realistic expectations, inclu
 **Month 8**: First paper submission
 - Decision: Continue with current approach or pivot?
 
-**Month 16**: Journal paper with 4 experiments  
+**Month 16**: Journal paper with 4 experiments
 - Decision: Focus on specific domain or continue broad approach?
 
 **Month 20**: Near-complete results

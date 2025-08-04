@@ -9,7 +9,7 @@ This document outlines our strategy to address the reviewer's constructive feedb
 **Issue**: All evidence comes from one synthetic scenario (2-ball dynamics with sinusoidal gravity).
 
 **Action Plan**:
-- Add **variable pendulum length** experiment: 
+- Add **variable pendulum length** experiment:
   - Training: Fixed length pendulum
   - Test: Time-varying length L(t) = L₀(1 + 0.2sin(0.1t))
   - This tests mechanism shift in a different physical system
@@ -107,7 +107,7 @@ To: "Self-supervised adaptation methods show systematic failure on physics tasks
 
 ## Implementation Timeline
 
-1. **Week 1**: 
+1. **Week 1**:
    - Implement pendulum experiment
    - Draft response to reviewer
    - Update Abstract/Introduction claims

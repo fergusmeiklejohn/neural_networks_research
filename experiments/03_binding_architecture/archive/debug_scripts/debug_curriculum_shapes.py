@@ -1,8 +1,13 @@
 import sys
-sys.path.append('/Users/fergusmeiklejohn/conductor/repo/neural_networks_research/bandung')
+
+sys.path.append(
+    "/Users/fergusmeiklejohn/conductor/repo/neural_networks_research/bandung"
+)
 
 from train_binding_curriculum import (
-    generate_stage1_data, generate_stage2_data, generate_stage3_data
+    generate_stage1_data,
+    generate_stage2_data,
+    generate_stage3_data,
 )
 
 # Check shapes for each stage

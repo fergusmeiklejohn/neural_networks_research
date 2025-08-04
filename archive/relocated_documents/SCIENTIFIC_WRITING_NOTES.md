@@ -119,7 +119,7 @@ Based on the revised introduction, here are key principles for scientific paper 
 Bad: "This shocking discovery exposes the OOD illusion"
 Good: "This discovery led us to a deeper realization"
 
-Bad: "Methods catastrophically explode"  
+Bad: "Methods catastrophically explode"
 Good: "Methods amplify errors by a considerable margin"
 
 Bad: "This proves current methods are fundamentally flawed"
@@ -196,7 +196,7 @@ Good: "This suggests we need to radically rethink our approach"
 
 ### Use Precise Language for Scope
 - "The studied setting" not "all settings"
-- "Physics mechanism shifts" not "OOD in general"  
+- "Physics mechanism shifts" not "OOD in general"
 - "Self-supervised adaptation" not "all adaptation methods"
 - "Our experiments show" not "This proves"
 

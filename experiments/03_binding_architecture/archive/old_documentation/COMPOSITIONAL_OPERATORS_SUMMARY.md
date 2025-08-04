@@ -1,7 +1,7 @@
 # Compositional Operators - Implementation Summary
 
-**Status**: Implemented and Tested  
-**Date**: 2025-08-01  
+**Status**: Implemented and Tested
+**Date**: 2025-08-01
 **Accuracy**: ~58.5% on mixed compositional patterns
 
 ## Overview
@@ -9,7 +9,7 @@
 We successfully implemented compositional operators to extend the variable binding architecture:
 
 1. **"and" operator** - Parallel execution of multiple actions
-2. **"or" operator** - Choice between alternative actions  
+2. **"or" operator** - Choice between alternative actions
 3. **"while" operator** - Repeated execution (simplified loop)
 4. **"then" operator** - Sequential composition (already existed)
 
@@ -45,7 +45,7 @@ Example parse trees:
 ### Performance
 - **Best Accuracy**: 58.5% on mixed compositional patterns
 - **Training**: 30 epochs on 500 samples per epoch
-- **Pattern Distribution**: 
+- **Pattern Distribution**:
   - 20% AND patterns
   - 20% OR patterns
   - 20% WHILE patterns

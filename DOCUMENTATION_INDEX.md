@@ -26,12 +26,12 @@
 - **PINN Analysis**: Physics-informed models failed catastrophically (1,150x worse)
 - **Key Documents**: `TRUE_OOD_BENCHMARK.md`, `PINN_LESSONS_LEARNED.md`
 
-#### Experiment 02: Compositional Language  
+#### Experiment 02: Compositional Language
 - **Plan**: `experiments/02_compositional_language/EXPERIMENT_PLAN.md`
 - **Status**: Ready for retry (infrastructure fixed after lost results)
 - **Training Template**: `train_template.py` - Use this for safe cloud training
 
-#### Experiment 03: Variable Binding Architecture 
+#### Experiment 03: Variable Binding Architecture
 - **Status**: Completed with major theoretical breakthrough
 - **Key Finding**: Variable binding IS distribution invention in miniature
 - **Outcome**: Led to creation of Experiment 04 (see below)

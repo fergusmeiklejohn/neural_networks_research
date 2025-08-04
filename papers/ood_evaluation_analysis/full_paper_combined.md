@@ -2,7 +2,7 @@
 
 ## Abstract
 
-We present an empirical analysis of out-of-distribution (OOD) evaluation methods in physics learning tasks, focusing on the distinction between interpolation and extrapolation in neural network predictions. Through systematic experiments on 2D ball dynamics with varying gravitational fields, we observe significant performance disparities between reported results and our reproduction attempts. 
+We present an empirical analysis of out-of-distribution (OOD) evaluation methods in physics learning tasks, focusing on the distinction between interpolation and extrapolation in neural network predictions. Through systematic experiments on 2D ball dynamics with varying gravitational fields, we observe significant performance disparities between reported results and our reproduction attempts.
 
 Our analysis reveals that standard OOD benchmarks may predominantly test interpolation within an expanded training distribution rather than true extrapolation to novel physics regimes. Using representation space analysis, we find that 91.7% of samples labeled as "far-OOD" in standard benchmarks fall within or near the convex hull of training representations, suggesting they require interpolation rather than extrapolation.
 
@@ -340,7 +340,7 @@ Testing our baselines on time-varying gravity trajectories revealed:
 | MAML | 3,298.69 | >100,000* | >30x |
 | GraphExtrap | 0.766** | >100,000* | >130,000x |
 
-*Estimated based on partial trajectory analysis  
+*Estimated based on partial trajectory analysis
 **Published result on constant gravity
 
 All models showed catastrophic failure when faced with structural changes in the physics dynamics. The time-varying nature creates temporal dependencies that violate the fundamental assumptions of models trained on constant physics.
@@ -514,7 +514,7 @@ Several experimental limitations affect the interpretation of our results:
 
 Several natural extensions of this work would strengthen and broaden our findings:
 
-**Comprehensive Baseline Study**: 
+**Comprehensive Baseline Study**:
 - Test with multiple random seeds and report confidence intervals
 - Implement exact architectures from published papers
 - Systematically vary training distribution coverage

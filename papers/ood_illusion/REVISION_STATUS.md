@@ -10,7 +10,7 @@
 
 ### 2. New Content Created
 - ✅ `pendulum_results_section.md` - Ready to insert into Results section
-- ✅ `recent_advances_section.md` - Ready to insert into Background section  
+- ✅ `recent_advances_section.md` - Ready to insert into Background section
 - ✅ `contemporary_tta_discussion.md` - Ready to insert into Discussion section
 - ✅ Updated References section with PeTTA, TAIP, TTAB
 

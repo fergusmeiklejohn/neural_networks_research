@@ -180,11 +180,11 @@ Current approaches solve #1 (consistent binding) but fail at #2 and #3. The mode
    ```python
    # Stage 1: Variable recognition only
    "Is X at position 0 same as X at position 4?" -> Yes/No
-   
+
    # Stage 2: Direct retrieval (no intervening words)
    "X jump X" -> jump
    "Y walk Y" -> walk
-   
+
    # Stage 3: Full binding with distractors
    "X means jump do X" -> jump
    ```
@@ -210,7 +210,7 @@ def variable_recognition_task():
     # Different: "X ... Y" -> 0
     pass
 
-# Minimal binding with no distractors  
+# Minimal binding with no distractors
 def direct_binding_task():
     # "X jump X" -> jump
     # No "means" or "do" words

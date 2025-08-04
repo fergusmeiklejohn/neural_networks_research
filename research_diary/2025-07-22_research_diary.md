@@ -50,7 +50,7 @@ Successfully revived and enhanced the compositional language experiment with com
 - experiments/01_physics_worlds/outputs/pendulum_test_quick/pendulum_baseline_results_20250721_083040.json
 
 ### Technical Details
-- **SCAN Dataset Structure**: 
+- **SCAN Dataset Structure**:
   - Train: 39,708 samples (avg length: 14.4)
   - Test Interpolation: 8,510 samples
   - Test Primitive Extrapolation: 7,469 samples (new primitive combinations)
@@ -82,11 +82,11 @@ Successfully revived and enhanced the compositional language experiment with com
    - Command: `cd /notebooks/neural_networks_research/experiments/02_compositional_language && python paperspace_train_with_safeguards.py`
    - Monitor: `/storage/compositional_language_*/` for checkpoint saves
    - Expected duration: 4-6 hours on A4000 GPU
-2. **Secondary Tasks**: 
+2. **Secondary Tasks**:
    - Download and analyze results: `zip -r results.zip /storage/compositional_language_*/`
    - Compare with baseline models using unified evaluation
    - Update CURRENT_STATUS.md with training results
-3. **Open Questions**: 
+3. **Open Questions**:
    - Should we add TTA given its catastrophic failure on physics? (Hypothesis: No, focus on base model first)
    - How to design linguistic "time-varying" rules? (Hypothesis: Grammar rules that change mid-sequence)
 
@@ -150,7 +150,7 @@ Successfully completed the first full 4-stage training run on Paperspace after f
 ### Training Results Summary
 - **Stage 1 (Basic SCAN)**: 86.2% accuracy ✓ - Strong baseline performance
 - **Stage 2 (Simple Modifications)**: 84.4% accuracy ⚠️ - Dramatic 8x loss increase
-- **Stage 3 (Complex Modifications)**: 84.4% accuracy ⚠️ - Complete stagnation  
+- **Stage 3 (Complex Modifications)**: 84.4% accuracy ⚠️ - Complete stagnation
 - **Stage 4 (Novel Generation)**: 82.6% accuracy ⚠️ - Further degradation
 
 ### Critical Finding: Catastrophic Interference Confirmed

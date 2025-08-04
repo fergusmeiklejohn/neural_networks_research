@@ -34,7 +34,7 @@ archive/
 
 #### High Priority (Immediate Archive)
 - **All PINN-related files** (~15 files) - Conclusively failed approach
-- **TTA experiments** (~25 files) - Failed adaptation attempts  
+- **TTA experiments** (~25 files) - Failed adaptation attempts
 - **Multiple training script variants** (~20 files) - Superseded by template
 - **Old status documents** (~10 files) - Replaced by current docs
 
@@ -147,7 +147,7 @@ class SafeArchiver:
     def __init__(self, dry_run=True):
         self.dry_run = dry_run
         self.archive_log = []
-        
+
     def calculate_checksum(self, filepath):
         """Calculate MD5 checksum of file"""
         hash_md5 = hashlib.md5()
@@ -155,26 +155,26 @@ class SafeArchiver:
             for chunk in iter(lambda: f.read(4096), b""):
                 hash_md5.update(chunk)
         return hash_md5.hexdigest()
-    
+
     def archive_file(self, source, destination):
         """Safely archive a file with verification"""
         if self.dry_run:
             print(f"[DRY RUN] Would archive: {source} -> {destination}")
             return True
-            
+
         # Create destination directory
         dest_dir = os.path.dirname(destination)
         os.makedirs(dest_dir, exist_ok=True)
-        
+
         # Calculate source checksum
         source_checksum = self.calculate_checksum(source)
-        
+
         # Copy file
         shutil.copy2(source, destination)
-        
+
         # Verify copy
         dest_checksum = self.calculate_checksum(destination)
-        
+
         if source_checksum == dest_checksum:
             self.archive_log.append({
                 'source': source,
@@ -186,7 +186,7 @@ class SafeArchiver:
         else:
             print(f"ERROR: Checksum mismatch for {source}")
             return False
-    
+
     def save_log(self):
         """Save archive log for recovery"""
         log_path = 'archive/ARCHIVE_LOG.json'
@@ -202,7 +202,7 @@ archiver = SafeArchiver(dry_run=True)
 
 ## Timeline
 
-1. **Immediate (Today)**: 
+1. **Immediate (Today)**:
    - Review and approve archiving plan
    - Run archiving script in dry-run mode
    - Archive PINN and TTA experiments

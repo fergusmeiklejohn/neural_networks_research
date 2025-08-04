@@ -6,7 +6,7 @@ We study a fundamental physics prediction task: forecasting the motion of two in
 
 The state vector x ∈ ℝ¹¹ consists of:
 - Ball 1: position (x₁, y₁), velocity (vₓ₁, vᵧ₁), radius r₁
-- Ball 2: position (x₂, y₂), velocity (vₓ₂, vᵧ₂), radius r₂  
+- Ball 2: position (x₂, y₂), velocity (vₓ₂, vᵧ₂), radius r₂
 - Gravity parameter: g
 
 The prediction target is the state after Δt = 0.1 seconds, accounting for gravitational acceleration and elastic collisions between balls and with boundaries.

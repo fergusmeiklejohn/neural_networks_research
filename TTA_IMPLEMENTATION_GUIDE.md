@@ -43,7 +43,7 @@ class BaseTTA(ABC):
         self.model = model
         self.adaptation_steps = adaptation_steps
         self._original_weights = self._copy_weights()
-    
+
     @abstractmethod
     def compute_adaptation_loss(self, x, y_pred):
         """Define adaptation objective"""

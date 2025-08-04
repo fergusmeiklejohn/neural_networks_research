@@ -332,7 +332,7 @@ The fact that training ran for 27% before failing was the key clue - it wasn't a
 
 ### tf.function Complication
 
-Hit another issue: tf.function's autograph requires all variables in all conditional branches. Error: "inputs['modification'] must also be initialized in the else branch". 
+Hit another issue: tf.function's autograph requires all variables in all conditional branches. Error: "inputs['modification'] must also be initialized in the else branch".
 
 **Solution**: Created `train_progressive_simple.py` that keeps all memory optimizations (mixed precision, GPU growth, periodic clearing) but skips tf.function. The memory savings are what matter for OOM prevention, not the compilation speedup.
 
@@ -363,7 +363,7 @@ New error on Paperspace: "cannot compute Mul as input #1(zero-based) was expecte
 After multiple attempts with complex transformer architectures, we finally achieved successful training with a minimal LSTM-based model. The progression of failures taught valuable lessons:
 
 1. **Complex transformer models** → Sequential layer initialization errors
-2. **Mixed precision optimization** → Type mismatch errors  
+2. **Mixed precision optimization** → Type mismatch errors
 3. **tf.function compilation** → Autograph branch complications
 4. **Minimal LSTM model** → ✅ Success!
 
@@ -396,7 +396,7 @@ Unfortunately, the Paperspace instance shut down before we could save the full r
 
 Despite missing final metrics, we proved:
 1. **Progressive curriculum works for language** (not just physics)
-2. **Distribution invention is domain-agnostic** 
+2. **Distribution invention is domain-agnostic**
 3. **Simple models can validate complex hypotheses**
 
 The low training loss (0.038) suggests the model learned the SCAN mappings well. Without extrapolation metrics, we can't compare to physics (83.51%), but the successful training is a major milestone.
@@ -450,7 +450,7 @@ After losing the compositional language results, I've created comprehensive infr
 **Afternoon**: Compositional language implementation marathon:
 - 5+ different training scripts created
 - Battled transformer initialization errors
-- Fought mixed precision type mismatches  
+- Fought mixed precision type mismatches
 - Overcame tf.function autograph issues
 - Finally succeeded with minimal LSTM approach
 

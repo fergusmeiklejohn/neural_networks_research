@@ -124,7 +124,7 @@ Our sophisticated validation missed a simple uncommitted file. Sometimes the mos
 Before EVERY Paperspace deployment:
 
 - [ ] All changes committed: `git status` shows clean
-- [ ] Pushed to production: `git push` and PR merged  
+- [ ] Pushed to production: `git push` and PR merged
 - [ ] Data generated: modification_pairs.pkl exists
 - [ ] Master validation passes: `pre_paperspace_checklist.py`
 - [ ] No hardcoded paths for different environments

@@ -8,7 +8,7 @@ We have sophisticated testing infrastructure configured but **it's not being use
 
 ### 1. **Pre-commit Hooks** (`.pre-commit-config.yaml`)
 - **Black**: Code formatting
-- **isort**: Import sorting  
+- **isort**: Import sorting
 - **flake8**: Linting with multiple plugins
 - **mypy**: Static type checking (would have caught import errors!)
 - **bandit**: Security checking

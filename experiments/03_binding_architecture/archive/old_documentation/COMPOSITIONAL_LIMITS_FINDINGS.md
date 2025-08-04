@@ -91,7 +91,7 @@ class SequencePlanner:
 class VersionedMemory:
     def __init__(self):
         self.versions = {}  # var -> [(version, value)]
-    
+
     def bind(self, var, value):
         # Create new version
         # Maintain history

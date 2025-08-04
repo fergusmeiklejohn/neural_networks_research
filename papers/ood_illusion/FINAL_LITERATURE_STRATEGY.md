@@ -10,7 +10,7 @@
    - But: Assumes computational structure remains valid
 
 2. **TAIP (Nature Communications 2025)**:
-   - Uses "dual-level self-supervised learning" for molecular dynamics  
+   - Uses "dual-level self-supervised learning" for molecular dynamics
    - Reduces errors by 30% without additional data
    - But: Assumes fixed physical laws (only parameters change)
 
@@ -41,18 +41,18 @@
 
 ### In Introduction:
 ```markdown
-Recent advances have improved test-time adaptation stability. PeTTA (Zhao et al., 2024) 
-prevents collapse through monitoring, while TAIP (Fu et al., 2025) succeeds in molecular 
-dynamics using physics-informed losses. TTAB (Zhao et al., 2023) shows that no single 
-TTA method handles all distribution shifts. We identify mechanism shifts—where generative 
+Recent advances have improved test-time adaptation stability. PeTTA (Zhao et al., 2024)
+prevents collapse through monitoring, while TAIP (Fu et al., 2025) succeeds in molecular
+dynamics using physics-informed losses. TTAB (Zhao et al., 2023) shows that no single
+TTA method handles all distribution shifts. We identify mechanism shifts—where generative
 equations change—as a particularly challenging case where even physics-aware adaptation fails.
 ```
 
 ### In Related Work:
 ```markdown
-Our physics-aware TTA implementations (energy and Hamiltonian consistency) are conceptually 
-related to TAIP's approach. However, while TAIP succeeds when physical laws remain constant, 
-we show these losses fail when conservation laws themselves change. This aligns with TTAB's 
+Our physics-aware TTA implementations (energy and Hamiltonian consistency) are conceptually
+related to TAIP's approach. However, while TAIP succeeds when physical laws remain constant,
+we show these losses fail when conservation laws themselves change. This aligns with TTAB's
 finding that TTA methods have fundamental limitations on certain distribution shifts.
 ```
 
@@ -60,30 +60,30 @@ finding that TTA methods have fundamental limitations on certain distribution sh
 ```markdown
 Inspired by physics-informed approaches like TAIP, we implemented energy consistency loss:
 [show our equation]
-However, unlike molecular dynamics where energy is conserved, our mechanism shifts 
+However, unlike molecular dynamics where energy is conserved, our mechanism shifts
 deliberately violate conservation, allowing us to test adaptation when physics assumptions break.
 ```
 
 ### In Discussion:
 ```markdown
-Our results extend TTAB's findings by identifying mechanism shifts as an extreme case of 
-distribution shift. While PeTTA successfully detects collapse within existing computational 
-frameworks, mechanism shifts require new operations entirely. This suggests the need for 
+Our results extend TTAB's findings by identifying mechanism shifts as an extreme case of
+distribution shift. While PeTTA successfully detects collapse within existing computational
+frameworks, mechanism shifts require new operations entirely. This suggests the need for
 architectures that can expand their computational vocabulary at test time.
 ```
 
 ### In Limitations:
 ```markdown
-We tested physics-aware losses conceptually similar to recent work but did not implement 
-specific algorithms from PeTTA or TAIP. Our gradient alignment analysis provides an 
-alternative diagnostic to PeTTA's collapse detection. Future work should test whether 
+We tested physics-aware losses conceptually similar to recent work but did not implement
+specific algorithms from PeTTA or TAIP. Our gradient alignment analysis provides an
+alternative diagnostic to PeTTA's collapse detection. Future work should test whether
 these specific implementations offer advantages for mechanism shifts.
 ```
 
 ## Final Recommendations
 
 1. **Be Specific**: Say exactly what we tested (energy/Hamiltonian TTA)
-2. **Draw Distinctions**: Parameter adaptation vs mechanism adaptation  
+2. **Draw Distinctions**: Parameter adaptation vs mechanism adaptation
 3. **Acknowledge Limits**: We didn't implement their exact algorithms
 4. **Show Alignment**: Our findings support TTAB's conclusion about TTA limits
 5. **Unique Value**: We identify WHY physics-aware TTA fails (gradient misalignment)

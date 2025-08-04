@@ -2,7 +2,7 @@
 
 ## Abstract
 
-We present an empirical analysis of out-of-distribution (OOD) evaluation methods in physics learning tasks, focusing on the distinction between interpolation and extrapolation in neural network predictions. Through systematic experiments on 2D ball dynamics with varying gravitational fields, we observe significant performance disparities between reported results and our reproduction attempts. 
+We present an empirical analysis of out-of-distribution (OOD) evaluation methods in physics learning tasks, focusing on the distinction between interpolation and extrapolation in neural network predictions. Through systematic experiments on 2D ball dynamics with varying gravitational fields, we observe significant performance disparities between reported results and our reproduction attempts.
 
 Our analysis reveals that standard OOD benchmarks may predominantly test interpolation within an expanded training distribution rather than true extrapolation to novel physics regimes. Using representation space analysis, we find that 91.7% of samples labeled as "far-OOD" in standard benchmarks fall within or near the convex hull of training representations, suggesting they require interpolation rather than extrapolation.
 

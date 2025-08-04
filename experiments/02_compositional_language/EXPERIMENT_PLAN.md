@@ -136,7 +136,7 @@
    - gSCAN for grounded compositional generalization
    - COGS for systematic generalization
    - Custom compositional OOD benchmark
-   
+
 2. **Safety Evaluation**:
    - Test for harmful instruction generation
    - Verify semantic consistency in modifications
@@ -270,7 +270,7 @@ Compositional Patterns Discovered: ___
 ```
 Target Performance:
 - Standard SCAN: >95% accuracy
-- Simple Modifications: >80% consistency  
+- Simple Modifications: >80% consistency
 - Complex Modifications: >70% success
 - Novel Combinations: >60% validity
 - Training Time: ~8 hours
@@ -383,9 +383,9 @@ Expected Findings:
 
 ---
 
-**Experiment Status**: 🚧 Ready for Full Training Retry  
-**Last Updated**: 2025-07-12  
-**Principal Investigator**: Distribution Invention Research  
-**Previous Success**: 83.51% extrapolation in physics  
+**Experiment Status**: 🚧 Ready for Full Training Retry
+**Last Updated**: 2025-07-12
+**Principal Investigator**: Distribution Invention Research
+**Previous Success**: 83.51% extrapolation in physics
 **Previous Attempt**: Lost results but proved approach works
 **Target**: Match physics success in compositional language

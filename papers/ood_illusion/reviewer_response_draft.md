@@ -67,7 +67,7 @@ Abstract example: "achieving OOD generalization on physics tasks with mechanism 
 
 The revised paper:
 1. Demonstrates our findings across multiple physics systems
-2. Shows physics-aware TTA still fails on mechanism shifts  
+2. Shows physics-aware TTA still fails on mechanism shifts
 3. Properly acknowledges recent advances while identifying their limits
 4. Uses appropriately scoped language throughout
 5. Includes rigorous statistical analysis

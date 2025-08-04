@@ -160,7 +160,7 @@ Expected: Understand why all methods converge to same value
 
 With proper configuration, we expect:
 - **Time-varying gravity**: 10-20% improvement
-- **Rotating frame**: 20-30% improvement  
+- **Rotating frame**: 20-30% improvement
 - **Spring coupling**: 15-25% improvement
 
 The key is providing enough information (multi-step) and adaptation capacity (architecture + hyperparameters) for meaningful updates.

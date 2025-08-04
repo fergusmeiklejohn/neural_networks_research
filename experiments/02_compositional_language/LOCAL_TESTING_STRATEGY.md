@@ -58,11 +58,11 @@ def get_base_path():
 def test_paths():
     base = get_base_path()
     assert os.path.exists(base), f"Base path {base} doesn't exist"
-    
+
     # Test data paths
     data_path = os.path.join(base, 'data')
     os.makedirs(data_path, exist_ok=True)
-    
+
     # Test output paths
     output_path = os.path.join(base, 'outputs')
     os.makedirs(output_path, exist_ok=True)
@@ -97,19 +97,19 @@ def test_scan_data_generation():
         ("look and walk", "LOOK WALK"),
         ("jump thrice", "JUMP JUMP JUMP")
     ]
-    
+
     # Test tokenization
     tokenizer = create_tokenizer(commands)
     assert len(tokenizer.word_index) > 0
-    
+
     # Test data splits
     train, val, test = create_splits(commands, ratios=[0.6, 0.2, 0.2])
     assert len(train) > 0 and len(val) > 0 and len(test) > 0
-    
+
     # Test rule modifications
     modified = apply_rule_modification(commands, rule="jump->walk")
     assert any("walk" in cmd for cmd, _ in modified)
-    
+
     return True
 ```
 
@@ -120,23 +120,23 @@ def test_build_models():
     """Test all model architectures build correctly"""
     vocab_size = 50
     max_length = 20
-    
+
     # Test baseline seq2seq
     baseline = build_baseline_model(vocab_size, max_length)
     assert baseline is not None
-    
+
     # Test distribution invention model
     dist_model = build_distribution_model(vocab_size, max_length)
     assert dist_model is not None
-    
+
     # Test compilation
     baseline.compile(optimizer='adam', loss='sparse_categorical_crossentropy')
-    
+
     # Test forward pass with dummy data
     dummy_input = np.random.randint(0, vocab_size, (2, max_length))
     dummy_output = baseline(dummy_input)
     assert dummy_output.shape == (2, max_length, vocab_size)
-    
+
     return True
 ```
 
@@ -148,23 +148,23 @@ def test_build_models():
 def test_training_with_checkpoints():
     """Test training loop with checkpoint/recovery"""
     model = build_simple_model()
-    
+
     # Simulate training interruption
     for epoch in range(3):
         # Train for one epoch
         history = model.fit(x_train[:10], y_train[:10], epochs=1)
-        
+
         # Save checkpoint
         checkpoint_path = f"test_checkpoint_epoch_{epoch}.h5"
         model.save_weights(checkpoint_path)
-        
+
         # Simulate recovery
         if epoch == 1:
             # Load from checkpoint
             new_model = build_simple_model()
             new_model.load_weights(checkpoint_path)
             print(f"Successfully recovered from epoch {epoch}")
-    
+
     # Cleanup
     for epoch in range(3):
         os.remove(f"test_checkpoint_epoch_{epoch}.h5")
@@ -181,34 +181,34 @@ import gc
 def test_memory_usage():
     """Monitor memory during mini training"""
     process = psutil.Process()
-    
+
     # Initial memory
     initial_memory = process.memory_info().rss / 1024 / 1024  # MB
     print(f"Initial memory: {initial_memory:.2f} MB")
-    
+
     # Load data
     data = load_scan_subset(n_samples=1000)
     data_memory = process.memory_info().rss / 1024 / 1024
     print(f"After data load: {data_memory:.2f} MB (+{data_memory-initial_memory:.2f} MB)")
-    
+
     # Build model
     model = build_model()
     model_memory = process.memory_info().rss / 1024 / 1024
     print(f"After model build: {model_memory:.2f} MB (+{model_memory-data_memory:.2f} MB)")
-    
+
     # Train briefly
     model.fit(data['train'], epochs=2, batch_size=32)
     train_memory = process.memory_info().rss / 1024 / 1024
     print(f"After training: {train_memory:.2f} MB (+{train_memory-model_memory:.2f} MB)")
-    
+
     # Cleanup and check
     del model
     del data
     gc.collect()
-    
+
     final_memory = process.memory_info().rss / 1024 / 1024
     print(f"After cleanup: {final_memory:.2f} MB")
-    
+
     # Check for memory leak
     memory_leak = final_memory - initial_memory
     assert memory_leak < 100, f"Potential memory leak: {memory_leak:.2f} MB"
@@ -221,29 +221,29 @@ def test_memory_usage():
 # test_error_handling.py
 def test_error_scenarios():
     """Test handling of common errors"""
-    
+
     # Test 1: Model weights not created
     try:
         model = keras.Sequential()  # Empty model
         model.save_weights("test.h5")
     except ValueError as e:
         print("✓ Caught empty model error")
-    
+
     # Test 2: Optimizer state recovery
     model = build_model()
     optimizer = keras.optimizers.Adam()
-    
+
     # Train briefly to create optimizer state
     model.compile(optimizer=optimizer, loss='mse')
     model.fit(np.random.rand(10, 10), np.random.rand(10, 1), epochs=1)
-    
+
     # Save and restore
     model.save_weights("test_weights.h5")
     new_model = build_model()
     new_model.compile(optimizer='adam', loss='mse')
     new_model.load_weights("test_weights.h5")
     print("✓ Optimizer state recovery works")
-    
+
     # Test 3: Path not found
     try:
         data = load_data("/nonexistent/path")
@@ -276,13 +276,13 @@ def run_test_suite():
         ("Error handling", test_error_scenarios),
         ("Integration test", test_full_pipeline_mini)
     ]
-    
+
     results = []
     for test_name, test_func in tests:
         print(f"\n{'='*50}")
         print(f"Running: {test_name}")
         print(f"{'='*50}")
-        
+
         start_time = time.time()
         try:
             test_func()
@@ -293,26 +293,26 @@ def run_test_suite():
             duration = time.time() - start_time
             results.append((test_name, f"FAILED: {str(e)}", duration))
             print(f"✗ {test_name} failed: {str(e)}")
-    
+
     # Summary
     print(f"\n{'='*50}")
     print("TEST SUMMARY")
     print(f"{'='*50}")
-    
+
     passed = sum(1 for _, status, _ in results if status == "PASSED")
     total = len(results)
-    
+
     for test_name, status, duration in results:
         status_symbol = "✓" if status == "PASSED" else "✗"
         print(f"{status_symbol} {test_name}: {status} ({duration:.2f}s)")
-    
+
     print(f"\nTotal: {passed}/{total} tests passed")
-    
+
     # Save results
     with open(f"test_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt", 'w') as f:
         for test_name, status, duration in results:
             f.write(f"{test_name}: {status} ({duration:.2f}s)\n")
-    
+
     return passed == total
 
 if __name__ == "__main__":

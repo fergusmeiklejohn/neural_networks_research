@@ -450,7 +450,7 @@ class SimpleDistributionModifier(layers.Layer):
     def __init__(self, units=32, **kwargs):
         super().__init__(**kwargs)
         self.units = units
-        
+
     def build(self, input_shape):
         self.base_kernel = self.add_weight(
             shape=(input_shape[-1], self.units),
@@ -464,15 +464,15 @@ class SimpleDistributionModifier(layers.Layer):
             trainable=True,
             name='modifier'
         )
-        
+
     def call(self, inputs, modification_strength=0.0):
         # Apply base transformation
         base_output = ops.matmul(inputs, self.base_kernel)
-        
+
         # Apply modification based on strength
         modified_kernel = self.base_kernel + modification_strength * self.modifier
         modified_output = ops.matmul(inputs, modified_kernel)
-        
+
         return modified_output
 
 # %%
@@ -498,41 +498,41 @@ plt.show()
 # %%
 class DistributionGenerator(keras.Model):
     """Early prototype of distribution generation model"""
-    
+
     def __init__(self, latent_dim=64, num_rules=10):
         super().__init__()
         self.latent_dim = latent_dim
         self.num_rules = num_rules
-        
+
         # Rule encoder
         self.rule_encoder = keras.Sequential([
             layers.Dense(128, activation='relu'),
             layers.Dense(latent_dim * num_rules),
             layers.Reshape((num_rules, latent_dim))
         ])
-        
+
         # Rule modifier
         self.rule_modifier = layers.LSTM(latent_dim, return_sequences=True)
-        
+
         # Distribution builder
         self.distribution_builder = keras.Sequential([
             layers.Dense(128, activation='relu'),
             layers.Dense(64)
         ])
-        
+
     def call(self, inputs, modification_mask=None):
         # Encode base rules
         rules = self.rule_encoder(inputs)
-        
+
         # Apply modifications if mask provided
         if modification_mask is not None:
             modified_rules = self.rule_modifier(rules)
             # Selective modification based on mask
             rules = rules * (1 - modification_mask) + modified_rules * modification_mask
-            
+
         # Build distribution parameters
         dist_params = self.distribution_builder(layers.Flatten()(rules))
-        
+
         return dist_params, rules
 
 # %%

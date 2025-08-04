@@ -59,7 +59,7 @@ Result: ['JUMP', 'WALK'] ✓
 
 All test cases now pass:
 - ✓ Simple 'and' with two variables
-- ✓ 'and' followed by 'then'  
+- ✓ 'and' followed by 'then'
 - ✓ Multiple 'and' operators
 - ✓ Same variable used twice
 - ✓ Direct actions without variables

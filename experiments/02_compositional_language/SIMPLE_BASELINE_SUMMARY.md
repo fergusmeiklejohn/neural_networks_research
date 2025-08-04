@@ -31,7 +31,7 @@ val_mod_composed..............  0.00% (498 examples)
    - This is actually GOOD - it's honest about its performance
    - Contrast with previous models showing 84.3% while failing on modifications
 
-2. **Architecture Simplicity Works**: 
+2. **Architecture Simplicity Works**:
    - No complex gating mechanisms
    - No separate rule extraction/modification components
    - Just a basic seq2seq model that either works or doesn't

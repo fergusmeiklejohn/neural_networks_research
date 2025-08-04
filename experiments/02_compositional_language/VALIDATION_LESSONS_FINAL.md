@@ -8,7 +8,7 @@
 - **Fix**: Import from correct module
 - **Lesson**: Validate import paths
 
-### Failure 2: AttributeError  
+### Failure 2: AttributeError
 - **Error**: `'SCANTokenizer' object has no attribute 'save'`
 - **Cause**: Method name was `save_vocabulary()`, not `save()`
 - **Fix**: Use correct method name
@@ -36,7 +36,7 @@
 ## The Evolution of Our Validation
 
 1. **After Failure 1**: Added import validation
-2. **After Failure 2**: Added method existence checks  
+2. **After Failure 2**: Added method existence checks
 3. **After Failure 3**: Added git status checks
 4. **After Failure 4**: Realized we must validate production code
 
@@ -80,7 +80,7 @@ Our validation tools tested **what we had**, not **what Paperspace would have**.
 # ❌ BAD: Validates local fantasy
 python validate_before_paperspace.py script.py
 
-# ✅ GOOD: Validates production reality  
+# ✅ GOOD: Validates production reality
 git checkout origin/production -- .
 python validate_before_paperspace.py script.py
 git checkout .
@@ -102,7 +102,7 @@ def validate_production_only():
         capture_output=True,
         text=True
     )
-    
+
     if result.stdout.strip():
         print("❌ STOP!")
         print("You have local changes not in production.")
@@ -111,7 +111,7 @@ def validate_production_only():
         print("  gh pr create && gh pr merge")
         print("\nTHEN validate.")
         sys.exit(1)
-    
+
     print("✅ Local matches production - safe to validate")
 
 if __name__ == "__main__":
@@ -136,7 +136,7 @@ If code is in production, Paperspace has it. Period.
 ## Final Process
 
 1. **Write code**
-2. **Push to production** 
+2. **Push to production**
 3. **Pull on deployment server**
 4. **Run**
 

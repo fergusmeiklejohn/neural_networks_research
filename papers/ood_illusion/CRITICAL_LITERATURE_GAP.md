@@ -34,7 +34,7 @@ This is a critical credibility issue that must be addressed before paper submiss
 ### 1. Deep Literature Review
 - [ ] Download and read full PeTTA paper
 - [ ] Extract PeTTA's collapse detection algorithm
-- [ ] Download and read full TAIP paper  
+- [ ] Download and read full TAIP paper
 - [ ] Understand TAIP's self-supervised losses
 - [ ] Download and read TTAB paper
 - [ ] Map our mechanism shifts to their taxonomy

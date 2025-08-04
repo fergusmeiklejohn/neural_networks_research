@@ -36,12 +36,12 @@ The bug was in:
 ```python
 # OLD (BUGGY):
 def _copy_weights(self):
-    return {var.name: ops.convert_to_numpy(var.value) 
+    return {var.name: ops.convert_to_numpy(var.value)
             for var in self.model.trainable_variables}  # Missing non-trainable!
 
 # NEW (FIXED):
 def _copy_weights(self):
-    return {var.name: ops.convert_to_numpy(var.value).copy() 
+    return {var.name: ops.convert_to_numpy(var.value).copy()
             for var in self.model.variables}  # Includes BatchNorm stats
 ```
 
@@ -126,7 +126,7 @@ To move forward, we should either:
 
 Successfully implemented full JAX gradient computation for TTA:
 
-1. **Created `base_tta_jax_v2.py`**: 
+1. **Created `base_tta_jax_v2.py`**:
    - Uses `model.stateless_call()` for JAX compatibility
    - Proper gradient computation with `jax.value_and_grad()`
    - Complete state management (model + optimizer)

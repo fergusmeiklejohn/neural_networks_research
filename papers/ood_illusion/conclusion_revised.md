@@ -37,7 +37,7 @@ For practitioners facing distribution shifts, we recommend:
 
 We acknowledge several limitations:
 - Our experiments focus on physics prediction tasks with specific types of mechanism shifts
-- We tested representative methods but not all possible architectures or adaptation strategies  
+- We tested representative methods but not all possible architectures or adaptation strategies
 - The boundary between parameter and mechanism shifts may vary across domains
 - We implemented collapse detection inspired by PeTTA but not their exact algorithm
 

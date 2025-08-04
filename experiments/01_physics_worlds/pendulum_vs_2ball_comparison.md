@@ -12,7 +12,7 @@ We implemented pendulum experiments to address reviewer feedback about empirical
 - MAML with adaptation: 62,290% catastrophic failure
 
 **Pendulum System (Time-Varying Length):**
-- Prediction consistency TTA: 1,441% degradation 
+- Prediction consistency TTA: 1,441% degradation
 - Energy consistency TTA: 1,256% degradation
 - Hamiltonian consistency TTA: 1,794% degradation
 

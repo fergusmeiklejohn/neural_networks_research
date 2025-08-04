@@ -45,7 +45,7 @@ We successfully ran Test-Time Adaptation evaluation on true OOD physics scenario
 ## Recommendations
 
 1. **Multi-Step Input**: Test with trajectories of 5-10 timesteps as input
-2. **Hyperparameter Tuning**: 
+2. **Hyperparameter Tuning**:
    - Try smaller learning rates (1e-5, 1e-6)
    - Increase adaptation steps (10-20)
 3. **Different Architectures**: Current model might not have enough adaptable parameters

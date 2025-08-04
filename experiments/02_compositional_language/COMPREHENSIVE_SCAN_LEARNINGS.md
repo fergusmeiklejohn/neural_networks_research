@@ -12,7 +12,7 @@ Our SCAN (Systematic Compositional Actions and Navigation) experiments revealed 
 - **Initial Results**: 84.3% validation accuracy
 - **Red Flags**: Training instability, complex debugging, unclear what model learned
 
-### Phase 2: Refined Architecture (V2) 
+### Phase 2: Refined Architecture (V2)
 - **Changes**: Added gating mechanisms, more sophisticated modification layers
 - **Hypothesis**: Better architectural inductive biases would improve generalization
 - **Results**: Still 84.3% validation, same complete failure on modifications
@@ -39,7 +39,7 @@ Standard validation creates illusion through:
 train_data = base_examples + modification_examples
 
 # Validation: Same distribution
-val_data = base_examples + modification_examples  
+val_data = base_examples + modification_examples
 
 # Result: Model memorizes frequent patterns
 # Appears to generalize (84.3%) but actually fails

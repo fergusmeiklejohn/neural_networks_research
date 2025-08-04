@@ -47,7 +47,7 @@ Our implementations of GFlowNet and MAML perform 3,000-4,000x worse than reporte
 2. **True Extrapolation**: Jupiter (-42.8 m/s²) is far outside training
 3. **No Adaptation**: Models can't adjust to new physics regimes
 
-### Why PINNs Fail Catastrophically  
+### Why PINNs Fail Catastrophically
 1. **Rigid Assumptions**: F=ma with Earth gravity baked in
 2. **Physics Constraints**: Prevent learning from data
 3. **Over-constrained**: Can't adapt to new conditions

@@ -5,7 +5,7 @@ This directory contains the draft of our paper "The OOD Illusion in Physics Lear
 
 ## Key Results
 - Test-Time Adaptation (TTA): 235% worse than baseline
-- MAML with adaptation: 62,290% worse than baseline  
+- MAML with adaptation: 62,290% worse than baseline
 - GFlowNet/Ensembles: ~1% improvement (negligible)
 - Core insight: Current "OOD" benchmarks test interpolation, not extrapolation
 

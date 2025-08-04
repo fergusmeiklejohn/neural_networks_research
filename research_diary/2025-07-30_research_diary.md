@@ -13,7 +13,7 @@ Created comprehensive theoretical analysis in `experiments/03_binding_architectu
 
 **The Fundamental Limitation of Static Memory:**
 - Static parameters face contradictory optimization objectives
-- Example: slot_1 must encode "jump" for "X is jump" but "walk" for "X is walk"  
+- Example: slot_1 must encode "jump" for "X is jump" but "walk" for "X is walk"
 - These requirements are mutually exclusive!
 - Results in gradient conflicts → convergence to average representations → model collapse
 
@@ -29,7 +29,7 @@ Traced through model execution to identify exact failure mode:
 ```
 "Y means turn do Y twice"
 Position 0-2: "Y means turn" → ✓ Stores correctly
-Position 3-4: "do Y" → ✓ Retrieves "turn" correctly  
+Position 3-4: "do Y" → ✓ Retrieves "turn" correctly
 Position 5: "twice" → ✗ No mechanism to process temporal modifiers
 ```
 
@@ -129,7 +129,7 @@ After the temporal consistency breakthrough, investigated why Stage 3 accuracy w
 
 ### Analysis
 Created `analyze_stage_differences.py` which revealed:
-- Stage 2: Uses "is" for storage, "recall" for retrieval  
+- Stage 2: Uses "is" for storage, "recall" for retrieval
 - Stage 3: Uses "means" for storage, "do" for retrieval
 - Sequential training caused the model to forget Stage 2 patterns when learning Stage 3
 
@@ -143,7 +143,7 @@ Implemented `train_mixed_curriculum.py`:
 ```
 Mixed Curriculum Training Results:
 - Stage 1 (Recognition): 100%
-- Stage 2 (Retrieval): 100%  
+- Stage 2 (Retrieval): 100%
 - Stage 3 (Full Binding): 100%
 - Modification Success: 100%
 ```
@@ -179,7 +179,7 @@ After achieving 100% success on basic variable binding, explored the limits of c
 Created comprehensive test suite (`test_compositional_limits.py`) examining:
 1. Basic patterns (sanity check)
 2. Sequential composition ("do X then Y")
-3. Multiple variable interactions  
+3. Multiple variable interactions
 4. Long-range dependencies
 5. Variable rebinding
 6. Nested composition

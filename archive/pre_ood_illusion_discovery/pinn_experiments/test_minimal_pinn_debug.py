@@ -3,16 +3,18 @@ Debug minimal PINN to understand why it's failing.
 """
 
 import os
-os.environ['KERAS_BACKEND'] = 'jax'
+
+os.environ["KERAS_BACKEND"] = "jax"
 
 import sys
-sys.path.append('../..')
+
+sys.path.append("../..")
 
 import numpy as np
-import keras
 from keras import ops
 
 from models.minimal_physics_model import MinimalPhysicsModel
+
 
 # Create a simple test case
 def create_simple_test():
@@ -20,25 +22,25 @@ def create_simple_test():
     # Initial positions (pixels)
     pos1 = np.array([100.0, 100.0])
     pos2 = np.array([200.0, 100.0])
-    
+
     # Initial velocities (pixels/s)
     vel1 = np.array([10.0, 0.0])
     vel2 = np.array([-10.0, 0.0])
-    
+
     # Create trajectory with simple physics
-    dt = 1/30.0
+    dt = 1 / 30.0
     gravity = -9.8 * 40  # m/s² to pixels/s²
-    
+
     trajectory = []
     for t in range(50):
         # Update velocities (gravity only)
         vel1[1] += gravity * dt
         vel2[1] += gravity * dt
-        
+
         # Update positions
         pos1 += vel1 * dt
         pos2 += vel2 * dt
-        
+
         # Bounce off ground
         if pos1[1] > 580:
             pos1[1] = 580
@@ -46,12 +48,13 @@ def create_simple_test():
         if pos2[1] > 580:
             pos2[1] = 580
             vel2[1] = -0.8 * vel2[1]
-            
+
         # Store state
         state = np.concatenate([pos1, pos2, vel1, vel2])
         trajectory.append(state)
-    
+
     return np.array(trajectory)
+
 
 # Test the model
 print("Creating simple test trajectory...")

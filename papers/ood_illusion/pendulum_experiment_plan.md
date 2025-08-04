@@ -29,11 +29,11 @@ Address reviewer's concern about single-task evidence by adding a conceptually d
 ```python
 def generate_pendulum_data(n_trajectories, timesteps, mechanism='fixed'):
     """Generate pendulum trajectories with fixed or variable length"""
-    
+
     L0 = 1.0  # Base length (m)
     g = 9.8   # Gravity (m/s²)
     dt = 0.01 # Time step
-    
+
     if mechanism == 'fixed':
         L_func = lambda t: L0
         L_dot_func = lambda t: 0
@@ -42,17 +42,17 @@ def generate_pendulum_data(n_trajectories, timesteps, mechanism='fixed'):
         omega = 0.1  # Frequency of length variation
         L_func = lambda t: L0 * (1 + alpha * np.sin(omega * t))
         L_dot_func = lambda t: L0 * alpha * omega * np.cos(omega * t)
-    
+
     trajectories = []
     for _ in range(n_trajectories):
         # Random initial conditions
         theta0 = np.random.uniform(-np.pi/6, np.pi/6)  # ±30 degrees
         theta_dot0 = np.random.uniform(-1, 1)
-        
-        states = integrate_pendulum(theta0, theta_dot0, L_func, L_dot_func, 
+
+        states = integrate_pendulum(theta0, theta_dot0, L_func, L_dot_func,
                                    timesteps, dt, g)
         trajectories.append(states)
-    
+
     return np.array(trajectories)
 
 def integrate_pendulum(theta0, theta_dot0, L_func, L_dot_func, steps, dt, g):

@@ -28,11 +28,11 @@ class TwoStageCompiler:
     def __init__(self, vocab_size, num_actions):
         self.binding_extractor = RuleBasedBindingExtractor()  # From compositional_final_fix
         self.neural_executor = BindingAwareTransformer(vocab_size, num_actions)
-        
+
     def forward(self, tokens):
         # Stage 1: Extract bindings (discrete, perfect)
         bindings, execution_plan = self.binding_extractor(tokens)
-        
+
         # Stage 2: Neural execution (continuous, learnable)
         outputs = self.neural_executor(tokens, bindings, execution_plan)
         return outputs

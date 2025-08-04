@@ -25,7 +25,7 @@ This paper presents a scholarly analysis of out-of-distribution (OOD) evaluation
 - [x] Related Work
 - [x] Methodology
 - [ ] Results
-- [ ] Discussion  
+- [ ] Discussion
 - [ ] Limitations and Future Work
 - [ ] Conclusion
 

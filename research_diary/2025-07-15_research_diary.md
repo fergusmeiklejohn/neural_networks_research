@@ -6,7 +6,7 @@ Completed baseline testing revealing a massive performance gap between reported 
 ## Major Activities
 
 ### 1. Minimal PINN Testing ✅
-- **Final Results**: 
+- **Final Results**:
   - Jupiter MSE: **42,532.14** (55,531x worse than GraphExtrap!)
   - Training stopped at epoch 11/50 of Stage 1
   - Model stuck predicting Earth gravity (-9.81 m/s²)
@@ -143,6 +143,6 @@ The path forward is clear:
 
 ## Key Takeaway
 
-**"Feature engineering + diverse training ≠ true extrapolation"** 
+**"Feature engineering + diverse training ≠ true extrapolation"**
 
 GraphExtrap's success shows that good engineering can create impressive results, but it's not solving the fundamental problem of understanding and modifying physics rules.
