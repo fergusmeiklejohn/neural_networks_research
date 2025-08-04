@@ -44,21 +44,26 @@ Through experiments, we've identified what distribution invention needs:
 ### Key Finding
 Memory values stay at zero - the model bypasses memory entirely! This proves gradient descent can't learn discrete slot assignment.
 
-## Files Created Today
+## Clean Workspace Organization
 
-### Core Implementations
-- `neural_memory_binding_model.py` - Basic memory network
-- `memory_network_v2.py` - Improved with compositional operators
-- `progressive_complexity_dataset.py` - Systematic test suite
+### Core Files (Keep in Main Directory)
+- `progressive_complexity_dataset.py` - Systematic test suite for binding
+- `compositional_final_fix.py` - Working parser for Stage 1 of compiler
+- `compositional_operators.py` - Operator definitions
 
-### Training Scripts
-- `train_memory_simple.py` - Simplified training loop
-- `train_memory_v2.py` - Full training with analysis
-
-### Documentation
-- `MEMORY_NETWORK_FINDINGS.md` - Detailed experimental results
+### Key Documentation
+- `WORKSPACE_STATUS.md` - This file, current state
 - `THEORETICAL_ANALYSIS_BINDING_AS_DISTRIBUTION_INVENTION.md` - Core theoretical insight
-- `NEURAL_BINDING_ARCHITECTURES_TO_EXPLORE.md` - Original roadmap (still relevant)
+- `MEMORY_NETWORK_FINDINGS.md` - Why memory networks failed, what we learned
+- `NEURAL_BINDING_ARCHITECTURES_TO_EXPLORE.md` - Architecture roadmap
+- `EXPERIMENT_PLAN.md` - Original experiment design
+
+### Archived Materials
+- `archive/memory_network_experiments/` - Memory network implementations
+- `archive/old_training_scripts/` - Previous training attempts
+- `archive/debug_scripts/` - Debugging utilities
+- `archive/test_scripts/` - Test files
+- `archive/old_documentation/` - Historical documentation
 
 ## Immediate Next Steps
 
