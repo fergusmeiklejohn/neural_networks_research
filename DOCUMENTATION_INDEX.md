@@ -31,12 +31,18 @@
 - **Status**: Ready for retry (infrastructure fixed after lost results)
 - **Training Template**: `train_template.py` - Use this for safe cloud training
 
-#### Experiment 03: Variable Binding Architecture ⭐ NEW
-- **Current Status**: `experiments/03_binding_architecture/WORKSPACE_STATUS.md` - Major theoretical breakthrough!
+#### Experiment 03: Variable Binding Architecture 
+- **Status**: Completed with major theoretical breakthrough
 - **Key Finding**: Variable binding IS distribution invention in miniature
-- **Theoretical Analysis**: `THEORETICAL_ANALYSIS_BINDING_AS_DISTRIBUTION_INVENTION.md`
-- **Implementation**: Memory networks tested, Two-Stage Compiler recommended next
-- **Progress**: Discovered why models plateau at 50% - need explicit discrete operations
+- **Outcome**: Led to creation of Experiment 04 (see below)
+- **Archive**: `experiments/03_binding_architecture/` - Contains all binding work
+
+#### Experiment 04: Distribution Invention Mechanisms ⭐ ACTIVE
+- **Current Status**: `experiments/04_distribution_invention_mechanisms/CURRENT_STATUS.md`
+- **Breakthrough**: Variable binding revealed minimal mechanisms for distribution invention
+- **Approach**: Two-Stage Compiler separating discrete rule extraction from continuous execution
+- **Goal**: Develop general framework for models that think outside their training
+- **Next Step**: Implement Two-Stage Compiler and achieve >90% on binding tasks
 
 ### 🧠 Key Insights & Learning
 
