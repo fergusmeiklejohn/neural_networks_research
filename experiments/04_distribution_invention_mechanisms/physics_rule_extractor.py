@@ -218,31 +218,116 @@ class PhysicsRuleExtractor:
                     mod.temporal_condition = match.group(0)
                     mod.scope = "temporal"
 
+        # Check for time-varying physics BEFORE converting to parameters
+        time_varying_param = self.extract_time_varying(command)
+        if time_varying_param:
+            # Check if there's a base value set for this parameter
+            base_value = None
+            for mod in modifications:
+                if mod.parameter == time_varying_param.name and mod.operation == "set":
+                    base_value = mod.value
+                    break
+
+            # Update the time-varying expression with the base value if found
+            if base_value is not None:
+                # Replace the default value in the expression with the set value
+                default = self.physics_params[time_varying_param.name]["default"]
+                time_varying_param.value = time_varying_param.value.replace(
+                    str(default), str(base_value)
+                )
+
+            # Time-varying physics override static modifications
+            # Remove any static modification for the same parameter
+            modifications = [
+                mod for mod in modifications if mod.parameter != time_varying_param.name
+            ]
+            # Add the time-varying parameter directly
+            parameters.append(time_varying_param)
+            # Also add a special modification to track it
+            modifications.append(
+                PhysicsModification(
+                    parameter=time_varying_param.name,
+                    operation="time_varying",
+                    value=time_varying_param.value,
+                    scope="global",
+                )
+            )
+
         # Convert modifications to parameters
         if current_state is None:
             current_state = {
                 p: info["default"] for p, info in self.physics_params.items()
             }
 
-        parameters = self._apply_modifications(current_state, modifications)
+        # Apply modifications to get static parameters
+        static_parameters = self._apply_modifications(current_state, modifications)
+
+        # Add static parameters that weren't overridden by time-varying
+        time_varying_names = {p.name for p in parameters}
+        for param in static_parameters:
+            if param.name not in time_varying_names:
+                parameters.append(param)
 
         return parameters, modifications
 
     def extract_time_varying(self, command: str) -> Optional[PhysicsParameter]:
         """Extract time-varying physics rules like 'gravity oscillates with period 2s'."""
         time_patterns = [
-            (r"(\w+) oscillates with period ([\d.]+)", "sin(2*pi*t/{period})"),
+            # More specific patterns first
+            (r"make it oscillate with period ([\d.]+)", "sin(2*pi*t/{period})"),
+            (r"make (\w+) oscillate with period ([\d.]+)", "sin(2*pi*t/{period})"),
+            (r"(\w+) oscillat(?:es|ing) with period ([\d.]+)", "sin(2*pi*t/{period})"),
             (r"(\w+) increases over time", "t"),
             (r"(\w+) decreases over time", "-t"),
             (r"(\w+) follows sin\(t\)", "sin(t)"),
+            (r"(\w+) varies as (.*)", "{expr}"),
             (r"(\w+) = (.*)", "{expr}"),  # Direct mathematical expression
         ]
 
+        # Also check for compound commands
+        cmd_lower = command.lower()
+
+        # Handle "with X oscillating" patterns
+        compound_pattern = r"with (\w+) oscillating with period ([\d.]+)"
+        compound_match = re.search(compound_pattern, cmd_lower)
+        if compound_match:
+            param = self._normalize_parameter(compound_match.group(1))
+            if param:
+                period = float(compound_match.group(2))
+                expr = f"sin(2*pi*t/{period})"
+                default = self.physics_params[param]["default"]
+                full_expr = f"{default} * ({expr})"
+
+                return PhysicsParameter(
+                    name=param,
+                    value=full_expr,
+                    unit=self.physics_params[param]["unit"],
+                    context_start=0,
+                )
+
+        # Check standard patterns
         for pattern, template in time_patterns:
-            match = re.search(pattern, command.lower())
+            match = re.search(pattern, cmd_lower)
             if match:
-                param = self._normalize_parameter(match.group(1))
-                if param:
+                # Special case for "make it oscillate" - need to determine what "it" refers to
+                if pattern.startswith(r"make it"):
+                    # Look for recently mentioned physics parameter
+                    for param_name in self.physics_params:
+                        if param_name in cmd_lower:
+                            param = param_name
+                            break
+                    else:
+                        # Default to gravity if no parameter mentioned
+                        param = "gravity"
+
+                    period = float(match.group(1))
+                    expr = template.format(period=period)
+                else:
+                    # Normal pattern matching
+                    param = self._normalize_parameter(match.group(1))
+                    if not param:
+                        continue
+
                     if "period" in template:
                         period = float(match.group(2))
                         expr = template.format(period=period)
@@ -251,16 +336,16 @@ class PhysicsRuleExtractor:
                     else:
                         expr = template
 
-                    # Get default value for scaling
-                    default = self.physics_params[param]["default"]
-                    full_expr = f"{default} * ({expr})"
+                # Get default value for scaling
+                default = self.physics_params[param]["default"]
+                full_expr = f"{default} * ({expr})"
 
-                    return PhysicsParameter(
-                        name=param,
-                        value=full_expr,
-                        unit=self.physics_params[param]["unit"],
-                        context_start=0,
-                    )
+                return PhysicsParameter(
+                    name=param,
+                    value=full_expr,
+                    unit=self.physics_params[param]["unit"],
+                    context_start=0,
+                )
         return None
 
     def _normalize_parameter(self, param_str: str) -> Optional[str]:
