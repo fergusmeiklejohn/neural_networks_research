@@ -1,0 +1,68 @@
+[
+  {
+    "task_id": "sample_color_map",
+    "success_no_tta": true,
+    "success_with_tta": true,
+    "confidence_no_tta": 0.5,
+    "confidence_with_tta": 1.0,
+    "time_no_tta": 0.004483938217163086,
+    "time_with_tta": 0.03529524803161621,
+    "adaptation_steps": 5,
+    "discovered_patterns": []
+  },
+  {
+    "task_id": "sample_movement",
+    "success_no_tta": true,
+    "success_with_tta": true,
+    "confidence_no_tta": 0.5,
+    "confidence_with_tta": 1.0,
+    "time_no_tta": 0.0005831718444824219,
+    "time_with_tta": 0.002644062042236328,
+    "adaptation_steps": 5,
+    "discovered_patterns": []
+  },
+  {
+    "task_id": "sample_pattern",
+    "success_no_tta": false,
+    "success_with_tta": false,
+    "confidence_no_tta": 0.7,
+    "confidence_with_tta": 0.0,
+    "time_no_tta": 0.0032219886779785156,
+    "time_with_tta": 0.0358729362487793,
+    "adaptation_steps": 5,
+    "discovered_patterns": []
+  },
+  {
+    "task_id": "sample_symmetry",
+    "success_no_tta": false,
+    "success_with_tta": false,
+    "confidence_no_tta": 0.65,
+    "confidence_with_tta": 0.0,
+    "time_no_tta": 0.0028870105743408203,
+    "time_with_tta": 0.03525686264038086,
+    "adaptation_steps": 5,
+    "discovered_patterns": []
+  },
+  {
+    "task_id": "sample_conditional",
+    "success_no_tta": true,
+    "success_with_tta": true,
+    "confidence_no_tta": 0.7,
+    "confidence_with_tta": 1.0,
+    "time_no_tta": 0.002680063247680664,
+    "time_with_tta": 0.03418684005737305,
+    "adaptation_steps": 5,
+    "discovered_patterns": []
+  },
+  {
+    "task_id": "sample_scaling",
+    "success_no_tta": true,
+    "success_with_tta": true,
+    "confidence_no_tta": 0.7,
+    "confidence_with_tta": 1.0,
+    "time_no_tta": 0.0009469985961914062,
+    "time_with_tta": 0.0010609626770019531,
+    "adaptation_steps": 5,
+    "discovered_patterns": []
+  }
+]

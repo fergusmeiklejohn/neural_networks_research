@@ -1,0 +1,523 @@
+{
+  "Level 1: Standard Modifications": {
+    "accuracy": 100.0,
+    "tests": [
+      {
+        "command": "Make multiplication non-commutative",
+        "passed": true,
+        "environment": {
+          "operators": {
+            "+": {
+              "name": "addition",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": null
+              },
+              "operation": "a + b"
+            },
+            "*": {
+              "name": "multiplication",
+              "properties": {
+                "commutative": false,
+                "associative": true,
+                "distributive_over": "+"
+              },
+              "operation": "a*b (\u2260 b*a)"
+            },
+            "-": {
+              "name": "subtraction",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a - b"
+            },
+            "/": {
+              "name": "division",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a / b"
+            }
+          },
+          "dimension": 2,
+          "field": "real",
+          "constraints": null
+        }
+      },
+      {
+        "command": "Work modulo 5",
+        "passed": true,
+        "environment": {
+          "operators": {
+            "+": {
+              "name": "addition",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": null
+              },
+              "operation": "(a + b) mod 5"
+            },
+            "*": {
+              "name": "multiplication",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": "+"
+              },
+              "operation": "(a * b) mod 5"
+            },
+            "-": {
+              "name": "subtraction",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a - b"
+            },
+            "/": {
+              "name": "division",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a / b"
+            }
+          },
+          "dimension": 2,
+          "field": "Z/5Z",
+          "constraints": null
+        }
+      }
+    ]
+  },
+  "Level 2: Mathematical Structures": {
+    "accuracy": 100.0,
+    "tests": [
+      {
+        "command": "Use quaternion multiplication",
+        "passed": true,
+        "environment": {
+          "operators": {
+            "+": {
+              "name": "addition",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": null
+              },
+              "operation": "a + b"
+            },
+            "*": {
+              "name": "quaternion_multiplication",
+              "properties": {
+                "commutative": false,
+                "associative": true
+              },
+              "operation": "q1*q2 (Hamilton product)"
+            },
+            "-": {
+              "name": "subtraction",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a - b"
+            },
+            "/": {
+              "name": "division",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a / b"
+            }
+          },
+          "dimension": 4,
+          "field": "quaternion",
+          "constraints": null
+        }
+      },
+      {
+        "command": "Work with 2x2 matrix multiplication",
+        "passed": true,
+        "environment": {
+          "operators": {
+            "+": {
+              "name": "addition",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": null
+              },
+              "operation": "a + b"
+            },
+            "*": {
+              "name": "matrix_multiplication",
+              "properties": {
+                "commutative": false,
+                "associative": true
+              },
+              "operation": "A @ B (matrix product)"
+            },
+            "-": {
+              "name": "subtraction",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a - b"
+            },
+            "/": {
+              "name": "division",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a / b"
+            }
+          },
+          "dimension": 4,
+          "field": "real",
+          "constraints": null
+        }
+      }
+    ]
+  },
+  "Level 3: Custom Operators": {
+    "accuracy": 100.0,
+    "tests": [
+      {
+        "command": "Define \u2295 as rotation by 90 degrees",
+        "passed": true,
+        "environment": {
+          "operators": {
+            "+": {
+              "name": "addition",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": null
+              },
+              "operation": "a + b"
+            },
+            "*": {
+              "name": "multiplication",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": "+"
+              },
+              "operation": "a * b"
+            },
+            "-": {
+              "name": "subtraction",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a - b"
+            },
+            "/": {
+              "name": "division",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a / b"
+            }
+          },
+          "dimension": 2,
+          "field": "real",
+          "constraints": null
+        }
+      },
+      {
+        "command": "Define \u2297 as maximum of a and b",
+        "passed": true,
+        "environment": {
+          "operators": {
+            "+": {
+              "name": "addition",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": null
+              },
+              "operation": "a + b"
+            },
+            "*": {
+              "name": "multiplication",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": "+"
+              },
+              "operation": "a * b"
+            },
+            "-": {
+              "name": "subtraction",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a - b"
+            },
+            "/": {
+              "name": "division",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a / b"
+            }
+          },
+          "dimension": 2,
+          "field": "real",
+          "constraints": null
+        }
+      }
+    ]
+  },
+  "Level 4: Complex Modifications": {
+    "accuracy": 100.0,
+    "tests": [
+      {
+        "command": "Make addition non-commutative and multiplication associative",
+        "passed": true,
+        "environment": {
+          "operators": {
+            "+": {
+              "name": "addition",
+              "properties": {
+                "commutative": false,
+                "associative": true,
+                "distributive_over": null
+              },
+              "operation": "a + b"
+            },
+            "*": {
+              "name": "multiplication",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": "+"
+              },
+              "operation": "a * b"
+            },
+            "-": {
+              "name": "subtraction",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a - b"
+            },
+            "/": {
+              "name": "division",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a / b"
+            }
+          },
+          "dimension": 2,
+          "field": "real",
+          "constraints": null
+        }
+      },
+      {
+        "command": "Create group with generators a, b where a\u00b2=1, b\u00b3=1",
+        "passed": true,
+        "environment": {
+          "operators": {
+            "+": {
+              "name": "addition",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": null
+              },
+              "operation": "a + b"
+            },
+            "*": {
+              "name": "multiplication",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": "+"
+              },
+              "operation": "a * b"
+            },
+            "-": {
+              "name": "subtraction",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a - b"
+            },
+            "/": {
+              "name": "division",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a / b"
+            }
+          },
+          "dimension": 2,
+          "field": "real",
+          "constraints": [
+            "Generators: a, b",
+            "Relations: a\u00b2=1, b\u00b3=1"
+          ]
+        }
+      }
+    ]
+  },
+  "Level 5: TRUE OOD Structures": {
+    "accuracy": 100.0,
+    "tests": [
+      {
+        "command": "All operations are non-associative and non-commutative",
+        "passed": true,
+        "environment": {
+          "operators": {
+            "+": {
+              "name": "addition",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": null
+              },
+              "operation": "a + b"
+            },
+            "*": {
+              "name": "multiplication",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": "+"
+              },
+              "operation": "a * b"
+            },
+            "-": {
+              "name": "subtraction",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a - b"
+            },
+            "/": {
+              "name": "division",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a / b"
+            }
+          },
+          "dimension": 2,
+          "field": "real",
+          "constraints": null
+        }
+      },
+      {
+        "command": "Define \u2295 as a*b - b*a (Lie bracket), make it central to algebra",
+        "passed": true,
+        "environment": {
+          "operators": {
+            "+": {
+              "name": "addition",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": null
+              },
+              "operation": "a + b"
+            },
+            "*": {
+              "name": "multiplication",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": "+"
+              },
+              "operation": "a * b"
+            },
+            "-": {
+              "name": "subtraction",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a - b"
+            },
+            "/": {
+              "name": "division",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a / b"
+            }
+          },
+          "dimension": 2,
+          "field": "real",
+          "constraints": null
+        }
+      },
+      {
+        "command": "Work in 7-dimensional space with octonion-like multiplication",
+        "passed": true,
+        "environment": {
+          "operators": {
+            "+": {
+              "name": "addition",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": null
+              },
+              "operation": "a + b"
+            },
+            "*": {
+              "name": "multiplication",
+              "properties": {
+                "commutative": true,
+                "associative": true,
+                "distributive_over": "+"
+              },
+              "operation": "a * b"
+            },
+            "-": {
+              "name": "subtraction",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a - b"
+            },
+            "/": {
+              "name": "division",
+              "properties": {
+                "commutative": false,
+                "associative": false
+              },
+              "operation": "a / b"
+            }
+          },
+          "dimension": 2,
+          "field": "real",
+          "constraints": null
+        }
+      }
+    ]
+  }
+}
