@@ -1,0 +1,527 @@
+{
+  "summary": {
+    "total_tasks": 50,
+    "baseline_correct": 2,
+    "enhanced_correct": 3,
+    "baseline_accuracy": 0.04,
+    "enhanced_accuracy": 0.06,
+    "improvement_rate": 0.4999999999999999,
+    "improvements": [
+      "74dd1130"
+    ],
+    "method_counts": {
+      "object": 42,
+      "simple": 4,
+      "tta": 4
+    },
+    "method_success": {
+      "object": 0,
+      "simple": 3,
+      "tta": 0
+    },
+    "avg_confidence": 0.7772500000000001,
+    "avg_time": 0.09567055702209473
+  },
+  "detailed_results": [
+    {
+      "task_id": "ae3edfdc",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.0009701251983642578
+    },
+    {
+      "task_id": "d406998b",
+      "num_train": 4,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.0006968975067138672
+    },
+    {
+      "task_id": "8403a5d5",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.00034308433532714844
+    },
+    {
+      "task_id": "8e5a5113",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0006339550018310547
+    },
+    {
+      "task_id": "508bd3b6",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0005419254302978516
+    },
+    {
+      "task_id": "db93a21d",
+      "num_train": 4,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0013077259063720703
+    },
+    {
+      "task_id": "484b58aa",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.023574113845825195
+    },
+    {
+      "task_id": "1a07d186",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0005578994750976562
+    },
+    {
+      "task_id": "00d62c1b",
+      "num_train": 5,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0008387565612792969
+    },
+    {
+      "task_id": "74dd1130",
+      "num_train": 4,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": true,
+      "method_used": "simple",
+      "confidence": 0.95,
+      "time_taken": 4.792213439941406e-05
+    },
+    {
+      "task_id": "53b68214",
+      "num_train": 3,
+      "num_test": 2,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "tta",
+      "confidence": 0.0,
+      "time_taken": 0.928278923034668
+    },
+    {
+      "task_id": "5daaa586",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0008630752563476562
+    },
+    {
+      "task_id": "36d67576",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0009450912475585938
+    },
+    {
+      "task_id": "8eb1be9a",
+      "num_train": 2,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "tta",
+      "confidence": 0.0,
+      "time_taken": 0.7532238960266113
+    },
+    {
+      "task_id": "ea32f347",
+      "num_train": 4,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.0004780292510986328
+    },
+    {
+      "task_id": "ecdecbb3",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0005750656127929688
+    },
+    {
+      "task_id": "25ff71a9",
+      "num_train": 4,
+      "num_test": 2,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.00028705596923828125
+    },
+    {
+      "task_id": "1f876c06",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0007519721984863281
+    },
+    {
+      "task_id": "f25ffba3",
+      "num_train": 2,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.00039577484130859375
+    },
+    {
+      "task_id": "e3497940",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0004601478576660156
+    },
+    {
+      "task_id": "67a3c6ac",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": true,
+      "enhanced_correct": true,
+      "method_used": "simple",
+      "confidence": 0.95,
+      "time_taken": 1.0967254638671875e-05
+    },
+    {
+      "task_id": "c59eb873",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": true,
+      "enhanced_correct": true,
+      "method_used": "simple",
+      "confidence": 0.95,
+      "time_taken": 1.9788742065429688e-05
+    },
+    {
+      "task_id": "67e8384a",
+      "num_train": 4,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "simple",
+      "confidence": 0.95,
+      "time_taken": 3.314018249511719e-05
+    },
+    {
+      "task_id": "83302e8f",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0011148452758789062
+    },
+    {
+      "task_id": "29c11459",
+      "num_train": 2,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0003178119659423828
+    },
+    {
+      "task_id": "f8a8fe49",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.0005731582641601562
+    },
+    {
+      "task_id": "fcb5c309",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0004868507385253906
+    },
+    {
+      "task_id": "88a62173",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0002269744873046875
+    },
+    {
+      "task_id": "1caeab9d",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.0004999637603759766
+    },
+    {
+      "task_id": "c1d99e64",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0010387897491455078
+    },
+    {
+      "task_id": "6d58a25d",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "tta",
+      "confidence": 0.0,
+      "time_taken": 1.3537259101867676
+    },
+    {
+      "task_id": "834ec97d",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.00030684471130371094
+    },
+    {
+      "task_id": "de1cd16c",
+      "num_train": 4,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0008862018585205078
+    },
+    {
+      "task_id": "a699fb00",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0004990100860595703
+    },
+    {
+      "task_id": "9aec4887",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0007569789886474609
+    },
+    {
+      "task_id": "6430c8c4",
+      "num_train": 4,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0004467964172363281
+    },
+    {
+      "task_id": "045e512c",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0008368492126464844
+    },
+    {
+      "task_id": "253bf280",
+      "num_train": 8,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "tta",
+      "confidence": 0.0625,
+      "time_taken": 1.6889798641204834
+    },
+    {
+      "task_id": "a1570a43",
+      "num_train": 4,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.0006301403045654297
+    },
+    {
+      "task_id": "8d510a79",
+      "num_train": 2,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.0004742145538330078
+    },
+    {
+      "task_id": "e40b9e2f",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0005209445953369141
+    },
+    {
+      "task_id": "4347f46a",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.0006721019744873047
+    },
+    {
+      "task_id": "67385a82",
+      "num_train": 4,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.0003819465637207031
+    },
+    {
+      "task_id": "6c434453",
+      "num_train": 2,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.00026607513427734375
+    },
+    {
+      "task_id": "5168d44c",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.00045609474182128906
+    },
+    {
+      "task_id": "1f85a75f",
+      "num_train": 2,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.001299142837524414
+    },
+    {
+      "task_id": "0dfd9992",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.010429143905639648
+    },
+    {
+      "task_id": "dc433765",
+      "num_train": 7,
+      "num_test": 2,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.0007159709930419922
+    },
+    {
+      "task_id": "50cb2852",
+      "num_train": 3,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.85,
+      "time_taken": 0.0005557537078857422
+    },
+    {
+      "task_id": "9af7a82c",
+      "num_train": 4,
+      "num_test": 1,
+      "baseline_correct": false,
+      "enhanced_correct": false,
+      "method_used": "object",
+      "confidence": 0.8,
+      "time_taken": 0.0005941390991210938
+    }
+  ]
+}

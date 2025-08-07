@@ -16,6 +16,7 @@ from typing import Callable, Dict, List, Optional, Tuple
 import numpy as np
 from arc_grid_extractor import ARCRule
 from enhanced_neural_perception import EnhancedNeuralPerception
+from object_manipulation import ObjectManipulator
 
 
 @dataclass
@@ -45,6 +46,7 @@ class EnhancedARCTestTimeAdapter:
 
     def __init__(self):
         self.perception = EnhancedNeuralPerception()
+        self.object_manipulator = ObjectManipulator()
         self.hypotheses = []
 
     def adapt(
@@ -416,22 +418,20 @@ class EnhancedARCTestTimeAdapter:
         return scaled
 
     def _duplicate_objects(self, grid: np.ndarray) -> np.ndarray:
-        """Duplicate objects (placeholder implementation)."""
-        # This would need more sophisticated logic
-        return grid
+        """Duplicate objects in the grid."""
+        return self.object_manipulator.duplicate_objects(grid, "double")
 
     def _remove_small_objects(self, grid: np.ndarray) -> np.ndarray:
-        """Remove small objects (placeholder implementation)."""
-        # This would need object detection and filtering
-        return grid
+        """Remove small objects from the grid."""
+        return self.object_manipulator.remove_small_objects(grid, threshold=3)
 
     def _rearrange_objects(self, grid: np.ndarray) -> np.ndarray:
-        """Rearrange objects (placeholder implementation)."""
-        return grid
+        """Rearrange objects in the grid."""
+        return self.object_manipulator.rearrange_objects(grid, "sort_by_size")
 
     def _complete_pattern(self, grid: np.ndarray) -> np.ndarray:
-        """Complete pattern (placeholder implementation)."""
-        return grid
+        """Complete pattern in the grid."""
+        return self.object_manipulator.complete_pattern(grid)
 
     def _enforce_symmetry(self, grid: np.ndarray) -> np.ndarray:
         """Enforce symmetry by mirroring half of the grid."""
@@ -457,7 +457,14 @@ class EnhancedARCTestTimeAdapter:
         return result
 
     def _fill_with_color(self, grid: np.ndarray) -> np.ndarray:
-        """Fill empty spaces with color (placeholder)."""
+        """Fill empty spaces with the most common color."""
+        # Find most common non-zero color
+        unique, counts = np.unique(grid[grid != 0], return_counts=True)
+        if len(unique) > 0:
+            most_common_color = unique[np.argmax(counts)]
+            return self.object_manipulator.fill_with_color(
+                grid, most_common_color, "background"
+            )
         return grid
 
     def _check_object_rearrangement(self, analyses: List[Dict]) -> bool:
