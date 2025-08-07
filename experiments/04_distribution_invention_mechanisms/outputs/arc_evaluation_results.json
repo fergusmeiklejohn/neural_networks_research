@@ -5,10 +5,15 @@
     "success_with_tta": true,
     "confidence_no_tta": 0.5,
     "confidence_with_tta": 1.0,
-    "time_no_tta": 0.004483938217163086,
-    "time_with_tta": 0.03529524803161621,
+    "time_no_tta": 0.0048601627349853516,
+    "time_with_tta": 0.044464826583862305,
     "adaptation_steps": 5,
-    "discovered_patterns": []
+    "discovered_patterns": [
+      "augmentation_refinement",
+      "discovered_periodicity",
+      "discovered_alternation",
+      "discovered_progression"
+    ]
   },
   {
     "task_id": "sample_movement",
@@ -16,10 +21,13 @@
     "success_with_tta": true,
     "confidence_no_tta": 0.5,
     "confidence_with_tta": 1.0,
-    "time_no_tta": 0.0005831718444824219,
-    "time_with_tta": 0.002644062042236328,
+    "time_no_tta": 0.0013740062713623047,
+    "time_with_tta": 0.006260871887207031,
     "adaptation_steps": 5,
-    "discovered_patterns": []
+    "discovered_patterns": [
+      "augmentation_refinement",
+      "discovered_alternation"
+    ]
   },
   {
     "task_id": "sample_pattern",
@@ -27,10 +35,16 @@
     "success_with_tta": false,
     "confidence_no_tta": 0.7,
     "confidence_with_tta": 0.0,
-    "time_no_tta": 0.0032219886779785156,
-    "time_with_tta": 0.0358729362487793,
+    "time_no_tta": 0.00675201416015625,
+    "time_with_tta": 0.05323910713195801,
     "adaptation_steps": 5,
-    "discovered_patterns": []
+    "discovered_patterns": [
+      "discovered_periodicity",
+      "discovered_progression",
+      "discovered_alternation",
+      "discovered_add_symmetry",
+      "augmentation_refinement"
+    ]
   },
   {
     "task_id": "sample_symmetry",
@@ -38,10 +52,15 @@
     "success_with_tta": false,
     "confidence_no_tta": 0.65,
     "confidence_with_tta": 0.0,
-    "time_no_tta": 0.0028870105743408203,
-    "time_with_tta": 0.03525686264038086,
+    "time_no_tta": 0.005961894989013672,
+    "time_with_tta": 0.0493168830871582,
     "adaptation_steps": 5,
-    "discovered_patterns": []
+    "discovered_patterns": [
+      "augmentation_refinement",
+      "discovered_periodicity",
+      "discovered_alternation",
+      "discovered_add_symmetry"
+    ]
   },
   {
     "task_id": "sample_conditional",
@@ -49,10 +68,13 @@
     "success_with_tta": true,
     "confidence_no_tta": 0.7,
     "confidence_with_tta": 1.0,
-    "time_no_tta": 0.002680063247680664,
-    "time_with_tta": 0.03418684005737305,
+    "time_no_tta": 0.004827260971069336,
+    "time_with_tta": 0.04621696472167969,
     "adaptation_steps": 5,
-    "discovered_patterns": []
+    "discovered_patterns": [
+      "augmentation_refinement",
+      "discovered_alternation"
+    ]
   },
   {
     "task_id": "sample_scaling",
@@ -60,9 +82,13 @@
     "success_with_tta": true,
     "confidence_no_tta": 0.7,
     "confidence_with_tta": 1.0,
-    "time_no_tta": 0.0009469985961914062,
-    "time_with_tta": 0.0010609626770019531,
+    "time_no_tta": 0.0025599002838134766,
+    "time_with_tta": 0.006618022918701172,
     "adaptation_steps": 5,
-    "discovered_patterns": []
+    "discovered_patterns": [
+      "augmentation_refinement",
+      "discovered_periodicity",
+      "discovered_progression"
+    ]
   }
 ]

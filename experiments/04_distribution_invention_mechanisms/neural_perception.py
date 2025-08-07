@@ -239,11 +239,14 @@ class NeuralPerceptionModule:
             patterns.extend(self._detect_symmetry_patterns(grid))
             patterns.extend(self._detect_repetition_patterns(grid))
             patterns.extend(self._detect_progression_patterns(grid))
+            patterns.extend(self._detect_alternation_patterns(grid))
+            patterns.extend(self._detect_periodicity_patterns(grid))
 
         except Exception:
             # Fallback to heuristic detection
             patterns.extend(self._detect_symmetry_patterns(grid))
             patterns.extend(self._detect_repetition_patterns(grid))
+            patterns.extend(self._detect_alternation_patterns(grid))
 
         return patterns
 
@@ -363,7 +366,194 @@ class NeuralPerceptionModule:
                     )
                 )
 
+        # Check for arithmetic progressions in counts
+        if self._has_arithmetic_progression(grid):
+            patterns.append(
+                SpatialPattern(
+                    pattern_type="arithmetic_progression",
+                    confidence=0.9,
+                    parameters={"type": "count_based"},
+                )
+            )
+
+        # Check for geometric progressions
+        if self._has_geometric_progression(grid):
+            patterns.append(
+                SpatialPattern(
+                    pattern_type="geometric_progression",
+                    confidence=0.9,
+                    parameters={"type": "size_based"},
+                )
+            )
+
         return patterns
+
+    def _has_arithmetic_progression(self, grid: np.ndarray) -> bool:
+        """Check if grid contains arithmetic progression pattern."""
+        # Count occurrences of each color in rows
+        for row in grid:
+            unique, counts = np.unique(row, return_counts=True)
+            if len(counts) >= 3:
+                # Check if counts form arithmetic progression
+                diffs = np.diff(sorted(counts))
+                if len(diffs) > 0 and np.all(diffs == diffs[0]):
+                    return True
+        return False
+
+    def _has_geometric_progression(self, grid: np.ndarray) -> bool:
+        """Check if grid contains geometric progression pattern."""
+        # Check object sizes
+        objects = self.detect_objects(grid)
+        if len(objects) >= 3:
+            sizes = sorted([obj.size for obj in objects])
+            if len(sizes) >= 3:
+                # Check if sizes form geometric progression
+                ratios = [
+                    sizes[i + 1] / sizes[i]
+                    for i in range(len(sizes) - 1)
+                    if sizes[i] > 0
+                ]
+                if len(ratios) > 0 and np.std(ratios) < 0.1:  # Similar ratios
+                    return True
+        return False
+
+    def _detect_alternation_patterns(self, grid: np.ndarray) -> List[SpatialPattern]:
+        """Detect alternation patterns (A-B-A-B)."""
+        patterns = []
+
+        # Check row-wise alternation
+        for row in grid:
+            if self._is_alternating(row):
+                patterns.append(
+                    SpatialPattern(
+                        pattern_type="row_alternation",
+                        confidence=0.9,
+                        parameters={"type": "ABAB"},
+                    )
+                )
+                break
+
+        # Check column-wise alternation
+        for col_idx in range(grid.shape[1]):
+            col = grid[:, col_idx]
+            if self._is_alternating(col):
+                patterns.append(
+                    SpatialPattern(
+                        pattern_type="column_alternation",
+                        confidence=0.9,
+                        parameters={"type": "ABAB"},
+                    )
+                )
+                break
+
+        # Check checkerboard pattern
+        if self._is_checkerboard_pattern(grid):
+            patterns.append(
+                SpatialPattern(
+                    pattern_type="checkerboard_alternation",
+                    confidence=0.95,
+                    parameters={"type": "2D_alternation"},
+                )
+            )
+
+        return patterns
+
+    def _detect_periodicity_patterns(self, grid: np.ndarray) -> List[SpatialPattern]:
+        """Detect periodic/cyclic patterns."""
+        patterns = []
+
+        # Check for cyclic color sequences
+        unique_colors = list(np.unique(grid))
+        if len(unique_colors) >= 3:
+            # Check if colors appear in cyclic order
+            for row in grid:
+                if self._has_cyclic_sequence(row, unique_colors):
+                    patterns.append(
+                        SpatialPattern(
+                            pattern_type="cyclic_sequence",
+                            confidence=0.85,
+                            parameters={"cycle_length": len(unique_colors)},
+                        )
+                    )
+                    break
+
+        # Check for periodic size patterns in objects
+        objects = self.detect_objects(grid)
+        if len(objects) >= 4:
+            sizes = [obj.size for obj in objects]
+            period = self._find_period(sizes)
+            if period > 0:
+                patterns.append(
+                    SpatialPattern(
+                        pattern_type="periodic_size",
+                        confidence=0.8,
+                        parameters={"period": period},
+                    )
+                )
+
+        return patterns
+
+    def _is_alternating(self, sequence: np.ndarray) -> bool:
+        """Check if sequence alternates between two values."""
+        unique = np.unique(sequence)
+        if len(unique) != 2:
+            return False
+
+        # Check ABAB pattern
+        for i in range(len(sequence) - 1):
+            if sequence[i] == sequence[i + 1]:
+                return False
+        return True
+
+    def _is_checkerboard_pattern(self, grid: np.ndarray) -> bool:
+        """Check if grid forms a checkerboard pattern."""
+        unique = np.unique(grid)
+        if len(unique) != 2:
+            return False
+
+        # Check if each cell differs from its neighbors
+        h, w = grid.shape
+        for i in range(h):
+            for j in range(w):
+                # Check horizontal neighbor
+                if j < w - 1 and grid[i, j] == grid[i, j + 1]:
+                    return False
+                # Check vertical neighbor
+                if i < h - 1 and grid[i, j] == grid[i + 1, j]:
+                    return False
+        return True
+
+    def _has_cyclic_sequence(self, sequence: np.ndarray, cycle: List) -> bool:
+        """Check if sequence follows a cyclic pattern."""
+        if len(sequence) < len(cycle):
+            return False
+
+        # Check if sequence matches repeated cycle
+        for start_idx in range(len(cycle)):
+            matches = True
+            for i, val in enumerate(sequence):
+                expected = cycle[(start_idx + i) % len(cycle)]
+                if val != expected:
+                    matches = False
+                    break
+            if matches:
+                return True
+        return False
+
+    def _find_period(self, sequence: List) -> int:
+        """Find period in a sequence, returns 0 if no period found."""
+        if len(sequence) < 4:
+            return 0
+
+        for period in range(2, len(sequence) // 2 + 1):
+            is_periodic = True
+            for i in range(period, len(sequence)):
+                if sequence[i] != sequence[i % period]:
+                    is_periodic = False
+                    break
+            if is_periodic:
+                return period
+        return 0
 
     def _is_monotonic(self, sequence: List[float]) -> bool:
         """Check if sequence is monotonic."""

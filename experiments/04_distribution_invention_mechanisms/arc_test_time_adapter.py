@@ -92,10 +92,13 @@ class ARCTestTimeAdapter:
                 refined_rules, patterns = strategy(best_rules, examples)
                 score = self._evaluate_rules(refined_rules, examples)
 
+                # Always collect discovered patterns (not just on improvement)
+                if patterns:
+                    discovered_patterns.extend(patterns)
+
                 if score > best_score:
                     best_rules = refined_rules
                     best_score = score
-                    discovered_patterns.extend(patterns)
 
                     # Early stopping if perfect
                     if best_score >= 0.99:
@@ -103,14 +106,16 @@ class ARCTestTimeAdapter:
                             refined_rules=best_rules,
                             confidence=best_score,
                             adaptation_steps=step + 1,
-                            discovered_patterns=discovered_patterns,
+                            discovered_patterns=list(
+                                set(discovered_patterns)
+                            ),  # Deduplicate
                         )
 
         return AdaptationResult(
             refined_rules=best_rules,
             confidence=best_score,
             adaptation_steps=max_steps,
-            discovered_patterns=discovered_patterns,
+            discovered_patterns=list(set(discovered_patterns)),  # Deduplicate
         )
 
     def _refine_by_augmentation(
@@ -235,10 +240,17 @@ class ARCTestTimeAdapter:
 
         # Use neural perception to find patterns
         all_patterns = []
+        all_detected_types = set()
         for input_grid, output_grid in examples:
             input_patterns = self.perception.detect_spatial_patterns(input_grid)
             output_patterns = self.perception.detect_spatial_patterns(output_grid)
             all_patterns.append((input_patterns, output_patterns))
+
+            # Collect all pattern types seen
+            for p in input_patterns:
+                all_detected_types.add(f"input_{p.pattern_type}")
+            for p in output_patterns:
+                all_detected_types.add(f"output_{p.pattern_type}")
 
         # Look for consistent pattern transformations
         consistent_transforms = self._find_consistent_patterns(all_patterns)
@@ -263,6 +275,9 @@ class ARCTestTimeAdapter:
             )
         else:
             refined_rules = rules
+            # Still report what patterns were seen even if no consistent transforms
+            if all_detected_types:
+                patterns_found.append(f"detected_{len(all_detected_types)}_patterns")
 
         return refined_rules, patterns_found
 
@@ -435,7 +450,10 @@ class ARCTestTimeAdapter:
     def _find_consistent_patterns(
         self, pattern_pairs: List[Tuple[List, List]]
     ) -> Dict[str, Any]:
-        """Find consistent pattern transformations across examples."""
+        """Find consistent pattern transformations across examples.
+
+        Enhanced to detect concrete ARC patterns beyond just symmetry.
+        """
         consistent = {}
 
         # Check if symmetry is consistently added/removed
@@ -454,7 +472,67 @@ class ARCTestTimeAdapter:
         if all(not i and o for i, o in zip(has_input_symmetry, has_output_symmetry)):
             consistent["add_symmetry"] = {"operation": "create_symmetry"}
 
+        # Check for progression patterns
+        if self._has_progression_pattern(pattern_pairs):
+            consistent["progression"] = {"operation": "apply_progression"}
+
+        # Check for alternation patterns
+        if self._has_alternation_pattern(pattern_pairs):
+            consistent["alternation"] = {"operation": "apply_alternation"}
+
+        # Check for periodicity patterns
+        if self._has_periodicity_pattern(pattern_pairs):
+            consistent["periodicity"] = {"operation": "apply_period"}
+
+        # Check for repetition patterns
+        if self._has_repetition_pattern(pattern_pairs):
+            consistent["repetition"] = {"operation": "apply_repetition"}
+
         return consistent
+
+    def _has_progression_pattern(self, pattern_pairs: List[Tuple[List, List]]) -> bool:
+        """Check if outputs show arithmetic or geometric progression."""
+        for input_patterns, output_patterns in pattern_pairs:
+            # Check for increasing counts or sizes
+            for out_p in output_patterns:
+                if (
+                    hasattr(out_p, "pattern_type")
+                    and "progression" in out_p.pattern_type
+                ):
+                    return True
+        return False
+
+    def _has_alternation_pattern(self, pattern_pairs: List[Tuple[List, List]]) -> bool:
+        """Check if outputs show alternating patterns (A-B-A-B)."""
+        for input_patterns, output_patterns in pattern_pairs:
+            for out_p in output_patterns:
+                if (
+                    hasattr(out_p, "pattern_type")
+                    and "alternation" in out_p.pattern_type
+                ):
+                    return True
+        return False
+
+    def _has_periodicity_pattern(self, pattern_pairs: List[Tuple[List, List]]) -> bool:
+        """Check if outputs show periodic/cyclic patterns."""
+        for input_patterns, output_patterns in pattern_pairs:
+            for out_p in output_patterns:
+                if hasattr(out_p, "pattern_type") and (
+                    "periodic" in out_p.pattern_type or "cyclic" in out_p.pattern_type
+                ):
+                    return True
+        return False
+
+    def _has_repetition_pattern(self, pattern_pairs: List[Tuple[List, List]]) -> bool:
+        """Check if outputs show repetition of input elements."""
+        for input_patterns, output_patterns in pattern_pairs:
+            for out_p in output_patterns:
+                if (
+                    hasattr(out_p, "pattern_type")
+                    and "repetition" in out_p.pattern_type
+                ):
+                    return True
+        return False
 
 
 def test_arc_tta():
