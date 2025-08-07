@@ -244,20 +244,24 @@ class ARCGridExtractor:
     ) -> Optional[GridTransformation]:
         """Detect pattern filling rules."""
         for input_grid, output_grid in examples:
+            # Check if grids have the same shape
+            if input_grid.shape != output_grid.shape:
+                continue
+
             # Check if filling holes (0s) with patterns
             if 0 in input_grid:
                 # Find what fills the zeros
                 fill_mask = input_grid == 0
                 filled_values = output_grid[fill_mask]
 
-                if len(set(filled_values)) == 1:
+                if len(filled_values) > 0 and len(set(filled_values)) == 1:
                     # Single color fill
                     return GridTransformation(
                         rule_type="pattern_fill",
                         parameters={"pattern": "solid", "color": int(filled_values[0])},
                         condition="where_zero",
                     )
-                elif self._is_checkerboard(filled_values):
+                elif len(filled_values) > 0 and self._is_checkerboard(filled_values):
                     return GridTransformation(
                         rule_type="pattern_fill",
                         parameters={"pattern": "checkerboard"},
