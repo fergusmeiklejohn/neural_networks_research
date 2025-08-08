@@ -639,6 +639,28 @@ The style guide includes specific examples and transformations to ensure profess
 
 The project uses pre-commit hooks for code quality. The system has been streamlined for practicality:
 
+**IMPORTANT: Format Before Staging**
+To avoid double-commits from auto-formatting, use our helper scripts:
+
+```bash
+# Option 1: Format and commit in one step
+./scripts/format_and_commit.sh "Your commit message"
+
+# Option 2: Format first, then stage manually
+./scripts/pre_commit_format.sh  # Formats all files
+# OR
+./scripts/pre_commit_format.sh path/to/file.py  # Format specific files
+git add -A
+git commit --no-gpg-sign -m "Your message"
+
+# Option 3: Run formatters manually
+black . --line-length=88
+isort . --profile=black --line-length=88
+autoflake --in-place --remove-all-unused-imports -r .
+git add -A
+git commit --no-gpg-sign -m "Your message"
+```
+
 **Pre-commit hooks (run on every commit):**
 - **Automatic fixes**: Black formatting, isort, trailing whitespace
 - **Warnings only**: TODO/FIXME tracking, hardcoded paths (non-blocking)
@@ -647,11 +669,8 @@ The project uses pre-commit hooks for code quality. The system has been streamli
 - **Heavier checks**: flake8 linting, mypy type checking, pytest
 - **All non-blocking**: You can override with `git push --no-verify` if needed
 
-**Usage:**
+**Other useful commands:**
 ```bash
-# Normal commits will auto-format your code
-git commit -m "Your message"
-
 # Skip hooks if needed (e.g., WIP commits)
 git commit -m "WIP: testing" --no-verify
 
