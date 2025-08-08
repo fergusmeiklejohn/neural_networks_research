@@ -285,15 +285,13 @@ class EnhancedARCSolverV2:
             return None
 
         # Configure synthesizer with perception hints
-        hints = self._get_synthesis_hints(perception_analysis)
-
-        # Set timeout
-        old_timeout = self.synthesizer.beam_width  # Store old setting
-        self.synthesizer.max_time = timeout
+        self._get_synthesis_hints(perception_analysis)
 
         try:
-            # Synthesize program with hints
-            program = self.synthesizer.synthesize_with_hints(train_examples, hints)
+            # Synthesize program (hints would need custom implementation)
+            # For now, just use standard synthesis with timeout
+            # Note: timeout handling would need to be implemented in synthesizer
+            program = self.synthesizer.synthesize(train_examples)
 
             if program:
                 # Execute on test input
@@ -303,9 +301,8 @@ class EnhancedARCSolverV2:
                 confidence = self._evaluate_program_confidence(program, train_examples)
 
                 return ARCSolution(output, confidence, "synthesis", program=program)
-        finally:
-            # Restore settings
-            self.synthesizer.beam_width = old_timeout
+        except Exception as e:
+            print(f"  Synthesis failed: {e}")
 
         return None
 
@@ -396,10 +393,23 @@ class EnhancedARCSolverV2:
         test_input: np.ndarray,
     ) -> ARCSolution:
         """Try test-time adaptation as fallback."""
-        result = self.tta_adapter.adapt(train_examples, test_input)
-        return ARCSolution(
-            result["output"], result["confidence"], "tta", time_taken=result["time"]
-        )
+        # Adapt rules without initial rules
+        adaptation_result = self.tta_adapter.adapt(train_examples)
+
+        # Apply best hypothesis to test input
+        if adaptation_result.best_hypothesis:
+            try:
+                output = adaptation_result.best_hypothesis.transform_fn(test_input)
+                confidence = adaptation_result.confidence
+            except:
+                # If transformation fails, return input unchanged
+                output = test_input
+                confidence = 0.1
+        else:
+            output = test_input
+            confidence = 0.1
+
+        return ARCSolution(output, confidence, "tta")
 
 
 def test_enhanced_solver_v2():

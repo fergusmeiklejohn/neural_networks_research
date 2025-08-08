@@ -399,6 +399,25 @@ class SelectNth(ARCPrimitive):
         return result
 
 
+class TilePattern(ARCPrimitive):
+    """Tile the input pattern in an NxN grid layout."""
+
+    def __init__(self, scale: int = 3):
+        super().__init__(f"tile_{scale}x")
+        self.scale = scale
+
+    def execute(self, grid: np.ndarray) -> np.ndarray:
+        h, w = grid.shape
+        output = np.zeros((h * self.scale, w * self.scale), dtype=grid.dtype)
+
+        # Tile the pattern
+        for i in range(self.scale):
+            for j in range(self.scale):
+                output[i * h : (i + 1) * h, j * w : (j + 1) * w] = grid
+
+        return output
+
+
 # ============================================================================
 # STRUCTURAL OPERATIONS (New based on failure analysis)
 # ============================================================================
