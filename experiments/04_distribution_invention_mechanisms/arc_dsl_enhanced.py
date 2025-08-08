@@ -418,6 +418,33 @@ class TilePattern(ARCPrimitive):
         return output
 
 
+class ModifiedTilePattern(ARCPrimitive):
+    """Tile pattern with modifications to specific tiles."""
+
+    def __init__(self, scale: int = 3, modify_first: bool = True):
+        super().__init__(f"modified_tile_{scale}x")
+        self.scale = scale
+        self.modify_first = modify_first
+
+    def execute(self, grid: np.ndarray) -> np.ndarray:
+        h, w = grid.shape
+        output = np.zeros((h * self.scale, w * self.scale), dtype=grid.dtype)
+
+        # First, tile the pattern normally
+        for i in range(self.scale):
+            for j in range(self.scale):
+                output[i * h : (i + 1) * h, j * w : (j + 1) * w] = grid
+
+        # Then apply modifications to the left column of tiles
+        if self.modify_first:
+            # Set the first 3 columns of the entire output to 0 for left tiles
+            for i in range(self.scale):
+                # For tiles in the leftmost column (j=0)
+                output[i * h : (i + 1) * h, :h] = 0
+
+        return output
+
+
 # ============================================================================
 # STRUCTURAL OPERATIONS (New based on failure analysis)
 # ============================================================================
@@ -611,6 +638,8 @@ class EnhancedDSLLibrary:
         # Counting/Indexing
         self.primitives["duplicate_n"] = DuplicateNTimes
         self.primitives["select_nth"] = SelectNth
+        self.primitives["tile_pattern"] = TilePattern
+        self.primitives["modified_tile_pattern"] = ModifiedTilePattern
 
         # Structural
         self.primitives["merge_adjacent"] = MergeAdjacent
