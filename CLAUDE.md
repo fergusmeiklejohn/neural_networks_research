@@ -30,6 +30,15 @@ creativity and extrapolation capabilities.
 - Verify assumptions - what seems like OOD might be interpolation
 - Consult documentation (eg Context7 MCP or if that doesn't work the internet) when implementing new approaches
 
+### 🎯 CRITICAL INSIGHT: Distribution Invention Through Imagination (Jan 9, 2025)
+**We discovered the essence of "thinking outside the distribution"** through ARC-AGI task analysis:
+- The correct solution had LOW training similarity (0.304) but PERFECT accuracy (100%)
+- This proves: **Good solutions may look nothing like training examples**
+- Key principle: **Distribution invention is about imagining what could be, not remembering what was**
+- See `CORE_INSIGHT_DISTRIBUTION_INVENTION.md` for full analysis
+
+This creates a fundamental challenge: We (Claude/LLMs) are trained to predict likely continuations within our training distribution, yet we're designing systems that must transcend their training distribution. The solution requires imagination-based exploration, not pattern matching.
+
 ### The Power of Theory-Driven Implementation (Learned July 30, 2025)
 **Combine deep theoretical analysis with targeted implementation.** Our breakthrough with variable binding demonstrated this approach:
 1. **First understand WHY something fails** - We proved mathematically why static memory cannot solve variable binding due to contradictory optimization objectives
