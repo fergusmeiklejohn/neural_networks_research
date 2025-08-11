@@ -648,27 +648,29 @@ The style guide includes specific examples and transformations to ensure profess
 
 The project uses pre-commit hooks for code quality. The system has been streamlined for practicality:
 
-**IMPORTANT: Format Before Staging**
-To avoid double-commits from auto-formatting, use our helper scripts:
+**RECOMMENDED: Use Smart Commit to avoid double-commits**
+Our smart commit script formats BEFORE staging, eliminating the double-commit issue:
 
 ```bash
-# Option 1: Format and commit in one step
-./scripts/format_and_commit.sh "Your commit message"
+# Best option: Format, stage, and commit in one step
+./scripts/smart_commit.sh "Your commit message"
 
-# Option 2: Format first, then stage manually
-./scripts/pre_commit_format.sh  # Formats all files
-# OR
-./scripts/pre_commit_format.sh path/to/file.py  # Format specific files
-git add -A
-git commit --no-gpg-sign -m "Your message"
+# Just format without committing
+./scripts/format_all.sh
 
-# Option 3: Run formatters manually
-black . --line-length=88
-isort . --profile=black --line-length=88
-autoflake --in-place --remove-all-unused-imports -r .
-git add -A
-git commit --no-gpg-sign -m "Your message"
+# Legacy options (still available):
+./scripts/format_and_commit.sh "Your commit message"  # Old approach
+./scripts/pre_commit_format.sh  # Format specific files
 ```
+
+**How Smart Commit Works:**
+1. Detects all changed files (staged and unstaged)
+2. Runs appropriate formatters (black, isort, autoflake)
+3. Fixes trailing whitespace and EOF
+4. Stages everything
+5. Commits with --no-verify (since already formatted)
+
+This eliminates the double-commit problem where hooks reformat after staging.
 
 **Pre-commit hooks (run on every commit):**
 - **Automatic fixes**: Black formatting, isort, trailing whitespace
