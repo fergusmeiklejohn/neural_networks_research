@@ -32,13 +32,13 @@ JSON_FILES=$(echo "$CHANGED_FILES" | grep '\.json$' || true)
 if [ ! -z "$PY_FILES" ]; then
     echo -e "\n${YELLOW}Python files:${NC}"
     echo "$PY_FILES" | sed 's/^/  /'
-    
+
     echo -e "\n  Running black..."
     echo "$PY_FILES" | xargs black --line-length=88
-    
+
     echo "  Running isort..."
     echo "$PY_FILES" | xargs isort --profile=black --line-length=88
-    
+
     echo "  Running autoflake..."
     echo "$PY_FILES" | xargs autoflake --in-place --remove-all-unused-imports
 fi
@@ -49,7 +49,7 @@ for file in $CHANGED_FILES; do
     if [ -f "$file" ]; then
         # Remove trailing whitespace
         sed -i.bak 's/[[:space:]]*$//' "$file" && rm "${file}.bak" 2>/dev/null || true
-        
+
         # Ensure file ends with newline
         if [ -s "$file" ] && [ "$(tail -c 1 "$file" | wc -l)" -eq 0 ]; then
             echo "" >> "$file"

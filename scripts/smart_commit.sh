@@ -51,10 +51,10 @@ echo -e "\n${YELLOW}🎨 Running formatters on changed files...${NC}"
 if [ ! -z "$PY_FILES" ]; then
     echo "  Running black..."
     echo "$PY_FILES" | xargs black --quiet --line-length=88 2>/dev/null || true
-    
+
     echo "  Running isort..."
     echo "$PY_FILES" | xargs isort --quiet --profile=black --line-length=88 2>/dev/null || true
-    
+
     echo "  Running autoflake..."
     echo "$PY_FILES" | xargs autoflake --in-place --remove-all-unused-imports --quiet 2>/dev/null || true
 fi
@@ -65,7 +65,7 @@ for file in $CHANGED_FILES; do
     if [ -f "$file" ]; then
         # Remove trailing whitespace
         sed -i.bak 's/[[:space:]]*$//' "$file" && rm "${file}.bak" 2>/dev/null || true
-        
+
         # Ensure file ends with newline
         if [ -s "$file" ] && [ "$(tail -c 1 "$file" | wc -l)" -eq 0 ]; then
             echo "" >> "$file"
@@ -82,9 +82,9 @@ if ! git diff --cached --quiet; then
     # Step 5: Commit with --no-verify to skip hooks (since we already formatted)
     echo -e "\n${YELLOW}💾 Committing...${NC}"
     git commit --no-gpg-sign --no-verify -m "$COMMIT_MSG"
-    
+
     echo -e "\n${GREEN}✅ Success! Changes formatted and committed in one step.${NC}"
-    
+
     # Show what was committed
     echo -e "\n${BLUE}📊 Commit summary:${NC}"
     git log --oneline -1
