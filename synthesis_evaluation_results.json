@@ -1,0 +1,321 @@
+{
+  "known_tasks": [
+    {
+      "task_id": "00d62c1b",
+      "solved": true,
+      "program": "FillInterior(boundary=3, fill=4)",
+      "train_acc": 1.0,
+      "test_acc": 1.0,
+      "synthesis_time": 0.0015289783477783203,
+      "error": null
+    },
+    {
+      "task_id": "3c9b0459",
+      "solved": true,
+      "program": "Rotate(180)",
+      "train_acc": 1.0,
+      "test_acc": 1.0,
+      "synthesis_time": 0.0002200603485107422,
+      "error": null
+    },
+    {
+      "task_id": "25ff71a9",
+      "solved": false,
+      "program": "Sequence([SetColor(1 -> 0); SetColor(2 -> 0)])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.2522010803222656,
+      "error": null
+    },
+    {
+      "task_id": "0520fde7",
+      "solved": false,
+      "program": null,
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.0018999576568603516,
+      "error": "No program found"
+    },
+    {
+      "task_id": "08ed6ac7",
+      "solved": false,
+      "program": "SetColor(5 -> 1)",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.5875189304351807,
+      "error": null
+    }
+  ],
+  "random_sample": [
+    {
+      "task_id": "ae3edfdc",
+      "solved": false,
+      "program": "Sequence([SetColor(3 -> 0); SetColor(7 -> 0)])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 1.4410068988800049,
+      "error": null
+    },
+    {
+      "task_id": "d406998b",
+      "solved": false,
+      "program": "SetColor(5 -> 3)",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.8034169673919678,
+      "error": null
+    },
+    {
+      "task_id": "8403a5d5",
+      "solved": false,
+      "program": "Sequence([ExtractObjects(); ForEachObject(Rotate(90))])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.8645288944244385,
+      "error": null
+    },
+    {
+      "task_id": "8e5a5113",
+      "solved": false,
+      "program": "SetColor(0 -> 1)",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.20570611953735352,
+      "error": null
+    },
+    {
+      "task_id": "508bd3b6",
+      "solved": false,
+      "program": "Sequence([ExtractObjects(); ForEachObject(Rotate(90))])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 1.2744789123535156,
+      "error": null
+    },
+    {
+      "task_id": "db93a21d",
+      "solved": false,
+      "program": "Sequence([ExtractObjects(); ForEachObject(Rotate(90))])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 1.234400987625122,
+      "error": null
+    },
+    {
+      "task_id": "484b58aa",
+      "solved": false,
+      "program": "SetColor(0 -> 1)",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 36.53663897514343,
+      "error": null
+    },
+    {
+      "task_id": "1a07d186",
+      "solved": false,
+      "program": "Sequence([ExtractObjects(); ForEachObject(Rotate(90))])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 4.010513782501221,
+      "error": null
+    },
+    {
+      "task_id": "00d62c1b",
+      "solved": true,
+      "program": "FillInterior(boundary=3, fill=4)",
+      "train_acc": 1.0,
+      "test_acc": 1.0,
+      "synthesis_time": 0.0011701583862304688,
+      "error": null
+    },
+    {
+      "task_id": "74dd1130",
+      "solved": false,
+      "program": "Rotate(180)",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.11065006256103516,
+      "error": null
+    },
+    {
+      "task_id": "53b68214",
+      "solved": false,
+      "program": "TilePattern(1, 2)",
+      "train_acc": 0.3333333333333333,
+      "test_acc": 0.0,
+      "synthesis_time": 0.001806020736694336,
+      "error": null
+    },
+    {
+      "task_id": "5daaa586",
+      "solved": false,
+      "program": null,
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.003300905227661133,
+      "error": "No program found"
+    },
+    {
+      "task_id": "36d67576",
+      "solved": false,
+      "program": "Sequence([ExtractObjects(); ForEachObject(Rotate(90))])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 1.289168119430542,
+      "error": null
+    },
+    {
+      "task_id": "8eb1be9a",
+      "solved": false,
+      "program": "Sequence([ExtractObjects(); ForEachObject(Rotate(90))])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 2.3266220092773438,
+      "error": null
+    },
+    {
+      "task_id": "ea32f347",
+      "solved": false,
+      "program": "SetColor(5 -> 1)",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 1.8814868927001953,
+      "error": null
+    },
+    {
+      "task_id": "ecdecbb3",
+      "solved": false,
+      "program": "Sequence([ExtractObjects(); ForEachObject(Rotate(90))])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 2.809601068496704,
+      "error": null
+    },
+    {
+      "task_id": "25ff71a9",
+      "solved": false,
+      "program": "Sequence([SetColor(1 -> 0); SetColor(2 -> 0)])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.23889827728271484,
+      "error": null
+    },
+    {
+      "task_id": "1f876c06",
+      "solved": false,
+      "program": "Sequence([ExtractObjects(); ForEachObject(Rotate(90))])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.7376148700714111,
+      "error": null
+    },
+    {
+      "task_id": "f25ffba3",
+      "solved": false,
+      "program": "Sequence([ExtractObjects(); ForEachObject(Rotate(90))])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.48308706283569336,
+      "error": null
+    },
+    {
+      "task_id": "e3497940",
+      "solved": false,
+      "program": null,
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.0021088123321533203,
+      "error": "No program found"
+    },
+    {
+      "task_id": "67a3c6ac",
+      "solved": true,
+      "program": "FlipH()",
+      "train_acc": 1.0,
+      "test_acc": 1.0,
+      "synthesis_time": 0.0002498626708984375,
+      "error": null
+    },
+    {
+      "task_id": "c59eb873",
+      "solved": false,
+      "program": "TilePattern(2, 2)",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.0016450881958007812,
+      "error": null
+    },
+    {
+      "task_id": "67e8384a",
+      "solved": false,
+      "program": "TilePattern(2, 2)",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.0024776458740234375,
+      "error": null
+    },
+    {
+      "task_id": "83302e8f",
+      "solved": false,
+      "program": "SetColor(0 -> 4)",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 5.842794895172119,
+      "error": null
+    },
+    {
+      "task_id": "29c11459",
+      "solved": false,
+      "program": "Sequence([ExtractObjects(); ForEachObject(Rotate(90))])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.6981151103973389,
+      "error": null
+    },
+    {
+      "task_id": "f8a8fe49",
+      "solved": false,
+      "program": "SetColor(5 -> 0)",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 2.6891629695892334,
+      "error": null
+    },
+    {
+      "task_id": "fcb5c309",
+      "solved": false,
+      "program": null,
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.0028040409088134766,
+      "error": "No program found"
+    },
+    {
+      "task_id": "88a62173",
+      "solved": false,
+      "program": null,
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.001461029052734375,
+      "error": "No program found"
+    },
+    {
+      "task_id": "1caeab9d",
+      "solved": false,
+      "program": "Sequence([SetColor(2 -> 0); SetColor(4 -> 0)])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 0.6943819522857666,
+      "error": null
+    },
+    {
+      "task_id": "c1d99e64",
+      "solved": false,
+      "program": "Sequence([ExtractObjects(); ForEachObject(Rotate(90))])",
+      "train_acc": 0.0,
+      "test_acc": 0.0,
+      "synthesis_time": 2.765899896621704,
+      "error": null
+    }
+  ]
+}
