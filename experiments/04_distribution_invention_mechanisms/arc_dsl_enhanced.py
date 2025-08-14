@@ -641,6 +641,17 @@ class EnhancedDSLLibrary:
         self.primitives["tile_pattern"] = TilePattern
         self.primitives["modified_tile_pattern"] = ModifiedTilePattern
 
+        # Enhanced tiling primitives
+        from enhanced_tiling_primitives import (
+            AlternatingRowTile,
+            CheckerboardTile,
+            SmartTilePattern,
+        )
+
+        self.primitives["smart_tile"] = SmartTilePattern
+        self.primitives["alternating_row_tile"] = AlternatingRowTile
+        self.primitives["checkerboard_tile"] = CheckerboardTile
+
         # Structural
         self.primitives["merge_adjacent"] = MergeAdjacent
         self.primitives["split_by_color"] = SplitByColor
