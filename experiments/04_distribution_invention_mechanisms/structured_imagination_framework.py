@@ -463,15 +463,15 @@ class StructuredImaginationFramework:
         if not self.curriculum.should_explore(confidence):
             return []
 
-        print(f"  🧠 Structured imagination engaged (confidence: {confidence:.2f})")
+        # print(f"  🧠 Structured imagination engaged (confidence: {confidence:.2f})")
 
         # Analyze constraints
         constraints = self.constraint_analyzer.analyze(examples, test_input)
-        print(f"  📏 Identified {len(constraints)} constraints")
+        # print(f"  📏 Identified {len(constraints)} constraints")
 
         # Get allowed variations from curriculum
         allowed_variations = self.curriculum.get_allowed_variations()
-        print(f"  🎯 Using variations: {[v.value for v in allowed_variations]}")
+        # print(f"  🎯 Using variations: {[v.value for v in allowed_variations]}")
 
         # Initialize variation generator
         generator = VariationGenerator(constraints)
@@ -500,12 +500,12 @@ class StructuredImaginationFramework:
             reverse=True,
         )
 
-        print(f"  ✨ Generated {len(valid_hypotheses)} valid hypotheses")
+        # print(f"  ✨ Generated {len(valid_hypotheses)} valid hypotheses")
 
         # Report diversity
         if len(valid_hypotheses) > 1:
-            diversity = self._calculate_diversity(valid_hypotheses)
-            print(f"  🌈 Hypothesis diversity: {diversity:.2%}")
+            self._calculate_diversity(valid_hypotheses)
+            # print(f"  🌈 Hypothesis diversity: {diversity:.2%}")
 
         return valid_hypotheses
 
