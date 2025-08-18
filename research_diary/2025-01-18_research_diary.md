@@ -147,3 +147,118 @@ This will be the key to scaling our approach to the full ARC dataset.
 ---
 
 *Key Insight: Distribution invention isn't about better pattern matching - it's about discovering and implementing new transformation rules. Today we proved this works.*
+
+## Afternoon Session: Automated Primitive Discovery Implementation
+
+### What I Accomplished
+
+1. **Implemented Complete Automated Discovery System** ✅
+   - Created `automated_primitive_discovery.py` (730 lines)
+   - Built PrimitiveDiscoverer class with full pipeline
+   - Pattern extraction → matching → synthesis → testing
+
+2. **Pattern Extraction Algorithms**
+   - Color mapping analysis (detects color transformations)
+   - Spatial pattern detection (crosses, lines, regions)
+   - Object-based pattern analysis (counting, rearrangement)
+   - Conditional patterns (neighbor-based fills)
+
+3. **Dynamic Code Generation**
+   - Automatically generates Python Primitive classes
+   - Creates executable code from discovered patterns
+   - Tests generated primitives against examples
+   - Supports multiple pattern types
+
+4. **Testing Framework**
+   - Validates discovered primitives
+   - Scores patterns by consistency
+   - Saves successful discoveries to catalog
+
+### Implementation Architecture
+
+```python
+class PrimitiveDiscoverer:
+    def discover_primitive(task_id, examples):
+        # 1. Extract all possible patterns
+        patterns = self._extract_patterns(examples)
+
+        # 2. Find pattern that best explains examples
+        best_pattern = self._find_best_pattern(patterns, examples)
+
+        # 3. Generate executable primitive code
+        primitive_code = self._synthesize_primitive(best_pattern, task_id)
+
+        # 4. Test and validate
+        if self._test_primitive(primitive_code, examples):
+            return primitive_code
+```
+
+### Current Limitations
+
+- Pattern detection needs refinement (0% discovery rate on test)
+- Known working patterns (ae3edfdc) not being detected automatically
+- Need more sophisticated pattern matching algorithms
+
+### Key Learning
+
+**The framework is sound but pattern detection is hard.** We have:
+- ✅ Working code generation
+- ✅ Testing and validation
+- ✅ Pattern extraction framework
+- ⚠️ Pattern detection accuracy needs improvement
+
+This mirrors the core challenge of ARC: identifying the RIGHT pattern is harder than implementing it once found.
+
+### Files Created This Session
+
+- `automated_primitive_discovery.py` - Complete discovery system
+- `AUTOMATED_DISCOVERY_PROGRESS.md` - Implementation documentation
+- Updated `CURRENT_STATUS.md` with discovery system status
+
+### Next Steps
+
+1. **Debug Pattern Detection**
+   - Why isn't ae3edfdc cross pattern being detected?
+   - Add logging to trace pattern extraction
+   - Test on simpler known patterns first
+
+2. **Improve Pattern Matching**
+   - Add fuzzy matching for partial patterns
+   - Implement voting/ensemble for pattern selection
+   - Create pattern similarity metrics
+
+3. **Build Pattern Library**
+   - Catalog successful manual primitives
+   - Use as templates for automatic discovery
+   - Learn common pattern structures
+
+### Updated Path to 30-40% Accuracy
+
+```
+Current: Manual primitive → 100% on specific task
+Next: Fix pattern detection → 10-15% auto-discovery
+Then: Pattern library → 20-25% coverage
+Future: Wake-sleep learning → 30-40% accuracy
+```
+
+### Reflection
+
+Today we built the machinery for automated primitive discovery - the key to scaling our approach. While pattern detection needs work, we've validated that:
+
+1. **Code generation works** - Can create executable primitives
+2. **Testing works** - Can validate correctness
+3. **Framework is complete** - Full pipeline implemented
+
+The challenge now is improving pattern detection accuracy. This is expected - if pattern detection were easy, ARC would already be solved!
+
+### Total Progress Today
+
+- Morning: Discovered task-specific primitives are key (FormCrossPattern)
+- Afternoon: Implemented automated discovery system
+- Lines of code: ~2,500 new lines
+- Primitives: 31 total (10→31 expansion)
+- Key insight: Pattern detection is the bottleneck, not implementation
+
+---
+
+*Final Insight: We've built the tools to discover new transformation rules automatically. Now we need to make them better at "seeing" the patterns that humans find obvious.*
