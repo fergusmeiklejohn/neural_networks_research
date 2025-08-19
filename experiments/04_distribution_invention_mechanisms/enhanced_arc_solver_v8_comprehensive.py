@@ -97,9 +97,9 @@ class EnhancedARCSolverV8:
             base_output = (
                 result.output
                 if hasattr(result, "output")
-                else result.output_grid
-                if hasattr(result, "output_grid")
-                else test_input
+                else (
+                    result.output_grid if hasattr(result, "output_grid") else test_input
+                )
             )
             hypotheses = self.imagination.imagine(
                 examples, test_input, base_output, confidence=result.confidence
@@ -118,9 +118,9 @@ class EnhancedARCSolverV8:
 
         # Create final result
         final_result = V8SolverResult(
-            output_grid=result.output
-            if hasattr(result, "output")
-            else result.output_grid,
+            output_grid=(
+                result.output if hasattr(result, "output") else result.output_grid
+            ),
             confidence=result.confidence,
             method=result.method,
             time_taken=time.time() - start_time,

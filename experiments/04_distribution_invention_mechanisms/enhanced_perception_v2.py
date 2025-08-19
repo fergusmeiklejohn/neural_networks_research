@@ -159,9 +159,9 @@ class EnhancedPerceptionV2:
             # Check if color value matches some count
             if color == len(input_objects) or color == count:
                 return {
-                    "type": "object_count"
-                    if color == len(input_objects)
-                    else "pixel_count",
+                    "type": (
+                        "object_count" if color == len(input_objects) else "pixel_count"
+                    ),
                     "encoding_value": int(color),
                 }
 

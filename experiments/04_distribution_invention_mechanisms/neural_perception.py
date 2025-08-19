@@ -344,9 +344,11 @@ class NeuralPerceptionModule:
                         pattern_type="horizontal_gradient",
                         confidence=0.8,
                         parameters={
-                            "direction": "increasing"
-                            if col_means[-1] > col_means[0]
-                            else "decreasing"
+                            "direction": (
+                                "increasing"
+                                if col_means[-1] > col_means[0]
+                                else "decreasing"
+                            )
                         },
                     )
                 )
@@ -359,9 +361,11 @@ class NeuralPerceptionModule:
                         pattern_type="vertical_gradient",
                         confidence=0.8,
                         parameters={
-                            "direction": "increasing"
-                            if row_means[-1] > row_means[0]
-                            else "decreasing"
+                            "direction": (
+                                "increasing"
+                                if row_means[-1] > row_means[0]
+                                else "decreasing"
+                            )
                         },
                     )
                 )

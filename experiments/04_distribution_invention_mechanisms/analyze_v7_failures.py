@@ -281,9 +281,11 @@ def main():
                 "pattern_type": pattern["spatial_pattern"],
                 "rule_type": pattern["rule_type"],
                 "complexity": pattern["complexity"],
-                "accuracy": accuracy
-                if solution.output_grid.shape == expected_output.shape
-                else 0.0,
+                "accuracy": (
+                    accuracy
+                    if solution.output_grid.shape == expected_output.shape
+                    else 0.0
+                ),
                 "method_tried": behavior["method_used"],
                 "size_change": pattern["size_change"],
             }

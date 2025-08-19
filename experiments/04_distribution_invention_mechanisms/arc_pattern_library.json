@@ -1,0 +1,149 @@
+{
+  "00d62c1b_region_d7517139": {
+    "task_id": "00d62c1b",
+    "pattern_type": "region",
+    "pattern_data": {},
+    "code_template": "\nclass RegionFill_00d62c1b(Primitive):\n    \"\"\"Auto-discovered region filling for 00d62c1b.\"\"\"\n    \n    def __init__(self):\n        self.boundary_colors = [3]\n        self.fill_color = 4  # Common fill color in ARC\n    \n    def execute(self, context: ExecutionContext) -> ExecutionContext:\n        result = context.copy()\n        grid = result.current_grid.copy()\n        from scipy import ndimage\n        \n        # Fill regions enclosed by boundary colors\n        for boundary_color in self.boundary_colors:\n            if boundary_color != 0:\n                # Create mask of boundary\n                boundary_mask = (grid == boundary_color)\n                \n                # Fill holes in the boundary\n                filled = ndimage.binary_fill_holes(boundary_mask)\n                \n                # Get interior (filled minus boundary)\n                interior = filled & ~boundary_mask\n                \n                # Fill interior with fill color\n                grid[interior] = self.fill_color\n        \n        result.current_grid = grid\n        return result\n    \n    def __str__(self):\n        return \"RegionFill_00d62c1b()\"\n",
+    "accuracy": 0.99,
+    "examples_hash": "d7517139",
+    "metadata": {
+      "input_shapes": [],
+      "output_shapes": [],
+      "input_colors": [],
+      "output_colors": [],
+      "num_examples": 0
+    }
+  },
+  "ae3edfdc_cross_d7517139": {
+    "task_id": "ae3edfdc",
+    "pattern_type": "cross",
+    "pattern_data": {},
+    "code_template": "\nclass CrossPattern_ae3edfdc(Primitive):\n    \"\"\"Auto-discovered cross pattern for ae3edfdc.\"\"\"\n    \n    def __init__(self):\n        self.center_colors = [1, 2]\n        self.marker_colors = [3, 7]\n    \n    def execute(self, context: ExecutionContext) -> ExecutionContext:\n        result = context.copy()\n        grid = result.current_grid.copy()\n        h, w = grid.shape\n        \n        # Find positions to form crosses based on detected pattern\n        for i in range(1, h - 1):\n            for j in range(1, w - 1):\n                # Check if this position should have a cross\n                if grid[i, j] in self.center_colors:\n                    # Check for markers on same row/column\n                    has_h_markers = False\n                    has_v_markers = False\n                    marker_color = None\n                    \n                    # Check horizontal\n                    for jj in range(w):\n                        if jj != j and grid[i, jj] in self.marker_colors:\n                            has_h_markers = True\n                            marker_color = grid[i, jj]\n                            break\n                    \n                    # Check vertical\n                    for ii in range(h):\n                        if ii != i and grid[ii, j] in self.marker_colors:\n                            has_v_markers = True\n                            if marker_color is None:\n                                marker_color = grid[ii, j]\n                            break\n                    \n                    # Form cross if markers found\n                    if has_h_markers or has_v_markers:\n                        if marker_color is not None:\n                            # Form the cross\n                            if i > 0:\n                                grid[i-1, j] = marker_color\n                            if i < h-1:\n                                grid[i+1, j] = marker_color\n                            if j > 0:\n                                grid[i, j-1] = marker_color\n                            if j < w-1:\n                                grid[i, j+1] = marker_color\n                            \n                            # Clear original markers\n                            for jj in range(w):\n                                if abs(jj - j) > 1 and grid[i, jj] == marker_color:\n                                    grid[i, jj] = 0\n                            for ii in range(h):\n                                if abs(ii - i) > 1 and grid[ii, j] == marker_color:\n                                    grid[ii, j] = 0\n        \n        result.current_grid = grid\n        return result\n    \n    def __str__(self):\n        return \"CrossPattern_ae3edfdc()\"\n",
+    "accuracy": 0.99,
+    "examples_hash": "d7517139",
+    "metadata": {
+      "input_shapes": [],
+      "output_shapes": [],
+      "input_colors": [],
+      "output_colors": [],
+      "num_examples": 0
+    }
+  },
+  "ae3edfdc_cross_9cccb7de": {
+    "task_id": "ae3edfdc",
+    "pattern_type": "cross",
+    "pattern_data": {},
+    "code_template": "\nclass CrossPattern_ae3edfdc(Primitive):\n    \"\"\"Auto-discovered cross pattern for ae3edfdc.\"\"\"\n    \n    def __init__(self):\n        self.center_colors = [1, 2]\n        self.marker_colors = [3, 7]\n    \n    def execute(self, context: ExecutionContext) -> ExecutionContext:\n        result = context.copy()\n        grid = result.current_grid.copy()\n        h, w = grid.shape\n        \n        # Find positions to form crosses based on detected pattern\n        for i in range(1, h - 1):\n            for j in range(1, w - 1):\n                # Check if this position should have a cross\n                if grid[i, j] in self.center_colors:\n                    # Check for markers on same row/column\n                    has_h_markers = False\n                    has_v_markers = False\n                    marker_color = None\n                    \n                    # Check horizontal\n                    for jj in range(w):\n                        if jj != j and grid[i, jj] in self.marker_colors:\n                            has_h_markers = True\n                            marker_color = grid[i, jj]\n                            break\n                    \n                    # Check vertical\n                    for ii in range(h):\n                        if ii != i and grid[ii, j] in self.marker_colors:\n                            has_v_markers = True\n                            if marker_color is None:\n                                marker_color = grid[ii, j]\n                            break\n                    \n                    # Form cross if markers found\n                    if has_h_markers or has_v_markers:\n                        if marker_color is not None:\n                            # Form the cross\n                            if i > 0:\n                                grid[i-1, j] = marker_color\n                            if i < h-1:\n                                grid[i+1, j] = marker_color\n                            if j > 0:\n                                grid[i, j-1] = marker_color\n                            if j < w-1:\n                                grid[i, j+1] = marker_color\n                            \n                            # Clear original markers\n                            for jj in range(w):\n                                if abs(jj - j) > 1 and grid[i, jj] == marker_color:\n                                    grid[i, jj] = 0\n                            for ii in range(h):\n                                if abs(ii - i) > 1 and grid[ii, j] == marker_color:\n                                    grid[ii, j] = 0\n        \n        result.current_grid = grid\n        return result\n    \n    def __str__(self):\n        return \"CrossPattern_ae3edfdc()\"\n",
+    "accuracy": 0.9925925925925926,
+    "examples_hash": "9cccb7de",
+    "metadata": {
+      "input_shapes": [
+        [
+          15,
+          15
+        ],
+        [
+          15,
+          15
+        ],
+        [
+          15,
+          15
+        ]
+      ],
+      "output_shapes": [
+        [
+          15,
+          15
+        ],
+        [
+          15,
+          15
+        ],
+        [
+          15,
+          15
+        ]
+      ],
+      "input_colors": [
+        0,
+        1,
+        2,
+        3,
+        7
+      ],
+      "output_colors": [
+        0,
+        1,
+        2,
+        3,
+        7
+      ],
+      "num_examples": 3
+    }
+  },
+  "00d62c1b_region_b03201c2": {
+    "task_id": "00d62c1b",
+    "pattern_type": "region",
+    "pattern_data": {},
+    "code_template": "\nclass RegionFill_00d62c1b(Primitive):\n    \"\"\"Auto-discovered region filling for 00d62c1b.\"\"\"\n    \n    def __init__(self):\n        self.boundary_colors = [3]\n        self.fill_color = 4  # Common fill color in ARC\n    \n    def execute(self, context: ExecutionContext) -> ExecutionContext:\n        result = context.copy()\n        grid = result.current_grid.copy()\n        from scipy import ndimage\n        \n        # Fill regions enclosed by boundary colors\n        for boundary_color in self.boundary_colors:\n            if boundary_color != 0:\n                # Create mask of boundary\n                boundary_mask = (grid == boundary_color)\n                \n                # Fill holes in the boundary\n                filled = ndimage.binary_fill_holes(boundary_mask)\n                \n                # Get interior (filled minus boundary)\n                interior = filled & ~boundary_mask\n                \n                # Fill interior with fill color\n                grid[interior] = self.fill_color\n        \n        result.current_grid = grid\n        return result\n    \n    def __str__(self):\n        return \"RegionFill_00d62c1b()\"\n",
+    "accuracy": 1.0,
+    "examples_hash": "b03201c2",
+    "metadata": {
+      "input_shapes": [
+        [
+          6,
+          6
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          20,
+          20
+        ]
+      ],
+      "output_shapes": [
+        [
+          6,
+          6
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          20,
+          20
+        ]
+      ],
+      "input_colors": [
+        0,
+        3
+      ],
+      "output_colors": [
+        0,
+        3,
+        4
+      ],
+      "num_examples": 5
+    }
+  }
+}

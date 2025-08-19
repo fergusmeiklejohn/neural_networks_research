@@ -393,12 +393,16 @@ class EnhancedNeuralPerception:
         return {
             "horizontal": np.array_equal(grid, np.flip(grid, axis=1)),
             "vertical": np.array_equal(grid, np.flip(grid, axis=0)),
-            "diagonal": np.array_equal(grid, grid.T)
-            if grid.shape[0] == grid.shape[1]
-            else False,
-            "rotational_90": np.array_equal(grid, np.rot90(grid, 2))
-            if grid.shape[0] == grid.shape[1]
-            else False,
+            "diagonal": (
+                np.array_equal(grid, grid.T)
+                if grid.shape[0] == grid.shape[1]
+                else False
+            ),
+            "rotational_90": (
+                np.array_equal(grid, np.rot90(grid, 2))
+                if grid.shape[0] == grid.shape[1]
+                else False
+            ),
             "partial_horizontal": self._has_partial_symmetry(grid, axis=1),
             "partial_vertical": self._has_partial_symmetry(grid, axis=0),
         }

@@ -52,7 +52,7 @@ def load_arc_task(task_id: str) -> Dict:
 
 
 def analyze_transformation(
-    examples: List[Tuple[np.ndarray, np.ndarray]]
+    examples: List[Tuple[np.ndarray, np.ndarray]],
 ) -> Dict[str, any]:
     """Analyze the transformation pattern in examples."""
     analysis = {

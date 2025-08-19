@@ -363,9 +363,11 @@ class EnhancedARCTestTimeAdapter:
         adapted_rules = ARCRule(
             transformations=initial_rules.transformations.copy(),
             object_detection=initial_rules.object_detection,
-            composition_order=initial_rules.composition_order.copy()
-            if initial_rules.composition_order
-            else None,
+            composition_order=(
+                initial_rules.composition_order.copy()
+                if initial_rules.composition_order
+                else None
+            ),
         )
 
         if best_hypothesis:

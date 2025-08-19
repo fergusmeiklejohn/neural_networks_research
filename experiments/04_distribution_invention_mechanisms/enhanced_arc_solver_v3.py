@@ -297,9 +297,11 @@ class EnhancedARCSolverV3:
                 if geometric_solutions:
                     best_solution = max(
                         geometric_solutions,
-                        key=lambda s: s.actual_confidence
-                        if s.actual_confidence > 0
-                        else s.confidence,
+                        key=lambda s: (
+                            s.actual_confidence
+                            if s.actual_confidence > 0
+                            else s.confidence
+                        ),
                     )
                     best_solution.time_taken = time.time() - start_time
                     best_solution.perception_analysis = perception_analysis
@@ -308,9 +310,9 @@ class EnhancedARCSolverV3:
             # Otherwise, prefer solutions with higher actual confidence (validated)
             best_solution = max(
                 solutions,
-                key=lambda s: s.actual_confidence
-                if s.actual_confidence > 0
-                else s.confidence,
+                key=lambda s: (
+                    s.actual_confidence if s.actual_confidence > 0 else s.confidence
+                ),
             )
             best_solution.time_taken = time.time() - start_time
             best_solution.perception_analysis = perception_analysis

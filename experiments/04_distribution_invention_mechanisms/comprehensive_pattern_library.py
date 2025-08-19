@@ -89,9 +89,9 @@ class RotationReflection(PatternPrimitive):
             "flip_horizontal": lambda x: np.flip(x, axis=0),
             "flip_vertical": lambda x: np.flip(x, axis=1),
             "transpose": lambda x: x.T if x.shape[0] == x.shape[1] else x,
-            "flip_diagonal": lambda x: np.flip(x.T, axis=0)
-            if x.shape[0] == x.shape[1]
-            else x,
+            "flip_diagonal": lambda x: (
+                np.flip(x.T, axis=0) if x.shape[0] == x.shape[1] else x
+            ),
         }
 
         for name, transform in transformations.items():
