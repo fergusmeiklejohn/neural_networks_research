@@ -280,5 +280,235 @@
       ],
       "num_examples": 3
     }
+  },
+  "3906de3d_conditional_d02e3d96": {
+    "task_id": "3906de3d",
+    "pattern_type": "conditional",
+    "pattern_data": {
+      "type": "same_color_fill",
+      "min_neighbors": 2,
+      "fill_color": 0
+    },
+    "code_template": "\nclass ConditionalFill_3906de3d(Primitive):\n    \"\"\"Auto-discovered conditional fill for 3906de3d.\"\"\"\n\n    def __init__(self):\n        self.min_neighbors = 2\n        self.fill_color = 0\n\n    def execute(self, context: ExecutionContext) -> ExecutionContext:\n        result = context.copy()\n        grid = result.current_grid.copy()\n        h, w = grid.shape\n\n        # Apply conditional fill based on neighbors\n        for i in range(h):\n            for j in range(w):\n                if grid[i, j] == 0:  # Only fill empty cells\n                    # Count non-zero neighbors\n                    neighbors = []\n                    for di in [-1, 0, 1]:\n                        for dj in [-1, 0, 1]:\n                            if di == 0 and dj == 0:\n                                continue\n                            ni, nj = i + di, j + dj\n                            if 0 <= ni < h and 0 <= nj < w:\n                                if grid[ni, nj] != 0:\n                                    neighbors.append(grid[ni, nj])\n\n                    # Fill if enough neighbors\n                    if len(neighbors) >= self.min_neighbors:\n                        grid[i, j] = self.fill_color\n\n        result.current_grid = grid\n        return result\n\n    def __str__(self):\n        return \"ConditionalFill_3906de3d()\"\n",
+    "accuracy": 0.8733333333333334,
+    "examples_hash": "d02e3d96",
+    "metadata": {
+      "input_shapes": [
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "output_shapes": [
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "input_colors": [
+        0,
+        1,
+        2
+      ],
+      "output_colors": [
+        0,
+        1,
+        2
+      ],
+      "num_examples": 3
+    }
+  },
+  "ed36ccf7_transform_75ceb596": {
+    "task_id": "ed36ccf7",
+    "pattern_type": "transform",
+    "pattern_data": {
+      "pattern": "rotate",
+      "k": 1
+    },
+    "code_template": "\nclass Pattern_ed36ccf7(Primitive):\n    \"\"\"Auto-discovered rotation for ed36ccf7.\"\"\"\n    \n    def execute(self, context: ExecutionContext) -> ExecutionContext:\n        result = context.copy()\n        result.current_grid = np.rot90(context.current_grid, 1)\n        return result\n    \n    def __str__(self):\n        return \"Pattern_ed36ccf7()\"\n",
+    "accuracy": 0.9,
+    "examples_hash": "75ceb596",
+    "metadata": {
+      "input_shapes": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "output_shapes": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "input_colors": [
+        0,
+        2,
+        6,
+        9
+      ],
+      "output_colors": [
+        0,
+        2,
+        6,
+        9
+      ],
+      "num_examples": 4
+    }
+  },
+  "32597951_fill_1422748d": {
+    "task_id": "32597951",
+    "pattern_type": "fill",
+    "pattern_data": {
+      "pattern": "region_fill",
+      "boundary_color": 1
+    },
+    "code_template": "\nclass Pattern_32597951(Primitive):\n    \"\"\"Auto-discovered region fill for 32597951.\"\"\"\n    \n    def execute(self, context: ExecutionContext) -> ExecutionContext:\n        result = context.copy()\n        grid = result.current_grid.copy()\n        from scipy import ndimage\n        \n        mask = grid == 1\n        filled = ndimage.binary_fill_holes(mask)\n        interior = filled & ~mask\n        grid[interior] = 4  # Common fill color\n        \n        result.current_grid = grid\n        return result\n    \n    def __str__(self):\n        return \"Pattern_32597951()\"\n",
+    "accuracy": 0.9,
+    "examples_hash": "1422748d",
+    "metadata": {
+      "input_shapes": [
+        [
+          17,
+          17
+        ],
+        [
+          17,
+          17
+        ],
+        [
+          17,
+          17
+        ]
+      ],
+      "output_shapes": [
+        [
+          17,
+          17
+        ],
+        [
+          17,
+          17
+        ],
+        [
+          17,
+          17
+        ]
+      ],
+      "input_colors": [
+        0,
+        1,
+        8
+      ],
+      "output_colors": [
+        0,
+        1,
+        3,
+        8
+      ],
+      "num_examples": 3
+    }
+  },
+  "045e512c_fill_fe1a6ae5": {
+    "task_id": "045e512c",
+    "pattern_type": "fill",
+    "pattern_data": {
+      "pattern": "region_fill",
+      "boundary_color": 8
+    },
+    "code_template": "\nclass Pattern_045e512c(Primitive):\n    \"\"\"Auto-discovered region fill for 045e512c.\"\"\"\n    \n    def execute(self, context: ExecutionContext) -> ExecutionContext:\n        result = context.copy()\n        grid = result.current_grid.copy()\n        from scipy import ndimage\n        \n        mask = grid == 8\n        filled = ndimage.binary_fill_holes(mask)\n        interior = filled & ~mask\n        grid[interior] = 4  # Common fill color\n        \n        result.current_grid = grid\n        return result\n    \n    def __str__(self):\n        return \"Pattern_045e512c()\"\n",
+    "accuracy": 0.9,
+    "examples_hash": "fe1a6ae5",
+    "metadata": {
+      "input_shapes": [
+        [
+          21,
+          21
+        ],
+        [
+          21,
+          21
+        ],
+        [
+          21,
+          21
+        ]
+      ],
+      "output_shapes": [
+        [
+          21,
+          21
+        ],
+        [
+          21,
+          21
+        ],
+        [
+          21,
+          21
+        ]
+      ],
+      "input_colors": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8
+      ],
+      "output_colors": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8
+      ],
+      "num_examples": 3
+    }
   }
 }
