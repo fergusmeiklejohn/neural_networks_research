@@ -1,0 +1,145 @@
+{
+  "summary": {
+    "total_tasks": 12,
+    "avg_v7_accuracy": 0.5666660504511544,
+    "avg_imagination_accuracy": 0.4650714002453929,
+    "avg_hypothesis_count": 1.9166666666666667,
+    "avg_hypothesis_diversity": 0.013374485596707819
+  },
+  "failure_modes": {
+    "insufficient_diversity": {
+      "count": 11,
+      "percentage": 91.66666666666666,
+      "avg_accuracy_drop": 0.11083052749719417,
+      "example_tasks": [
+        "a85d4709",
+        "a699fb00",
+        "5c2c9af4"
+      ]
+    },
+    "excessive_randomness": {
+      "count": 1,
+      "percentage": 8.333333333333332,
+      "avg_accuracy_drop": 0.0,
+      "example_tasks": [
+        "44f52bb0"
+      ]
+    }
+  },
+  "key_issues": [
+    "Low hypothesis diversity - hypotheses too similar to each other",
+    "Insufficient hypothesis generation - need more candidates"
+  ],
+  "detailed_analyses": [
+    {
+      "task_id": "a85d4709",
+      "v7_accuracy": 0.3333333333333333,
+      "imagination_accuracy": 0.3333333333333333,
+      "hypothesis_count": 1,
+      "hypothesis_diversity": 0.0,
+      "constraint_violations": [],
+      "failure_mode": "insufficient_diversity"
+    },
+    {
+      "task_id": "a699fb00",
+      "v7_accuracy": 0.88,
+      "imagination_accuracy": 0.88,
+      "hypothesis_count": 1,
+      "hypothesis_diversity": 0.0,
+      "constraint_violations": [],
+      "failure_mode": "insufficient_diversity"
+    },
+    {
+      "task_id": "5c2c9af4",
+      "v7_accuracy": 0.6632653061224489,
+      "imagination_accuracy": 0.6632653061224489,
+      "hypothesis_count": 1,
+      "hypothesis_diversity": 0.0,
+      "constraint_violations": [],
+      "failure_mode": "insufficient_diversity"
+    },
+    {
+      "task_id": "44f52bb0",
+      "v7_accuracy": 0.0,
+      "imagination_accuracy": 0.0,
+      "hypothesis_count": 1,
+      "hypothesis_diversity": 0.0,
+      "constraint_violations": [
+        "too_random"
+      ],
+      "failure_mode": "excessive_randomness"
+    },
+    {
+      "task_id": "23581191",
+      "v7_accuracy": 0.654320987654321,
+      "imagination_accuracy": 0.18518518518518517,
+      "hypothesis_count": 2,
+      "hypothesis_diversity": 0.024691358024691357,
+      "constraint_violations": [],
+      "failure_mode": "insufficient_diversity"
+    },
+    {
+      "task_id": "4258a5f9",
+      "v7_accuracy": 0.4444444444444444,
+      "imagination_accuracy": 0.4444444444444444,
+      "hypothesis_count": 1,
+      "hypothesis_diversity": 0.0,
+      "constraint_violations": [],
+      "failure_mode": "insufficient_diversity"
+    },
+    {
+      "task_id": "bdad9b1f",
+      "v7_accuracy": 0.7777777777777778,
+      "imagination_accuracy": 0.2222222222222222,
+      "hypothesis_count": 2,
+      "hypothesis_diversity": 0.05555555555555555,
+      "constraint_violations": [],
+      "failure_mode": "insufficient_diversity"
+    },
+    {
+      "task_id": "d06dbe63",
+      "v7_accuracy": 0.8757396449704142,
+      "imagination_accuracy": 0.8757396449704142,
+      "hypothesis_count": 1,
+      "hypothesis_diversity": 0.0,
+      "constraint_violations": [],
+      "failure_mode": "insufficient_diversity"
+    },
+    {
+      "task_id": "8403a5d5",
+      "v7_accuracy": 0.11,
+      "imagination_accuracy": 0.11,
+      "hypothesis_count": 1,
+      "hypothesis_diversity": 0.0,
+      "constraint_violations": [],
+      "failure_mode": "insufficient_diversity"
+    },
+    {
+      "task_id": "67e8384a",
+      "v7_accuracy": 0.4444444444444444,
+      "imagination_accuracy": 0.25,
+      "hypothesis_count": 10,
+      "hypothesis_diversity": 0.08024691358024691,
+      "constraint_violations": [],
+      "failure_mode": "insufficient_diversity"
+    },
+    {
+      "task_id": "25ff71a9",
+      "v7_accuracy": 0.6666666666666666,
+      "imagination_accuracy": 0.6666666666666666,
+      "hypothesis_count": 1,
+      "hypothesis_diversity": 0.0,
+      "constraint_violations": [],
+      "failure_mode": "insufficient_diversity"
+    },
+    {
+      "task_id": "6e19193c",
+      "v7_accuracy": 0.95,
+      "imagination_accuracy": 0.95,
+      "hypothesis_count": 1,
+      "hypothesis_diversity": 0.0,
+      "constraint_violations": [],
+      "failure_mode": "insufficient_diversity"
+    }
+  ]
+}

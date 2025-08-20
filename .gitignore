@@ -30,6 +30,7 @@ coverage.xml
 # Data and models
 data/raw/*
 data/processed/*
+data/physics_training/*.json
 outputs/checkpoints/*
 *.h5
 *.pt

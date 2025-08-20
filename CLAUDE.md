@@ -30,6 +30,15 @@ creativity and extrapolation capabilities.
 - Verify assumptions - what seems like OOD might be interpolation
 - Consult documentation (eg Context7 MCP or if that doesn't work the internet) when implementing new approaches
 
+### 🎯 CRITICAL INSIGHT: Distribution Invention Through Imagination (Jan 9, 2025)
+**We discovered the essence of "thinking outside the distribution"** through ARC-AGI task analysis:
+- The correct solution had LOW training similarity (0.304) but PERFECT accuracy (100%)
+- This proves: **Good solutions may look nothing like training examples**
+- Key principle: **Distribution invention is about imagining what could be, not remembering what was**
+- See `CORE_INSIGHT_DISTRIBUTION_INVENTION.md` for full analysis
+
+This creates a fundamental challenge: We (Claude/LLMs) are trained to predict likely continuations within our training distribution, yet we're designing systems that must transcend their training distribution. The solution requires imagination-based exploration, not pattern matching.
+
 ### The Power of Theory-Driven Implementation (Learned July 30, 2025)
 **Combine deep theoretical analysis with targeted implementation.** Our breakthrough with variable binding demonstrated this approach:
 1. **First understand WHY something fails** - We proved mathematically why static memory cannot solve variable binding due to contradictory optimization objectives
@@ -639,6 +648,30 @@ The style guide includes specific examples and transformations to ensure profess
 
 The project uses pre-commit hooks for code quality. The system has been streamlined for practicality:
 
+**RECOMMENDED: Use Smart Commit to avoid double-commits**
+Our smart commit script formats BEFORE staging, eliminating the double-commit issue:
+
+```bash
+# Best option: Format, stage, and commit in one step
+./scripts/smart_commit.sh "Your commit message"
+
+# Just format without committing
+./scripts/format_all.sh
+
+# Legacy options (still available):
+./scripts/format_and_commit.sh "Your commit message"  # Old approach
+./scripts/pre_commit_format.sh  # Format specific files
+```
+
+**How Smart Commit Works:**
+1. Detects all changed files (staged and unstaged)
+2. Runs appropriate formatters (black, isort, autoflake)
+3. Fixes trailing whitespace and EOF
+4. Stages everything
+5. Commits with --no-verify (since already formatted)
+
+This eliminates the double-commit problem where hooks reformat after staging.
+
 **Pre-commit hooks (run on every commit):**
 - **Automatic fixes**: Black formatting, isort, trailing whitespace
 - **Warnings only**: TODO/FIXME tracking, hardcoded paths (non-blocking)
@@ -647,11 +680,8 @@ The project uses pre-commit hooks for code quality. The system has been streamli
 - **Heavier checks**: flake8 linting, mypy type checking, pytest
 - **All non-blocking**: You can override with `git push --no-verify` if needed
 
-**Usage:**
+**Other useful commands:**
 ```bash
-# Normal commits will auto-format your code
-git commit -m "Your message"
-
 # Skip hooks if needed (e.g., WIP commits)
 git commit -m "WIP: testing" --no-verify
 

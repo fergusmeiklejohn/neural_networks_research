@@ -1,0 +1,551 @@
+{
+  "Level 1: Single Forces": {
+    "accuracy": 100.0,
+    "tests": [
+      {
+        "command": "Set gravity to 9.8",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "gravity",
+              "parameters": {
+                "g": 9.8,
+                "direction": [
+                  0,
+                  -1
+                ]
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      },
+      {
+        "command": "Add magnetic field",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "magnetic",
+              "parameters": {
+                "B": 1.0,
+                "direction": [
+                  0,
+                  0,
+                  1
+                ],
+                "charge_dependent": true
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      },
+      {
+        "command": "Electric field = 2000 V/m",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "electric",
+              "parameters": {
+                "E": 2000.0,
+                "direction": [
+                  1,
+                  0
+                ],
+                "charge_dependent": true
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      },
+      {
+        "command": "Spring with k = 150",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "spring",
+              "parameters": {
+                "k": 150.0,
+                "rest_length": 1.0,
+                "damping": 0.1
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      }
+    ]
+  },
+  "Level 2: Two-Force Compositions": {
+    "accuracy": 100.0,
+    "tests": [
+      {
+        "command": "Add gravity and magnetic field",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "magnetic",
+              "parameters": {
+                "B": 1.0,
+                "direction": [
+                  0,
+                  0,
+                  1
+                ],
+                "charge_dependent": true
+              },
+              "active": true
+            },
+            {
+              "type": "gravity",
+              "parameters": {
+                "g": 9.8,
+                "direction": [
+                  0,
+                  -1
+                ]
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      },
+      {
+        "command": "Combine electric with springs",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "electric",
+              "parameters": {
+                "E": 1000.0,
+                "direction": [
+                  1,
+                  0
+                ],
+                "charge_dependent": true
+              },
+              "active": true
+            },
+            {
+              "type": "spring",
+              "parameters": {
+                "k": 100.0,
+                "rest_length": 1.0,
+                "damping": 0.1
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      },
+      {
+        "command": "Gravity = 5 with friction mu = 0.1",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "gravity",
+              "parameters": {
+                "g": 5.0,
+                "direction": [
+                  0,
+                  -1
+                ]
+              },
+              "active": true
+            },
+            {
+              "type": "friction",
+              "parameters": {
+                "mu_static": 0.3,
+                "mu_kinetic": 0.2,
+                "surface_normal": [
+                  0,
+                  1
+                ]
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      },
+      {
+        "command": "Magnetic pendulum",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "gravity",
+              "parameters": {
+                "g": 9.8,
+                "direction": [
+                  0,
+                  -1
+                ]
+              },
+              "active": true
+            },
+            {
+              "type": "magnetic",
+              "parameters": {
+                "B": 0.5,
+                "direction": [
+                  0,
+                  0,
+                  1
+                ]
+              },
+              "active": true
+            },
+            {
+              "type": "spring",
+              "parameters": {
+                "k": 50.0,
+                "rest_length": 1.0
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      }
+    ]
+  },
+  "Level 3: Multi-Force with Parameters": {
+    "accuracy": 100.0,
+    "tests": [
+      {
+        "command": "Gravity = 15, magnetic field = 2T, spring k = 100",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "gravity",
+              "parameters": {
+                "g": 15.0,
+                "direction": [
+                  0,
+                  -1
+                ]
+              },
+              "active": true
+            },
+            {
+              "type": "magnetic",
+              "parameters": {
+                "B": 2.0,
+                "direction": [
+                  0,
+                  0,
+                  1
+                ],
+                "charge_dependent": true
+              },
+              "active": true
+            },
+            {
+              "type": "spring",
+              "parameters": {
+                "k": 100.0,
+                "rest_length": 1.0,
+                "damping": 0.1
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      },
+      {
+        "command": "Underwater magnets",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "gravity",
+              "parameters": {
+                "g": 7.0,
+                "direction": [
+                  0,
+                  -1
+                ]
+              },
+              "active": true
+            },
+            {
+              "type": "drag",
+              "parameters": {
+                "coefficient": 1.2,
+                "fluid_density": 1000
+              },
+              "active": true
+            },
+            {
+              "type": "magnetic",
+              "parameters": {
+                "B": 1.5,
+                "direction": [
+                  0,
+                  0,
+                  1
+                ]
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      },
+      {
+        "command": "Charged particles environment",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "gravity",
+              "parameters": {
+                "g": 9.8,
+                "direction": [
+                  0,
+                  -1
+                ]
+              },
+              "active": true
+            },
+            {
+              "type": "electric",
+              "parameters": {
+                "E": 1000.0,
+                "direction": [
+                  1,
+                  0
+                ]
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      }
+    ]
+  },
+  "Level 4: Time-Varying Compositions": {
+    "accuracy": 33.33333333333333,
+    "tests": [
+      {
+        "command": "Gravity oscillates with period 2s",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "gravity",
+              "parameters": {
+                "g": "9.8 * sin(2*pi*t/2.0)",
+                "direction": [
+                  0,
+                  -1
+                ]
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      },
+      {
+        "command": "Add gravity and oscillating magnetic field with period 1s",
+        "passed": false,
+        "environment": {
+          "forces": [
+            {
+              "type": "magnetic",
+              "parameters": {
+                "B": 1.0,
+                "direction": [
+                  0,
+                  0,
+                  1
+                ],
+                "charge_dependent": true
+              },
+              "active": true
+            },
+            {
+              "type": "gravity",
+              "parameters": {
+                "g": 9.8,
+                "direction": [
+                  0,
+                  -1
+                ]
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      },
+      {
+        "command": "All forces oscillating",
+        "passed": false,
+        "environment": {
+          "forces": [
+            {
+              "type": "gravity",
+              "parameters": {
+                "g": 9.8,
+                "direction": [
+                  0,
+                  -1
+                ]
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      }
+    ]
+  },
+  "Level 5: TRUE OOD Compositions": {
+    "accuracy": 50.0,
+    "tests": [
+      {
+        "command": "Gravity = 100 with magnetic field = 10T",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "gravity",
+              "parameters": {
+                "g": 100.0,
+                "direction": [
+                  0,
+                  -1
+                ]
+              },
+              "active": true
+            },
+            {
+              "type": "magnetic",
+              "parameters": {
+                "B": 10.0,
+                "direction": [
+                  0,
+                  0,
+                  1
+                ],
+                "charge_dependent": true
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      },
+      {
+        "command": "Negative gravity with repulsive springs",
+        "passed": true,
+        "environment": {
+          "forces": [
+            {
+              "type": "spring",
+              "parameters": {
+                "k": 100.0,
+                "rest_length": 1.0,
+                "damping": 0.1
+              },
+              "active": true
+            },
+            {
+              "type": "gravity",
+              "parameters": {
+                "g": -9.8,
+                "direction": [
+                  0,
+                  1
+                ]
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      },
+      {
+        "command": "5 different forces all active",
+        "passed": false,
+        "environment": {
+          "forces": [
+            {
+              "type": "gravity",
+              "parameters": {
+                "g": 9.8,
+                "direction": [
+                  0,
+                  -1
+                ]
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "inertial",
+          "dimensions": 2
+        }
+      },
+      {
+        "command": "Rotating frame with oscillating gravity and magnetic field",
+        "passed": false,
+        "environment": {
+          "forces": [
+            {
+              "type": "magnetic",
+              "parameters": {
+                "B": 1.0,
+                "direction": [
+                  0,
+                  0,
+                  1
+                ],
+                "charge_dependent": true
+              },
+              "active": true
+            }
+          ],
+          "reference_frame": "rotating",
+          "dimensions": 2
+        }
+      }
+    ]
+  }
+}

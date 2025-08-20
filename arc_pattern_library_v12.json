@@ -1,0 +1,62 @@
+{
+  "ae3edfdc": {
+    "type": "corner_marking",
+    "code": "\nclass CornerMarker_ae3edfdc:\n    def execute(self, input_grid):\n        grid = np.array(input_grid).copy()\n        from scipy import ndimage\n        labeled, num_features = ndimage.label(grid != 0)\n        \n        for label_id in range(1, num_features + 1):\n            mask = (labeled == label_id)\n            coords = np.argwhere(mask)\n            if len(coords) > 0:\n                min_y, min_x = coords.min(axis=0)\n                max_y, max_x = coords.max(axis=0)\n                # Mark specific corners\n                if min_y > 0 and max_x < grid.shape[1]-1:\n                    grid[min_y-1, max_x+1] = 1\n                if max_y < grid.shape[0]-1 and min_x > 0:\n                    grid[max_y+1, min_x-1] = 1\n        return grid\n",
+    "accuracy": 0.8859259259259259
+  },
+  "00d62c1b": {
+    "type": "corner_marking",
+    "code": "\nclass CornerMarker_00d62c1b:\n    def execute(self, input_grid):\n        grid = np.array(input_grid).copy()\n        from scipy import ndimage\n        labeled, num_features = ndimage.label(grid != 0)\n        \n        for label_id in range(1, num_features + 1):\n            mask = (labeled == label_id)\n            coords = np.argwhere(mask)\n            if len(coords) > 0:\n                min_y, min_x = coords.min(axis=0)\n                max_y, max_x = coords.max(axis=0)\n                # Mark specific corners\n                if min_y > 0 and max_x < grid.shape[1]-1:\n                    grid[min_y-1, max_x+1] = 1\n                if max_y < grid.shape[0]-1 and min_x > 0:\n                    grid[max_y+1, min_x-1] = 1\n        return grid\n",
+    "accuracy": 0.7727222222222222
+  },
+  "0ca9ddb6": {
+    "type": "corner_marking",
+    "code": "\nclass CornerMarker_0ca9ddb6:\n    def execute(self, input_grid):\n        grid = np.array(input_grid).copy()\n        from scipy import ndimage\n        labeled, num_features = ndimage.label(grid != 0)\n        \n        for label_id in range(1, num_features + 1):\n            mask = (labeled == label_id)\n            coords = np.argwhere(mask)\n            if len(coords) > 0:\n                min_y, min_x = coords.min(axis=0)\n                max_y, max_x = coords.max(axis=0)\n                # Mark specific corners\n                if min_y > 0 and max_x < grid.shape[1]-1:\n                    grid[min_y-1, max_x+1] = 1\n                if max_y < grid.shape[0]-1 and min_x > 0:\n                    grid[max_y+1, min_x-1] = 1\n        return grid\n",
+    "accuracy": 0.8230452674897121
+  },
+  "ed36ccf7": {
+    "type": "rotation",
+    "code": "\nclass Rotation_ed36ccf7:\n    def execute(self, input_grid):\n        return np.rot90(np.array(input_grid), 1)\n",
+    "accuracy": 1.0
+  },
+  "32597951": {
+    "type": "corner_marking",
+    "code": "\nclass CornerMarker_32597951:\n    def execute(self, input_grid):\n        grid = np.array(input_grid).copy()\n        from scipy import ndimage\n        labeled, num_features = ndimage.label(grid != 0)\n        \n        for label_id in range(1, num_features + 1):\n            mask = (labeled == label_id)\n            coords = np.argwhere(mask)\n            if len(coords) > 0:\n                min_y, min_x = coords.min(axis=0)\n                max_y, max_x = coords.max(axis=0)\n                # Mark specific corners\n                if min_y > 0 and max_x < grid.shape[1]-1:\n                    grid[min_y-1, max_x+1] = 1\n                if max_y < grid.shape[0]-1 and min_x > 0:\n                    grid[max_y+1, min_x-1] = 1\n        return grid\n",
+    "accuracy": 0.8650519031141868
+  },
+  "045e512c": {
+    "type": "corner_marking",
+    "code": "\nclass CornerMarker_045e512c:\n    def execute(self, input_grid):\n        grid = np.array(input_grid).copy()\n        from scipy import ndimage\n        labeled, num_features = ndimage.label(grid != 0)\n        \n        for label_id in range(1, num_features + 1):\n            mask = (labeled == label_id)\n            coords = np.argwhere(mask)\n            if len(coords) > 0:\n                min_y, min_x = coords.min(axis=0)\n                max_y, max_x = coords.max(axis=0)\n                # Mark specific corners\n                if min_y > 0 and max_x < grid.shape[1]-1:\n                    grid[min_y-1, max_x+1] = 1\n                if max_y < grid.shape[0]-1 and min_x > 0:\n                    grid[max_y+1, min_x-1] = 1\n        return grid\n",
+    "accuracy": 0.9168556311413454
+  },
+  "05f2a901": {
+    "type": "corner_marking",
+    "code": "\nclass CornerMarker_05f2a901:\n    def execute(self, input_grid):\n        grid = np.array(input_grid).copy()\n        from scipy import ndimage\n        labeled, num_features = ndimage.label(grid != 0)\n        \n        for label_id in range(1, num_features + 1):\n            mask = (labeled == label_id)\n            coords = np.argwhere(mask)\n            if len(coords) > 0:\n                min_y, min_x = coords.min(axis=0)\n                max_y, max_x = coords.max(axis=0)\n                # Mark specific corners\n                if min_y > 0 and max_x < grid.shape[1]-1:\n                    grid[min_y-1, max_x+1] = 1\n                if max_y < grid.shape[0]-1 and min_x > 0:\n                    grid[max_y+1, min_x-1] = 1\n        return grid\n",
+    "accuracy": 0.8098124098124098
+  },
+  "42a50994": {
+    "type": "cell_expansion",
+    "code": "\nclass CellExpansion_42a50994:\n    def execute(self, input_grid):\n        grid = np.array(input_grid)\n        scale = 1\n        patterns = {0: [[0]], 8: [[8]]}\n        h, w = grid.shape\n        output = np.zeros((h*scale, w*scale), dtype=int)\n        \n        for y in range(h):\n            for x in range(w):\n                val = int(grid[y, x])\n                if val in patterns:\n                    output[y*scale:(y+1)*scale, x*scale:(x+1)*scale] = patterns[val]\n        return output\n",
+    "accuracy": 0.8858536669585431
+  },
+  "1cf80156": {
+    "type": "bounding_box",
+    "code": "\nclass BoundingBoxExtract_1cf80156:\n    def execute(self, input_grid):\n        grid = np.array(input_grid)\n        nonzero = np.argwhere(grid != 0)\n        if len(nonzero) == 0:\n            return grid\n        min_y, min_x = nonzero.min(axis=0)\n        max_y, max_x = nonzero.max(axis=0)\n        return grid[min_y:max_y+1, min_x:max_x+1]\n",
+    "accuracy": 1.0
+  },
+  "3aa6fb7a": {
+    "type": "corner_marking",
+    "code": "\nclass CornerMarker_3aa6fb7a:\n    def execute(self, input_grid):\n        grid = np.array(input_grid).copy()\n        from scipy import ndimage\n        labeled, num_features = ndimage.label(grid != 0)\n        \n        for label_id in range(1, num_features + 1):\n            mask = (labeled == label_id)\n            coords = np.argwhere(mask)\n            if len(coords) > 0:\n                min_y, min_x = coords.min(axis=0)\n                max_y, max_x = coords.max(axis=0)\n                # Mark specific corners\n                if min_y > 0 and max_x < grid.shape[1]-1:\n                    grid[min_y-1, max_x+1] = 1\n                if max_y < grid.shape[0]-1 and min_x > 0:\n                    grid[max_y+1, min_x-1] = 1\n        return grid\n",
+    "accuracy": 0.9081632653061225
+  },
+  "a416b8f3": {
+    "type": "tiling",
+    "code": "\nclass HorizontalTile_a416b8f3:\n    def execute(self, input_grid):\n        return np.tile(np.array(input_grid), (1, 2))\n",
+    "accuracy": 1.0
+  },
+  "007bbfb7": {
+    "type": "cell_expansion",
+    "code": "\nclass CellExpansion_007bbfb7:\n    def execute(self, input_grid):\n        grid = np.array(input_grid)\n        scale = 3\n        patterns = {0: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], 7: [[0, 7, 7], [7, 7, 7], [0, 7, 7]]}\n        h, w = grid.shape\n        output = np.zeros((h*scale, w*scale), dtype=int)\n        \n        for y in range(h):\n            for x in range(w):\n                val = int(grid[y, x])\n                if val in patterns:\n                    output[y*scale:(y+1)*scale, x*scale:(x+1)*scale] = patterns[val]\n        return output\n",
+    "accuracy": 0.8320987654320987
+  }
+}

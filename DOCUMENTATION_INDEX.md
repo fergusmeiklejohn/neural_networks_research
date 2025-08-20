@@ -11,9 +11,10 @@
 - **What to Do Next**: Check experiment `CURRENT_STATUS.md` files
 
 ### Current Status & Progress
+- **🎯 CRITICAL INSIGHT**: `CORE_INSIGHT_DISTRIBUTION_INVENTION.md` - Distribution invention through imagination (Jan 9, 2025)
 - **Feedback Integration**: `FEEDBACK_INTEGRATION.md` - 100% complete, all reviewer feedback integrated
 - **Research Diary**: `research_diary/` - Daily progress and decisions
-  - Latest: `2025-08-04_research_diary.md` - Variable binding as distribution invention breakthrough
+  - Latest: `2025-01-18_research_diary.md` - BREAKTHROUGH: Task-specific primitive discovery for ARC-AGI
 - **OOD Evaluation Paper**: `papers/ood_evaluation_analysis/` - ✅ Fully revised and review-ready
 - **Papers in Progress**: `papers/ood_evaluation_analysis/` - Technical report on interpolation vs extrapolation
 

@@ -1,0 +1,206 @@
+{
+  "6150a2bd_transform_167a9e9c": {
+    "task_id": "6150a2bd",
+    "pattern_type": "transform",
+    "pattern_data": {
+      "pattern": "rotate",
+      "k": 2
+    },
+    "code_template": "\nclass Pattern_6150a2bd(Primitive):\n    \"\"\"Auto-discovered rotation for 6150a2bd.\"\"\"\n\n    def execute(self, context: ExecutionContext) -> ExecutionContext:\n        result = context.copy()\n        result.current_grid = np.rot90(context.current_grid, 2)\n        return result\n\n    def __str__(self):\n        return \"Pattern_6150a2bd()\"\n",
+    "accuracy": 0.9,
+    "examples_hash": "167a9e9c",
+    "metadata": {
+      "input_shapes": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "output_shapes": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "input_colors": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        7,
+        8
+      ],
+      "output_colors": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        7,
+        8
+      ],
+      "num_examples": 2
+    }
+  },
+  "3c9b0459_transform_f8fde2b7": {
+    "task_id": "3c9b0459",
+    "pattern_type": "transform",
+    "pattern_data": {
+      "pattern": "rotate",
+      "k": 2
+    },
+    "code_template": "\nclass Pattern_3c9b0459(Primitive):\n    \"\"\"Auto-discovered rotation for 3c9b0459.\"\"\"\n\n    def execute(self, context: ExecutionContext) -> ExecutionContext:\n        result = context.copy()\n        result.current_grid = np.rot90(context.current_grid, 2)\n        return result\n\n    def __str__(self):\n        return \"Pattern_3c9b0459()\"\n",
+    "accuracy": 0.9,
+    "examples_hash": "f8fde2b7",
+    "metadata": {
+      "input_shapes": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "output_shapes": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "input_colors": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        8,
+        9
+      ],
+      "output_colors": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        8,
+        9
+      ],
+      "num_examples": 4
+    }
+  },
+  "bb43febb_cross_86313a64": {
+    "task_id": "bb43febb",
+    "pattern_type": "cross",
+    "pattern_data": {
+      "pattern": "cross",
+      "crosses": [
+        {
+          "center": [
+            3,
+            2
+          ],
+          "center_color": 2,
+          "cross_color": 5
+        },
+        {
+          "center": [
+            4,
+            1
+          ],
+          "center_color": 2,
+          "cross_color": 2
+        },
+        {
+          "center": [
+            4,
+            2
+          ],
+          "center_color": 2,
+          "cross_color": 2
+        },
+        {
+          "center": [
+            4,
+            3
+          ],
+          "center_color": 2,
+          "cross_color": 2
+        },
+        {
+          "center": [
+            5,
+            2
+          ],
+          "center_color": 2,
+          "cross_color": 2
+        }
+      ]
+    },
+    "code_template": "\nclass CrossPattern_bb43febb(Primitive):\n    \"\"\"Auto-discovered cross pattern for bb43febb.\"\"\"\n\n    def execute(self, context: ExecutionContext) -> ExecutionContext:\n        result = context.copy()\n        grid = result.current_grid.copy()\n        h, w = grid.shape\n\n        center_colors = [2]\n        marker_colors = [2, 5]\n\n        for i in range(1, h-1):\n            for j in range(1, w-1):\n                if grid[i, j] in center_colors:\n                    # Find markers\n                    marker_color = None\n                    for jj in range(w):\n                        if jj != j and grid[i, jj] in marker_colors:\n                            marker_color = grid[i, jj]\n                            break\n\n                    if marker_color is None:\n                        for ii in range(h):\n                            if ii != i and grid[ii, j] in marker_colors:\n                                marker_color = grid[ii, j]\n                                break\n\n                    if marker_color is not None:\n                        # Form cross\n                        if i > 0: grid[i-1, j] = marker_color\n                        if i < h-1: grid[i+1, j] = marker_color\n                        if j > 0: grid[i, j-1] = marker_color\n                        if j < w-1: grid[i, j+1] = marker_color\n\n                        # Clear original markers\n                        for jj in range(w):\n                            if abs(jj - j) > 1 and grid[i, jj] == marker_color:\n                                grid[i, jj] = 0\n                        for ii in range(h):\n                            if abs(ii - i) > 1 and grid[ii, j] == marker_color:\n                                grid[ii, j] = 0\n\n        result.current_grid = grid\n        return result\n\n    def __str__(self):\n        return \"CrossPattern_bb43febb()\"\n",
+    "accuracy": 0.9,
+    "examples_hash": "86313a64",
+    "metadata": {
+      "input_shapes": [
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "output_shapes": [
+        [
+          10,
+          10
+        ],
+        [
+          10,
+          10
+        ]
+      ],
+      "input_colors": [
+        0,
+        5
+      ],
+      "output_colors": [
+        0,
+        2,
+        5
+      ],
+      "num_examples": 2
+    }
+  }
+}

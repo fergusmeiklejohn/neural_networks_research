@@ -1,0 +1,1877 @@
+{
+  "v9": {
+    "solver_name": "V9",
+    "total": 100,
+    "solved": 2,
+    "by_pattern": {
+      "uniform_scale": {
+        "total": 14,
+        "solved": 2
+      },
+      "none": {
+        "total": 65,
+        "solved": 0
+      },
+      "complex": {
+        "total": 21,
+        "solved": 0
+      }
+    },
+    "by_method": {
+      "smart_tiling": {
+        "total": 28,
+        "solved": 2
+      },
+      "object_manipulation": {
+        "total": 18,
+        "solved": 0
+      },
+      "imagination_0": {
+        "total": 52,
+        "solved": 0
+      },
+      "pattern_completion": {
+        "total": 1,
+        "solved": 0
+      },
+      "object_extraction_10_objects": {
+        "total": 1,
+        "solved": 0
+      }
+    },
+    "by_complexity": {
+      "0.2": {
+        "total": 18,
+        "solved": 2
+      },
+      "0.1": {
+        "total": 14,
+        "solved": 0
+      },
+      "0.5": {
+        "total": 20,
+        "solved": 0
+      },
+      "0.6": {
+        "total": 9,
+        "solved": 0
+      },
+      "0.8": {
+        "total": 12,
+        "solved": 0
+      },
+      "0.3": {
+        "total": 13,
+        "solved": 0
+      },
+      "0.4": {
+        "total": 8,
+        "solved": 0
+      },
+      "0.0": {
+        "total": 5,
+        "solved": 0
+      },
+      "0.7": {
+        "total": 1,
+        "solved": 0
+      }
+    },
+    "task_results": [
+      {
+        "id": "00576224",
+        "correct": true,
+        "method": "smart_tiling",
+        "confidence": 0.8,
+        "time": 0.0007319450378417969,
+        "pattern": "uniform_scale",
+        "complexity": 0.2,
+        "objects": 1
+      },
+      {
+        "id": "009d5c81",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.9,
+        "time": 0.003075838088989258,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 2
+      },
+      {
+        "id": "00dbd492",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.005294084548950195,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 2
+      },
+      {
+        "id": "03560426",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.8285714285714285,
+        "time": 0.0025429725646972656,
+        "pattern": "none",
+        "complexity": 0.5,
+        "objects": 4
+      },
+      {
+        "id": "05a7bcf2",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.92,
+        "time": 0.006304740905761719,
+        "pattern": "none",
+        "complexity": 0.65,
+        "objects": 6
+      },
+      {
+        "id": "0607ce86",
+        "correct": false,
+        "method": "pattern_completion",
+        "confidence": 0.5,
+        "time": 0.02377796173095703,
+        "pattern": "none",
+        "complexity": 0.5,
+        "objects": 17
+      },
+      {
+        "id": "0692e18c",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.7,
+        "time": 0.0023839473724365234,
+        "pattern": "uniform_scale",
+        "complexity": 0.2,
+        "objects": 1
+      },
+      {
+        "id": "070dd51e",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.002887248992919922,
+        "pattern": "none",
+        "complexity": 0.5,
+        "objects": 10
+      },
+      {
+        "id": "08573cc6",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0026597976684570312,
+        "pattern": "none",
+        "complexity": 0.2,
+        "objects": 2
+      },
+      {
+        "id": "0934a4d8",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0005829334259033203,
+        "pattern": "uniform_scale",
+        "complexity": 0.55,
+        "objects": 1
+      },
+      {
+        "id": "09c534e7",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.8666666666666667,
+        "time": 0.007242918014526367,
+        "pattern": "none",
+        "complexity": 0.2,
+        "objects": 2
+      },
+      {
+        "id": "0a1d4ef5",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.014976024627685547,
+        "pattern": "uniform_scale",
+        "complexity": 0.85,
+        "objects": 51
+      },
+      {
+        "id": "0a2355a6",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0026438236236572266,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 3
+      },
+      {
+        "id": "0b17323b",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 1.0,
+        "time": 0.0015931129455566406,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 3
+      },
+      {
+        "id": "0bb8deee",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 0.5,
+        "time": 0.0025680065155029297,
+        "pattern": "complex",
+        "complexity": 0.85,
+        "objects": 7
+      },
+      {
+        "id": "0becf7df",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.8222222222222222,
+        "time": 0.004112958908081055,
+        "pattern": "none",
+        "complexity": 0.2,
+        "objects": 2
+      },
+      {
+        "id": "0c786b71",
+        "correct": true,
+        "method": "smart_tiling",
+        "confidence": 0.75,
+        "time": 0.00036215782165527344,
+        "pattern": "uniform_scale",
+        "complexity": 0.2,
+        "objects": 1
+      },
+      {
+        "id": "0c9aba6e",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.6000000000000001,
+        "time": 0.0019047260284423828,
+        "pattern": "complex",
+        "complexity": 0.85,
+        "objects": 4
+      },
+      {
+        "id": "0d87d2a6",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.005477190017700195,
+        "pattern": "none",
+        "complexity": 0.3,
+        "objects": 10
+      },
+      {
+        "id": "0e671a1a",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.92,
+        "time": 0.002574920654296875,
+        "pattern": "none",
+        "complexity": 0.35,
+        "objects": 3
+      },
+      {
+        "id": "0f63c0b9",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.85,
+        "time": 0.0027899742126464844,
+        "pattern": "none",
+        "complexity": 0.2,
+        "objects": 3
+      },
+      {
+        "id": "103eff5b",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.00580286979675293,
+        "pattern": "none",
+        "complexity": 0.65,
+        "objects": 4
+      },
+      {
+        "id": "11e1fe23",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.37142857142857144,
+        "time": 0.0020771026611328125,
+        "pattern": "none",
+        "complexity": 0.35,
+        "objects": 3
+      },
+      {
+        "id": "12422b43",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0007259845733642578,
+        "pattern": "none",
+        "complexity": 0.2,
+        "objects": 1
+      },
+      {
+        "id": "12997ef3",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 0.5,
+        "time": 0.0019979476928710938,
+        "pattern": "complex",
+        "complexity": 0.85,
+        "objects": 6
+      },
+      {
+        "id": "12eac192",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.006009817123413086,
+        "pattern": "none",
+        "complexity": 0.65,
+        "objects": 7
+      },
+      {
+        "id": "136b0064",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.004060029983520508,
+        "pattern": "complex",
+        "complexity": 0.85,
+        "objects": 9
+      },
+      {
+        "id": "13713586",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0031108856201171875,
+        "pattern": "none",
+        "complexity": 0.5,
+        "objects": 4
+      },
+      {
+        "id": "137f0df0",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.9,
+        "time": 0.0045130252838134766,
+        "pattern": "none",
+        "complexity": 0.44999999999999996,
+        "objects": 9
+      },
+      {
+        "id": "140c817e",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0006031990051269531,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 1
+      },
+      {
+        "id": "14754a24",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.02647089958190918,
+        "pattern": "none",
+        "complexity": 0.44999999999999996,
+        "objects": 31
+      },
+      {
+        "id": "15113be4",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.8,
+        "time": 0.03293895721435547,
+        "pattern": "none",
+        "complexity": 0.5,
+        "objects": 9
+      },
+      {
+        "id": "15663ba9",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0057239532470703125,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 2
+      },
+      {
+        "id": "15696249",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.8,
+        "time": 0.0007863044738769531,
+        "pattern": "uniform_scale",
+        "complexity": 0.35,
+        "objects": 1
+      },
+      {
+        "id": "16b78196",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 1.0,
+        "time": 0.017960071563720703,
+        "pattern": "none",
+        "complexity": 0.5,
+        "objects": 4
+      },
+      {
+        "id": "17b80ad2",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 1.0,
+        "time": 0.00974416732788086,
+        "pattern": "none",
+        "complexity": 0.5,
+        "objects": 29
+      },
+      {
+        "id": "17cae0c1",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 0.6666666666666666,
+        "time": 0.0020270347595214844,
+        "pattern": "none",
+        "complexity": 0.44999999999999996,
+        "objects": 5
+      },
+      {
+        "id": "18419cfa",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0032341480255126953,
+        "pattern": "none",
+        "complexity": 0.3,
+        "objects": 4
+      },
+      {
+        "id": "184a9768",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.007354021072387695,
+        "pattern": "none",
+        "complexity": 0.65,
+        "objects": 13
+      },
+      {
+        "id": "195ba7dc",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.6000000000000001,
+        "time": 0.0019712448120117188,
+        "pattern": "complex",
+        "complexity": 0.65,
+        "objects": 11
+      },
+      {
+        "id": "1990f7a8",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.6000000000000001,
+        "time": 0.0020189285278320312,
+        "pattern": "uniform_scale",
+        "complexity": 0.5,
+        "objects": 8
+      },
+      {
+        "id": "19bb5feb",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 0.5,
+        "time": 0.0015769004821777344,
+        "pattern": "complex",
+        "complexity": 0.55,
+        "objects": 1
+      },
+      {
+        "id": "1a2e2828",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 0.5,
+        "time": 0.0004019737243652344,
+        "pattern": "complex",
+        "complexity": 0.55,
+        "objects": 1
+      },
+      {
+        "id": "1a6449f1",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.011052846908569336,
+        "pattern": "complex",
+        "complexity": 0.85,
+        "objects": 16
+      },
+      {
+        "id": "1acc24af",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.9,
+        "time": 0.0048367977142333984,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 3
+      },
+      {
+        "id": "1c02dbbe",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.8857142857142857,
+        "time": 0.001455068588256836,
+        "pattern": "none",
+        "complexity": 0.0,
+        "objects": 1
+      },
+      {
+        "id": "1c0d0a4b",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0033178329467773438,
+        "pattern": "none",
+        "complexity": 0.44999999999999996,
+        "objects": 4
+      },
+      {
+        "id": "1c56ad9f",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.00514984130859375,
+        "pattern": "none",
+        "complexity": 0.0,
+        "objects": 1
+      },
+      {
+        "id": "1d0a4b61",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.84,
+        "time": 0.0022377967834472656,
+        "pattern": "none",
+        "complexity": 0.35,
+        "objects": 1
+      },
+      {
+        "id": "1d398264",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.004801034927368164,
+        "pattern": "none",
+        "complexity": 0.2,
+        "objects": 1
+      },
+      {
+        "id": "1da012fc",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.00481104850769043,
+        "pattern": "none",
+        "complexity": 0.65,
+        "objects": 4
+      },
+      {
+        "id": "1e81d6f9",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 1.0,
+        "time": 0.010136127471923828,
+        "pattern": "none",
+        "complexity": 0.5,
+        "objects": 16
+      },
+      {
+        "id": "1e97544e",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 1.0,
+        "time": 0.0015799999237060547,
+        "pattern": "none",
+        "complexity": 0.35,
+        "objects": 1
+      },
+      {
+        "id": "2037f2c7",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.4,
+        "time": 0.003242015838623047,
+        "pattern": "complex",
+        "complexity": 0.55,
+        "objects": 2
+      },
+      {
+        "id": "2072aba6",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.7333333333333333,
+        "time": 0.0007388591766357422,
+        "pattern": "uniform_scale",
+        "complexity": 0.35,
+        "objects": 1
+      },
+      {
+        "id": "20818e16",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0005369186401367188,
+        "pattern": "complex",
+        "complexity": 0.55,
+        "objects": 1
+      },
+      {
+        "id": "20981f0e",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0073740482330322266,
+        "pattern": "none",
+        "complexity": 0.3,
+        "objects": 18
+      },
+      {
+        "id": "212895b5",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.014685869216918945,
+        "pattern": "none",
+        "complexity": 0.44999999999999996,
+        "objects": 24
+      },
+      {
+        "id": "21f83797",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.7333333333333333,
+        "time": 0.0016367435455322266,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 2
+      },
+      {
+        "id": "22a4bbc2",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0008440017700195312,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 1
+      },
+      {
+        "id": "25094a63",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.9333333333333333,
+        "time": 0.003779172897338867,
+        "pattern": "none",
+        "complexity": 0.35,
+        "objects": 1
+      },
+      {
+        "id": "2546ccf6",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 0.5,
+        "time": 0.004197835922241211,
+        "pattern": "none",
+        "complexity": 0.0,
+        "objects": 1
+      },
+      {
+        "id": "256b0a75",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.008610963821411133,
+        "pattern": "none",
+        "complexity": 0.5,
+        "objects": 14
+      },
+      {
+        "id": "2685904e",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.92,
+        "time": 0.008443117141723633,
+        "pattern": "none",
+        "complexity": 0.2,
+        "objects": 3
+      },
+      {
+        "id": "2697da3f",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.6000000000000001,
+        "time": 0.001657724380493164,
+        "pattern": "complex",
+        "complexity": 0.2,
+        "objects": 1
+      },
+      {
+        "id": "2753e76c",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0020618438720703125,
+        "pattern": "uniform_scale",
+        "complexity": 0.7,
+        "objects": 6
+      },
+      {
+        "id": "27a77e38",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0013260841369628906,
+        "pattern": "none",
+        "complexity": 0.2,
+        "objects": 1
+      },
+      {
+        "id": "27f8ce4f",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.8,
+        "time": 0.0007507801055908203,
+        "pattern": "uniform_scale",
+        "complexity": 0.55,
+        "objects": 1
+      },
+      {
+        "id": "281123b4",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.52,
+        "time": 0.005334138870239258,
+        "pattern": "complex",
+        "complexity": 0.85,
+        "objects": 4
+      },
+      {
+        "id": "292dd178",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0005178451538085938,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 1
+      },
+      {
+        "id": "29700607",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.002366304397583008,
+        "pattern": "none",
+        "complexity": 0.2,
+        "objects": 3
+      },
+      {
+        "id": "2a5f8217",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0037741661071777344,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 2
+      },
+      {
+        "id": "2b01abd0",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.45,
+        "time": 0.0028312206268310547,
+        "pattern": "none",
+        "complexity": 0.2,
+        "objects": 2
+      },
+      {
+        "id": "2c0b0aff",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.005615234375,
+        "pattern": "complex",
+        "complexity": 0.65,
+        "objects": 4
+      },
+      {
+        "id": "2c737e39",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0036039352416992188,
+        "pattern": "none",
+        "complexity": 0.2,
+        "objects": 2
+      },
+      {
+        "id": "2f0c5170",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.00167083740234375,
+        "pattern": "complex",
+        "complexity": 0.55,
+        "objects": 3
+      },
+      {
+        "id": "310f3251",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.00593113899230957,
+        "pattern": "uniform_scale",
+        "complexity": 0.35,
+        "objects": 1
+      },
+      {
+        "id": "3194b014",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.4666666666666667,
+        "time": 0.00822901725769043,
+        "pattern": "uniform_scale",
+        "complexity": 0.85,
+        "objects": 26
+      },
+      {
+        "id": "319f2597",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 1.0,
+        "time": 0.3070049285888672,
+        "pattern": "none",
+        "complexity": 0.2,
+        "objects": 1
+      },
+      {
+        "id": "31adaf00",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.8666666666666667,
+        "time": 0.004935026168823242,
+        "pattern": "none",
+        "complexity": 0.44999999999999996,
+        "objects": 16
+      },
+      {
+        "id": "31d5ba1a",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.6000000000000001,
+        "time": 0.002185821533203125,
+        "pattern": "complex",
+        "complexity": 0.35,
+        "objects": 3
+      },
+      {
+        "id": "32e9702f",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0005869865417480469,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 1
+      },
+      {
+        "id": "332efdb3",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0010228157043457031,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 0
+      },
+      {
+        "id": "3391f8c0",
+        "correct": false,
+        "method": "object_extraction_10_objects",
+        "confidence": 0.3,
+        "time": 0.003204822540283203,
+        "pattern": "none",
+        "complexity": 0.3,
+        "objects": 6
+      },
+      {
+        "id": "33b52de3",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 1.0,
+        "time": 0.00743412971496582,
+        "pattern": "none",
+        "complexity": 0.65,
+        "objects": 16
+      },
+      {
+        "id": "3490cc26",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.005149364471435547,
+        "pattern": "none",
+        "complexity": 0.44999999999999996,
+        "objects": 6
+      },
+      {
+        "id": "34b99a2b",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.6000000000000001,
+        "time": 0.0018858909606933594,
+        "pattern": "complex",
+        "complexity": 0.85,
+        "objects": 4
+      },
+      {
+        "id": "351d6448",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.5,
+        "time": 0.0015671253204345703,
+        "pattern": "complex",
+        "complexity": 0.85,
+        "objects": 7
+      },
+      {
+        "id": "358ba94e",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.28,
+        "time": 0.0013439655303955078,
+        "pattern": "complex",
+        "complexity": 0.5,
+        "objects": 4
+      },
+      {
+        "id": "37d3e8b2",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.003241300582885742,
+        "pattern": "none",
+        "complexity": 0.44999999999999996,
+        "objects": 5
+      },
+      {
+        "id": "3979b1a8",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.76,
+        "time": 0.0004191398620605469,
+        "pattern": "uniform_scale",
+        "complexity": 0.2,
+        "objects": 1
+      },
+      {
+        "id": "3a301edc",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0009467601776123047,
+        "pattern": "none",
+        "complexity": 0.0,
+        "objects": 1
+      },
+      {
+        "id": "3b4c2228",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.6000000000000001,
+        "time": 0.0017960071563720703,
+        "pattern": "uniform_scale",
+        "complexity": 0.65,
+        "objects": 7
+      },
+      {
+        "id": "3d31c5b3",
+        "correct": false,
+        "method": "object_manipulation",
+        "confidence": 0.52,
+        "time": 0.004814863204956055,
+        "pattern": "complex",
+        "complexity": 0.85,
+        "objects": 8
+      },
+      {
+        "id": "3ed85e70",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 1.0,
+        "time": 0.014496564865112305,
+        "pattern": "none",
+        "complexity": 0.5,
+        "objects": 15
+      },
+      {
+        "id": "3ee1011a",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 0.5,
+        "time": 0.0014772415161132812,
+        "pattern": "complex",
+        "complexity": 0.55,
+        "objects": 3
+      },
+      {
+        "id": "3f23242b",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0019168853759765625,
+        "pattern": "none",
+        "complexity": 0.15,
+        "objects": 2
+      },
+      {
+        "id": "40f6cd08",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.007716655731201172,
+        "pattern": "none",
+        "complexity": 0.2,
+        "objects": 2
+      },
+      {
+        "id": "414297c0",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.003787994384765625,
+        "pattern": "complex",
+        "complexity": 0.85,
+        "objects": 5
+      },
+      {
+        "id": "423a55dc",
+        "correct": false,
+        "method": "imagination_0",
+        "confidence": 1.0,
+        "time": 0.0019199848175048828,
+        "pattern": "none",
+        "complexity": 0.0,
+        "objects": 1
+      }
+    ],
+    "total_time": 0.7655892372131348
+  },
+  "v8": {
+    "solver_name": "V8",
+    "total": 100,
+    "solved": 2,
+    "by_pattern": {},
+    "by_method": {
+      "smart_tiling": {
+        "total": 7,
+        "solved": 2
+      },
+      "imagination_0_vars": {
+        "total": 57,
+        "solved": 0
+      },
+      "pattern_completion": {
+        "total": 1,
+        "solved": 0
+      },
+      "object_extraction_10_objects": {
+        "total": 2,
+        "solved": 0
+      },
+      "object_extraction_3_objects": {
+        "total": 2,
+        "solved": 0
+      },
+      "object_extraction_6_objects": {
+        "total": 2,
+        "solved": 0
+      },
+      "symmetry_fallback": {
+        "total": 2,
+        "solved": 0
+      },
+      "non_integer_scale": {
+        "total": 10,
+        "solved": 0
+      },
+      "object_extraction_16_objects": {
+        "total": 2,
+        "solved": 0
+      },
+      "object_extraction_4_objects": {
+        "total": 2,
+        "solved": 0
+      },
+      "object_extraction_5_objects": {
+        "total": 4,
+        "solved": 0
+      },
+      "object_extraction_12_objects": {
+        "total": 1,
+        "solved": 0
+      },
+      "object_extraction_20_objects": {
+        "total": 1,
+        "solved": 0
+      },
+      "object_extraction_151_objects": {
+        "total": 1,
+        "solved": 0
+      },
+      "object_extraction_13_objects": {
+        "total": 1,
+        "solved": 0
+      },
+      "object_extraction_18_objects": {
+        "total": 1,
+        "solved": 0
+      },
+      "imagination_1_vars": {
+        "total": 1,
+        "solved": 0
+      },
+      "object_extraction_7_objects": {
+        "total": 1,
+        "solved": 0
+      },
+      "object_extraction_2_objects": {
+        "total": 1,
+        "solved": 0
+      },
+      "object_extraction_9_objects": {
+        "total": 1,
+        "solved": 0
+      }
+    },
+    "by_complexity": {},
+    "task_results": [
+      {
+        "id": "00576224",
+        "correct": true,
+        "method": "smart_tiling",
+        "confidence": 0.7,
+        "time": 8.20159912109375e-05
+      },
+      {
+        "id": "009d5c81",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0004410743713378906
+      },
+      {
+        "id": "00dbd492",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0009059906005859375
+      },
+      {
+        "id": "03560426",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.00033402442932128906
+      },
+      {
+        "id": "05a7bcf2",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0005431175231933594
+      },
+      {
+        "id": "0607ce86",
+        "correct": false,
+        "method": "pattern_completion",
+        "confidence": 0.5,
+        "time": 0.0024302005767822266
+      },
+      {
+        "id": "0692e18c",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.7,
+        "time": 0.0005099773406982422
+      },
+      {
+        "id": "070dd51e",
+        "correct": false,
+        "method": "object_extraction_10_objects",
+        "confidence": 0.3,
+        "time": 0.0004239082336425781
+      },
+      {
+        "id": "08573cc6",
+        "correct": false,
+        "method": "object_extraction_3_objects",
+        "confidence": 0.3,
+        "time": 0.0003180503845214844
+      },
+      {
+        "id": "0934a4d8",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0003619194030761719
+      },
+      {
+        "id": "09c534e7",
+        "correct": false,
+        "method": "object_extraction_6_objects",
+        "confidence": 0.3,
+        "time": 0.0043468475341796875
+      },
+      {
+        "id": "0a1d4ef5",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0003440380096435547
+      },
+      {
+        "id": "0a2355a6",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0008511543273925781
+      },
+      {
+        "id": "0b17323b",
+        "correct": false,
+        "method": "symmetry_fallback",
+        "confidence": 0.2,
+        "time": 0.0002110004425048828
+      },
+      {
+        "id": "0bb8deee",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.00014090538024902344
+      },
+      {
+        "id": "0becf7df",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.0007910728454589844
+      },
+      {
+        "id": "0c786b71",
+        "correct": true,
+        "method": "smart_tiling",
+        "confidence": 0.7,
+        "time": 7.700920104980469e-05
+      },
+      {
+        "id": "0c9aba6e",
+        "correct": false,
+        "method": "non_integer_scale",
+        "confidence": 0.0,
+        "time": 7.700920104980469e-05
+      },
+      {
+        "id": "0d87d2a6",
+        "correct": false,
+        "method": "object_extraction_16_objects",
+        "confidence": 0.3,
+        "time": 0.0022363662719726562
+      },
+      {
+        "id": "0e671a1a",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.00033736228942871094
+      },
+      {
+        "id": "0f63c0b9",
+        "correct": false,
+        "method": "object_extraction_4_objects",
+        "confidence": 0.3,
+        "time": 0.00038504600524902344
+      },
+      {
+        "id": "103eff5b",
+        "correct": false,
+        "method": "object_extraction_5_objects",
+        "confidence": 0.3,
+        "time": 0.0026819705963134766
+      },
+      {
+        "id": "11e1fe23",
+        "correct": false,
+        "method": "object_extraction_3_objects",
+        "confidence": 0.3,
+        "time": 0.00023698806762695312
+      },
+      {
+        "id": "12422b43",
+        "correct": false,
+        "method": "object_extraction_5_objects",
+        "confidence": 0.3,
+        "time": 0.0003380775451660156
+      },
+      {
+        "id": "12997ef3",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.00016880035400390625
+      },
+      {
+        "id": "12eac192",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0005309581756591797
+      },
+      {
+        "id": "136b0064",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.00015807151794433594
+      },
+      {
+        "id": "13713586",
+        "correct": false,
+        "method": "object_extraction_5_objects",
+        "confidence": 0.3,
+        "time": 0.0004010200500488281
+      },
+      {
+        "id": "137f0df0",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.0005619525909423828
+      },
+      {
+        "id": "140c817e",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0002129077911376953
+      },
+      {
+        "id": "14754a24",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0017459392547607422
+      },
+      {
+        "id": "15113be4",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.0025038719177246094
+      },
+      {
+        "id": "15663ba9",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0009250640869140625
+      },
+      {
+        "id": "15696249",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.7,
+        "time": 0.0005209445953369141
+      },
+      {
+        "id": "16b78196",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.007907867431640625
+      },
+      {
+        "id": "17b80ad2",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.0007491111755371094
+      },
+      {
+        "id": "17cae0c1",
+        "correct": false,
+        "method": "symmetry_fallback",
+        "confidence": 0.2,
+        "time": 0.0002181529998779297
+      },
+      {
+        "id": "18419cfa",
+        "correct": false,
+        "method": "object_extraction_12_objects",
+        "confidence": 0.3,
+        "time": 0.0004909038543701172
+      },
+      {
+        "id": "184a9768",
+        "correct": false,
+        "method": "object_extraction_20_objects",
+        "confidence": 0.3,
+        "time": 0.002808094024658203
+      },
+      {
+        "id": "195ba7dc",
+        "correct": false,
+        "method": "non_integer_scale",
+        "confidence": 0.0,
+        "time": 8.082389831542969e-05
+      },
+      {
+        "id": "1990f7a8",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.00018906593322753906
+      },
+      {
+        "id": "19bb5feb",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.00013017654418945312
+      },
+      {
+        "id": "1a2e2828",
+        "correct": false,
+        "method": "non_integer_scale",
+        "confidence": 0.0,
+        "time": 0.00010967254638671875
+      },
+      {
+        "id": "1a6449f1",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0002589225769042969
+      },
+      {
+        "id": "1acc24af",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.001367807388305664
+      },
+      {
+        "id": "1c02dbbe",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.0005009174346923828
+      },
+      {
+        "id": "1c0d0a4b",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0005791187286376953
+      },
+      {
+        "id": "1c56ad9f",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0014619827270507812
+      },
+      {
+        "id": "1d0a4b61",
+        "correct": false,
+        "method": "object_extraction_151_objects",
+        "confidence": 0.3,
+        "time": 0.0016520023345947266
+      },
+      {
+        "id": "1d398264",
+        "correct": false,
+        "method": "object_extraction_4_objects",
+        "confidence": 0.3,
+        "time": 0.00034689903259277344
+      },
+      {
+        "id": "1da012fc",
+        "correct": false,
+        "method": "object_extraction_13_objects",
+        "confidence": 0.3,
+        "time": 0.0021028518676757812
+      },
+      {
+        "id": "1e81d6f9",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0006089210510253906
+      },
+      {
+        "id": "1e97544e",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.6666666666666666,
+        "time": 0.0008950233459472656
+      },
+      {
+        "id": "2037f2c7",
+        "correct": false,
+        "method": "non_integer_scale",
+        "confidence": 0.0,
+        "time": 0.0001342296600341797
+      },
+      {
+        "id": "2072aba6",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.7,
+        "time": 0.0002579689025878906
+      },
+      {
+        "id": "20818e16",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.00016832351684570312
+      },
+      {
+        "id": "20981f0e",
+        "correct": false,
+        "method": "object_extraction_18_objects",
+        "confidence": 0.3,
+        "time": 0.00039505958557128906
+      },
+      {
+        "id": "212895b5",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0006060600280761719
+      },
+      {
+        "id": "21f83797",
+        "correct": false,
+        "method": "imagination_1_vars",
+        "confidence": 0.5,
+        "time": 0.00021886825561523438
+      },
+      {
+        "id": "22a4bbc2",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0003650188446044922
+      },
+      {
+        "id": "25094a63",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.0035669803619384766
+      },
+      {
+        "id": "2546ccf6",
+        "correct": false,
+        "method": "object_extraction_16_objects",
+        "confidence": 0.3,
+        "time": 0.002206087112426758
+      },
+      {
+        "id": "256b0a75",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0007090568542480469
+      },
+      {
+        "id": "2685904e",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.0021278858184814453
+      },
+      {
+        "id": "2697da3f",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.00014901161193847656
+      },
+      {
+        "id": "2753e76c",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.00015616416931152344
+      },
+      {
+        "id": "27a77e38",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0006818771362304688
+      },
+      {
+        "id": "27f8ce4f",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.7,
+        "time": 0.0004799365997314453
+      },
+      {
+        "id": "281123b4",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.00011801719665527344
+      },
+      {
+        "id": "292dd178",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.00018310546875
+      },
+      {
+        "id": "29700607",
+        "correct": false,
+        "method": "object_extraction_5_objects",
+        "confidence": 0.3,
+        "time": 0.0003190040588378906
+      },
+      {
+        "id": "2a5f8217",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0008151531219482422
+      },
+      {
+        "id": "2b01abd0",
+        "correct": false,
+        "method": "object_extraction_7_objects",
+        "confidence": 0.3,
+        "time": 0.0003230571746826172
+      },
+      {
+        "id": "2c0b0aff",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.00024175643920898438
+      },
+      {
+        "id": "2c737e39",
+        "correct": false,
+        "method": "object_extraction_6_objects",
+        "confidence": 0.3,
+        "time": 0.0003440380096435547
+      },
+      {
+        "id": "2f0c5170",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.00020384788513183594
+      },
+      {
+        "id": "310f3251",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0010080337524414062
+      },
+      {
+        "id": "3194b014",
+        "correct": false,
+        "method": "non_integer_scale",
+        "confidence": 0.0,
+        "time": 0.00018906593322753906
+      },
+      {
+        "id": "319f2597",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.002340078353881836
+      },
+      {
+        "id": "31adaf00",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0005781650543212891
+      },
+      {
+        "id": "31d5ba1a",
+        "correct": false,
+        "method": "non_integer_scale",
+        "confidence": 0.0,
+        "time": 7.987022399902344e-05
+      },
+      {
+        "id": "32e9702f",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.00017118453979492188
+      },
+      {
+        "id": "332efdb3",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.00017380714416503906
+      },
+      {
+        "id": "3391f8c0",
+        "correct": false,
+        "method": "object_extraction_10_objects",
+        "confidence": 0.3,
+        "time": 0.0003147125244140625
+      },
+      {
+        "id": "33b52de3",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.002485036849975586
+      },
+      {
+        "id": "3490cc26",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.00044798851013183594
+      },
+      {
+        "id": "34b99a2b",
+        "correct": false,
+        "method": "non_integer_scale",
+        "confidence": 0.0,
+        "time": 8.702278137207031e-05
+      },
+      {
+        "id": "351d6448",
+        "correct": false,
+        "method": "non_integer_scale",
+        "confidence": 0.0,
+        "time": 0.00011396408081054688
+      },
+      {
+        "id": "358ba94e",
+        "correct": false,
+        "method": "non_integer_scale",
+        "confidence": 0.0,
+        "time": 0.00016188621520996094
+      },
+      {
+        "id": "37d3e8b2",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.0013213157653808594
+      },
+      {
+        "id": "3979b1a8",
+        "correct": false,
+        "method": "smart_tiling",
+        "confidence": 0.7,
+        "time": 0.00014400482177734375
+      },
+      {
+        "id": "3a301edc",
+        "correct": false,
+        "method": "object_extraction_2_objects",
+        "confidence": 0.3,
+        "time": 0.00043082237243652344
+      },
+      {
+        "id": "3b4c2228",
+        "correct": false,
+        "method": "non_integer_scale",
+        "confidence": 0.0,
+        "time": 9.083747863769531e-05
+      },
+      {
+        "id": "3d31c5b3",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.00011491775512695312
+      },
+      {
+        "id": "3ed85e70",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.004470109939575195
+      },
+      {
+        "id": "3ee1011a",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 0.5,
+        "time": 0.0002079010009765625
+      },
+      {
+        "id": "3f23242b",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.00017690658569335938
+      },
+      {
+        "id": "40f6cd08",
+        "correct": false,
+        "method": "object_extraction_9_objects",
+        "confidence": 0.3,
+        "time": 0.004230976104736328
+      },
+      {
+        "id": "414297c0",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.00019216537475585938
+      },
+      {
+        "id": "423a55dc",
+        "correct": false,
+        "method": "imagination_0_vars",
+        "confidence": 1.0,
+        "time": 0.00029206275939941406
+      }
+    ],
+    "total_time": 0.08418631553649902
+  },
+  "num_tasks": 100
+}

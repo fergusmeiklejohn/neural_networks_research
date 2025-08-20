@@ -1,0 +1,109 @@
+{
+  "total_tasks": 5,
+  "solved_count": 0,
+  "accuracy": 0.0,
+  "newly_solved": [],
+  "primitive_usage": {},
+  "detailed_results": [
+    {
+      "task_id": "ae3edfdc",
+      "num_train": 3,
+      "num_test": 1,
+      "bidirectional": {
+        "program": "Sequence([SetColor(3 -> 0); SetColor(7 -> 0)])",
+        "train_acc": 0.0,
+        "test_acc": 0.0,
+        "synthesis_time": 1.46244478225708,
+        "solved": false
+      },
+      "neural_guided": {
+        "program": "ExtractObjects()",
+        "train_acc": 0.0,
+        "test_acc": 0.0,
+        "synthesis_time": 12.020524978637695,
+        "solved": false
+      },
+      "solved": false
+    },
+    {
+      "task_id": "d406998b",
+      "num_train": 4,
+      "num_test": 1,
+      "bidirectional": {
+        "program": "SetColor(5 -> 3)",
+        "train_acc": 0.0,
+        "test_acc": 0.0,
+        "synthesis_time": 0.8340730667114258,
+        "solved": false
+      },
+      "neural_guided": {
+        "program": "SetColor(3 -> 0)",
+        "train_acc": 0.0,
+        "test_acc": 0.0,
+        "synthesis_time": 9.115360021591187,
+        "solved": false
+      },
+      "solved": false
+    },
+    {
+      "task_id": "8403a5d5",
+      "num_train": 3,
+      "num_test": 1,
+      "bidirectional": {
+        "program": "Sequence([ExtractObjects(); ForEachObject(Rotate(90))])",
+        "train_acc": 0.0,
+        "test_acc": 0.0,
+        "synthesis_time": 0.8836779594421387,
+        "solved": false
+      },
+      "neural_guided": {
+        "program": "FlipV()",
+        "train_acc": 0.0,
+        "test_acc": 0.0,
+        "synthesis_time": 9.738241910934448,
+        "solved": false
+      },
+      "solved": false
+    },
+    {
+      "task_id": "8e5a5113",
+      "num_train": 3,
+      "num_test": 1,
+      "bidirectional": {
+        "program": "SetColor(0 -> 1)",
+        "train_acc": 0.0,
+        "test_acc": 0.0,
+        "synthesis_time": 0.2061917781829834,
+        "solved": false
+      },
+      "neural_guided": {
+        "program": "SetColor(0 -> 1)",
+        "train_acc": 0.0,
+        "test_acc": 0.0,
+        "synthesis_time": 7.179168939590454,
+        "solved": false
+      },
+      "solved": false
+    },
+    {
+      "task_id": "508bd3b6",
+      "num_train": 3,
+      "num_test": 1,
+      "bidirectional": {
+        "program": "Sequence([ExtractObjects(); ForEachObject(Rotate(90))])",
+        "train_acc": 0.0,
+        "test_acc": 0.0,
+        "synthesis_time": 1.285984992980957,
+        "solved": false
+      },
+      "neural_guided": {
+        "program": "ExtractObjects()",
+        "train_acc": 0.0,
+        "test_acc": 0.0,
+        "synthesis_time": 8.346611976623535,
+        "solved": false
+      },
+      "solved": false
+    }
+  ]
+}

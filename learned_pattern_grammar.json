@@ -1,0 +1,30 @@
+{
+  "atomic_operations": [
+    {
+      "name": "sparse_fill",
+      "type": "color",
+      "frequency": 0.1836734693877551,
+      "parameters": {
+        "ratio": 0.07111111111111111
+      }
+    },
+    {
+      "name": "object_movement",
+      "type": "object",
+      "frequency": 0.14285714285714285,
+      "parameters": {}
+    },
+    {
+      "name": "conditional_fill",
+      "type": "logical",
+      "frequency": 0.14285714285714285,
+      "parameters": {
+        "condition": "neighbors"
+      }
+    },
+    {
+      "name": "add_colors",
+      "type": "color",
+      "frequency": 0.08163265306122448,
+      "parameters": {
+        "colors": [
