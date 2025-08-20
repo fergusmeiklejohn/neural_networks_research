@@ -1,0 +1,338 @@
+{
+  "Baseline": {
+    "model": "Baseline",
+    "overall_score": 0.4075555555555555,
+    "category_scores": {
+      "pattern_discovery": 0.42,
+      "rule_combination": 0.3333333333333333,
+      "cross_domain": 0.1111111111111111,
+      "counterfactual": 0.7222222222222222,
+      "creative": 0.45111111111111113
+    },
+    "task_results": [
+      {
+        "task_id": "pattern_shear",
+        "category": "pattern_discovery",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 3
+      },
+      {
+        "task_id": "pattern_spiral",
+        "category": "pattern_discovery",
+        "score": 0.84,
+        "novelty": 0.0,
+        "difficulty": 4
+      },
+      {
+        "task_id": "rule_color_size",
+        "category": "rule_combination",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 2
+      },
+      {
+        "task_id": "rule_conditional",
+        "category": "rule_combination",
+        "score": 0.6666666666666666,
+        "novelty": 0.0,
+        "difficulty": 3
+      },
+      {
+        "task_id": "cross_2d_to_color",
+        "category": "cross_domain",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 4
+      },
+      {
+        "task_id": "cross_symmetry",
+        "category": "cross_domain",
+        "score": 0.2222222222222222,
+        "novelty": 0.0,
+        "difficulty": 5
+      },
+      {
+        "task_id": "counterfactual_gravity",
+        "category": "counterfactual",
+        "score": 1.0,
+        "novelty": 0.0,
+        "difficulty": 2
+      },
+      {
+        "task_id": "counterfactual_negative",
+        "category": "counterfactual",
+        "score": 0.4444444444444444,
+        "novelty": 0.0,
+        "difficulty": 4
+      },
+      {
+        "task_id": "creative_sort",
+        "category": "creative",
+        "score": 0.2222222222222222,
+        "novelty": 0.0,
+        "difficulty": 3
+      },
+      {
+        "task_id": "creative_path",
+        "category": "creative",
+        "score": 0.68,
+        "novelty": 0.0,
+        "difficulty": 4
+      }
+    ],
+    "imagination_score": 0.0
+  },
+  "Few-Shot": {
+    "model": "Few-Shot",
+    "overall_score": 0.492,
+    "category_scores": {
+      "pattern_discovery": 0.42,
+      "rule_combination": 0.3333333333333333,
+      "cross_domain": 0.5555555555555556,
+      "counterfactual": 0.7111111111111111,
+      "creative": 0.44
+    },
+    "task_results": [
+      {
+        "task_id": "pattern_shear",
+        "category": "pattern_discovery",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 3
+      },
+      {
+        "task_id": "pattern_spiral",
+        "category": "pattern_discovery",
+        "score": 0.84,
+        "novelty": 0.5527864045000421,
+        "difficulty": 4
+      },
+      {
+        "task_id": "rule_color_size",
+        "category": "rule_combination",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 2
+      },
+      {
+        "task_id": "rule_conditional",
+        "category": "rule_combination",
+        "score": 0.6666666666666666,
+        "novelty": 0.0,
+        "difficulty": 3
+      },
+      {
+        "task_id": "cross_2d_to_color",
+        "category": "cross_domain",
+        "score": 0.3333333333333333,
+        "novelty": 0.599306157327623,
+        "difficulty": 4
+      },
+      {
+        "task_id": "cross_symmetry",
+        "category": "cross_domain",
+        "score": 0.7777777777777778,
+        "novelty": 0.13983869451339603,
+        "difficulty": 5
+      },
+      {
+        "task_id": "counterfactual_gravity",
+        "category": "counterfactual",
+        "score": 0.8666666666666667,
+        "novelty": 1.0,
+        "difficulty": 2
+      },
+      {
+        "task_id": "counterfactual_negative",
+        "category": "counterfactual",
+        "score": 0.5555555555555556,
+        "novelty": 0.29289321881345254,
+        "difficulty": 4
+      },
+      {
+        "task_id": "creative_sort",
+        "category": "creative",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 3
+      },
+      {
+        "task_id": "creative_path",
+        "category": "creative",
+        "score": 0.88,
+        "novelty": 0.9209430584957905,
+        "difficulty": 4
+      }
+    ],
+    "imagination_score": 0.17248376265559495
+  },
+  "Program Synthesis": {
+    "model": "Program Synthesis",
+    "overall_score": 0.4231111111111111,
+    "category_scores": {
+      "pattern_discovery": 0.42,
+      "rule_combination": 0.3333333333333333,
+      "cross_domain": 0.5555555555555556,
+      "counterfactual": 0.7111111111111111,
+      "creative": 0.09555555555555556
+    },
+    "task_results": [
+      {
+        "task_id": "pattern_shear",
+        "category": "pattern_discovery",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 3
+      },
+      {
+        "task_id": "pattern_spiral",
+        "category": "pattern_discovery",
+        "score": 0.84,
+        "novelty": 0.5527864045000421,
+        "difficulty": 4
+      },
+      {
+        "task_id": "rule_color_size",
+        "category": "rule_combination",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 2
+      },
+      {
+        "task_id": "rule_conditional",
+        "category": "rule_combination",
+        "score": 0.6666666666666666,
+        "novelty": 0.2546440075000701,
+        "difficulty": 3
+      },
+      {
+        "task_id": "cross_2d_to_color",
+        "category": "cross_domain",
+        "score": 0.3333333333333333,
+        "novelty": 0.599306157327623,
+        "difficulty": 4
+      },
+      {
+        "task_id": "cross_symmetry",
+        "category": "cross_domain",
+        "score": 0.7777777777777778,
+        "novelty": 0.13983869451339603,
+        "difficulty": 5
+      },
+      {
+        "task_id": "counterfactual_gravity",
+        "category": "counterfactual",
+        "score": 0.8666666666666667,
+        "novelty": 1.0,
+        "difficulty": 2
+      },
+      {
+        "task_id": "counterfactual_negative",
+        "category": "counterfactual",
+        "score": 0.5555555555555556,
+        "novelty": 0.29289321881345254,
+        "difficulty": 4
+      },
+      {
+        "task_id": "creative_sort",
+        "category": "creative",
+        "score": 0.1111111111111111,
+        "novelty": 0.25910333025200827,
+        "difficulty": 3
+      },
+      {
+        "task_id": "creative_path",
+        "category": "creative",
+        "score": 0.08,
+        "novelty": 0.5991081371313633,
+        "difficulty": 4
+      }
+    ],
+    "imagination_score": 0.15645294721938374
+  },
+  "Wake-Sleep": {
+    "model": "Wake-Sleep",
+    "overall_score": 0.17066666666666666,
+    "category_scores": {
+      "pattern_discovery": 0.42,
+      "rule_combination": 0.0,
+      "cross_domain": 0.0,
+      "counterfactual": 0.43333333333333335,
+      "creative": 0.0
+    },
+    "task_results": [
+      {
+        "task_id": "pattern_shear",
+        "category": "pattern_discovery",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 3
+      },
+      {
+        "task_id": "pattern_spiral",
+        "category": "pattern_discovery",
+        "score": 0.84,
+        "novelty": 0.5527864045000421,
+        "difficulty": 4
+      },
+      {
+        "task_id": "rule_color_size",
+        "category": "rule_combination",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 2
+      },
+      {
+        "task_id": "rule_conditional",
+        "category": "rule_combination",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 3
+      },
+      {
+        "task_id": "cross_2d_to_color",
+        "category": "cross_domain",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 4
+      },
+      {
+        "task_id": "cross_symmetry",
+        "category": "cross_domain",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 5
+      },
+      {
+        "task_id": "counterfactual_gravity",
+        "category": "counterfactual",
+        "score": 0.8666666666666667,
+        "novelty": 0.0,
+        "difficulty": 2
+      },
+      {
+        "task_id": "counterfactual_negative",
+        "category": "counterfactual",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 4
+      },
+      {
+        "task_id": "creative_sort",
+        "category": "creative",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 3
+      },
+      {
+        "task_id": "creative_path",
+        "category": "creative",
+        "score": 0.0,
+        "novelty": 0.0,
+        "difficulty": 4
+      }
+    ],
+    "imagination_score": 0.009434221303467384
+  }
+}
