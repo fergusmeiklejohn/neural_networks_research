@@ -257,6 +257,12 @@ Initial target of 70% achieved with 72.8% performance on Imagination Benchmark t
 3. Strategy specialization appears beneficial
 4. Integration effects warrant further investigation
 
+### Critical Insights from Validation (Aug 21, 11:30am):
+1. **Fixed vs Learnable Hypothesis Space**: Our system searches well within its space but can't expand it
+2. **Hybrid Architecture Needed**: LLMs for semantic understanding + Our system for systematic exploration
+3. **Human Parallel**: Like humans learning math primitives, imagination needs learned building blocks
+4. **Core Challenge**: Making the hypothesis space itself learnable, not just searchable
+
 ---
 
 *Status: Initial implementation complete, validation ongoing*

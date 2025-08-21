@@ -1,0 +1,62 @@
+[
+  {
+    "task": "shear",
+    "category": "pattern_discovery",
+    "score": 0.0,
+    "method": "claude_cot"
+  },
+  {
+    "task": "spiral",
+    "category": "pattern_discovery",
+    "score": 0.3,
+    "method": "claude_cot"
+  },
+  {
+    "task": "color_size",
+    "category": "rule_combination",
+    "score": 0.7,
+    "method": "claude_cot"
+  },
+  {
+    "task": "conditional",
+    "category": "rule_combination",
+    "score": 0.6,
+    "method": "claude_cot"
+  },
+  {
+    "task": "2d_to_color",
+    "category": "cross_domain",
+    "score": 0.2,
+    "method": "claude_cot"
+  },
+  {
+    "task": "symmetry",
+    "category": "cross_domain",
+    "score": 0.4,
+    "method": "claude_cot"
+  },
+  {
+    "task": "reverse_gravity",
+    "category": "counterfactual",
+    "score": 0.3,
+    "method": "claude_cot"
+  },
+  {
+    "task": "negative_counting",
+    "category": "counterfactual",
+    "score": 0.5,
+    "method": "claude_cot"
+  },
+  {
+    "task": "creative_sort",
+    "category": "creative",
+    "score": 0.2,
+    "method": "claude_cot"
+  },
+  {
+    "task": "path_finding",
+    "category": "creative",
+    "score": 0.4,
+    "method": "claude_cot"
+  }
+]
