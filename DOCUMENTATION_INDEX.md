@@ -11,10 +11,9 @@
 - **What to Do Next**: Check experiment `CURRENT_STATUS.md` files
 
 ### Current Status & Progress
+- **Latest Research Diary**: `research_diary/2025-08-21_research_diary.md` - Imagination Engine 72.8% achieved
 - **🎯 CRITICAL INSIGHT**: `CORE_INSIGHT_DISTRIBUTION_INVENTION.md` - Distribution invention through imagination (Jan 9, 2025)
 - **Feedback Integration**: `FEEDBACK_INTEGRATION.md` - 100% complete, all reviewer feedback integrated
-- **Research Diary**: `research_diary/` - Daily progress and decisions
-  - Latest: `2025-01-18_research_diary.md` - BREAKTHROUGH: Task-specific primitive discovery for ARC-AGI
 - **OOD Evaluation Paper**: `papers/ood_evaluation_analysis/` - ✅ Fully revised and review-ready
 - **Papers in Progress**: `papers/ood_evaluation_analysis/` - Technical report on interpolation vs extrapolation
 
@@ -38,12 +37,18 @@
 - **Outcome**: Led to creation of Experiment 04 (see below)
 - **Archive**: `experiments/03_binding_architecture/` - Contains all binding work
 
-#### Experiment 04: Distribution Invention Mechanisms ⭐ ACTIVE
+#### Experiment 04: Distribution Invention Mechanisms
 - **Current Status**: `experiments/04_distribution_invention_mechanisms/CURRENT_STATUS.md`
 - **Breakthrough**: Variable binding revealed minimal mechanisms for distribution invention
 - **Approach**: Two-Stage Compiler separating discrete rule extraction from continuous execution
 - **Goal**: Develop general framework for models that think outside their training
-- **Next Step**: Implement Two-Stage Compiler and achieve >90% on binding tasks
+
+#### Experiment 05: Imagination Engine ⭐ ACTIVE
+- **Current Status**: `experiments/05_imagination/CURRENT_STATUS.md`
+- **Achievement**: 72.8% on Imagination Benchmark (Target: 70% ✅)
+- **Key Finding**: Fixed vs learnable hypothesis spaces - we search well but can't expand
+- **Philosophical Insight**: `experiments/05_imagination/PHILOSOPHICAL_INSIGHTS.md`
+- **Next Step**: Build hybrid LLM+Engine system with learnable primitives
 
 ### 🧠 Key Insights & Learning
 
