@@ -1,0 +1,19 @@
+
+================================================================================
+                            BLACK BOX EVALUATION DATA
+================================================================================
+
+This directory contains the ARC-AGI-2 evaluation dataset.
+
+CRITICAL RULES:
+1. DO NOT access this data during development
+2. DO NOT look at these files during training  
+3. DO NOT use this data for validation or debugging
+4. ONLY use for final black-box evaluation
+
+The integrity of our research depends on keeping this data unseen.
+
+To run final evaluation:
+  python run_blackbox_evaluation.py
+
+================================================================================
