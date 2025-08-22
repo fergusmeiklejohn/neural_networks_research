@@ -1,0 +1,147 @@
+{
+  "rounds": [
+    {
+      "round": 1,
+      "tasks_solved": 0,
+      "total_accuracy": 0.0,
+      "strategy_usage": {
+        "hypothesis_generator": 5
+      },
+      "time_taken": 0.0,
+      "task_results": [
+        {
+          "task_id": "task_000",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0029141902923583984
+        },
+        {
+          "task_id": "task_001",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0014691352844238281
+        },
+        {
+          "task_id": "task_002",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0013279914855957031
+        },
+        {
+          "task_id": "task_003",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0012831687927246094
+        },
+        {
+          "task_id": "task_004",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0014638900756835938
+        }
+      ],
+      "solve_rate": 0.0,
+      "avg_accuracy": 0.0
+    },
+    {
+      "round": 2,
+      "tasks_solved": 0,
+      "total_accuracy": 0.0,
+      "strategy_usage": {
+        "hypothesis_generator": 5
+      },
+      "time_taken": 0.0,
+      "task_results": [
+        {
+          "task_id": "task_000",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0013909339904785156
+        },
+        {
+          "task_id": "task_001",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0011289119720458984
+        },
+        {
+          "task_id": "task_002",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0014581680297851562
+        },
+        {
+          "task_id": "task_003",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0013911724090576172
+        },
+        {
+          "task_id": "task_004",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0016109943389892578
+        }
+      ],
+      "solve_rate": 0.0,
+      "avg_accuracy": 0.0
+    }
+  ],
+  "overall_stats": {
+    "total_tasks": 10,
+    "unique_tasks": 5,
+    "total_solved": 0,
+    "overall_solve_rate": 0.0,
+    "overall_accuracy": 0.0,
+    "perfect_solutions": 0,
+    "partial_solutions": 0,
+    "failed_tasks": 5,
+    "error_tasks": 0
+  },
+  "strategy_effectiveness": {
+    "hypothesis_generator": {
+      "attempts": 10,
+      "successes": 0
+    }
+  },
+  "learning_metrics": {
+    "solve_rate_improvement": 0.0,
+    "accuracy_improvement": 0.0,
+    "first_round_solve_rate": 0.0,
+    "last_round_solve_rate": 0.0,
+    "first_round_accuracy": 0.0,
+    "last_round_accuracy": 0.0
+  },
+  "failure_analysis": {
+    "common_errors": {},
+    "missing_capabilities": {},
+    "strategy_failures": {}
+  },
+  "task_categories": {
+    "failed": [
+      "task_000",
+      "task_001",
+      "task_002",
+      "task_003",
+      "task_004",
+      "task_000",
+      "task_001",
+      "task_002",
+      "task_003",
+      "task_004"
+    ],
+    "perfect": [],
+    "partial": [],
+    "error": []
+  }
+}

@@ -216,6 +216,11 @@ class ImaginationEngineV4:
             "conditional_transformation",
             "recursive_patterns",
             "boundary_operations",
+            "symmetry_operations",
+            "counting_arithmetic",
+            "pattern_completion",
+            "grid_subdivision",
+            "color_mapping",
             "trace",
             "search",
             "region_extraction"
@@ -334,12 +339,18 @@ class ImaginationEngineV4:
             ("conditional_transformation", self.invention_strategies.conditional_transformation),
             ("recursive_patterns", self.invention_strategies.recursive_patterns),
             ("boundary_operations", self.invention_strategies.boundary_operations),
+            ("symmetry_operations", self.invention_strategies.symmetry_operations),
+            ("counting_arithmetic", self.invention_strategies.counting_arithmetic),
+            ("pattern_completion", self.invention_strategies.pattern_completion),
+            ("grid_subdivision", self.invention_strategies.grid_subdivision),
+            ("color_mapping", self.invention_strategies.color_mapping),
             ("trace", lambda ex: self.primitive_inventor.invent_primitive(ex, "trace")),
             ("search", lambda ex: self.primitive_inventor.invent_primitive(ex, "search"))
         ]
         
         best_solution = None
         best_accuracy = 0.0
+        partial_solutions = []  # Collect partial solutions for composition
         
         for strategy_name, strategy_func in strategies:
             if time.time() - start_time > timeout * 0.8:
@@ -354,6 +365,12 @@ class ImaginationEngineV4:
                 
                 if invented:
                     train_accuracy = self._evaluate_function(invented.function, train_examples)
+                    strategy_time = time.time() - strategy_start
+                    
+                    # Enhanced debug logging
+                    self._log(f"      Strategy {strategy_name}: accuracy={train_accuracy:.3f}, time={strategy_time:.2f}s")
+                    if hasattr(invented, 'program'):
+                        self._log(f"      Created program: {invented.program[:100]}...")
                     
                     # Record outcome for meta-learning
                     outcome = StrategyOutcome(
@@ -362,10 +379,19 @@ class ImaginationEngineV4:
                         strategy_name=strategy_name,
                         success=train_accuracy > 0.8,
                         accuracy=train_accuracy,
-                        time_taken=time.time() - strategy_start,
+                        time_taken=strategy_time,
                         invention_created=invented.name if hasattr(invented, 'name') else invented.program
                     )
                     self.meta_learner.learn_from_outcome(outcome)
+                    
+                    # Collect partial solutions for composition
+                    if train_accuracy > 0.3:  # Collect moderately successful attempts
+                        partial_solutions.append({
+                            'invented': invented,
+                            'accuracy': train_accuracy,
+                            'strategy_name': strategy_name
+                        })
+                        self._log(f"      Collected partial solution: {strategy_name} ({train_accuracy:.3f})")
                     
                     if train_accuracy > best_accuracy:
                         predictions = [invented.function(inp) for inp in test_inputs]
@@ -386,6 +412,9 @@ class ImaginationEngineV4:
                             self._log(f"    ✓ Perfect solution with {strategy_name}")
                             return best_solution
                 else:
+                    strategy_time = time.time() - strategy_start
+                    self._log(f"      Strategy {strategy_name}: no invention created (time={strategy_time:.2f}s)")
+                    
                     # Record failure for meta-learning
                     outcome = StrategyOutcome(
                         task_id=task_id,
@@ -393,7 +422,7 @@ class ImaginationEngineV4:
                         strategy_name=strategy_name,
                         success=False,
                         accuracy=0.0,
-                        time_taken=time.time() - strategy_start,
+                        time_taken=strategy_time,
                         error_type="no_invention"
                     )
                     self.meta_learner.learn_from_outcome(outcome)
@@ -413,6 +442,14 @@ class ImaginationEngineV4:
                     error_message=str(e)
                 )
                 self.meta_learner.learn_from_outcome(outcome)
+        
+        # Try composition if we have multiple partial solutions but no perfect solution
+        if partial_solutions and (not best_solution or best_solution.accuracy < 0.8):
+            self._log(f"  Trying composition with {len(partial_solutions)} partial solutions...")
+            composition_result = self._try_composition(partial_solutions, train_examples, test_inputs)
+            if composition_result and (not best_solution or composition_result.accuracy > best_solution.accuracy):
+                self._log(f"    ✓ Composition improved accuracy to {composition_result.accuracy:.3f}")
+                return composition_result
         
         return best_solution
     

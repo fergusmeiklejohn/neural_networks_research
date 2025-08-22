@@ -1,0 +1,318 @@
+{
+  "rounds": [
+    {
+      "round": 1,
+      "tasks_solved": 1,
+      "total_accuracy": 1.0,
+      "strategy_usage": {
+        "hypothesis_generator": 14,
+        "invention_geometric_reasoning": 1
+      },
+      "time_taken": 0.0,
+      "task_results": [
+        {
+          "task_id": "task_000",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0023097991943359375
+        },
+        {
+          "task_id": "task_001",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.002598285675048828
+        },
+        {
+          "task_id": "task_002",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0023491382598876953
+        },
+        {
+          "task_id": "task_003",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0022280216217041016
+        },
+        {
+          "task_id": "task_004",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.007646322250366211
+        },
+        {
+          "task_id": "task_005",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.005788326263427734
+        },
+        {
+          "task_id": "task_006",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0013489723205566406
+        },
+        {
+          "task_id": "task_007",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0017871856689453125
+        },
+        {
+          "task_id": "task_008",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.00290679931640625
+        },
+        {
+          "task_id": "task_009",
+          "accuracy": 1.0,
+          "solved": true,
+          "strategy_used": "invention_geometric_reasoning",
+          "time": 0.14005374908447266
+        },
+        {
+          "task_id": "task_010",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.006064176559448242
+        },
+        {
+          "task_id": "task_011",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.03306698799133301
+        },
+        {
+          "task_id": "task_012",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.003926992416381836
+        },
+        {
+          "task_id": "task_013",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.003912925720214844
+        },
+        {
+          "task_id": "task_014",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.02462625503540039
+        }
+      ],
+      "solve_rate": 0.06666666666666667,
+      "avg_accuracy": 0.06666666666666667
+    },
+    {
+      "round": 2,
+      "tasks_solved": 1,
+      "total_accuracy": 1.0,
+      "strategy_usage": {
+        "hypothesis_generator": 14,
+        "memory_retrieval": 1
+      },
+      "time_taken": 0.0,
+      "task_results": [
+        {
+          "task_id": "task_000",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0023670196533203125
+        },
+        {
+          "task_id": "task_001",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.004616975784301758
+        },
+        {
+          "task_id": "task_002",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.004261016845703125
+        },
+        {
+          "task_id": "task_003",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0028340816497802734
+        },
+        {
+          "task_id": "task_004",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.012161016464233398
+        },
+        {
+          "task_id": "task_005",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.006743192672729492
+        },
+        {
+          "task_id": "task_006",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0019960403442382812
+        },
+        {
+          "task_id": "task_007",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0023450851440429688
+        },
+        {
+          "task_id": "task_008",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0036988258361816406
+        },
+        {
+          "task_id": "task_009",
+          "accuracy": 1.0,
+          "solved": true,
+          "strategy_used": "memory_retrieval",
+          "time": 0.0008740425109863281
+        },
+        {
+          "task_id": "task_010",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.00654911994934082
+        },
+        {
+          "task_id": "task_011",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.03240489959716797
+        },
+        {
+          "task_id": "task_012",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0044422149658203125
+        },
+        {
+          "task_id": "task_013",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.0042498111724853516
+        },
+        {
+          "task_id": "task_014",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "hypothesis_generator",
+          "time": 0.02583026885986328
+        }
+      ],
+      "solve_rate": 0.06666666666666667,
+      "avg_accuracy": 0.06666666666666667
+    }
+  ],
+  "overall_stats": {
+    "total_tasks": 30,
+    "unique_tasks": 15,
+    "total_solved": 2,
+    "overall_solve_rate": 0.06666666666666667,
+    "overall_accuracy": 0.06666666666666667,
+    "perfect_solutions": 1,
+    "partial_solutions": 0,
+    "failed_tasks": 14,
+    "error_tasks": 0
+  },
+  "strategy_effectiveness": {
+    "hypothesis_generator": {
+      "attempts": 28,
+      "successes": 0
+    },
+    "invention_geometric_reasoning": {
+      "attempts": 1,
+      "successes": 1
+    },
+    "memory_retrieval": {
+      "attempts": 1,
+      "successes": 1
+    }
+  },
+  "learning_metrics": {
+    "solve_rate_improvement": 0.0,
+    "accuracy_improvement": 0.0,
+    "first_round_solve_rate": 0.06666666666666667,
+    "last_round_solve_rate": 0.06666666666666667,
+    "first_round_accuracy": 0.06666666666666667,
+    "last_round_accuracy": 0.06666666666666667
+  },
+  "failure_analysis": {
+    "common_errors": {},
+    "missing_capabilities": {},
+    "strategy_failures": {}
+  },
+  "task_categories": {
+    "failed": [
+      "task_000",
+      "task_001",
+      "task_002",
+      "task_003",
+      "task_004",
+      "task_005",
+      "task_006",
+      "task_007",
+      "task_008",
+      "task_010",
+      "task_011",
+      "task_012",
+      "task_013",
+      "task_014",
+      "task_000",
+      "task_001",
+      "task_002",
+      "task_003",
+      "task_004",
+      "task_005",
+      "task_006",
+      "task_007",
+      "task_008",
+      "task_010",
+      "task_011",
+      "task_012",
+      "task_013",
+      "task_014"
+    ],
+    "perfect": [
+      "task_009",
+      "task_009"
+    ],
+    "partial": [],
+    "error": []
+  }
+}

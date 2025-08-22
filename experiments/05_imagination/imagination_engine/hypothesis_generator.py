@@ -38,6 +38,7 @@ class Hypothesis:
     transform_fn: Callable
     confidence: float = 0.0
     evidence: List[bool] = None
+    score: float = 0.0
 
     def __post_init__(self):
         if self.evidence is None:

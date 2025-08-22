@@ -924,3 +924,245 @@ class InventionStrategies:
             )
         
         return None
+    
+    def symmetry_operations(self, examples):
+        """Strategy: Try various symmetry operations (reflection, rotation)."""
+        
+        if not examples:
+            return None
+        
+        # Try horizontal reflection
+        def horizontal_reflection(grid: np.ndarray) -> np.ndarray:
+            return np.fliplr(grid)
+        
+        score = self._validate(horizontal_reflection, examples)
+        if score > 0.7:
+            return InventedPrimitive(
+                name="horizontal_reflection",
+                program="Reflect grid horizontally (left-right)",
+                function=horizontal_reflection,
+                atomic_sequence=["flip_horizontal"],
+                score=score,
+                invention_time=0.0
+            )
+        
+        # Try vertical reflection
+        def vertical_reflection(grid: np.ndarray) -> np.ndarray:
+            return np.flipud(grid)
+        
+        score = self._validate(vertical_reflection, examples)
+        if score > 0.7:
+            return InventedPrimitive(
+                name="vertical_reflection",
+                program="Reflect grid vertically (up-down)",
+                function=vertical_reflection,
+                atomic_sequence=["flip_vertical"],
+                score=score,
+                invention_time=0.0
+            )
+        
+        # Try 90-degree rotation
+        def rotate_90(grid: np.ndarray) -> np.ndarray:
+            return np.rot90(grid, k=1)
+        
+        score = self._validate(rotate_90, examples)
+        if score > 0.7:
+            return InventedPrimitive(
+                name="rotate_90",
+                program="Rotate grid 90 degrees clockwise",
+                function=rotate_90,
+                atomic_sequence=["rotate"],
+                score=score,
+                invention_time=0.0
+            )
+        
+        return None
+    
+    def counting_arithmetic(self, examples):
+        """Strategy: Try counting objects and arithmetic operations."""
+        
+        if not examples:
+            return None
+        
+        # Try counting objects and filling based on count
+        def count_and_fill(grid: np.ndarray) -> np.ndarray:
+            unique_colors = np.unique(grid)
+            non_bg_colors = [c for c in unique_colors if c != 0]
+            
+            if len(non_bg_colors) == 0:
+                return grid.copy()
+            
+            # Count objects of each color
+            result = grid.copy()
+            h, w = grid.shape
+            
+            for color in non_bg_colors:
+                count = np.sum(grid == color)
+                
+                # Simple pattern: add count indicator
+                if count > 0 and count < min(h, w):
+                    for i in range(min(count, h)):
+                        if result[i, 0] == 0:
+                            result[i, 0] = color
+            
+            return result
+        
+        score = self._validate(count_and_fill, examples)
+        if score > 0.5:
+            return InventedPrimitive(
+                name="count_and_fill",
+                program="Count objects and fill based on count",
+                function=count_and_fill,
+                atomic_sequence=["count", "fill"],
+                score=score,
+                invention_time=0.0
+            )
+        
+        # Try arithmetic scaling
+        def arithmetic_scale(grid: np.ndarray) -> np.ndarray:
+            result = grid.copy()
+            unique_vals = np.unique(grid)
+            
+            # Try doubling non-zero values
+            for val in unique_vals:
+                if val > 0 and val < 5:  # Only scale small values
+                    mask = grid == val
+                    if np.any(mask):
+                        new_val = min(val * 2, 9)  # Cap at 9 for ARC
+                        result[mask] = new_val
+            
+            return result
+        
+        score = self._validate(arithmetic_scale, examples)
+        if score > 0.5:
+            return InventedPrimitive(
+                name="arithmetic_scale",
+                program="Scale color values arithmetically",
+                function=arithmetic_scale,
+                atomic_sequence=["multiply"],
+                score=score,
+                invention_time=0.0
+            )
+        
+        return None
+    
+    def pattern_completion(self, examples):
+        """Strategy: Complete partial patterns (grids, sequences, symmetries)."""
+        
+        if not examples:
+            return None
+        
+        # Try completing checkerboard patterns
+        def complete_checkerboard(grid: np.ndarray) -> np.ndarray:
+            result = grid.copy()
+            h, w = grid.shape
+            
+            # Detect and complete checkerboard pattern
+            for i in range(h):
+                for j in range(w):
+                    if result[i, j] == 0:  # Empty cell
+                        # Check if it should be filled based on neighbors
+                        expected_val = ((i + j) % 2) + 1
+                        # Check if neighbors follow this pattern
+                        neighbors_match = False
+                        if i > 0 and result[i-1, j] != 0:
+                            neighbors_match = True
+                        if j > 0 and result[i, j-1] != 0:
+                            neighbors_match = True
+                        
+                        if neighbors_match:
+                            result[i, j] = expected_val
+            
+            return result
+        
+        score = self._validate(complete_checkerboard, examples)
+        if score > 0.6:
+            return InventedPrimitive(
+                name="complete_checkerboard",
+                program="Complete checkerboard pattern",
+                function=complete_checkerboard,
+                atomic_sequence=["detect_pattern", "fill"],
+                score=score,
+                invention_time=0.0
+            )
+        
+        return None
+    
+    def grid_subdivision(self, examples):
+        """Strategy: Divide grid into regions and transform each."""
+        
+        if not examples:
+            return None
+        
+        # Try quadrant-based transformation
+        def transform_quadrants(grid: np.ndarray) -> np.ndarray:
+            result = grid.copy()
+            h, w = grid.shape
+            mid_h, mid_w = h // 2, w // 2
+            
+            # Transform each quadrant differently
+            # Top-right: increment colors
+            for i in range(mid_h):
+                for j in range(mid_w, w):
+                    if result[i, j] > 0:
+                        result[i, j] = min(result[i, j] + 1, 9)
+            
+            # Bottom-left: double colors
+            for i in range(mid_h, h):
+                for j in range(mid_w):
+                    if result[i, j] > 0:
+                        result[i, j] = min(result[i, j] * 2, 9)
+            
+            return result
+        
+        score = self._validate(transform_quadrants, examples)
+        if score > 0.5:
+            return InventedPrimitive(
+                name="transform_quadrants",
+                program="Transform grid quadrants differently",
+                function=transform_quadrants,
+                atomic_sequence=["divide_grid", "transform_region"],
+                score=score,
+                invention_time=0.0
+            )
+        
+        return None
+    
+    def color_mapping(self, examples):
+        """Strategy: Map colors based on rules."""
+        
+        if not examples:
+            return None
+        
+        # Try color replacement mapping
+        def color_replacement(grid: np.ndarray) -> np.ndarray:
+            result = grid.copy()
+            
+            # Learn color mapping from first example
+            if len(examples) > 0:
+                inp, out = examples[0]
+                # Build color map
+                color_map = {}
+                for i in range(min(inp.shape[0], out.shape[0])):
+                    for j in range(min(inp.shape[1], out.shape[1])):
+                        if inp[i, j] != 0 and inp[i, j] != out[i, j]:
+                            color_map[inp[i, j]] = out[i, j]
+                
+                # Apply mapping
+                for old_color, new_color in color_map.items():
+                    result[grid == old_color] = new_color
+            
+            return result
+        
+        score = self._validate(color_replacement, examples)
+        if score > 0.7:
+            return InventedPrimitive(
+                name="color_replacement",
+                program="Replace colors based on mapping",
+                function=color_replacement,
+                atomic_sequence=["map_colors"],
+                score=score,
+                invention_time=0.0
+            )
+        
+        return None
