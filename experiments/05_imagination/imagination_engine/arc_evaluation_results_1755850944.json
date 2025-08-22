@@ -1,0 +1,139 @@
+{
+  "total_tasks": 10,
+  "successful": 4,
+  "by_strategy": {
+    "invention_trace": 5,
+    "failed": 1,
+    "invention_geometric_reasoning": 3,
+    "invention_pattern_decomposition": 1
+  },
+  "by_accuracy": {
+    "perfect": 4,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "failed": 6
+  },
+  "timing": {
+    "total_time": 0.12422990798950195,
+    "avg_time": 0.012422990798950196,
+    "max_time": 0.07255315780639648,
+    "min_time": 0.0002028942108154297
+  },
+  "memory_usage": {
+    "hits": 0,
+    "new_inventions": 9,
+    "adaptations": 0
+  },
+  "detailed_results": [
+    {
+      "task": "test_task_000",
+      "accuracy": 0.0,
+      "strategy": "invention_trace",
+      "time": 0.07255315780639648,
+      "operations": 2,
+      "invention_used": null,
+      "new_invention": "invented_1"
+    },
+    {
+      "task": "test_task_001",
+      "accuracy": 1.0,
+      "strategy": "invention_trace",
+      "time": 0.00043964385986328125,
+      "operations": 1,
+      "invention_used": null,
+      "new_invention": "invented_2"
+    },
+    {
+      "task": "test_task_002",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0014240741729736328,
+      "operations": 0,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task": "test_task_003",
+      "accuracy": 1.0,
+      "strategy": "invention_geometric_reasoning",
+      "time": 0.0002028942108154297,
+      "operations": 2,
+      "invention_used": null,
+      "new_invention": "rotate_180"
+    },
+    {
+      "task": "test_task_004",
+      "accuracy": 0.0,
+      "strategy": "invention_geometric_reasoning",
+      "time": 0.00026106834411621094,
+      "operations": 2,
+      "invention_used": null,
+      "new_invention": "draw_lines_through_points"
+    },
+    {
+      "task": "test_task_005",
+      "accuracy": 0.0,
+      "strategy": "invention_trace",
+      "time": 0.0003428459167480469,
+      "operations": 1,
+      "invention_used": null,
+      "new_invention": "invented_3"
+    },
+    {
+      "task": "test_task_006",
+      "accuracy": 1.0,
+      "strategy": "invention_geometric_reasoning",
+      "time": 0.00022125244140625,
+      "operations": 3,
+      "invention_used": null,
+      "new_invention": "rotate_270"
+    },
+    {
+      "task": "test_task_007",
+      "accuracy": 0.0,
+      "strategy": "invention_trace",
+      "time": 0.0003287792205810547,
+      "operations": 3,
+      "invention_used": null,
+      "new_invention": "invented_4"
+    },
+    {
+      "task": "test_task_008",
+      "accuracy": 0.0,
+      "strategy": "invention_trace",
+      "time": 0.00030303001403808594,
+      "operations": 2,
+      "invention_used": null,
+      "new_invention": "invented_5"
+    },
+    {
+      "task": "test_task_009",
+      "accuracy": 1.0,
+      "strategy": "invention_pattern_decomposition",
+      "time": 0.00029015541076660156,
+      "operations": 3,
+      "invention_used": null,
+      "new_invention": "pattern_decomposed"
+    }
+  ],
+  "memory_stats": {
+    "total_inventions": 9,
+    "total_stored": 9,
+    "total_retrieved": 27,
+    "cache_hits": 0,
+    "cache_hit_rate": 0.0,
+    "by_type": {
+      "color_mapping": 6,
+      "compositional": 3
+    },
+    "by_strategy": {
+      "trace": 5,
+      "geometric_reasoning": 3,
+      "pattern_decomposition": 1
+    },
+    "avg_accuracy": 1.0,
+    "avg_operation_count": 2.111111111111111,
+    "avg_generalization": 0.7
+  }
+}

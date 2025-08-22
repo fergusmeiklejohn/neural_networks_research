@@ -1,0 +1,20 @@
+[
+  {
+    "name": "compound_fill_enclosed_2_3_then_map_2_to_0",
+    "description": "Learned sequence: fill_enclosed_2_3(boundary=2, fill=3) -> map_2_to_0(from=2, to=0)",
+    "component_names": [
+      "fill_enclosed_2_3",
+      "map_2_to_0"
+    ],
+    "task_signatures": [
+      {
+        "input_shape": [
+          15,
+          15
+        ],
+        "output_shape": [
+          15,
+          15
+        ],
+        "input_colors": [
+          

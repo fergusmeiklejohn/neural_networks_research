@@ -1,0 +1,73 @@
+{
+  "timestamp": "2025-08-22T11:43:22.856435",
+  "training_history": [
+    0.5398876139669841,
+    0.5392572149968307,
+    0.539294563269473,
+    0.5393339410040379,
+    0.5393533867988847,
+    0.5394802022309398,
+    0.5393533867988847,
+    0.5393533867988847,
+    0.5391092691518259
+  ],
+  "validation_history": [
+    0.48993794281838243,
+    0.490530535410975,
+    0.490530535410975,
+    0.490530535410975,
+    0.490530535410975,
+    0.490530535410975,
+    0.48969141504060465,
+    0.490530535410975,
+    0.490530535410975
+  ],
+  "memory_stats": {
+    "total_transforms": 68,
+    "total_stored": 62,
+    "total_retrieved": 270000,
+    "total_composed": 0,
+    "average_performance": 0.8900807041767282,
+    "average_usage": 4009.0,
+    "type_distribution": {
+      "basic": 1,
+      "spatial": 2,
+      "rotation": 1,
+      "reflection": 1,
+      "scaling": 1,
+      "unknown": 62
+    },
+    "capacity_used": 0.00068
+  },
+  "system_stats": {
+    "tasks_solved": 5750,
+    "transforms_discovered": 2633,
+    "total_reasoning_cycles": 41307,
+    "average_cycles": 7.183826086956522,
+    "memory_stats": {
+      "total_transforms": 68,
+      "total_stored": 62,
+      "total_retrieved": 270000,
+      "total_composed": 0,
+      "average_performance": 0.8900807041767282,
+      "average_usage": 4009.0,
+      "type_distribution": {
+        "basic": 1,
+        "spatial": 2,
+        "rotation": 1,
+        "reflection": 1,
+        "scaling": 1,
+        "unknown": 62
+      },
+      "capacity_used": 0.00068
+    },
+    "act_stats": {
+      "average_cycles": 8.873055486232426,
+      "std_cycles": 9.398025068655729,
+      "average_confidence": 0.6408103591924436,
+      "min_cycles": 0,
+      "max_cycles": 49,
+      "total_decisions": 48084
+    }
+  }
+}

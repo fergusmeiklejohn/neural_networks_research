@@ -1,0 +1,53 @@
+{
+  "inventions": [
+    {
+      "invention_id": "inv_0_1755851126",
+      "name": "draw_lines_through_points",
+      "program_description": "Draw lines through colored points",
+      "atomic_sequence": [
+        "find_points",
+        "draw_lines"
+      ],
+      "invention_time": 0.00011301040649414062,
+      "strategy_used": "geometric_reasoning",
+      "task_signature": {
+        "input_shape": [
+          9,
+          9
+        ],
+        "output_shape": [
+          9,
+          9
+        ],
+        "input_colors": [
+          0.0,
+          7.0,
+          8.0
+        ],
+        "output_colors": [
+          0.0,
+          2.0,
+          7.0,
+          8.0
+        ],
+        "transformation_type": "color_mapping",
+        "has_objects": true,
+        "has_patterns": false,
+        "has_symmetry": false
+      },
+      "examples_hash": "958e24563dd666c3dfbba6d38d4b0362",
+      "accuracy": 1.0,
+      "operation_count": 2,
+      "generalization_score": 0.7,
+      "usage_count": 11,
+      "success_count": 0,
+      "last_used": 1755851184.8864572,
+      "_function": null
+    }
+  ],
+  "statistics": {
+    "total_stored": 0,
+    "total_retrieved": 0,
+    "cache_hits": 1
+  }
+}

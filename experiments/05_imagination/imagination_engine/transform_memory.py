@@ -203,7 +203,7 @@ class TransformMemory:
     def retrieve(
         self,
         task_encoding: np.ndarray,
-        k: int = 5
+        k: int = 10
     ) -> List[StoredTransform]:
         """Retrieve k most relevant transforms for a task."""
         if not self.transforms:

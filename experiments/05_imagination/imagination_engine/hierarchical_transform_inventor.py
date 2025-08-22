@@ -60,7 +60,7 @@ class HighLevelPlanner:
     Operates at a slow timescale, generating abstract strategies for transformation.
     """
     
-    def __init__(self, hidden_dim: int = 512, max_steps: int = 8, n_concepts: int = 64):
+    def __init__(self, hidden_dim: int = 1024, max_steps: int = 20, n_concepts: int = 256):
         self.hidden_dim = hidden_dim
         self.max_steps = max_steps
         self.n_concepts = n_concepts
@@ -185,7 +185,7 @@ class LowLevelExecutor:
     Operates at a fast timescale, implementing the abstract plans from the planner.
     """
     
-    def __init__(self, hidden_dim: int = 256, exec_steps: int = 32, n_primitives: int = 128):
+    def __init__(self, hidden_dim: int = 512, exec_steps: int = 100, n_primitives: int = 512):
         self.hidden_dim = hidden_dim
         self.exec_steps = exec_steps
         self.n_primitives = n_primitives

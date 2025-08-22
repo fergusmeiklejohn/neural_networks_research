@@ -1,0 +1,67 @@
+{
+  "rounds": [
+    {
+      "round": 1,
+      "tasks_solved": 0,
+      "total_accuracy": 0.0,
+      "strategy_usage": {},
+      "time_taken": 0.0,
+      "task_results": [
+        {
+          "task_id": "task_000",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "error",
+          "time": 0.0,
+          "error": "ImaginationEngineV4.solve() got an unexpected keyword argument 'task_id'"
+        },
+        {
+          "task_id": "task_001",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "error",
+          "time": 0.0,
+          "error": "ImaginationEngineV4.solve() got an unexpected keyword argument 'task_id'"
+        },
+        {
+          "task_id": "task_002",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "error",
+          "time": 0.0,
+          "error": "ImaginationEngineV4.solve() got an unexpected keyword argument 'task_id'"
+        }
+      ],
+      "solve_rate": 0.0,
+      "avg_accuracy": 0.0
+    }
+  ],
+  "overall_stats": {
+    "total_tasks": 3,
+    "unique_tasks": 3,
+    "total_solved": 0,
+    "overall_solve_rate": 0.0,
+    "overall_accuracy": 0.0,
+    "perfect_solutions": 0,
+    "partial_solutions": 0,
+    "failed_tasks": 0,
+    "error_tasks": 3
+  },
+  "strategy_effectiveness": {},
+  "learning_metrics": {},
+  "failure_analysis": {
+    "common_errors": {},
+    "missing_capabilities": {},
+    "strategy_failures": {}
+  },
+  "task_categories": {
+    "error": [
+      "task_000",
+      "task_001",
+      "task_002"
+    ],
+    "perfect": [],
+    "partial": [],
+    "failed": []
+  }
+}

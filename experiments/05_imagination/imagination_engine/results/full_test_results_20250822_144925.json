@@ -1,0 +1,1039 @@
+{
+  "metadata": {
+    "total_tasks": 100,
+    "total_time_seconds": 4.873708009719849,
+    "avg_time_per_task": 0.04873708009719849,
+    "use_compounds": true,
+    "timestamp": "2025-08-22T14:49:25.871036"
+  },
+  "overall_performance": {
+    "tasks_solved": 20,
+    "solve_rate": 0.2,
+    "tasks_partial": 36,
+    "average_accuracy": 0.4820920176455115,
+    "perfect_solutions": 1
+  },
+  "performance_by_type": {
+    "error": {
+      "total": 44,
+      "solved": 0,
+      "solve_rate": 0.0,
+      "avg_accuracy": 0.0
+    },
+    "color_mapping": {
+      "total": 21,
+      "solved": 8,
+      "solve_rate": 0.38095238095238093,
+      "avg_accuracy": 0.8624110220723302
+    },
+    "object_duplication": {
+      "total": 8,
+      "solved": 2,
+      "solve_rate": 0.25,
+      "avg_accuracy": 0.8577011365488023
+    },
+    "other": {
+      "total": 25,
+      "solved": 10,
+      "solve_rate": 0.4,
+      "avg_accuracy": 0.8772562261234501
+    },
+    "resize": {
+      "total": 2,
+      "solved": 0,
+      "solve_rate": 0.0,
+      "avg_accuracy": 0.6527777777777778
+    }
+  },
+  "overfitting_analysis": {
+    "first_half_solved": 12,
+    "first_half_rate": 0.24,
+    "second_half_solved": 8,
+    "second_half_rate": 0.16,
+    "performance_change": -0.07999999999999999
+  },
+  "top_primitives": [
+    [
+      "fill_enclosed_1_2(boundary=1, fill=2)",
+      8
+    ],
+    [
+      "fill_enclosed_2_3(boundary=2, fill=3)",
+      5
+    ],
+    [
+      "fill_enclosed_2_4(boundary=2, fill=4)",
+      5
+    ],
+    [
+      "fill_enclosed_2_1(boundary=2, fill=1)",
+      3
+    ],
+    [
+      "fill_enclosed_1_3(boundary=1, fill=3)",
+      2
+    ],
+    [
+      "fill_enclosed_2_8(boundary=2, fill=8)",
+      2
+    ],
+    [
+      "fill_enclosed_2_5(boundary=2, fill=5)",
+      2
+    ],
+    [
+      "swap_colors_1_2(color1=1, color2=2) -> map_2_to_0(from=2, to=0)",
+      1
+    ],
+    [
+      "fill_enclosed_6_3(boundary=6, fill=3)",
+      1
+    ],
+    [
+      "fill_enclosed_4_6(boundary=4, fill=6)",
+      1
+    ],
+    [
+      "resize_crop_(4, 4)(shape=(4, 4)) -> map_1_to_0(from=1, to=0) -> map_3_to_0(from=3, to=0)",
+      1
+    ],
+    [
+      "fill_enclosed_3_2(boundary=3, fill=2)",
+      1
+    ],
+    [
+      "swap_colors_1_6(color1=1, color2=6)",
+      1
+    ],
+    [
+      "fill_enclosed_4_2(boundary=4, fill=2)",
+      1
+    ],
+    [
+      "fill_enclosed_5_8(boundary=5, fill=8)",
+      1
+    ],
+    [
+      "fill_enclosed_8_1(boundary=8, fill=1) -> map_1_to_8(from=1, to=8)",
+      1
+    ],
+    [
+      "fill_enclosed_8_1(boundary=8, fill=1)",
+      1
+    ],
+    [
+      "fill_enclosed_2_7(boundary=2, fill=7)",
+      1
+    ],
+    [
+      "fill_enclosed_4_1(boundary=4, fill=1)",
+      1
+    ],
+    [
+      "swap_colors_3_5(color1=3, color2=5) -> map_5_to_0(from=5, to=0) -> flip_h",
+      1
+    ]
+  ],
+  "detailed_results": [
+    {
+      "task_id": "a85d4709",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "c8cbb738",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "8e1813be",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "a699fb00",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.93,
+      "success": true,
+      "solve_time": 0.0014681816101074219,
+      "solution_type": "fill_enclosed_1_2(boundary=1, fill=2)"
+    },
+    {
+      "task_id": "20fb2937",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "5c2c9af4",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "f0afb749",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "44f52bb0",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "94414823",
+      "task_type": "object_duplication",
+      "solved": true,
+      "accuracy": 0.84,
+      "success": false,
+      "solve_time": 0.05048394203186035,
+      "solution_type": "fill_enclosed_2_3(boundary=2, fill=3)"
+    },
+    {
+      "task_id": "23581191",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "dc2e9a9d",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.9285714285714286,
+      "success": true,
+      "solve_time": 0.009070873260498047,
+      "solution_type": "fill_enclosed_1_3(boundary=1, fill=3)"
+    },
+    {
+      "task_id": "a644e277",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "f83cb3f6",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.8666666666666667,
+      "success": false,
+      "solve_time": 0.04071211814880371,
+      "solution_type": "swap_colors_1_2(color1=1, color2=2) -> map_2_to_0(from=2, to=0)"
+    },
+    {
+      "task_id": "baf41dbf",
+      "task_type": "object_duplication",
+      "solved": true,
+      "accuracy": 0.8161764705882353,
+      "success": false,
+      "solve_time": 0.019500017166137695,
+      "solution_type": "fill_enclosed_6_3(boundary=6, fill=3)"
+    },
+    {
+      "task_id": "6cbe9eb8",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "f0100645",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.6790123456790124,
+      "success": false,
+      "solve_time": 0.023621082305908203,
+      "solution_type": "fill_enclosed_4_6(boundary=4, fill=6)"
+    },
+    {
+      "task_id": "94f9d214",
+      "task_type": "resize",
+      "solved": true,
+      "accuracy": 0.75,
+      "success": false,
+      "solve_time": 0.009559154510498047,
+      "solution_type": "resize_crop_(4, 4)(shape=(4, 4)) -> map_1_to_0(from=1, to=0) -> map_3_to_0(from=3, to=0)"
+    },
+    {
+      "task_id": "93b4f4b3",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "ff72ca3e",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.68,
+      "success": false,
+      "solve_time": 0.04942178726196289,
+      "solution_type": "fill_enclosed_2_4(boundary=2, fill=4)"
+    },
+    {
+      "task_id": "50f325b5",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.9485294117647058,
+      "success": true,
+      "solve_time": 0.02083420753479004,
+      "solution_type": "fill_enclosed_3_2(boundary=3, fill=2)"
+    },
+    {
+      "task_id": "46c35fc7",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.7142857142857143,
+      "success": false,
+      "solve_time": 0.02260613441467285,
+      "solution_type": "swap_colors_1_6(color1=1, color2=6)"
+    },
+    {
+      "task_id": "f9012d9b",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "4258a5f9",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "bdad9b1f",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.8055555555555556,
+      "success": false,
+      "solve_time": 0.012109041213989258,
+      "solution_type": "fill_enclosed_2_4(boundary=2, fill=4)"
+    },
+    {
+      "task_id": "60a26a3e",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.9555555555555556,
+      "success": true,
+      "solve_time": 0.0025360584259033203,
+      "solution_type": "fill_enclosed_1_2(boundary=1, fill=2)"
+    },
+    {
+      "task_id": "14754a24",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.961218836565097,
+      "success": true,
+      "solve_time": 0.009118795394897461,
+      "solution_type": "fill_enclosed_4_2(boundary=4, fill=2)"
+    },
+    {
+      "task_id": "d06dbe63",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.8816568047337278,
+      "success": false,
+      "solve_time": 0.018024921417236328,
+      "solution_type": "fill_enclosed_5_8(boundary=5, fill=8)"
+    },
+    {
+      "task_id": "fc4aaf52",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.8828125,
+      "success": false,
+      "solve_time": 0.03755593299865723,
+      "solution_type": "fill_enclosed_8_1(boundary=8, fill=1) -> map_1_to_8(from=1, to=8)"
+    },
+    {
+      "task_id": "8403a5d5",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "4ff4c9da",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.9753086419753086,
+      "success": true,
+      "solve_time": 0.011166810989379883,
+      "solution_type": "fill_enclosed_8_1(boundary=8, fill=1)"
+    },
+    {
+      "task_id": "305b1341",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "fe45cba4",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.8984375,
+      "success": false,
+      "solve_time": 0.012050867080688477,
+      "solution_type": "fill_enclosed_2_7(boundary=2, fill=7)"
+    },
+    {
+      "task_id": "f9d67f8b",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.8766666666666667,
+      "success": false,
+      "solve_time": 0.21451902389526367,
+      "solution_type": "fill_enclosed_4_1(boundary=4, fill=1)"
+    },
+    {
+      "task_id": "67e8384a",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "8731374e",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "5ffb2104",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.65,
+      "success": false,
+      "solve_time": 0.022812843322753906,
+      "solution_type": "swap_colors_3_5(color1=3, color2=5) -> map_5_to_0(from=5, to=0) -> flip_h"
+    },
+    {
+      "task_id": "25ff71a9",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 1.0,
+      "success": true,
+      "solve_time": 0.006161212921142578,
+      "solution_type": "mirror_vertical -> flip_v"
+    },
+    {
+      "task_id": "d6542281",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.9479166666666666,
+      "success": true,
+      "solve_time": 0.013888835906982422,
+      "solution_type": "fill_enclosed_3_1(boundary=3, fill=1)"
+    },
+    {
+      "task_id": "ecdecbb3",
+      "task_type": "object_duplication",
+      "solved": true,
+      "accuracy": 0.8668730650154799,
+      "success": false,
+      "solve_time": 0.023791790008544922,
+      "solution_type": "fill_enclosed_2_8(boundary=2, fill=8)"
+    },
+    {
+      "task_id": "2037f2c7",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "00dbd492",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.84,
+      "success": false,
+      "solve_time": 0.07945489883422852,
+      "solution_type": "fill_enclosed_2_4(boundary=2, fill=4)"
+    },
+    {
+      "task_id": "9c1e755f",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "37ce87bb",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.9851851851851852,
+      "success": true,
+      "solve_time": 0.002917766571044922,
+      "solution_type": "fill_enclosed_2_5(boundary=2, fill=5)"
+    },
+    {
+      "task_id": "465b7d93",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.86,
+      "success": false,
+      "solve_time": 0.006304740905761719,
+      "solution_type": "swap_colors_2_5(color1=2, color2=5)"
+    },
+    {
+      "task_id": "6e19193c",
+      "task_type": "object_duplication",
+      "solved": true,
+      "accuracy": 0.95,
+      "success": true,
+      "solve_time": 0.0010390281677246094,
+      "solution_type": "fill_enclosed_7_9(boundary=7, fill=9)"
+    },
+    {
+      "task_id": "6a11f6da",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "e760a62e",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.7818877551020408,
+      "success": false,
+      "solve_time": 0.3177449703216553,
+      "solution_type": "fill_enclosed_2_3(boundary=2, fill=3)"
+    },
+    {
+      "task_id": "39e1d7f9",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.9001189060642093,
+      "success": true,
+      "solve_time": 0.04214119911193848,
+      "solution_type": "fill_enclosed_2_3(boundary=2, fill=3)"
+    },
+    {
+      "task_id": "ba97ae07",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.9393939393939394,
+      "success": true,
+      "solve_time": 0.01021122932434082,
+      "solution_type": "fill_enclosed_1_2(boundary=1, fill=2)"
+    },
+    {
+      "task_id": "d93c6891",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.8611111111111112,
+      "success": false,
+      "solve_time": 0.005017757415771484,
+      "solution_type": "swap_colors_5_7(color1=5, color2=7)"
+    },
+    {
+      "task_id": "7bb29440",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "99b1bc43",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "19bb5feb",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "6ad5bdfd",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "77fdfe62",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "50cb2852",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.8186813186813187,
+      "success": false,
+      "solve_time": 0.08960580825805664,
+      "solution_type": "fill_enclosed_1_2(boundary=1, fill=2)"
+    },
+    {
+      "task_id": "cf5fd0ad",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "4c5c2cf0",
+      "task_type": "object_duplication",
+      "solved": true,
+      "accuracy": 0.88,
+      "success": false,
+      "solve_time": 0.07822012901306152,
+      "solution_type": "fill_enclosed_2_1(boundary=2, fill=1)"
+    },
+    {
+      "task_id": "891232d6",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.8533333333333334,
+      "success": false,
+      "solve_time": 0.05135703086853027,
+      "solution_type": "swap_colors_2_3(color1=2, color2=3)"
+    },
+    {
+      "task_id": "d5d6de2d",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "Object of type int64 is not JSON serializable"
+    },
+    {
+      "task_id": "b91ae062",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "d037b0a7",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "93b581b8",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "292dd178",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.8727272727272727,
+      "success": false,
+      "solve_time": 0.0539548397064209,
+      "solution_type": "fill_enclosed_1_2(boundary=1, fill=2)"
+    },
+    {
+      "task_id": "025d127b",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.88,
+      "success": false,
+      "solve_time": 0.017843246459960938,
+      "solution_type": "rotate_object_90(angle=90)"
+    },
+    {
+      "task_id": "1d61978c",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.9921875,
+      "success": true,
+      "solve_time": 0.0069217681884765625,
+      "solution_type": "swap_colors_5_8(color1=5, color2=8)"
+    },
+    {
+      "task_id": "d2abd087",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.88,
+      "success": false,
+      "solve_time": 0.029026031494140625,
+      "solution_type": "swap_colors_1_5(color1=1, color2=5)"
+    },
+    {
+      "task_id": "825aa9e9",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.85,
+      "success": false,
+      "solve_time": 0.04050087928771973,
+      "solution_type": "fill_enclosed_1_2(boundary=1, fill=2)"
+    },
+    {
+      "task_id": "017c7c7b",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "Object of type int64 is not JSON serializable"
+    },
+    {
+      "task_id": "28bf18c6",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "278e5215",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "94be5b80",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.8,
+      "success": false,
+      "solve_time": 0.07065200805664062,
+      "solution_type": "fill_enclosed_2_1(boundary=2, fill=1)"
+    },
+    {
+      "task_id": "df8cc377",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.8496503496503497,
+      "success": false,
+      "solve_time": 0.029033899307250977,
+      "solution_type": "fill_enclosed_1_4(boundary=1, fill=4)"
+    },
+    {
+      "task_id": "ce8d95cc",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "9f236235",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "72a961c9",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.8585858585858586,
+      "success": false,
+      "solve_time": 0.0031099319458007812,
+      "solution_type": "fill_enclosed_1_2(boundary=1, fill=2)"
+    },
+    {
+      "task_id": "c3e719e8",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "db118e2a",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "3d588dc9",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.9765625,
+      "success": true,
+      "solve_time": 0.019189119338989258,
+      "solution_type": "fill_enclosed_1_3(boundary=1, fill=3)"
+    },
+    {
+      "task_id": "264363fd",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.92,
+      "success": true,
+      "solve_time": 0.09739232063293457,
+      "solution_type": "fill_enclosed_2_4(boundary=2, fill=4)"
+    },
+    {
+      "task_id": "6f473927",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "6855a6e4",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.8844444444444445,
+      "success": false,
+      "solve_time": 0.0033838748931884766,
+      "solution_type": "fill_enclosed_2_5(boundary=2, fill=5)"
+    },
+    {
+      "task_id": "f8c80d96",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "9b5080bb",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.9753086419753086,
+      "success": true,
+      "solve_time": 0.027464866638183594,
+      "solution_type": "fill_enclosed_2_1(boundary=2, fill=1)"
+    },
+    {
+      "task_id": "7837ac64",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "13f06aa5",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.8,
+      "success": false,
+      "solve_time": 0.08440399169921875,
+      "solution_type": "fill_enclosed_2_4(boundary=2, fill=4)"
+    },
+    {
+      "task_id": "9473c6fb",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.9351851851851852,
+      "success": true,
+      "solve_time": 0.010365962982177734,
+      "solution_type": "fill_enclosed_7_8(boundary=7, fill=8)"
+    },
+    {
+      "task_id": "a68b268e",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "5c0a986e",
+      "task_type": "object_duplication",
+      "solved": true,
+      "accuracy": 0.94,
+      "success": true,
+      "solve_time": 0.0016832351684570312,
+      "solution_type": "fill_enclosed_1_2(boundary=1, fill=2)"
+    },
+    {
+      "task_id": "890034e9",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.9365079365079365,
+      "success": true,
+      "solve_time": 0.025876760482788086,
+      "solution_type": "fill_enclosed_3_4(boundary=3, fill=4)"
+    },
+    {
+      "task_id": "18419cfa",
+      "task_type": "other",
+      "solved": true,
+      "accuracy": 0.9766483516483516,
+      "success": true,
+      "solve_time": 0.004518032073974609,
+      "solution_type": "fill_enclosed_2_8(boundary=2, fill=8)"
+    },
+    {
+      "task_id": "45bbe264",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.6533333333333333,
+      "success": false,
+      "solve_time": 0.13560175895690918,
+      "solution_type": "fill_enclosed_2_3(boundary=2, fill=3)"
+    },
+    {
+      "task_id": "6773b310",
+      "task_type": "resize",
+      "solved": true,
+      "accuracy": 0.5555555555555556,
+      "success": false,
+      "solve_time": 0.019682884216308594,
+      "solution_type": "resize_crop_(3, 3)(shape=(3, 3)) -> map_6_to_0(from=6, to=0)"
+    },
+    {
+      "task_id": "49d1d64f",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "7c8af763",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "14b8e18c",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.68,
+      "success": false,
+      "solve_time": 0.04431796073913574,
+      "solution_type": "fill_enclosed_2_6(boundary=2, fill=6)"
+    },
+    {
+      "task_id": "f8be4b64",
+      "task_type": "object_duplication",
+      "solved": true,
+      "accuracy": 0.739612188365651,
+      "success": false,
+      "solve_time": 0.14397597312927246,
+      "solution_type": "fill_enclosed_2_3(boundary=2, fill=3)"
+    },
+    {
+      "task_id": "bae5c565",
+      "task_type": "error",
+      "solved": false,
+      "accuracy": 0.0,
+      "success": false,
+      "solve_time": 0.0,
+      "error": "'Hypothesis' object has no attribute 'transform'"
+    },
+    {
+      "task_id": "e7dd8335",
+      "task_type": "color_mapping",
+      "solved": true,
+      "accuracy": 0.898989898989899,
+      "success": false,
+      "solve_time": 0.01208186149597168,
+      "solution_type": "swap_colors_1_2(color1=1, color2=2)"
+    },
+    {
+      "task_id": "6cdd2623",
+      "task_type": "object_duplication",
+      "solved": true,
+      "accuracy": 0.8289473684210527,
+      "success": false,
+      "solve_time": 0.12580299377441406,
+      "solution_type": "swap_colors_1_4(color1=1, color2=4) -> map_2_to_0(from=2, to=0) -> map_1_to_0(from=1, to=0) -> map_8_to_0(from=8, to=0)"
+    }
+  ]
+}

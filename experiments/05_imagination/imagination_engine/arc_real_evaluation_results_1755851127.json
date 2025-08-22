@@ -1,0 +1,193 @@
+{
+  "total_tasks": 20,
+  "successful": 1,
+  "perfect": 1,
+  "partial": 0,
+  "failed": 19,
+  "by_strategy": {
+    "failed": 19,
+    "invention_geometric_reasoning": 1
+  },
+  "by_accuracy": {
+    "100%": 1,
+    "80-99%": 0,
+    "50-79%": 0,
+    "1-49%": 0,
+    "0%": 19
+  },
+  "timing": {
+    "total_time": 0.16550993919372559,
+    "avg_time": 0.008275496959686279,
+    "max_time": 0.06839179992675781,
+    "min_time": 0.0003769397735595703
+  },
+  "memory_performance": {
+    "initial_inventions": 0,
+    "final_inventions": 1,
+    "memory_hits": 0,
+    "new_inventions": 1,
+    "cache_hit_rate": 0.0
+  },
+  "task_details": [
+    {
+      "task_id": "a85d4709",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0012080669403076172,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "c8cbb738",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0006000995635986328,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "8e1813be",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0004680156707763672,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "a699fb00",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0007748603820800781,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "20fb2937",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.005171775817871094,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "5c2c9af4",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0026962757110595703,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "f0afb749",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0003769397735595703,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "44f52bb0",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0005650520324707031,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "94414823",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0011508464813232422,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "23581191",
+      "accuracy": 1.0,
+      "strategy": "invention_geometric_reasoning",
+      "time": 0.06839179992675781,
+      "invention_used": null,
+      "new_invention": "draw_lines_through_points"
+    },
+    {
+      "task_id": "dc2e9a9d",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.003078937530517578,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "a644e277",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.028242111206054688,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "f83cb3f6",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0016887187957763672,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "baf41dbf",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0015568733215332031,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "6cbe9eb8",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.011085033416748047,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "f0100645",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.003206968307495117,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "94f9d214",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0007081031799316406,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "93b4f4b3",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0018668174743652344,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "ff72ca3e",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.001058816909790039,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "50f325b5",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.019416093826293945,
+      "invention_used": null,
+      "new_invention": null
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "total_tasks": 3,
+  "successful": 0,
+  "perfect": 0,
+  "partial": 0,
+  "failed": 3,
+  "by_strategy": {
+    "failed": 3
+  },
+  "by_accuracy": {
+    "100%": 0,
+    "80-99%": 0,
+    "50-79%": 0,
+    "1-49%": 0,
+    "0%": 3
+  },
+  "timing": {
+    "total_time": 0.09005904197692871,
+    "avg_time": 0.030019680658976238,
+    "max_time": 0.07206296920776367,
+    "min_time": 0.0005869865417480469
+  },
+  "memory_performance": {
+    "initial_inventions": 1,
+    "final_inventions": 1,
+    "memory_hits": 0,
+    "new_inventions": 0,
+    "cache_hit_rate": 0.0
+  },
+  "task_details": [
+    {
+      "task_id": "a85d4709",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.07206296920776367,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "c8cbb738",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0007276535034179688,
+      "invention_used": null,
+      "new_invention": null
+    },
+    {
+      "task_id": "8e1813be",
+      "accuracy": 0.0,
+      "strategy": "failed",
+      "time": 0.0005869865417480469,
+      "invention_used": null,
+      "new_invention": null
+    }
+  ]
+}

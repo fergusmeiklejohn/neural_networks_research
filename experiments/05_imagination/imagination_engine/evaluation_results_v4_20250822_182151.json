@@ -1,0 +1,153 @@
+{
+  "rounds": [
+    {
+      "round": 1,
+      "tasks_solved": 0,
+      "total_accuracy": 0.0,
+      "strategy_usage": {
+        "failed": 4,
+        "program_synthesis": 1
+      },
+      "time_taken": 0.0,
+      "task_results": [
+        {
+          "task_id": "task_000",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "failed",
+          "time": 0.010476112365722656
+        },
+        {
+          "task_id": "task_001",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "failed",
+          "time": 0.07806181907653809
+        },
+        {
+          "task_id": "task_002",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "failed",
+          "time": 0.11566472053527832
+        },
+        {
+          "task_id": "task_003",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "program_synthesis",
+          "time": 0.007526874542236328
+        },
+        {
+          "task_id": "task_004",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "failed",
+          "time": 0.09841799736022949
+        }
+      ],
+      "solve_rate": 0.0,
+      "avg_accuracy": 0.0
+    },
+    {
+      "round": 2,
+      "tasks_solved": 0,
+      "total_accuracy": 0.0,
+      "strategy_usage": {
+        "failed": 4,
+        "program_synthesis": 1
+      },
+      "time_taken": 0.0,
+      "task_results": [
+        {
+          "task_id": "task_000",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "failed",
+          "time": 0.00834202766418457
+        },
+        {
+          "task_id": "task_001",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "failed",
+          "time": 0.0774378776550293
+        },
+        {
+          "task_id": "task_002",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "failed",
+          "time": 0.1140129566192627
+        },
+        {
+          "task_id": "task_003",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "program_synthesis",
+          "time": 0.007606983184814453
+        },
+        {
+          "task_id": "task_004",
+          "accuracy": 0.0,
+          "solved": false,
+          "strategy_used": "failed",
+          "time": 0.09797096252441406
+        }
+      ],
+      "solve_rate": 0.0,
+      "avg_accuracy": 0.0
+    }
+  ],
+  "overall_stats": {
+    "total_tasks": 10,
+    "unique_tasks": 5,
+    "total_solved": 0,
+    "overall_solve_rate": 0.0,
+    "overall_accuracy": 0.0,
+    "perfect_solutions": 0,
+    "partial_solutions": 0,
+    "failed_tasks": 5,
+    "error_tasks": 0
+  },
+  "strategy_effectiveness": {
+    "failed": {
+      "attempts": 8,
+      "successes": 0
+    },
+    "program_synthesis": {
+      "attempts": 2,
+      "successes": 0
+    }
+  },
+  "learning_metrics": {
+    "solve_rate_improvement": 0.0,
+    "accuracy_improvement": 0.0,
+    "first_round_solve_rate": 0.0,
+    "last_round_solve_rate": 0.0,
+    "first_round_accuracy": 0.0,
+    "last_round_accuracy": 0.0
+  },
+  "failure_analysis": {
+    "common_errors": {},
+    "missing_capabilities": {},
+    "strategy_failures": {}
+  },
+  "task_categories": {
+    "failed": [
+      "task_000",
+      "task_001",
+      "task_002",
+      "task_003",
+      "task_004",
+      "task_000",
+      "task_001",
+      "task_002",
+      "task_003",
+      "task_004"
+    ],
+    "perfect": [],
+    "partial": [],
+    "error": []
+  }
+}

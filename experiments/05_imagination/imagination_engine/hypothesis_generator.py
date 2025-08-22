@@ -264,7 +264,7 @@ class MinimalHypothesisGenerator:
             hypothesis = Hypothesis(
                 transform_type="systematic_shear",
                 parameters={"x_shear": x_shear, "y_shear": y_shear},
-                transform_fn=self._apply_systematic_shear,
+                transform_fn=lambda g, xs=x_shear, ys=y_shear: self._apply_systematic_shear(g, xs, ys),
             )
             hypotheses.append(hypothesis)
 

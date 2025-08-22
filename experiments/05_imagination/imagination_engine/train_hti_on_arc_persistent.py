@@ -25,12 +25,14 @@ from transform_memory import StoredTransform
 class PersistentHTITrainer:
     """Trainer for HTI with persistent memory across sessions."""
     
-    def __init__(self, checkpoint_dir: str = "checkpoints"):
+    def __init__(self, checkpoint_dir: str = "checkpoints", memory_capacity: int = 5000):
         self.checkpoint_dir = Path(checkpoint_dir)
         self.checkpoint_dir.mkdir(exist_ok=True)
         
-        # Initialize HTI
+        # Initialize HTI with larger memory capacity
         self.hti = IntegratedHTI()
+        # Override default memory capacity
+        self.hti.memory.capacity = memory_capacity
         
         # Try to load existing memory
         self.load_latest_memory()
@@ -96,12 +98,28 @@ class PersistentHTITrainer:
             val_score = self.validation_history[-1] if self.validation_history else 0
             filename = f"hti_checkpoint_{timestamp}_val_{val_score:.3f}.json"
         
+        # Convert numpy types to Python native types for JSON serialization
+        def convert_to_native(obj):
+            """Recursively convert numpy types to native Python types."""
+            if isinstance(obj, dict):
+                return {k: convert_to_native(v) for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [convert_to_native(v) for v in obj]
+            elif isinstance(obj, (np.integer, np.int64, np.int32)):
+                return int(obj)
+            elif isinstance(obj, (np.floating, np.float64, np.float32)):
+                return float(obj)
+            elif isinstance(obj, np.ndarray):
+                return obj.tolist()
+            else:
+                return obj
+        
         checkpoint = {
             'timestamp': datetime.now().isoformat(),
             'training_history': self.training_history,
             'validation_history': self.validation_history,
-            'memory_stats': self.hti.memory.get_statistics(),
-            'system_stats': self.hti.get_statistics()
+            'memory_stats': convert_to_native(self.hti.memory.get_statistics()),
+            'system_stats': convert_to_native(self.hti.get_statistics())
         }
         
         checkpoint_file = self.checkpoint_dir / filename
@@ -123,29 +141,36 @@ class PersistentHTITrainer:
         total_score = 0.0
         successful_tasks = 0
         
-        for i, task in enumerate(train_tasks):
-            if verbose and i % 10 == 0:
-                print(f"  Training on task {i+1}/{len(train_tasks)}...")
+        # Process in batches for better performance
+        batch_size = 5  # Process multiple tasks together
+        
+        for batch_start in range(0, len(train_tasks), batch_size):
+            batch_end = min(batch_start + batch_size, len(train_tasks))
+            batch_tasks = train_tasks[batch_start:batch_end]
             
-            # Prepare task
-            train_examples, test_examples = prepare_task_for_hti(task)
+            if verbose and batch_start % 50 == 0:
+                print(f"  Training on tasks {batch_start+1}-{batch_end}/{len(train_tasks)}...")
             
-            # Solve with HTI (this updates memory and learns)
-            transform, info = self.hti.solve_with_memory(train_examples, task['id'])
-            
-            # Evaluate on task's test examples
-            task_score = 0.0
-            for test_input, expected in test_examples:
-                predicted = transform(test_input)
-                if predicted.shape == expected.shape:
-                    task_score += np.mean(predicted == expected)
-            
-            if test_examples:
-                task_score /= len(test_examples)
-            
-            total_score += task_score
-            if task_score > 0.5:
-                successful_tasks += 1
+            for task in batch_tasks:
+                # Prepare task
+                train_examples, test_examples = prepare_task_for_hti(task)
+                
+                # Solve with HTI (this updates memory and learns)
+                transform, info = self.hti.solve_with_memory(train_examples, task['id'])
+                
+                # Evaluate on task's test examples
+                task_score = 0.0
+                for test_input, expected in test_examples:
+                    predicted = transform(test_input)
+                    if predicted.shape == expected.shape:
+                        task_score += np.mean(predicted == expected)
+                
+                if test_examples:
+                    task_score /= len(test_examples)
+                
+                total_score += task_score
+                if task_score > 0.5:
+                    successful_tasks += 1
         
         avg_score = total_score / len(train_tasks) if train_tasks else 0.0
         success_rate = successful_tasks / len(train_tasks) if train_tasks else 0.0
@@ -257,16 +282,20 @@ class PersistentHTITrainer:
                 best_file = self.save_checkpoint(f"hti_best_val_{val_score:.3f}.json")
                 print(f"\n🏆 New best model! Validation: {val_score:.1%}")
             
-            # Early stopping check
-            if len(self.validation_history) > 3:
-                recent_scores = self.validation_history[-3:]
+            # Adaptive learning - adjust ACT parameters based on progress
+            if len(self.validation_history) > 2:
+                recent_improvement = self.validation_history[-1] - self.validation_history[-2]
+                if recent_improvement < 0.001:  # Very small improvement
+                    # Increase exploration by adjusting epsilon
+                    self.hti.act.epsilon = min(0.3, self.hti.act.epsilon * 1.1)
+                    print(f"  Adjusted ACT exploration (epsilon): {self.hti.act.epsilon:.4f}")
+            
+            # Early stopping check (increased patience to 10 epochs for deep learning)
+            if len(self.validation_history) > 10:
+                recent_scores = self.validation_history[-10:]
                 if all(s <= recent_scores[0] for s in recent_scores[1:]):
-                    print("\n⚠️ No improvement in 3 epochs")
-                    if epoch < epochs - 1:
-                        response = input("Continue training? (y/n): ")
-                        if response.lower() != 'y':
-                            print("Stopping early.")
-                            break
+                    print("\n⚠️ No improvement in 10 epochs - stopping early")
+                    break
 
 
 def main():
@@ -276,13 +305,13 @@ def main():
     print("HTI TRAINING WITH PERSISTENT MEMORY")
     print("=" * 80)
     
-    # Configuration
-    MAX_TASKS = 200  # Increase gradually
-    EPOCHS = 5
-    VAL_SPLIT = 0.2
+    # Configuration - EXTREME settings for M3 Max with 36GB RAM
+    MAX_TASKS = None  # Use ALL available training tasks
+    EPOCHS = 100  # Much deeper training 
+    VAL_SPLIT = 0.15  # More training data, less validation
     
     # Load training data
-    print(f"\nLoading ARC training data (max {MAX_TASKS} tasks)...")
+    print(f"\nLoading ARC training data {'(ALL tasks)' if MAX_TASKS is None else f'(max {MAX_TASKS} tasks)'}...")
     try:
         all_tasks = load_arc_training_data(max_tasks=MAX_TASKS)
     except FileNotFoundError:
@@ -294,8 +323,8 @@ def main():
     print("\nSplitting data...")
     train_tasks, val_tasks = split_training_data(all_tasks, val_split=VAL_SPLIT)
     
-    # Create trainer with persistent memory
-    trainer = PersistentHTITrainer(checkpoint_dir="checkpoints")
+    # Create trainer with MASSIVE memory capacity for M3 Max
+    trainer = PersistentHTITrainer(checkpoint_dir="checkpoints", memory_capacity=100000)
     
     # Train
     trainer.train(

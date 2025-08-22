@@ -37,7 +37,7 @@ class IntegratedHTI:
         # Core components
         self.hti = HierarchicalTransformInventor()
         self.memory = TransformMemory(capacity=1000)
-        self.act = AdaptiveComputationTime(max_segments=16)
+        self.act = AdaptiveComputationTime(max_segments=50)
         
         # Learning statistics
         self.tasks_solved = 0
@@ -64,8 +64,8 @@ class IntegratedHTI:
         # Adapt ACT for this task
         self.act.adapt_for_task_complexity(task_complexity)
         
-        # Try to retrieve relevant transforms from memory
-        retrieved_transforms = self.memory.retrieve(task_encoding, k=5)
+        # Try to retrieve MANY relevant transforms from memory
+        retrieved_transforms = self.memory.retrieve(task_encoding, k=30)
         
         best_transform = None
         best_score = 0.0
@@ -133,7 +133,7 @@ class IntegratedHTI:
                 # Invent transform with limited cycles
                 invented_transform, invention_info = self.hti.invent_transform(
                     examples,
-                    max_cycles=3  # Small cycles within each ACT segment
+                    max_cycles=20  # EXTREME reasoning depth for M3 Max
                 )
                 
                 # Evaluate

@@ -1,0 +1,154 @@
+{
+  "transforms": [
+    [
+      "basic_identity",
+      [
+        "identity"
+      ],
+      1.0
+    ],
+    [
+      "basic_translate_right",
+      [
+        "shift_right"
+      ],
+      1.0
+    ],
+    [
+      "basic_translate_up",
+      [
+        "shift_up"
+      ],
+      1.0
+    ],
+    [
+      "basic_rotate_90",
+      [
+        "rotate_90"
+      ],
+      1.0
+    ],
+    [
+      "basic_flip_horizontal",
+      [
+        "flip_h"
+      ],
+      1.0
+    ],
+    [
+      "basic_scale_2x",
+      [
+        "expand_2x"
+      ],
+      1.0
+    ],
+    [
+      "learned_0",
+      [
+        "shift_right"
+      ],
+      0.89453125
+    ],
+    [
+      "learned_1",
+      [
+        "identity"
+      ],
+      0.8933333333333333
+    ],
+    [
+      "learned_2",
+      [
+        "identity"
+      ],
+      0.8923611111111112
+    ],
+    [
+      "learned_3",
+      [
+        "identity"
+      ],
+      0.87
+    ],
+    [
+      "learned_4",
+      [
+        "identity"
+      ],
+      0.8842975206611571
+    ],
+    [
+      "learned_5",
+      [
+        "shift_right"
+      ],
+      0.8844444444444445
+    ],
+    [
+      "learned_6",
+      [
+        "shift_right"
+      ],
+      0.84
+    ],
+    [
+      "learned_7",
+      [
+        "identity"
+      ],
+      0.89
+    ],
+    [
+      "learned_8",
+      [
+        "identity"
+      ],
+      0.899749373433584
+    ],
+    [
+      "learned_9",
+      [
+        "identity"
+      ],
+      0.725
+    ],
+    [
+      "learned_10",
+      [
+        "identity"
+      ],
+      0.792
+    ],
+    [
+      "learned_11",
+      [
+        "identity"
+      ],
+      0.78125
+    ],
+    [
+      "learned_12",
+      [
+        "identity"
+      ],
+      0.7777777777777778
+    ]
+  ],
+  "statistics": {
+    "total_transforms": 19,
+    "total_stored": 13,
+    "total_retrieved": 12000,
+    "total_composed": 0,
+    "average_performance": 0.8960392005663899,
+    "average_usage": 665.578947368421,
+    "type_distribution": {
+      "basic": 1,
+      "spatial": 2,
+      "rotation": 1,
+      "reflection": 1,
+      "scaling": 1,
+      "unknown": 13
+    },
+    "capacity_used": 0.0038
+  }
+}

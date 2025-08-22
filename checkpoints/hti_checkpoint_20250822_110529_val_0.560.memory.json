@@ -1,0 +1,119 @@
+{
+  "transforms": [
+    [
+      "basic_identity",
+      [
+        "identity"
+      ],
+      1.0
+    ],
+    [
+      "basic_translate_right",
+      [
+        "shift_right"
+      ],
+      1.0
+    ],
+    [
+      "basic_translate_up",
+      [
+        "shift_up"
+      ],
+      1.0
+    ],
+    [
+      "basic_rotate_90",
+      [
+        "rotate_90"
+      ],
+      1.0
+    ],
+    [
+      "basic_flip_horizontal",
+      [
+        "flip_h"
+      ],
+      1.0
+    ],
+    [
+      "basic_scale_2x",
+      [
+        "expand_2x"
+      ],
+      1.0
+    ],
+    [
+      "learned_0",
+      [
+        "identity"
+      ],
+      0.8933333333333333
+    ],
+    [
+      "learned_1",
+      [
+        "identity"
+      ],
+      0.899749373433584
+    ],
+    [
+      "learned_2",
+      [
+        "identity"
+      ],
+      0.8888888888888888
+    ],
+    [
+      "learned_3",
+      [
+        "identity"
+      ],
+      0.8888888888888888
+    ],
+    [
+      "learned_4",
+      [
+        "identity"
+      ],
+      0.7777777777777778
+    ],
+    [
+      "learned_5",
+      [
+        "identity"
+      ],
+      0.85
+    ],
+    [
+      "learned_6",
+      [
+        "identity"
+      ],
+      0.8533333333333334
+    ],
+    [
+      "learned_7",
+      [
+        "identity"
+      ],
+      0.78125
+    ]
+  ],
+  "statistics": {
+    "total_transforms": 14,
+    "total_stored": 8,
+    "total_retrieved": 2000,
+    "total_composed": 0,
+    "average_performance": 0.9166586854039862,
+    "average_usage": 150.07142857142858,
+    "type_distribution": {
+      "basic": 1,
+      "spatial": 2,
+      "rotation": 1,
+      "reflection": 1,
+      "scaling": 1,
+      "unknown": 8
+    },
+    "capacity_used": 0.0028
+  }
+}
